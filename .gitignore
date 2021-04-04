@@ -1,4 +1,4 @@
-./**/*.out
+*.out
 data-structure/baseint.cpp
 tools/dice.cpp
 geometry/mattrix.cpp
