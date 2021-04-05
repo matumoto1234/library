@@ -7,7 +7,6 @@ struct Dijkstra {
   struct edge {
     int to;
     T cost;
-
     edge() {}
     edge(int to, T cost) : to(to), cost(cost) {}
     bool operator<(const edge &e) const { return cost > e.cost; }
@@ -35,10 +34,7 @@ struct Dijkstra {
       auto p = Q.top();
       Q.pop();
       int v = p.to;
-
-      if (ds[v] < p.cost)
-        continue;
-
+      if (ds[v] < p.cost) continue;
       for (auto e : G[v]) {
         if (ds[e.to] > ds[v] + e.cost) {
           ds[e.to] = ds[v] + e.cost;
@@ -53,9 +49,7 @@ struct Dijkstra {
 
   vector<int> restore(int to){
     vector<int> res;
-    if(bs[to]<0){
-      return res;
-    }
+    if(bs[to]<0) return res;
     while(to!=-1){
       res.emplace_back(to);
       to=bs[to];

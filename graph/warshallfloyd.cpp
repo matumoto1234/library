@@ -9,9 +9,7 @@ struct WarshallFloyd{
   T inf() {return numeric_limits<T>::max()/2; }
 
   WarshallFloyd(int V):neg_cycle(false),G(V,vector<T>(V,inf())){
-    for(int i=0;i<V;i++){
-      G[i][i]=0;
-    }
+    for(int i=0;i<V;i++) G[i][i]=0;
   }
 
   void add_edge(int from,int to,T cost){ G[from][to]=cost; }

@@ -16,11 +16,9 @@ T1 modinv(T1 n,T2 MOD){
     return d;
   };
 
-  auto mod = [&](ll N){ return (N%MOD+MOD)%MOD; };
-
   ll X,Y;
   extgcd(n,MOD,X,Y);
-  return mod(X);
+  return (X%MOD+MOD)%MOD;
 }
 
 int main(){
