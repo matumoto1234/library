@@ -49,7 +49,10 @@ struct Dijkstra {
 
   vector<int> restore(int to){
     vector<int> res;
-    if(bs[to]<0) return res;
+    if(bs[to]==-1){
+      res.emplace_back(to);
+      return res;
+    }
     while(to!=-1){
       res.emplace_back(to);
       to=bs[to];

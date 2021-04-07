@@ -15,6 +15,7 @@ struct BellmanFord{
   bool neg_cycle_to_goal;
   vector<edge> es;
   vector<T> ds;
+  vector<int> bs;
 
   BellmanFord(int N):V(N),neg_cycle(false),neg_cycle_to_goal(false){}
 
@@ -25,6 +26,7 @@ struct BellmanFord{
   void build(int s,int g = -1){
     if(g==-1) g=V-1;
     ds.assign(V,inf());
+    bs.assign(V,-1);
     ds[s]=0;
 
     for(int i=0;i<2*V;i++){
@@ -33,6 +35,7 @@ struct BellmanFord{
         if(ds[e.to]<=ds[e.from]+e.cost) continue;
 
         ds[e.to]=ds[e.from]+e.cost;
+        bs[e.from]=e.to;
         if(i>=V-1){
           ds[e.to]=-inf();
           neg_cycle=true;
@@ -46,9 +49,24 @@ struct BellmanFord{
   }
 
   T operator[](int k){ return ds[k]; }
+
+  vector<int> restore(int to){
+    vector<int> res;
+    if(bs[to]==-1){
+      res.emplace_back(to);
+      return res;
+    }
+    while(bs[to]!=-1){
+      res.emplace_back(to);
+      to=bs[to];
+    }
+    reverse(res.begin(),res.end());
+    return res;
+  }
 };
 
 int main() {
+  using ll = long long;
   int V,E,r;
   cin>>V>>E>>r;
   BellmanFord<ll> G(V);
