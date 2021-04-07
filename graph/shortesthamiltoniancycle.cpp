@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 // sから始めて1度だけ訪問し、sに戻ってきた閉路の最短経路距離

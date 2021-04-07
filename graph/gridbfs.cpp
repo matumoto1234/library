@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 vector<vector<int>> gridBFS(vector<string> &s,char start,const string &wall = "#"){
