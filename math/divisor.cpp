@@ -5,8 +5,8 @@ vector<long long> divisor(long long n){
   vector<long long> res;
   for(long long i=1;i*i<=n;i++){
     if(n%i==0){
-      res.push_back(i);
-      if(i*i!=n) res.push_back(n/i);
+      res.emplace_back(i);
+      if(i*i!=n) res.emplace_back(n/i);
     }
   }
   sort(res.begin(),res.end());
@@ -14,11 +14,12 @@ vector<long long> divisor(long long n){
 }
 
 int main(){
-  int n;
+  long long n;
   cin>>n;
   vector<long long> v=divisor(n);
-  for(int i=0;i<v.size();i++){
+  for(int i=0;i<(int)v.size();i++){
+    if(i) cout<<' ';
     cout<<v[i];
-    cout<<(i==v.size()-1?"\n":" ");
   }
+  cout<<'\n';
 }

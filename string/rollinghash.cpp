@@ -1,57 +1,80 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// MOD:2^61-1, B:1e9+7
-template<typename T = long long,long long MOD = (1LL<<61)-1,T B = 1000000007>
+// recommend { MOD:2^61-1, base:random }
 struct RollingHash{
   using i128 = __int128_t;
-  static constexpr long long mod = MOD;
-  static constexpr T base = B;
-  vector<T> hash,cumulative_sum,inv;
-  RollingHash(vector<T> vals){build(vals);}
-  RollingHash(string &s){
-    vector<T> vals;
+  using ll = long long;
+  ll base,mod;
+  vector<ll> hash,cumulative_sum,inv;
+  RollingHash(vector<ll> vals,ll B,ll MOD = (1LL<<61)-1){
+    set_base(B);
+    set_mod(MOD);
+    build(vals);
+  }
+  RollingHash(string &s,ll B,ll MOD = (1LL<<61)-1){
+    vector<ll> vals;
     for(char c:s) vals.emplace_back(c);
+    set_base(B);
+    set_mod(MOD);
     build(vals);
   }
 
+  void set_base(ll B){ base=B; }
+  void set_mod(ll MOD){ mod=MOD; }
+
   // mod multiprecation
-  T modMul(T a,T b){
+  ll mod_mul(ll a,ll b){
     i128 res=a;
     res*=b;
     res=(res >> 61) + (res & mod);
     if(res >= mod) res-=mod;
-    return (T)res;
+    return (ll)res;
   }
 
-  T pow(T a,i128 e){
+  ll pow(ll a,i128 e){
     if(e==0) return 1;
     if(e%2==0){
-      T res=pow(a,e/2);
-      return modMul(res,res);
+      ll res=pow(a,e/2);
+      return mod_mul(res,res);
     }
-    return modMul(pow(a,e-1),a);
+    return mod_mul(pow(a,e-1),a);
   }
 
-  void build(vector<T> vals){
+  void build(vector<ll> vals){
     int n=vals.size();
     hash.assign(n,0);
     cumulative_sum.assign(n+1,0);
     inv.assign(n+1,0);
     i128 e=mod-2;
     inv[n]=pow(base,n*e);
-    for(int i=n-1;i>=0;i--) inv[i]=modMul(inv[i+1],base);
-    for(int i=0;i<n;i++) hash[i]=modMul(vals[i],pow(base,i));
+    for(int i=n-1;i>=0;i--) inv[i]=mod_mul(inv[i+1],base);
+    for(int i=0;i<n;i++) hash[i]=mod_mul(vals[i],pow(base,i));
     for(int i=0;i<n;i++) cumulative_sum[i+1]=(hash[i]+cumulative_sum[i])%mod;
   }
 
   // [l,r)
   long long find(int l,int r){
-    T res=cumulative_sum[r]-cumulative_sum[l];
+    ll res=cumulative_sum[r]-cumulative_sum[l];
     if(res<0) res+=mod;
-    res=modMul(res,inv[l]);
+    res=mod_mul(res,inv[l]);
     return (long long)res;
   }
+};
+
+template<typename T>
+struct RandomGenerator {
+  mt19937 mt;
+  RandomGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count()) {}
+
+  // [a, b)
+  T operator()(T a, T b) {
+    uniform_int_distribution<T> dist(a, b - 1);
+    return dist(mt);
+  }
+
+  // [0, b)
+  T operator()(T b) { return (*this)(0,b); }
 };
 
 // AOJ_ALDS1_14_B
@@ -59,8 +82,12 @@ int main(){
   string s,t;
   cin>>s>>t;
 
-  RollingHash a(s);
-  RollingHash b(t);
+  using ll = long long;
+  RandomGenerator<ll> rnd;
+  const ll base=rnd(2LL,(1LL<<61)-1-2);
+
+  RollingHash a(s,base);
+  RollingHash b(t,base);
 
   int n=s.size(),m=t.size();
   for(int i=0;i<n-m+1;i++){

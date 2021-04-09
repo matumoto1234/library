@@ -1,21 +1,18 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// MOD:2^61-1, B1:1e9+7, B2:1e8+7
-template <typename T = long long,long long MOD = (1LL<<61)-1,T B1 = 1000000007,T B2 = 100000007>
+// recomend:{ MOD:2^61-1, base1,base2:random }
 struct RollingHash2D{
   using i128 = __int128_t;
-  static constexpr long long mod = MOD;
-  static constexpr T base1 = B1;
-  static constexpr T base2 = B2;
+  using ll = long long;
+  ll mod,base1,base2;
   struct CumulativeSum2D{
-    vector<vector<T>> data;
+    vector<vector<ll>> data;
     CumulativeSum2D(){}
-    CumulativeSum2D(int H,int W):data(H+1,vector<T>(W+1,0)){}
 
-    void set(int y,int x,T v){ data[y+1][x+1]+=v; }
+    void set(int y,int x,ll v){ data[y+1][x+1]=v; }
 
-    void build(){
+    void build(ll mod){
       for(int i=1;i<(int)data.size();i++){
         for(int j=1;j<(int)data[i].size();j++){
           data[i][j]+=(data[i][j-1]+data[i-1][j]-data[i-1][j-1])%mod;
@@ -25,21 +22,27 @@ struct RollingHash2D{
     }
 
     // [ (sy,sx), (gy,gx) )
-    T query(int sy,int sx,int gy,int gx){
-      T res=(data[gy][gx]-data[gy][sx]-data[sy][gx]+data[sy][sx])%mod;
+    ll query(int sy,int sx,int gy,int gx,ll mod){
+      ll res=(data[gy][gx]-data[gy][sx]-data[sy][gx]+data[sy][sx])%mod;
       if(res<0) res+=mod;
       return res;
     }
   };
 
-  CumulativeSum2D cumulative_sum;
-  vector<vector<T>> inv;
-  RollingHash2D(vector<vector<T>> vals){ build(vals); }
-  RollingHash2D(vector<string> &s){
-    vector<vector<T>> vals(s.size());
+  CumulativeSum2D sum;
+  vector<vector<ll>> inv;
+  RollingHash2D(vector<vector<ll>> vals,ll B1,ll B2,ll MOD=(1LL<<61)-1){
+    set_base(B1,B2);
+    set_mod(MOD);
+    build(vals);
+  }
+  RollingHash2D(vector<string> &s,ll B1,ll B2,ll MOD=(1LL<<61)-1){
+    set_base(B1,B2);
+    set_mod(MOD);
+    vector<vector<ll>> vals(s.size());
     for(int i=0;i<(int)s.size();i++){
-      for(int j=0;j<(int)s[0].size();j++){
-        T val=s[i][j]%mod;
+      for(char c : s[i]){
+        ll val=(ll)c%mod;
         if(val<0) val+=mod;
         vals[i].emplace_back(val);
       }
@@ -47,47 +50,65 @@ struct RollingHash2D{
     build(vals);
   }
 
+  void set_mod(ll M){ mod=M; }
+  void set_base(ll B1,ll B2){ base1=B1,base2=B2; }
+
   // mod multiprecation
-  T modMul(T a,T b){
+  ll mod_mul(ll a,ll b){
     i128 res=a;
     res*=b;
     res=(res >> 61) + (res & mod);
     if(res >= mod) res-=mod;
-    return (T)res;
+    return (ll)res;
   }
 
-  T pow(T a,i128 e){
+  ll pow(ll a,i128 e){
     if(e==0) return 1;
     if(e%2==0){
-      T res=pow(a,e/2);
-      return modMul(res,res);
+      ll res=pow(a,e/2);
+      return mod_mul(res,res);
     }
-    return modMul(pow(a,e-1),a);
+    return mod_mul(pow(a,e-1),a);
   }
 
-  void build(vector<vector<T>> vals){
+  void build(vector<vector<ll>> vals){
     int h=vals.size(),w=vals[0].size();
-    inv.assign(h+1,vector<T>(w+1,0));
-    cumulative_sum.data.assign(h+1,vector<T>(w+1,0));
+    inv.assign(h+1,vector<ll>(w+1,0));
+    sum.data.assign(h+1,vector<ll>(w+1,0));
     i128 e=mod-2;
-    inv[h][w]=modMul(pow(base1,h*e),pow(base2,w*e));
-    for(int i=h-1;i>=0;i--) inv[i][w]=modMul(inv[i+1][w],base1);
-    for(int j=w-1;j>=0;j--) inv[h][j]=modMul(inv[h][j+1],base2);
+    inv[h][w]=mod_mul(pow(base1,h*e),pow(base2,w*e));
+    for(int i=h-1;i>=0;i--) inv[i][w]=mod_mul(inv[i+1][w],base1);
+    for(int j=w-1;j>=0;j--) inv[h][j]=mod_mul(inv[h][j+1],base2);
     for(int i=h-1;i>=0;i--) for(int j=w-1;j>=0;j--){
-      inv[i][j]=modMul(inv[i+1][j+1],base1);
-      inv[i][j]=modMul(inv[i][j],base2);
+      inv[i][j]=mod_mul(inv[i+1][j+1],base1);
+      inv[i][j]=mod_mul(inv[i][j],base2);
     }
     for(int i=0;i<h;i++) for(int j=0;j<w;j++){
-      T val=modMul(vals[i][j],pow(base1,i));
-      val=modMul(val,pow(base2,j));
-      cumulative_sum.set(i,j,val);
+      ll val=mod_mul(vals[i][j],pow(base1,i));
+      val=mod_mul(val,pow(base2,j));
+      sum.set(i,j,val);
     }
-    cumulative_sum.build();
+    sum.build(mod);
   }
 
-  long long find(int sy,int sx,int gy,int gx){
-    return (long long)modMul(cumulative_sum.query(sy,sx,gy,gx),inv[sy][sx]);
+  ll find(int sy,int sx,int gy,int gx){
+    return mod_mul(sum.query(sy,sx,gy,gx,mod),inv[sy][sx]);
   }
+};
+
+template<typename T>
+struct RandomGenerator {
+  mt19937 mt;
+  RandomGenerator() : mt(chrono::steady_clock::now().time_since_epoch().count()) {}
+
+  // [a, b)
+  T operator()(T a, T b) {
+    uniform_int_distribution<T> dist(a, b - 1);
+    return dist(mt);
+  }
+
+  // [0, b)
+  T operator()(T b) { return (*this)(0,b); }
 };
 
 // AOJ_ALDS1_14_C
@@ -102,8 +123,13 @@ int main(){
   vector<string> t(h2);
   for(int i=0;i<h2;i++) cin>>t[i];
 
-  RollingHash2D S(s);
-  RollingHash2D T(t);
+  using ll = long long;
+  RandomGenerator<ll> rnd;
+  ll base1=rnd(2,(1LL<<61)-1-2);
+  ll base2=rnd(2,(1LL<<61)-1-2);
+
+  RollingHash2D S(s,base1,base2);
+  RollingHash2D T(t,base1,base2);
 
   for(int i=0;i<h1-h2+1;i++) for(int j=0;j<w1-w2+1;j++){
     if(S.find(i,j,i+h2,j+w2)==T.find(0,0,h2,w2)){

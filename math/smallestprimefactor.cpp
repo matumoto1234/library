@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 1-indexed
 class SmallestPrimeFactor {
 public:
+  vector<int> ps;
   SmallestPrimeFactor(int N):ps(N + 1,1){
     build();
   }
@@ -17,11 +17,11 @@ public:
     return res;
   }
 
-  int operator[](int i) { return ps[i]; }
+  bool is_prime(int k){ return ps[k]==k; }
+
+  int operator[](int i){ return ps[i]; }
 
 private:
-  vector<int> ps;
-
   void build() {
     for (long long i = 2; i < ps.size(); i++) {
       if (ps[i] != 1) continue;
