@@ -2,12 +2,10 @@
 using namespace std;
 
 template <typename T>
-class WeightedUnionFind{
-public:
+struct WeightedUnionFind{
   vector<int> par;
   vector<int> siz;
   vector<T> w;
-  WeightedUnionFind(){}
   WeightedUnionFind(int N):par(N),siz(N,1),w(N,0){
     iota(par.begin(),par.end(),0);
   }
@@ -33,7 +31,6 @@ public:
     w[y]=z;
   }
 
-private:
   int root(int x){
     if(x==par[x]) return x;
     int rx=root(par[x]);

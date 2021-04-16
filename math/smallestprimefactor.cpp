@@ -1,11 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class SmallestPrimeFactor {
-public:
+struct SmallestPrimeFactor {
+  using ll = long long;
   vector<int> ps;
-  SmallestPrimeFactor(int N):ps(N + 1,1){
-    build();
+  SmallestPrimeFactor(){}
+
+  void build(int N){
+    ps.assign(N+1,1);
+    for(ll i=2;i<=N;i++){
+      if(ps[i]!=1) continue;
+      ps[i]=i;
+      for(ll j=i*i;j<=N;j+=i){
+        if(ps[j]!=1) continue;
+        ps[j]=i;
+      }
+    }
   }
 
   vector<int> factorize(int x){
@@ -17,19 +27,10 @@ public:
     return res;
   }
 
-  bool is_prime(int k){ return ps[k]==k; }
+  bool is_prime(int k){
+    if(k<=1) return false;
+    return ps[k]==k;
+  }
 
   int operator[](int i){ return ps[i]; }
-
-private:
-  void build() {
-    for (long long i = 2; i < ps.size(); i++) {
-      if (ps[i] != 1) continue;
-      ps[i] = i;
-      for (long long j = i * i; j < ps.size(); j += i) {
-        if (ps[j] != 1) continue;
-        ps[j] = i;
-      }
-    }
-  }
 };
