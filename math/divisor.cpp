@@ -1,8 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<long long> divisor(long long n){
-  vector<long long> res;
+template <typename T = long long>
+vector<T> divisor(T n){
+  vector<T> res;
   for(long long i=1;i*i<=n;i++){
     if(n%i==0){
       res.emplace_back(i);

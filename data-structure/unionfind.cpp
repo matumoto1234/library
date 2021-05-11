@@ -14,13 +14,13 @@ struct UnionFind{
     return par[x]=root(par[x]);
   }
 
-  int count(){ return cnt; }
+  int group_count(){ return cnt; }
 
   int size(int x){ return siz[root(x)]; }
 
-  bool issame(int x,int y){ return root(x)==root(y); }
+  bool same(int x,int y){ return root(x)==root(y); }
 
-  void unite(int x,int y){
+  void merge(int x,int y){
     x=root(x);
     y=root(y);
     if(x==y) return;
