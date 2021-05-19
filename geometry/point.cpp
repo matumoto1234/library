@@ -19,7 +19,7 @@ struct Point{
   bool operator==(const Point &p) const { return (fabs(x-p.x)<EPS)&&(fabs(x-p.y)<EPS); }
   bool operator<(const Point &p) const { return x==p.x?y<p.y:x<p.x; }
   double euclid(){ return sqrt(x*x+y*y); }
-  friend istream &operator>>(istream &is,Point &p) { is>>p.x>>p.x; return is;}
+  friend istream &operator>>(istream &is,Point &p) { is>>p.x>>p.y; return is;}
   friend ostream &operator<<(ostream &os,Point &p) { os<<p.x<<' '<<p.y; return os;}
 };
 

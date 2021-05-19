@@ -29,4 +29,12 @@ struct UnionFind{
     par[y]=x;
     cnt--;
   }
+
+  /*
+  vector<int> same_group_count(const UnionFind &uf){
+    for(int i=0;i<(int)par.size();i++){
+      
+    }
+  }
+  */
 };
