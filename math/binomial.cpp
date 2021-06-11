@@ -1,9 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-template <typename T1,typename T2>
-T1 combination(T1 n,T2 r){
-  T1 res=1;
+template <typename T>
+T Binomial(T n,T r){
+  T res=1;
   for(T1 i=0;i<r;i++){
     res*=n-i;
     res/=i+1;
@@ -14,5 +14,5 @@ T1 combination(T1 n,T2 r){
 int main(){
   int n,r;
   cin>>n>>r;
-  cout<<combination(n,r)<<endl;
+  cout<<Binomial(n,r)<<endl;
 }

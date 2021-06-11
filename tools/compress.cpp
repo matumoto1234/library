@@ -1,23 +1,43 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-vector<int> compress(vector<int> a){
-  int n=a.size();
-  vector<int> res=a;
-  sort(a.begin(),a.end());
-  map<int,int> mp;
-  for(int i=0;i<n;i++){
-    mp[a[i]]=i;
-  }
-  for(int i=0;i<n;i++){
-    res[i]=mp[res[i]];
-  }
-  return res;
-}
+template <typename T>
+struct Compress {
+  vector<T> xs;
+  Compress() {}
+  Compress(int N) : xs(N, 0) {}
+  Compress(const vector<T> &vs) : xs(vs) {}
 
-int main(){
+  void add(T x) { xs.emplace_back(x); }
+  void add(const vector<T> &vs) {
+    for ( const T &x : vs ) {
+      xs.emplace_back(x);
+    }
+  }
+
+  void build() {
+    sort(xs.begin(), xs.end());
+    xs.erase(unique(xs.begin(), xs.end()), xs.end());
+  }
+
+  vector<T> get(const vector<T> &vs) {
+    vector<T> res = vs;
+    for ( T &x : res ) {
+      x = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
+    }
+    return res;
+  }
+
+  int get(T k) const {
+    return lower_bound(xs.begin(), xs.end(), k) - xs.begin();
+  }
+
+  const T &operator[](int k) const { return xs[k]; }
+};
+
+int main() {
   int n;
-  cin>>n;
+  cin >> n;
   vector<int> a(n);
-  a=compress(a);
+  Compress<int> comp(a);
 }

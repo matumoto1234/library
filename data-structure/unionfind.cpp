@@ -30,11 +30,22 @@ struct UnionFind{
     cnt--;
   }
 
-  /*
-  vector<int> same_group_count(const UnionFind &uf){
-    for(int i=0;i<(int)par.size();i++){
-      
+  // Θ(NlogN)
+  // 2つのUnionFindでi番目の頂点と同じ連結成分であるものの個数(i番目の頂点を含む)
+  vector<int> connect_count(UnionFind tree){
+    map<pair<int,int>, int> mp;
+
+    int N=par.size();
+    for(int i=0;i<N;i++){
+      pair<int,int> p = make_pair(root(i),tree.root(i));
+      mp[p]++;
     }
+
+    vector<int> res(N);
+    for(int i=0;i<N;i++){
+      pair<int,int> p = make_pair(root(i),tree.root(i));
+      res[i]=mp[p];
+    }
+    return res;
   }
-  */
 };
