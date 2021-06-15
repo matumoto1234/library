@@ -2,15 +2,14 @@
 using namespace std;
 
 template <typename T>
-struct WarshallFloyd {
+struct warshall_floyd {
   vector<vector<T>> ds;
   vector<vector<int>> ns;
 
   T inf() { return numeric_limits<T>::max() / 2; }
 
-  WarshallFloyd(int V) : ds(V, vector<T>(V, inf())) {
-    for ( int i = 0; i < V; i++ )
-      ds[i][i] = 0;
+  warshall_floyd(int V) : ds(V, vector<T>(V, inf())) {
+    for ( int i = 0; i < V; i++ ) ds[i][i] = 0;
   }
 
   void add_edge(int from, int to, T cost) { ds[from][to] = cost; }
@@ -59,28 +58,28 @@ struct WarshallFloyd {
 };
 
 int main() {
-  int V,E;
-  cin>>V>>E;
-  WarshallFloyd<long long> G(V);
-  for(int i=0;i<E;i++){
-    int s,t,d;
-    cin>>s>>t>>d;
-    G.add_edge(s,t,d);
+  int V, E;
+  cin >> V >> E;
+  warshall_floyd<long long> G(V);
+  for ( int i = 0; i < E; i++ ) {
+    int s, t, d;
+    cin >> s >> t >> d;
+    G.add_edge(s, t, d);
   }
   G.build();
-  if(G.neg_cycle()){
-    cout<<"NEGATIVE CYCLE"<<endl;
+  if ( G.neg_cycle() ) {
+    cout << "NEGATIVE CYCLE" << endl;
     return 0;
   }
 
-  for(int i=0;i<V;i++){
-    for(int j=0;j<V;j++){
-      if(G[i][j]==G.inf()){
-        cout<<"INF";
-      }else{
-        cout<<G[i][j];
+  for ( int i = 0; i < V; i++ ) {
+    for ( int j = 0; j < V; j++ ) {
+      if ( G[i][j] == G.inf() ) {
+        cout << "INF";
+      } else {
+        cout << G[i][j];
       }
-      cout<<(j==V-1?"\n":" ");
+      cout << (j == V - 1 ? "\n" : " ");
     }
   }
 }

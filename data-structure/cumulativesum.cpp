@@ -1,31 +1,37 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 template <typename T>
-struct CumulativeSum{
-  vector<T> sum;
-  CumulativeSum(){}
-  CumulativeSum(const vector<T> &a){
-    build(a);
+struct cumulative_sum {
+  vector<T> dat;
+  cumulative_sum(int n) : dat(n + 1) {}
+
+  void set(int k, T x) { dat[k + 1] = x; }
+
+  void build() {
+    for ( int i = 0; i < (int)dat.size(); i++ ) {
+      dat[i + 1] += dat[i];
+    }
   }
 
-  void build(const vector<T> &a){
-    sum.assign(a.size()+1,0);
-    for(int i=0;i<(int)a.size();i++) sum[i+1]=a[i]+sum[i];
-  }
-
-  T query(int l,int r){ return sum[r]-sum[l]; }
+  // [l,r)
+  T query(int l, int r) { return dat[r] - dat[l]; }
 };
 
-int main(){
+int main() {
   int n;
-  cin>>n;
+  cin >> n;
   vector<int> a(n);
-  for(int i=0;i<n;i++){
-    cin>>a[i];
+  for ( int i = 0; i < n; i++ ) {
+    cin >> a[i];
   }
 
-  CumulativeSum<int> sum(a);
+  cumulative_sum<int> sum(n);
+  for ( int i = 0; i < n; i++ ) {
+    sum.set(i, a[i]);
+  }
 
-  cout<<sum.query(0,n)<<endl;
+  sum.build();
+
+  cout << sum.query(0, n) << endl;
 }

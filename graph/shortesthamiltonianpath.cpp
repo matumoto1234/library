@@ -4,7 +4,7 @@ using namespace std;
 // 全頂点を1度だけ訪問したときの最短経路距離
 // buildでinfが帰ってきたらそのような経路はない
 template <typename T>
-struct shortestHamiltonianPath{
+struct shortest_hamiltonian_path{
   struct edge{
     int to;
     T cost;
@@ -15,7 +15,7 @@ struct shortestHamiltonianPath{
   vector<vector<edge>> G;
   vector<vector<T>> dp;
 
-  shortestHamiltonianianPath(int V_):V(V_),G(V_){}
+  shortest_hamiltonian_path(int V_):V(V_),G(V_){}
 
   T inf(){ return numeric_limits<T>::max() / 2; }
 
@@ -49,7 +49,7 @@ int main(){
   int V,E;
   cin>>V>>E;
 
-  shortestHamiltonianPath<long long> G(V);
+  shortest_hamiltonian_path<long long> G(V);
   for(int i=0;i<E;i++){
     int s,t,d;
     cin>>s>>t>>d;

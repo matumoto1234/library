@@ -2,17 +2,17 @@
 using namespace std;
 
 // recommend { MOD:2^61-1, base:random }
-struct RollingHash{
+struct rolling_hash{
   using i128 = __int128_t;
   using ll = long long;
   ll base,mod;
   vector<ll> hash,cumulative_sum,inv;
-  RollingHash(vector<ll> vals,ll B,ll MOD = (1LL<<61)-1){
+  rolling_hash(vector<ll> vals,ll B,ll MOD = (1LL<<61)-1){
     set_base(B);
     set_mod(MOD);
     build(vals);
   }
-  RollingHash(string &s,ll B,ll MOD = (1LL<<61)-1){
+  rolling_hash(string &s,ll B,ll MOD = (1LL<<61)-1){
     vector<ll> vals;
     for(char c:s) vals.emplace_back(c);
     set_base(B);
@@ -86,8 +86,8 @@ int main(){
   RandomGenerator<ll> rnd;
   const ll base=rnd(2LL,(1LL<<61)-1-2);
 
-  RollingHash a(s,base);
-  RollingHash b(t,base);
+  rolling_hash a(s,base);
+  rolling_hash b(t,base);
 
   int n=s.size(),m=t.size();
   for(int i=0;i<n-m+1;i++){

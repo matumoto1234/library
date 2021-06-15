@@ -2,7 +2,7 @@
 using namespace std;
 
 template <typename vec>
-vector<vec> rotCW2D(vector<vec> &s){
+vector<vec> rot_clockwise_2d(vector<vec> &s){
   int h=s.size(),w=s[0].size();
   vector<vec> res(w);
   for(int i=0;i<w;i++){
@@ -14,7 +14,7 @@ vector<vec> rotCW2D(vector<vec> &s){
 }
 
 template <typename vec>
-vector<vec> rotCCW2D(vector<vec> &s){
+vector<vec> rot_counterclockwise_2d(vector<vec> &s){
   int h=s.size(),w=s[0].size();
   vector<vec> res(w);
   for(int i=0;i<w;i++){
@@ -31,12 +31,12 @@ int main(){
   vector<string> s(h);
   for(int i=0;i<h;i++) cin>>s[i];
 
-  vector<string> s2 = rotCW2D(s);
+  vector<string> s2 = rot_clockwise_2d(s);
   for(int i=0;i<(int)s2.size();i++){
     cout<<s2[i]<<endl;
   }
 
-  s2 = rotCCW2D(s);
+  s2 = rot_counterclockwise_2d(s);
   for(int i=0;i<(int)s2.size();i++){
     cout<<s2[i]<<endl;
   }

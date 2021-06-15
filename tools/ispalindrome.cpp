@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool isPalindrome(string &s){
+bool is_palindrome(string &s){
   for(int i=0;i<(int)s.size()/2;i++){
     if(s[i]!=s[(int)s.size()-1-i]) return false;
   }
@@ -11,5 +11,5 @@ bool isPalindrome(string &s){
 int main(){
   string s;
   cin>>s;
-  cout<<(isPalindrome(s)?"Yes":"No")<<endl;
+  cout<<(is_palindrome(s)?"Yes":"No")<<endl;
 }

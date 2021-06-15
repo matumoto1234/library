@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct TopologicalSort{
+struct topological_sort{
   vector<int> in_degree;
   vector<vector<int>> G;
 
-  TopologicalSort(int V):G(V),in_degree(V,0){}
+  topological_sort(int V):G(V),in_degree(V,0){}
 
   void add_edge(int from,int to){
     G[from].emplace_back(to);
@@ -38,7 +38,7 @@ int main(){
   int V,E;
   cin>>V>>E;
 
-  TopologicalSort G(V);
+  topological_sort G(V);
 
   for(int i=0;i<E;i++){
     int s,t;

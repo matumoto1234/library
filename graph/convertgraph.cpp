@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<vector<int>> convertGraph(const vector<string> &s){
+vector<vector<int>> convert_graph(const vector<string> &s){
   int h=s.size(),w=s[0].size();
   const int dy[]={1,0,-1,0},dx[]={0,1,0,-1};
   vector<vector<int>> res(h*w);
@@ -27,7 +27,7 @@ int main(){
     cin>>s[i];
   }
 
-  auto G=convertGraph(s);
+  auto G=convert_graph(s);
   for(int i=0;i<h*w;i++){
     cout<<"i:"<<i<<' ';
     for(int to:G[i]){

@@ -2,11 +2,11 @@
 using namespace std;
 
 template <typename T>
-struct Compress {
+struct compress {
   vector<T> xs;
-  Compress() {}
-  Compress(int N) : xs(N, 0) {}
-  Compress(const vector<T> &vs) : xs(vs) {}
+  compress() {}
+  compress(int N) : xs(N, 0) {}
+  compress(const vector<T> &vs) : xs(vs) {}
 
   void add(T x) { xs.emplace_back(x); }
   void add(const vector<T> &vs) {
@@ -39,5 +39,5 @@ int main() {
   int n;
   cin >> n;
   vector<int> a(n);
-  Compress<int> comp(a);
+  compress<int> comp(a);
 }

@@ -2,7 +2,7 @@
 using namespace std;
 
 // recomend:{ MOD:2^61-1, base1,base2:random }
-struct RollingHash2D{
+struct rolling_hash_2d{
   using i128 = __int128_t;
   using ll = long long;
   ll mod,base1,base2;
@@ -31,12 +31,12 @@ struct RollingHash2D{
 
   CumulativeSum2D sum;
   vector<vector<ll>> inv;
-  RollingHash2D(vector<vector<ll>> vals,ll B1,ll B2,ll MOD=(1LL<<61)-1){
+  rolling_hash_2d(vector<vector<ll>> vals,ll B1,ll B2,ll MOD=(1LL<<61)-1){
     set_base(B1,B2);
     set_mod(MOD);
     build(vals);
   }
-  RollingHash2D(vector<string> &s,ll B1,ll B2,ll MOD=(1LL<<61)-1){
+  rolling_hash_2d(vector<string> &s,ll B1,ll B2,ll MOD=(1LL<<61)-1){
     set_base(B1,B2);
     set_mod(MOD);
     vector<vector<ll>> vals(s.size());
@@ -128,8 +128,8 @@ int main(){
   ll base1=rnd(2,(1LL<<61)-1-2);
   ll base2=rnd(2,(1LL<<61)-1-2);
 
-  RollingHash2D S(s,base1,base2);
-  RollingHash2D T(t,base1,base2);
+  rolling_hash_2d S(s,base1,base2);
+  rolling_hash_2d T(t,base1,base2);
 
   for(int i=0;i<h1-h2+1;i++) for(int j=0;j<w1-w2+1;j++){
     if(S.find(i,j,i+h2,j+w2)==T.find(0,0,h2,w2)){
