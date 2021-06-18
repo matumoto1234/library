@@ -4,7 +4,7 @@ using namespace std;
 template <typename T>
 T binomial(T n, T r) {
   T res = 1;
-  for ( T1 i = 0; i < r; i++ ) {
+  for ( T i = 0; i < r; i++ ) {
     res *= n - i;
     res /= i + 1;
   }

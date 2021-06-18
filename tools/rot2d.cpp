@@ -2,24 +2,24 @@
 using namespace std;
 
 template <typename vec>
-vector<vec> rot_clockwise_2d(vector<vec> &s){
-  int h=s.size(),w=s[0].size();
+vector<vec> rot_clockwise_2d(const vector<vec> &s) {
+  int h = s.size(), w = s[0].size();
   vector<vec> res(w);
-  for(int i=0;i<w;i++){
-    for(int j=0;j<h;j++){
-      res[i].push_back(s[h-1-j][i]);
+  for ( int i = 0; i < w; i++ ) {
+    for ( int j = 0; j < h; j++ ) {
+      res[i].push_back(s[h - 1 - j][i]);
     }
   }
   return res;
 }
 
 template <typename vec>
-vector<vec> rot_counterclockwise_2d(vector<vec> &s){
-  int h=s.size(),w=s[0].size();
+vector<vec> rot_counterclockwise_2d(const vector<vec> &s) {
+  int h = s.size(), w = s[0].size();
   vector<vec> res(w);
-  for(int i=0;i<w;i++){
-    for(int j=0;j<h;j++){
-      res[i].push_back(s[j][w-1-i]);
+  for ( int i = 0; i < w; i++ ) {
+    for ( int j = 0; j < h; j++ ) {
+      res[i].push_back(s[j][w - 1 - i]);
     }
   }
   return res;
