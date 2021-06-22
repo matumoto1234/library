@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T1, typename T2>
-T1 ceil_division(T1 a, T2 b) {
-  return (a + (b - 1)) / b;
+template <typename T>
+T ceil_division(T n, T d) {
+  assert(d != 0);
+  return n / d + ((n ^ d >= 0) && (n % d));
 }
 
 int main() {
   int x, y;
-  cin >> x >> y;
   cout << ceil_division(x, y) << endl;
 }
