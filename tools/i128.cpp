@@ -6,19 +6,18 @@ private:
   __int128_t v;
 
 public:
+  i128() {}
+  i128(const long long &a) { v = a; }
+  i128(const string &s) { parse(s); }
 
-	i128() {}
-	i128(const long long &a) { v = a; }
-	i128(const string &s) { parse(s); }
-
-	long long long_val() { return (long long)v; }
+  long long long_val() { return (long long)v; }
   __int128_t val() { return v; }
   __int128_t abs() { return v < 0 ? -v : v; }
 
-	void set(const long long &a) { v = a; }
+  void set(const long long &a) { v = a; }
 
   void parse(const string &s) {
-		v = 0;
+    v = 0;
     for ( char c : s ) {
       if ( isdigit(c) ) v = v * 10 + (c - '0');
     }
@@ -65,8 +64,6 @@ public:
   template <typename T> bool operator!=(const T &a) { return v != a; }
   // clang-format on
 
-
-
   friend istream &operator>>(istream &is, i128 &v) {
     string s;
     is >> s;
@@ -95,8 +92,6 @@ public:
   }
 };
 
-
-// 
 int main() {
   cin.tie(nullptr);
   ios::sync_with_stdio(false);
@@ -104,7 +99,7 @@ int main() {
   i128 n;
   cin >> n;
 
-	n *= 10;
+  n *= 10;
 
-	cout << n << endl;
+  cout << n << endl;
 }
