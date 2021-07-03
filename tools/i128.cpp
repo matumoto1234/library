@@ -30,22 +30,22 @@ public:
   i128 operator*(const i128 &a) { return v * a.v; }
   i128 operator/(const i128 &a) { return v / a.v; }
   i128 operator%(const i128 &a) { return v % a.v; }
-  void operator+=(const i128 &a) { v += a.v; }
-  void operator-=(const i128 &a) { v -= a.v; }
-  void operator*=(const i128 &a) { v *= a.v; }
-  void operator/=(const i128 &a) { v /= a.v; }
-  void operator%=(const i128 &a) { v %= a.v; }
+  i128 operator+=(const i128 &a) { v += a.v; return v; }
+  i128 operator-=(const i128 &a) { v -= a.v; return v; }
+  i128 operator*=(const i128 &a) { v *= a.v; return v; }
+  i128 operator/=(const i128 &a) { v /= a.v; return v; }
+  i128 operator%=(const i128 &a) { v %= a.v; return v; }
 
   template <typename T> i128 operator+(const T &a) { i128 res = *this; res.v += a; return res; }
   template <typename T> i128 operator-(const T &a) { i128 res = *this; res.v -= a; return res; }
   template <typename T> i128 operator*(const T &a) { i128 res = *this; res.v *= a; return res; }
   template <typename T> i128 operator/(const T &a) { i128 res = *this; res.v /= a; return res; }
   template <typename T> i128 operator%(const T &a) { i128 res = *this; res.v %= a; return res; }
-  template <typename T> void operator+=(const T &a) { v += a; }
-  template <typename T> void operator-=(const T &a) { v -= a; }
-  template <typename T> void operator*=(const T &a) { v *= a; }
-  template <typename T> void operator/=(const T &a) { v /= a; }
-  template <typename T> void operator%=(const T &a) { v %= a; }
+  template <typename T> i128 operator+=(const T &a) { v += a; return v; }
+  template <typename T> i128 operator-=(const T &a) { v -= a; return v; }
+  template <typename T> i128 operator*=(const T &a) { v *= a; return v; }
+  template <typename T> i128 operator/=(const T &a) { v /= a; return v; }
+  template <typename T> i128 operator%=(const T &a) { v %= a; return v; }
 
   template <typename T> i128 operator-() { i128 res = *this; res.v *= -1; return res; }
 
