@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct smallest_prime_factor {
+struct prime_factor_table {
   vector<int> ps;
-  smallest_prime_factor() {}
+  prime_factor_table() {}
 
   void build(int N) {
     ps.assign(N + 1, 1);
