@@ -3,6 +3,10 @@ using namespace std;
 
 class lowest_common_ancestor {
 private:
+  int h;
+  vector<vector<int>> G, par;
+  vector<int> dep;
+
   void dfs(int v, int p, int d) {
     par[0][v] = p;
     dep[v] = d;
@@ -11,9 +15,6 @@ private:
   }
 
 public:
-  int h;
-  vector<vector<int>> G, par;
-  vector<int> dep;
   lowest_common_ancestor(int n) : G(n), dep(n) {
     h = 1;
     while ( (1 << h) <= n )
@@ -23,12 +24,12 @@ public:
 
   void add_edge(int u, int v) {
     G[u].emplace_back(v);
-    G[v].emplace_back(u);
+    // G[v].emplace_back(u);
   }
 
-  void build(int r = 0) {
+  void build(int root = 0) {
     int n = G.size();
-    dfs(r, -1, 0);
+    dfs(root, -1, 0);
     for ( int k = 0; k + 1 < h; k++ )
       for ( int v = 0; v < n; v++ )
         if ( ~par[k][v] ) par[k + 1][v] = par[k][par[k][v]];
@@ -51,4 +52,29 @@ public:
 };
 
 int main() {
+  int n;
+  cin>>n;
+  lowest_common_ancestor lca(n);
+
+  for(int i=0;i<n;i++){
+    int k;
+    cin>>k;
+    for(int j=0;j<k;j++){
+      int c;
+      cin>>c;
+      c--;
+      lca.add_edge(i,c);
+    }
+  }
+
+  lca.build();
+
+  int q;
+  cin>>q;
+  for(int i=0;i<q;i++){
+    int u,v;
+    cin>>u>>v;
+    u--,v--;
+    cout<<lca.query(u,v)<<endl;
+  }
 }
