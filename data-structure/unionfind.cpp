@@ -3,9 +3,9 @@ using namespace std;
 using ll = long long;
 
 struct union_find {
-  int cnt;
+  int grp_cnt, merge_cnt;
   vector<int> siz, par;
-  union_find(int N) : cnt(N), siz(N, 1), par(N) {
+  union_find(int N) : grp_cnt(N), merge_cnt(0), siz(N, 1), par(N) {
     iota(par.begin(), par.end(), 0);
   }
 
@@ -14,20 +14,24 @@ struct union_find {
     return par[x] = root(par[x]);
   }
 
-  int group_count() { return cnt; }
+  int group_count() { return grp_cnt; }
+
+  int merge_count() { return merge_cnt; }
 
   int size(int x) { return siz[root(x)]; }
 
   bool same(int x, int y) { return root(x) == root(y); }
 
-  void merge(int x, int y) {
+  bool merge(int x, int y) {
     x = root(x);
     y = root(y);
-    if ( x == y ) return;
+    if ( x == y ) return false;
     if ( siz[x] < siz[y] ) swap(x, y);
     siz[x] += siz[y];
     par[y] = x;
-    cnt--;
+    grp_cnt--;
+    merge_cnt++;
+    return true;
   }
 
   // Θ(NlogN)
