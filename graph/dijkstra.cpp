@@ -17,9 +17,13 @@ struct dijkstra {
   vector<vector<edge>> G;
   vector<T> ds;
   vector<int> bs;
+  vector<pair<int, pair<int, T>>> es;
   dijkstra(int n) : G(n) {}
 
-  void add_edge(int from, int to, T cost) { G[from].emplace_back(to, cost); }
+  void add_edge(int from, int to, T cost) {
+    G[from].emplace_back(to, cost);
+    es.emplace_back(from, to, cost);
+  }
 
   void build(int start) {
     int n = G.size();
@@ -46,6 +50,10 @@ struct dijkstra {
   }
 
   T operator[](int k) { return ds[k]; }
+
+  pair<int, pair<int, T>> get_edge(int k) { return es[k]; }
+
+  vector<pair<int, pair<int, T>>> edges() { return es; }
 
   vector<int> restore(int to) {
     vector<int> res;
