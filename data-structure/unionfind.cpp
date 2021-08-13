@@ -2,9 +2,12 @@
 using namespace std;
 using ll = long long;
 
-struct union_find {
+class union_find {
+private:
   int grp_cnt, merge_cnt;
   vector<int> siz, par;
+
+public:
   union_find(int N) : grp_cnt(N), merge_cnt(0), siz(N, 1), par(N) {
     iota(par.begin(), par.end(), 0);
   }
