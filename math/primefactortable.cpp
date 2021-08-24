@@ -3,10 +3,10 @@ using namespace std;
 
 struct prime_factor_table {
   vector<int> ps;
-  prime_factor_table() {}
+  prime_factor_table(int N) : ps(N + 1, 1) {}
 
-  void build(int N) {
-    ps.assign(N + 1, 1);
+  void build() {
+    int N = ps.size();
     for ( long long i = 2; i <= N; i++ ) {
       if ( ps[i] != 1 ) continue;
       ps[i] = i;

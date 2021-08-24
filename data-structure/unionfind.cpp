@@ -12,11 +12,13 @@ public:
     iota(par.begin(), par.end(), 0);
   }
 
+  // 根（そのグループの識別番号）
   int root(int x) {
     if ( x == par[x] ) return x;
     return par[x] = root(par[x]);
   }
 
+  // 連結成分の個数
   int group_count() { return grp_cnt; }
 
   int merge_count() { return merge_cnt; }
@@ -37,19 +39,35 @@ public:
     return true;
   }
 
+  // Θ(N)
+  vector<vector<int>> groups() {
+    int n = par.size();
+    vector<vector<int>> grps(n);
+    for ( int i = 0; i < n; i++ ) {
+      grps[root(i)].emplace_back(i);
+    }
+    vector<vector<int>> res;
+    res.reserve(group_count());
+    for ( int i = 0; i < n; i++ ) {
+      if ( grps[i].empty() ) continue;
+      res.emplace_back(grps[i]);
+    }
+    return res;
+  }
+
   // Θ(NlogN)
   // 2つのunion_findでi番目の頂点と同じ連結成分であるものの個数(i番目の頂点を含む)
   vector<int> connect_count(union_find tree) {
     map<pair<int, int>, int> mp;
 
-    int N = par.size();
-    for ( int i = 0; i < N; i++ ) {
+    int n = par.size();
+    for ( int i = 0; i < n; i++ ) {
       pair<int, int> p = make_pair(root(i), tree.root(i));
       mp[p]++;
     }
 
-    vector<int> res(N);
-    for ( int i = 0; i < N; i++ ) {
+    vector<int> res(n);
+    for ( int i = 0; i < n; i++ ) {
       pair<int, int> p = make_pair(root(i), tree.root(i));
       res[i] = mp[p];
     }
