@@ -45,13 +45,18 @@ struct rolling_hash {
     hash.assign(n, 0);
     cumulative_sum.assign(n + 1, 0);
     inv.assign(n + 1, 0);
+    vector<ll> pow_table(n + 1);
+
     i128 e = mod - 2;
     inv[n] = pow(base, n * e);
+    pow_table[0] = 1;
+
     for ( int i = n - 1; i >= 0; i-- ) {
+      pow_table[n - i] = mod_mul(pow_table[n - i - 1], base);
       inv[i] = mod_mul(inv[i + 1], base);
     }
     for ( int i = 0; i < n; i++ ) {
-      hash[i] = mod_mul(dat[i], pow(base, i));
+      hash[i] = mod_mul(dat[i], pow_table[i]);
     }
     for ( int i = 0; i < n; i++ ) {
       cumulative_sum[i + 1] = (hash[i] + cumulative_sum[i]) % mod;
