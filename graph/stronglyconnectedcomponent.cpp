@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class strongly_connected_component
-{
+class strongly_connected_component {
 private:
   // sccは強連結成分ごとの集合
   vector<vector<int>> G, rG, scc;
@@ -50,6 +49,7 @@ public:
     cnt = 0;
     groups.assign(V, 0);
     arrived.assign(V, false);
+    scc.resize(V);
 
     for ( int i = V - 1; i >= 0; i-- ) {
       int idx = post_order[i];
