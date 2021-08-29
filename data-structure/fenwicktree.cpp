@@ -29,7 +29,7 @@ public:
   T get(int k) { return dat[++k]; }
 
   // [l,r)
-  T sum(int l, int r) { return sum(r - 1) - sum(l - 1); }
+  T sum(int l, int r) { return sum(r) - sum(l); }
 
   // min({x | sum(x) >= w})
   int lower_bound(T w) {
