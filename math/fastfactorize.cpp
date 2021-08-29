@@ -180,7 +180,7 @@ std::vector<u64> factorize(const u64 n) {
 using inner::is_prime;
 
 template <typename T>
-std::vector<T> factorize(const T n) {
+std::vector<T> fast_factorize(const T n) {
 	auto tmp = inner::factorize(n);
 	std::vector<T> res{tmp.begin(), tmp.end()};
 	std::sort(res.begin(), res.end());
