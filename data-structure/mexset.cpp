@@ -45,7 +45,7 @@ struct mexset {
 
   bool erase(T x) {
     if ( !contains(x) ) return false;
-    auto it = prev(s.lower_bound(x + 1, x + 1));
+    auto it = prev(s.lower_bound(make_pair(x + 1, x + 1)));
     auto [l, u] = *it;
     s.erase(it);
     if ( x != l ) s.emplace(l, x - 1);
