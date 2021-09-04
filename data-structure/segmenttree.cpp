@@ -1,69 +1,73 @@
-#include<iostream>
-#include<vector>
-#include<cstdint>
-#include<limits>
+#include <bits/stdc++.h>
 using namespace std;
 
-// 0-indexed
-template <typename T> class segment_tree{
+template <typename T, T (*op)(T, T), T (*e)()>
+class segment_tree {
 private:
-  vector<T> t;
-  T len;
+  int n;
+  vector<T> dat;
 
-  T inf() {return numeric_limits<T>::max();}
-
-  T search(const int& l,const int& r,int i,int now_l,int now_r){
-    if(r<=now_l||now_r<=l) return inf();
-    if(l<=now_l&&now_r<=r) return t[i];
-
-    T lv=search(l,r,i*2+1,now_l,(now_l+now_r)/2);
-    T rv=search(l,r,i*2+2,(now_l+now_r)/2,now_r);
-    return min(lv,rv);
+  T search(int l, int r) {
+    T vl = e(), vr = e();
+    l += n, r += n;
+    while ( l < r ) {
+      if ( l & 1 ) vl = op(vl, dat[l++]);
+      if ( r & 1 ) vr = op(vr, dat[--r]);
+      l >>= 1, r >>= 1;
+    }
+    return op(vl, vr);
   }
 
 public:
-  segment_tree(int siz){
-    len=1;
-    while(len<siz){
-      len*=2;
+  segment_tree() {}
+  segment_tree(int _n) { assign(_n); }
+
+  void assign(int _n) {
+    n = 1;
+    while ( n < _n ) {
+      n <<= 1;
     }
-    t.assign(len+len-1,inf());
+    dat.assign(2 * n, e());
   }
 
-  void init(int siz){
-    len=1;
-    while(len<siz){
-      len*=2;
-    }
-    t.assign(len+len-1,inf());
-  }
+  T get(int i) { return dat[i + n]; }
 
-  void update(int i,T key){
-    i+=len-1;
-    t[i]=key;
-    while(i>0){
-      i=(i-1)/2;
-      t[i]=min(t[i*2+1],t[i*2+2]);
+  void set(int i, T key) {
+    i += n;
+    dat[i] = key;
+    while ( i > 0 ) {
+      i >>= 1;
+      dat[i] = op(dat[i << 1 | 0], dat[i << 1 | 1]);
     }
   }
 
-  /* [l,r) */
-  T find(const int& l,const int& r){
-    return search(l,r,0,0,len);
-  }
+  // [l, r)
+  T prod(int l, int r) { return search(l, r); }
+
+  T all_prod() { return n != 0 ? dat[0] : e(); }
 };
 
-int main(){
-  int n,q;
-  cin>>n>>q;
-  segment_tree<int> segt(n);
-  for(int i=0;i<q;i++){
-    int com,x,y;
-    cin>>com>>x>>y;
-    if(com==0){
-      segt.update(x,y);
-    }else{
-      cout<<segt.find(x,y+1)<<endl;
+int op(int a, int b) {
+  return min(a, b);
+}
+
+int e() {
+  return INT32_MAX;
+}
+
+// AOJ_DSL_2_A
+int main() {
+  int n, q;
+  cin >> n >> q;
+  segment_tree<int, op, e> seg(n);
+
+  for ( int i = 0; i < q; i++ ) {
+    int com, x, y;
+    cin >> com >> x >> y;
+    if ( com == 0 ) {
+      seg.set(x, y);
+    } else {
+      cout << seg.prod(x, y + 1) << "\n";
     }
   }
   return 0;
