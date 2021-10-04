@@ -1,35 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<string> split(const string &str, const string &sep) {
+vector<string> split(const string &str, const string &sep,
+    const int &max_split = INT32_MAX) {
   vector<string> res;
   string t = "";
+  int cnt_split = 0;
   for ( auto c : str ) {
-    if ( sep.find(c) == string::npos ) {
-      t += c;
+    if ( sep.find(c) != string::npos and cnt_split < max_split ) {
+      res.emplace_back(t);
+      t = "";
+      cnt_split++;
       continue;
     }
-    res.emplace_back(t);
-    t = "";
+    t += c;
   }
   if ( t != "" ) res.emplace_back(t);
   return res;
 }
 
-vector<string> split(const string &str, int k) {
-  assert(k >= 1);
-  int cnt = 0;
-  vector<string> res;
-  string t = "";
-  for ( auto c : str ) {
-    cnt++;
-    t += c;
-    if ( cnt >= k ) {
-      res.emplace_back(t);
-      cnt = 0;
-      t = "";
+int main() {
+  string s = "1,2,3,4,5";
+
+  {
+    vector<string> t = split(s, ",");
+    for ( auto element : t ) {
+      cout << element << endl;
     }
   }
-  if ( t != "" ) res.emplace_back(t);
-  return res;
+
+  cout << "--------" << endl;
+
+  {
+    vector<string> t = split(s, ",", 3);
+    for ( auto element : t ) {
+      cout << element << endl;
+    }
+  }
 }
