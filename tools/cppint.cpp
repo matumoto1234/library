@@ -4,40 +4,19 @@ using namespace std;
 
 namespace cpp_int {
   namespace mp = boost::multiprecision;
-  mp::cpp_int parse(const string &s) {
-    mp::cpp_int res = 0;
-    for ( char c : s ) {
-      if ( isdigit(c) ) res = res * 10 + (c - '0');
+
+  string to_string(mp::cpp_int a) {
+    string res = "";
+    if ( a < 0 ) {
+      a *= -1;
+      res += "-";
     }
-    if ( s[0] == '-' ) res *= -1;
+
+    while ( a ) {
+      res += static_cast<char>(a % 10 + '0');
+      a /= 10;
+    }
     return res;
-  }
-
-  istream &operator>>(istream &is, mp::cpp_int &v) {
-    string s;
-    is >> s;
-    v = parse(s);
-    return is;
-  }
-
-  ostream &operator<<(ostream &os, const mp::cpp_int &v) {
-    if ( !ostream::sentry(os) ) return os;
-    char buf[64];
-    char *d = end(buf);
-    mp::cpp_int tmp = (v < 0 ? -v : v);
-
-    do {
-      d--;
-      *d = char(tmp % 10 + '0');
-      tmp /= 10;
-    } while ( tmp );
-    if ( v < 0 ) {
-      d--;
-      *d = '-';
-    }
-    int len = end(buf) - d;
-    if ( os.rdbuf()->sputn(d, len) != len ) { os.setstate(ios_base::badbit); }
-    return os;
   }
 
   mp::cpp_int gcd(mp::cpp_int a, mp::cpp_int b) {
@@ -51,6 +30,26 @@ namespace cpp_int {
   }
 
   mp::cpp_int lcm(mp::cpp_int a, mp::cpp_int b) { return a * b / gcd(a, b); }
+
+  mp::cpp_int power(mp::cpp_int a, mp::cpp_int e, mp::cpp_int p = -1) {
+    bool is_mod_power = false;
+    if ( p == -1 )
+      is_mod_power = true;
+    else if ( p <= 1 )
+      return 0;
+
+    mp::cpp_int res = 1;
+    while ( e > 0 ) {
+      if ( e & 1 ) {
+        res *= a;
+        if ( is_mod_power ) res %= p;
+      }
+      a *= a;
+      if ( is_mod_power ) a %= p;
+      e >>= 1;
+    }
+    return res;
+  }
 } // namespace cpp_int
 using namespace cpp_int;
 using cint = boost::multiprecision::cpp_int;
