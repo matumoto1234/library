@@ -39,15 +39,6 @@ struct slices {
   }
 };
 
-template <typename T>
-ostream &operator<<(ostream &os, vector<T> v) {
-  for ( int i = 0; i < (int)v.size(); i++ ) {
-    if ( i ) os << ' ';
-    os << v[i];
-  }
-  return os;
-}
-
 void output(vector<int> v){
   for ( int i = 0; i < (int)v.size(); i++ ) {
     if ( i ) cout << ' ';
