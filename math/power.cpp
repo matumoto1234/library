@@ -1,14 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T>
-T power(T a, T e, T p = 0) {
-  if ( p <= 1 ) return 0;
-  if ( p == 0 ) p = numeric_limits<T>::max();
-  T res = 1;
-  while ( e > 0 ) {
-    if ( e & 1 ) res = (res * a) % p;
-    a = (a * a) % p;
+using ll = long long;
+
+namespace template_internal_math {
+
+  template <typename T>
+  T extgcd(T a, T b, T &x, T &y) {
+    if (b == 0) {
+      x = 1;
+      y = 0;
+      return a;
+    }
+    T d = extgcd(b, a % b, y, x);
+    y = y - (a / b) * x;
+    return d;
+  }
+
+} // namespace template_internal_math
+
+ll power(ll a, ll e, ll p = -1) {
+  assert(p != 0);
+  assert(p >= -1);
+
+  if (e < 0) {
+    assert(p != -1 and gcd(a, p) == 1);
+    ll x, y;
+    template_internal_math::extgcd(a, p, x, y);
+    a = (x % p + p) % p;
+    e *= -1;
+  }
+
+  ll res = 1;
+  while (e > 0) {
+    if (e & 1) {
+      res *= a;
+      if (p != -1) res %= p;
+    }
+    a *= a;
+    if (p != -1) a %= p;
     e >>= 1;
   }
   return res;
@@ -16,7 +46,7 @@ T power(T a, T e, T p = 0) {
 
 // AOJ_NTL_1_B
 int main() {
-  long long a, b;
+  ll a, b;
   cin >> a >> b;
-  cout << power(a, b, (long long)1e9 + 7) << endl;
+  cout << power(a, b, 1e9 + 7) << endl;
 }
