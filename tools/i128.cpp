@@ -49,6 +49,47 @@ namespace int128 {
   }
 
   __int128_t lcm(__int128_t a, __int128_t b) { return a * b / gcd(a, b); }
+
+
+  namespace template_internal_math {
+
+    __int128_t extgcd(__int128_t a, __int128_t b, __int128_t &x, __int128_t &y) {
+      if (b == 0) {
+        x = 1;
+        y = 0;
+        return a;
+      }
+      __int128_t d = extgcd(b, a % b, y, x);
+      y = y - (a / b) * x;
+      return d;
+    }
+
+  } // namespace template_internal_math
+
+  __int128_t power(__int128_t a, __int128_t e, __int128_t p = -1) {
+    assert(p != 0);
+    assert(p >= -1);
+
+    if (e < 0) {
+      assert(p != -1 and gcd(a, p) == 1);
+      __int128_t x, y;
+      template_internal_math::extgcd(a, p, x, y);
+      a = (x % p + p) % p;
+      e *= -1;
+    }
+
+    __int128_t res = 1;
+    while (e > 0) {
+      if (e & 1) {
+        res *= a;
+        if (p != -1) res %= p;
+      }
+      a *= a;
+      if (p != -1) a %= p;
+      e >>= 1;
+    }
+    return res;
+  }
 } // namespace int128
 using namespace int128;
 using i128 = __int128_t;
