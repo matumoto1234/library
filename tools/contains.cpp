@@ -1,17 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T>
-bool contains(const vector<T> &vs, T value) {
-  for ( auto v : vs ) {
-    if ( value == v ) return true;
-  }
-  return false;
-}
+#define contains(container, x) (find(begin(container), end(container), x) != end(container))
 
-bool contains(const string &s, char ch){
-  for ( auto c : s ) {
-    if ( c == ch ) return true;
+int main() {
+  vector<int> a = { 4, 2, 5, 10 };
+
+  if (contains(a, 10)) {
+    cout << "yes" << endl;
+  } else {
+    cout << "no" << endl;
   }
-  return false;
+  if (contains(a, 1)) {
+    cout << "yes" << endl;
+  } else {
+    cout << "no" << endl;
+  }
 }
