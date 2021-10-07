@@ -1,35 +1,49 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-// n and MOD are coprime
-template <typename T1,typename T2>
-T1 modinv(T1 n,T2 MOD){
-  using ll = long long;
-  function<T1(ll,ll,ll&,ll&)> extgcd = [&](ll a,ll b,ll &x,ll &y){
-    if(b==0){
-      x=1;
-      y=0;
-      return a;
-    }
-    ll d=extgcd(b,a%b,y,x);
-    y=y-(a/b)*x;
-    return d;
-  };
+using ll = long long;
 
-  ll X,Y;
-  extgcd(n,MOD,X,Y);
-  return (X%MOD+MOD)%MOD;
+ll extgcd(ll a, ll b, ll &x, ll &y) {
+  if (b == 0) {
+    x = 1;
+    y = 0;
+    return a;
+  }
+  ll d = extgcd(b, a % b, y, x);
+  y = y - (a / b) * x;
+  return d;
 }
 
-int main(){
-  using ll = long long;
+ll modinv(ll n, ll mod) {
+  ll x, y;
+  extgcd(n, mod, x, y);
+  return (x % mod + mod) % mod;
+}
+
+int main() {
   ll n;
-  cin>>n;
+  cin >> n;
 
-  const int M=1e9+7;
-  ll inv=modinv(n,M);
+  assert(n >= 0);
 
-  ll result=(inv*n)%M;
-  assert(result==1);
-  cout<<result<<endl;
+  constexpr int mod = 1e9 + 7;
+
+  {
+    ll inv = modinv(n, mod);
+    ll result = (inv * n) % mod;
+
+    assert(result == 1);
+    cout << result << endl;
+  }
+
+  {
+    ll inv = modinv(n, mod);
+    inv = (inv * inv) % mod;
+
+    ll result = (n * n) % mod;
+    result = (result * inv) % mod;
+
+    assert(result == 1);
+    cout << result << endl;
+  }
 }
