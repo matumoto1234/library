@@ -1,19 +1,69 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define contains(container, x) (find(begin(container), end(container), x) != end(container))
+namespace helper {
+  template <typename T>
+  class has_iterator {
+    template <typename Container>
+    static true_type test(typename Container::iterator *);
+    template <typename Container>
+    static false_type test(...);
+
+  public:
+    static const bool value = decltype(test<T>(0))::value;
+  };
+
+  template <typename Container, typename T>
+  class has_find {
+    template <typename InnerContainer, int dummy = (static_cast<typename enable_if<has_iterator<InnerContainer>::value, InnerContainer>::type::iterator (InnerContainer::*)(const T &)>(&InnerContainer::find), 0)>
+    static true_type check(InnerContainer *);
+    static false_type check(...);
+    static Container *container;
+
+  public:
+    static const bool value = decltype(check(container))::value;
+  };
+} // namespace helper
+
+template <typename Container, typename T>
+bool contains(const Container &container, const T &x) {
+  if constexpr (helper::has_find<Container, T>::value) {
+    return container.find(x) != end(container);
+  } else {
+    return find(begin(container), end(container), x) != end(container);
+  }
+}
 
 int main() {
-  vector<int> a = { 4, 2, 5, 10 };
+  cout << boolalpha;
 
-  if (contains(a, 10)) {
-    cout << "yes" << endl;
-  } else {
-    cout << "no" << endl;
+  {
+    cout << "set-------------" << endl;
+    set<int> s;
+    s.insert(10);
+    cout << contains(s, 10) << endl;
+    cout << contains(s, 3) << endl;
   }
-  if (contains(a, 1)) {
-    cout << "yes" << endl;
-  } else {
-    cout << "no" << endl;
+  {
+    cout << "map-------------" << endl;
+    map<int, int> mp;
+    mp[2] = 3;
+    cout << contains(mp, 3) << endl;
+    cout << contains(mp, 2) << endl;
+  }
+  {
+    cout << "vector-------------" << endl;
+    vector<int> vs = { 1, 4, 3 };
+    cout << contains(vs, 5) << endl;
+    cout << contains(vs, 4) << endl;
+    cout << contains(vs, 1) << endl;
+  }
+  {
+    // expect : string uses std::find
+    cout << "string-------------" << endl;
+    string s = "341";
+    cout << contains(s, '5') << endl;
+    cout << contains(s, '4') << endl;
+    cout << contains(s, '1') << endl;
   }
 }
