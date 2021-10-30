@@ -6,6 +6,7 @@ namespace helper {
   class has_iterator {
     template <typename Container>
     static true_type test(typename Container::iterator *);
+
     template <typename Container>
     static false_type test(...);
 
