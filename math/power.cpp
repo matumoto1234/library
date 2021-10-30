@@ -3,7 +3,7 @@ using namespace std;
 
 using ll = long long;
 
-namespace template_internal_math {
+namespace power_helper {
 
   template <typename T>
   T extgcd(T a, T b, T &x, T &y) {
@@ -17,7 +17,7 @@ namespace template_internal_math {
     return d;
   }
 
-} // namespace template_internal_math
+} // namespace power_helper
 
 ll power(ll a, ll e, ll p = -1) {
   assert(p != 0);
@@ -26,7 +26,7 @@ ll power(ll a, ll e, ll p = -1) {
   if (e < 0) {
     assert(p != -1 and gcd(a, p) == 1);
     ll x, y;
-    template_internal_math::extgcd(a, p, x, y);
+    power_helper::extgcd(a, p, x, y);
     a = (x % p + p) % p;
     e *= -1;
   }

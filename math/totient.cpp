@@ -1,9 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long long euler_phi(long long n) {
-  long long res = n;
-  for ( long long i = 2; i * i <= n; i++ ) {
+using ll = long long;
+
+ll totient(ll n) {
+  ll res = n;
+  for ( ll i = 2; i * i <= n; i++ ) {
     if ( n % i == 0 ) {
       res -= res / i;
       while ( n % i == 0 )
@@ -15,7 +17,7 @@ long long euler_phi(long long n) {
 }
 
 int main() {
-  long long n;
+  ll n;
   cin >> n;
-  cout << euler_phi(n) << endl;
+  cout << totient(n) << endl;
 }

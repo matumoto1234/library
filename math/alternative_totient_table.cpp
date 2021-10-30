@@ -19,7 +19,7 @@ vector<int> count_factor(int N) {
 }
 
 // Θ(NloglogN)
-vector<int> alternative_euler_phi_table(int N) {
+vector<int> alternative_totient_table(int N) {
   vector<int> table = count_factor(N);
 
   vector<int> alt(N + 1, 0);

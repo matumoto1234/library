@@ -2,7 +2,7 @@
 using namespace std;
 
 template <typename T>
-vector<T> prime_factor(T n) {
+vector<T> factorize(T n) {
   vector<T> res;
   for ( long long i = 2; i * i <= n; i++ ) {
     while ( n % i == 0 ) {
@@ -14,9 +14,9 @@ vector<T> prime_factor(T n) {
   return res;
 }
 
-long long alternative_euler_phi(long long x, long long n) {
+long long alternative_totient_phi(long long x, long long n) {
   if ( x == 1 ) return n;
-  auto ps = prime_factor(x);
+  auto ps = factorize(x);
   ps.erase(unique(ps.begin(), ps.end()), ps.end());
   int k = ps.size();
   long long res = n - x;

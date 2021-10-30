@@ -2,7 +2,7 @@
 using namespace std;
 
 template <typename T>
-vector<T> prime_factor(T n) {
+vector<T> factorize(T n) {
   vector<T> res;
   for ( long long i = 2; i * i <= n; i++ ) {
     while ( n % i == 0 ) {
@@ -25,7 +25,7 @@ int main() {
   for ( int i = 0; i < q; i++ ) {
     ll n;
     cin >> n;
-    vector<ll> ps = prime_factor(n);
+    vector<ll> ps = factorize(n);
     cout << ps.size();
     for ( const auto &p : ps ) {
       cout << ' ' << p;
