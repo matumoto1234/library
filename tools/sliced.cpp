@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct slices {
+struct Sliced {
   static constexpr int init = INT32_MAX;
-  slices() {}
+  Sliced() {}
 
   template <typename T>
   vector<T> operator()(const vector<T> &v, int l, int r = init, int stride = init) {
@@ -37,7 +37,7 @@ struct slices {
     }
     return res;
   }
-};
+} sliced;
 
 void output(vector<int> v){
   for ( int i = 0; i < (int)v.size(); i++ ) {
@@ -47,10 +47,9 @@ void output(vector<int> v){
 }
 
 int main() {
-  slices sl;
   vector<int> a = { 1, 2, 3, 4, 5 };
-  output(sl(a, 0));
-  output(sl(a, 0, 3));
-  output(sl(a, 0, 4, -1));
-  output(sl(a, -4, -1, 1));
+  output(sliced(a, 0));
+  output(sliced(a, 0, 3));
+  output(sliced(a, 0, 4, -1));
+  output(sliced(a, -4, -1, 1));
 }
