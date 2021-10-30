@@ -2,7 +2,7 @@
 using namespace std;
 #include <boost/multiprecision/cpp_int.hpp>
 
-namespace cpp_int {
+namespace cpp_int_helper {
   namespace mp = boost::multiprecision;
 
   string to_string(mp::cpp_int a) {
@@ -31,25 +31,46 @@ namespace cpp_int {
 
   mp::cpp_int lcm(mp::cpp_int a, mp::cpp_int b) { return a * b / gcd(a, b); }
 
+  namespace power_helper {
+  
+    mp::cpp_int extgcd(mp::cpp_int a, mp::cpp_int b, mp::cpp_int &x, mp::cpp_int &y) {
+      if (b == 0) {
+        x = 1;
+        y = 0;
+        return a;
+      }
+      mp::cpp_int d = extgcd(b, a % b, y, x);
+      y = y - (a / b) * x;
+      return d;
+    }
+  
+  } // namespace power_helper
+  
   mp::cpp_int power(mp::cpp_int a, mp::cpp_int e, mp::cpp_int p = -1) {
-    bool is_mod_power = false;
-    if ( p == -1 )
-      is_mod_power = true;
-    else if ( p <= 1 )
-      return 0;
-
+    assert(p != 0);
+    assert(p >= -1);
+  
+    if (e < 0) {
+      assert(p != -1 and gcd(a, p) == 1);
+      mp::cpp_int x, y;
+      power_helper::extgcd(a, p, x, y);
+      a = (x % p + p) % p;
+      e *= -1;
+    }
+  
     mp::cpp_int res = 1;
-    while ( e > 0 ) {
-      if ( e & 1 ) {
+    while (e > 0) {
+      if (e & 1) {
         res *= a;
-        if ( is_mod_power ) res %= p;
+        if (p != -1) res %= p;
       }
       a *= a;
-      if ( is_mod_power ) a %= p;
+      if (p != -1) a %= p;
       e >>= 1;
     }
     return res;
   }
-} // namespace cpp_int
-using namespace cpp_int;
+
+} // namespace cpp_int_helper
+using namespace cpp_int_helper;
 using cint = boost::multiprecision::cpp_int;
