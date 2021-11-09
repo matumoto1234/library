@@ -2,35 +2,37 @@
 using namespace std;
 
 template <typename T>
-struct cumulative_sum {
+struct CumulativeSum {
   vector<T> dat;
-  cumulative_sum(int n) : dat(n + 1, 0) {}
-  cumulative_sum(int n, T x) : dat(n + 1, x) {}
+  CumulativeSum(int n) : dat(n + 1, 0) {}
+  CumulativeSum(int n, T x) : dat(n + 1, x) {}
 
   void set(int k, T x) { dat[k + 1] = x; }
 
+  void add(int k, T x) { dat[k + 1] = x; }
+
+  T get(int k) { return dat[k + 1]; }
+
   void build() {
-    for ( int i = 0; i < (int)dat.size() - 1; i++ ) {
+    for (size_t i = 0; i < dat.size() - 1; i++) {
       dat[i + 1] += dat[i];
     }
   }
 
   // [l,r)
   T query(int l, int r) { return dat[r] - dat[l]; }
-
-  T operator[](int k) { return dat[k + 1]; }
 };
 
 int main() {
   int n;
   cin >> n;
   vector<int> a(n);
-  for ( int i = 0; i < n; i++ ) {
+  for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
 
-  cumulative_sum<int> sum(n);
-  for ( int i = 0; i < n; i++ ) {
+  CumulativeSum<int> sum(n);
+  for (int i = 0; i < n; i++) {
     sum.set(i, a[i]);
   }
 
