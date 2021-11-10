@@ -1,0 +1,700 @@
+# 本家：https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+# 自動翻訳：https://pystyle.info/apps/clang-format-editor/
+
+# <Description>は2行になる場合もある
+# <Description>: <Value type>
+# clang-format: <Version>
+# <Hoge>: <Value>
+
+#
+# BasedOnStyle: Google
+
+# アクセス修飾子のインデント or アウトデント: Number
+# clang-format 3.3
+AccessModifierOffset: -2
+
+
+# 関数などの引数の整列方法: Align | DontAlign | AlwaysBreak
+# clang-format: 3.8
+AlignAfterOpenBracket: Align
+
+
+# 構造体配列の初期化要素の左揃え: Left | Right | None
+# clang-format: 13
+# AlignArrayOfStructures: Right
+
+
+# 変数初期化をイコールで整列する: None | Consecutive | AcrossEmptyLines | AcrossComments | AcrossEmptyLinesAndComments
+# clang-format: 3.8
+AlignConsecutiveAssignments: None
+
+
+# ビットフィールドを整列する: None | Consecutive | AcrossEmptyLines | AcrossComments | AcrossEmptyLinesAndComments 
+# clang-format: 11
+AlignConsecutiveBitFields: None
+
+
+# 連続する宣言を整列するスタイル: None | Consecutive | AcrossEmptyLines | AcrossComments | AcrossEmptyLinesAndComments 
+# clang-format: 3.8
+AlignConsecutiveDeclarations: None
+
+
+# 連続するマクロ定義を整列するスタイル: None | Consecutive | AcrossEmptyLines | AcrossComments | AcrossEmptyLinesAndComments 
+# clang-format: 9
+AlignConsecutiveMacros: None
+
+
+# エスケープされた改行で円記号を揃えるためのオプション: DontAlign | Left | Right
+# clang-format: 5
+AlignEscapedNewlines: DontAlign
+
+
+# trueの場合、2進式と3進式のオペランドを水平方向に揃える: DontAlign | Align | AlignAfterOperator
+# clang-format: 12
+AlignOperands: DontAlign
+
+
+# trueの場合、末尾のコメントを揃える
+# clang-format: 3.7
+AlignTrailingComments: true
+
+
+# 関数呼び出しまたはブレース付き初期化子リストが1行に収まらない場合、次の行に整列する: true | false
+# clang-format: 9
+AllowAllArgumentsOnNextLine: false
+
+
+# このオプションは非推奨  PackConstructorInitializers を参照
+# clang-format: 9
+# AllowAllConstructorInitializersOnNextLine: false
+
+
+# 関数宣言が1行に収まらない場合、関数宣言のすべてのパラメーターを次の行に配置できるようにする: true | false
+# clang-format: 3.3
+AllowAllParametersOfDeclarationOnNextLine: false
+
+
+# 値に応じてブロックを1行に配置できる: Never | Empty | Always
+# clang-format: 11
+AllowShortBlocksOnASingleLine: Empty
+
+
+# trueの場合、短いケースのラベルは1行に縮小される: true | false
+# clang-format: 3.6
+AllowShortCaseLabelsOnASingleLine: false
+
+
+# 短い列挙型を1行に配置できる: true | false
+# clang-format: 12
+AllowShortEnumsOnASingleLine: false
+
+
+# 値に応じて関数を1行に配置できる: None | InlineOnly | Empty | Inline | All
+# clang-format: 3.5
+AllowShortFunctionsOnASingleLine: InlineOnly
+
+
+# 値に応じてif文を1行に配置できる: Never | WithoutElse | OnlyFirstIf | AllIfsAndElse
+# clang-format: 9
+AllowShortIfStatementsOnASingleLine: WithoutElse
+
+
+# 値に応じてラムダを1行に配置できる: None | Empty | Inline | All
+# clang-format: 9
+AllowShortLambdasOnASingleLine: None
+
+
+# trueの場合、短いループ文を1行に配置できる: true | false
+# clang-format: 3.7
+AllowShortLoopsOnASingleLine: false
+
+
+# このオプションは非推奨　下位互換性のために保持されている: None | All | TopLevel
+# clang-format: 3.7
+# AlwaysBreakAfterReturnType: None
+
+
+# return後の改行スタイル: None | All | TopLevel | AllDefinitions | TopLevelDefinitions
+# clang-format: 3.8
+AlwaysBreakAfterReturnType: None
+
+
+# trueの場合、常に複数行の文字列リテラルの前で中断する: true | false
+# clang-format: 3.4
+AlwaysBreakBeforeMultilineStrings: false
+
+
+# テンプレート宣言の改行スタイル: No | MultiLine | Yes
+# clang-format: 7
+AlwaysBreakTemplateDeclarations: Yes
+
+
+# 識別子ではなく属性/修飾子として解釈される必要がある文字列のベクトル。これは、言語拡張または静的アナライザーアノテーションに役立つ: ['']
+# clang-format 12
+# AttributeMacros: 
+
+
+# falseの場合、関数呼び出しの引数はすべて同じ行にあるか、それぞれ1行になる: true | false
+# clang-format: 3.7
+BinPackArguments: false
+
+
+# falseの場合、関数宣言または関数定義のパラメーターはすべて同じ行にあるか、それぞれ1行になる: true | false
+# clang-format: 3.7
+BinPackParameters: false
+
+
+# ビットフィールドに使用するスタイル: Both | None | Before | After
+# clang-format: 12
+BitFieldColonSpacing: None
+
+
+# 使用するブレースブレイクスタイル: Attach | Linux | Mozilla | Stroustrup | Allman | Whitesmiths | GNU | WebKit | Custom
+BreakBeforeBraces: Custom
+
+
+# 個々のブレースラッピングケースの制御: BreakBeforeBracesがCustomのときのみ適用される
+# clang-format: 3.8
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterControlStatement: Never
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: false
+  BeforeLambdaBody: false
+  BeforeWhile: false
+  IndentBraces: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+
+
+# Javaファイルのフィールドの各注釈の後で中断する: true | false
+# clang-format: 3.8
+BreakAfterJavaFieldAnnotations: true
+
+
+# 二項演算子をラップする方法: None | NonAssignment | All
+# clang-format: 3.6
+BreakBeforeBinaryOperators: None
+
+
+# trueの場合、conceptは新しい行に配置される: true | false
+# clang-format: 13
+# BreakBeforeConceptDeclarations: false
+
+
+# trueの場合、三項演算子は改行の後に配置される: true | false
+# clang-format: 3.7
+BreakBeforeTernaryOperators: true
+
+
+# 使用するブレークコンストラクタイニシャライザスタイル: BeforeColon | BeforeComma | AfterColon
+# clang-format: 5
+BreakConstructorInitializers: AfterColon
+
+
+# 使用する継承リストのスタイル: BeforeColon | BeforeComma | AfterColon | AfterComma
+# clang-format: 7
+BreakInheritanceList: BeforeComma
+
+
+# フォーマット時に文字列リテラルを壊すことを許可: true | false
+# clang-format: 3.9
+BreakStringLiterals: false
+
+
+# 列の制限: <Unsigned>
+# clang-format: 3.7
+ColumnLimit: 200
+
+
+# 特別な意味を持つコメントを説明する正規表現 これに指定すると行に分割したり、その他の方法で変更したりしない: <String>
+# clang-format: 3.7
+CommentPragmas: ''
+
+
+# trueの場合、連続する名前空間宣言は同じ行にある falseの場合、各名前空間は新しい行に宣言される: true | false
+# clang-format: 5
+CompactNamespaces: false
+
+
+# このオプションは非推奨です CurrentLineのPackConstructorInitializersを参照してください
+# clang-format: 3.7
+# ConstructorInitializerAllOnOneLineOrOnePerLine: true
+
+
+# コンストラクター初期化子リストと継承リストのインデントに使用する文字数: <Unsigned>
+# clang-format: 3.7
+ConstructorInitializerIndentWidth: 0
+
+
+# trueの場合、ブレースリストをC ++ 11ブレースリストに最適な形式に設定する: treu | false
+# clang-format: 3.4
+Cpp11BracedListStyle: false
+
+
+# 最もよく使用される行末（\r\n または\n）について、フォーマットされたファイルを分析する: true | false
+# clang-format: 11
+DeriveLineEnding: false
+
+
+# trueの場合、フォーマットされたファイルを分析して、*と&の最も一般的な配置を確認する: true | false
+# clang-format: 3.7
+DerivePointerAlignment: false
+
+
+# フォーマットを完全に無効にする: true | false
+# clang-format: 3.7
+DisableFormat: false
+
+
+# アクセス修飾子の後に空行を配置するタイミングを定義する: Never | Leave | Always
+# clang-format: 14
+# EmptyLineAfterAccessModifier: Never
+
+
+# アクセス修飾子の前に空の行を配置する場合を定義する: Never | Leave | LogicalBlock| Always
+# clang-format: 13
+# EmptyLineBeforeAccessModifier: LogicalBlock
+
+
+# trueの場合、clang-formatは、関数呼び出しと定義が1行に1つのパラメーターでフォーマットされているかどうかを検出する: true | false
+# >> これは実験的なフラグであり、なくなるか、名前が変更される可能性があります 設定ファイルなどでは使用しないでください 自己責任で使用してください
+# clang-format: 3.7
+# ExperimentalAutoDetectBinPacking: hoge
+
+
+# trueの場合、clang-formatは、短い名前空間の欠落している名前空間終了コメントを追加し、無効な既存の名前空間を修正する: true | false
+# clang-format: 5
+FixNamespaceComments: true
+
+
+# 関数呼び出しとしてではなく、foreachループとして解釈される必要があるマクロ: <List of Strings>
+# clang-format: 3.7
+ForEachMacros: ['rep', 'REP']
+
+
+# 関数呼び出しとしてではなく条件として解釈されるべきマクロ: <List of Strings>
+# clang-format: 14
+# IfMacros: ['hoge']
+
+# 値に応じて、複数の#includeブロックを1つに並べ替え、カテゴリに基づいて分割する: Preserve | Merge | Regroup
+# clang-format: 7
+IncludeBlocks: Regroup
+
+
+# #include順序付けに使用されるさまざまなカテゴリを示す正規表現: なんかよくわからん
+# clang-format: 7
+# IncludeCategories: hogehogehoge
+
+
+# ファイルからメインインクルードへのマッピングで許可されるサフィックスの正規表現を指定する: <String>
+# clang-format: 7
+# IncludeIsMainRegex: 'hoge'
+
+
+# ファイルからメインインクルードへのマッピングで「メイン」と見なされることが許可されている、フォーマットされているファイルの正規表現を指定する: <String>
+# clang-format: 7
+# IncludeIsMainSourceRegex: 'hoge'
+
+
+# アクセス修飾子に独自のインデントレベルを設定するかどうかを指定する: true | false
+# clang-format: 13
+# IndentAccessModifiers: false
+
+
+# インデントケースラベルは、ケースラベルから1レベルブロックする: true | false
+# clang-format: 11
+IndentCaseBlocks: false
+
+
+# インデントケースは、switchステートメントから1つのレベルにラベルを付ける: true | false
+# clang-format: 3.3
+IndentCaseLabels: true
+
+
+# externブロックのインデントのタイプ: AfterExternBlock | NoIndent | Indent
+# clang-format: 12
+IndentExternBlock: Indent
+
+
+# gotoラベルをインデント: true | false
+# clang-format: 10
+IndentGotoLabels: true
+
+
+
+# 使用するプリプロセッサディレクティブのインデントスタイル: None | AfterHash | BeforeHash
+# clang-format: 6
+IndentPPDirectives: None
+
+
+# テンプレートのrequires句をインデント: true | false
+# clang-format: 13
+# IndentRequires: false
+
+
+
+# インデントに使用する列の数: <Unsigned>
+# clang-format: 3.7
+IndentWidth: 2
+
+
+
+# 関数の定義または宣言が型の後にラップされているかどうかをインデント: true | false
+# clang-format: 3.7
+IndentWrappedFunctionNames: true
+
+
+# Wrappedに設定すると、複数行にまたがるコンテナリテラル（配列とオブジェクト）に末尾のコンマが挿入される
+# 現在、JavaScriptでのみ使用可能であり、デフォルトで無効になっている(None): None | Wrapped
+# clang-format: 12
+InsertTrailingCommas: None
+
+
+# Javaインポートの目的のグループによって順序付けられたプレフィックス: <List of Strings>
+# clang-format: 8
+# JavaImportGroups: ['']
+
+
+# JavaScript文字列に使用するJavaScriptQuoteStyle: Leave | Single | Double
+# clang-format: 3.9
+# JavaScriptQuotes: hogehogehoge
+
+
+# JavaScriptのインポート/エクスポートステートメントをラップするかどうか: true | false
+# clang-format: 3.9
+# JavaScriptWrapImports: true
+
+
+# trueの場合、ブロックの先頭の空の行が保持される: true | false
+# clang-format: 3.7
+KeepEmptyLinesAtTheStartOfBlocks: false
+
+
+# ラムダボディのインデントスタイル: Signature | OuterScope
+# clang-format: 13
+# LambdaBodyIndentation: Signature
+
+
+# このフォーマットスタイルが対象となる言語: None | Cpp | CSharp | Java | JavaScript | Json | ObjC | Proto | TableGen | TextProto
+# clang-format: 3.5
+Language: Cpp
+
+# ブロックを開始するマクロに一致する正規表現: <String>
+# clang-format: 3.7
+# MacroBlockBegin: 'hoge'
+
+
+# ブロックを終了するマクロに一致する正規表現: <String>
+# clang-format: 3.7
+# MacroBlockEnd: 'hoge'
+
+
+# 保持する連続する空の行の最大数: <Unsigned>
+# clang-format: 3.7
+MaxEmptyLinesToKeep: 3
+
+
+# 名前空間に使用されるインデント: None | Inner | All
+# clang-format: 3.7
+NamespaceIndentation: All
+
+
+# 前空間ブロックを開くために使用されるマクロ: <List of Strings>
+# clang-format: 9
+# NamespaceMacros: ['']
+
+
+# ビンパッキングObjective-Cプロトコル適合リスト項目を、それらが通過するときに可能な限り少ない行に制御する: Auto | Always | Never
+# clang-format: 7
+# ObjCBinPackProtocolList: Never
+
+
+# ObjCブロックのインデントに使用する文字数: <Unsigned>
+# clang-format: 3.7
+# ObjCBlockIndentWidth: 2
+
+
+# 関数呼び出しにネストされたブロックパラメーターがある場合は、パラメーターリストを行に分割する: true | false
+# clang-format: 12
+# ObjCBreakBeforeNestedBlockParam: false
+
+
+# Objective-Cの後にスペースを追加する: true | false
+# clang-format: 3.7
+# ObjCSpaceAfterProperty: false
+
+
+# Objective-Cプロトコルリストの前にスペースを追加する: true | false
+# clang-format: 3.7
+ObjCSpaceBeforeProtocolList: false
+
+
+# PPIndentWidth: <Integer>
+# clang-format: 14
+# PPIndentWidth: 0
+
+
+# 使用するパックコンストラクタイニシャライザスタイル: Never | BinPack | CurrentLine | NextLine
+# clang-format: 14
+# PackConstructorInitializers: NextLine
+
+
+
+# ペナルティについて
+# https://stackoverflow.com/questions/26635370/in-clang-format-what-do-the-penalties-do
+# https://github.com/git/git/commit/42efde4c299141ddf1ca5b63909b94ab3875aa14
+
+
+# 代入演算子を回避した場合のペナルティ: <Unsigned>
+# clang-format: 5
+PenaltyBreakAssignment: 10
+
+
+# 関数呼び出しを中断した場合のペナルティ: <Unsigned>
+# clang-format: 3.7
+PenaltyBreakBeforeFirstCallParameter: 30
+
+
+# コメント内に導入された各改行のペナルティ: <Unsigned>
+# clang-format: 3.7
+PenaltyBreakComment: 10
+
+
+# 最初の<<の前に壊した場合のペナルティ: <Unsigned>
+# clang-format: 3.7
+PenaltyBreakFirstLessLess: 0
+
+
+# 文字列リテラル内に導入された各改行のペナルティ: <Unsigned>
+# clang-format: 3.7
+PenaltyBreakString: 10
+
+# テンプレート宣言後に破損した場合のペナルティ: <Unsigned>
+# clang-format: 7
+PenaltyBreakTemplateDeclaration: 0
+
+# 列の制限外の各文字に対するペナルティ: <Unsigned>
+# clang-format: 3.7
+PenaltyExcessCharacter: 100
+
+
+# 空白インデントの各文字に対するペナルティ（先頭の非空白列と比較してカウント）: <Unsigned>
+# clang-format: 12
+PenaltyIndentedWhitespace: 10
+
+
+# 関数の戻り型をそれ自体の行に置くことに対するペナルティ: <Unsigned>
+# clang-format: 3.7
+PenaltyReturnTypeOnItsOwnLine: 5
+
+
+# ポインタと参照の配置スタイル: Left | Right | Middle
+# clang-format: 3.7
+PointerAlignment: Right
+
+
+
+# 指定子と修飾子を配置するさまざまな方法（例：const / volatile）: Leave | Left | Right | Custom
+# clang-format: 14
+# QualifierAlignment: Leave
+
+
+# 修飾子が表示される順序: <List of Strings>
+# clang-format: 14
+# QualifierOrder: ['']
+
+
+# 生の文字列でサポートされている言語のコードブロックを検出するためのヒントを定義: <List of RawStringFormats>
+# clang-format: 6
+# RawStringFormats: なにこれ
+
+
+# 参照配置スタイル: Pointer | Left | Right | Middle
+# clang-format: 14
+# ReferenceAlignment: Right
+
+
+
+# trueの場合、clang-formatはコメントのreflowをする: true | false
+# clang-format: 4
+ReflowComments: false
+
+
+# 短い名前空間がまたがるラップされていない行の最大数: <Unsigned>
+# clang-format: 14
+# ShortNamespaceLines: 0
+
+
+# clang-formatが#includeをソートするかどうかとその方法: true | false
+# clang-format: 4
+SortIncludes: true
+
+
+# Javaインポートをソートする場合、デフォルトでは、静的インポートは非​​静的インポートの前に配置される: Before | After
+# clang-format: 12
+# SortJavaStaticImport: Before
+
+
+# trueの場合、usingをソート: true | false
+# clang-format: 5
+SortUsingDeclarations: true
+
+
+# trueの場合、Cスタイルのキャストの後にスペースが挿入される: true | false
+# clang-format: 3.5
+SpaceAfterCStyleCast: false
+
+
+# trueの場合、論理否定演算子（!）の後にスペースが挿入される: true | false
+# clang-format: 9
+SpaceAfterLogicalNot: false
+
+
+# trueの場合、「template」キーワードの後に​​スペースが挿入される: true | false
+# clang-format: 4
+SpaceAfterTemplateKeyword: false
+
+
+# ポインタ修飾子の前後にスペースを入れる場合を定義: Default | Before | After | Both
+# clang-format: 12
+SpaceAroundPointerQualifiers: Default
+
+
+# falseの場合、代入演算子の前にスペースが削除される: true | false
+# clang-format: 3.7
+SpaceBeforeAssignmentOperators: true
+
+
+# falseの場合、大文字と小文字のコロンの前のスペースが削除される: true | false
+# clang-format: 12
+# SpaceBeforeCaseColon: true
+
+
+# trueの場合、オブジェクトの初期化に使用されるC++11ブレースリストの前（前の識別子またはタイプの後）にスペースが挿入: true | false
+# clang-format: 7
+SpaceBeforeCpp11BracedList: false
+
+
+# falseの場合、コンストラクタ初期化子のコロンの前にスペースが削除: true | false
+# clang-format: 7
+SpaceBeforeCtorInitializerColon: false
+
+
+# falseの場合、継承コロンの前にスペースが削除: true | false
+# clang-format: 7
+SpaceBeforeInheritanceColon: false
+
+
+# 括弧を開く前にスペースを入れる場合を定義: Never | ControlStatements | ControlStatementsExceptControlMacros | NonEmptyParentheses | Always
+# clang-format: 3.5
+SpaceBeforeParens: ControlStatements
+
+
+# falseの場合、範囲ベースのforループコロンの前にスペースが削除: true | false
+# clang-format: 7
+SpaceBeforeRangeBasedForLoopColon: false
+
+
+# trueの場合、スペースは[の前になる ラムダは影響を受けない [の最初のものだけがスペースを追加: true | false
+# clang-format: 11
+SpaceBeforeSquareBrackets: false
+
+
+# trueの場合、スペースが空の{}に挿入: true | false
+# clang-format: 11
+SpaceInEmptyBlock: false
+
+
+# trueの場合、スペースが空の()に挿入: true | false
+# clang-format: 3.7
+SpaceInEmptyParentheses: false
+
+
+# 末尾のコメントの前のスペースの数: <Unsigned>
+# clang-format: 3.7
+SpacesBeforeTrailingComments: 1
+
+
+# テンプレート引数リストに使用するSpacesInAnglesStyle: Never | Always | Leave
+# clang-format: 14
+# SpacesInAngles: Never
+
+
+# trueの場合、Cスタイルのキャストにスペースを挿入: true | false
+# clang-format: 3.7
+SpacesInCStyleCastParentheses: false
+
+
+# trueの場合、if / for / switch / while条件の前後にスペースが挿入: true | false
+# clang-format: 11
+SpacesInConditionalStatement: false
+
+
+# trueの場合、スペースはコンテナリテラル内に挿入: true | false
+# clang-format: 3.7
+SpacesInContainerLiterals: false
+
+
+# 行コメントの先頭に許可されるスペースの数: よくわからん
+# clang-format: 14
+# SpacesInLineCommentPrefix: なにこれ
+
+
+# trueの場合、()の前後にスペースが挿入: true | false
+# clang-format: 3.7
+SpacesInParentheses: false
+
+
+# trueの場合、[]の前後にスペースが挿入: true | false
+# clang-format: 3.7
+SpacesInSquareBrackets: false
+
+
+# この標準と互換性のあるC ++構造を解析およびフォーマット: Cpp03 | Cpp11 | Cpp14 | Cpp17 | Cpp20 | Latest | Auto
+# clang-format: 3.7
+# Standard: Cpp17
+
+
+# ステートメントの前で、属性であるかのように無視されるマクロ: <List of Strings>
+# clang-format: 12
+# StatementAttributeLikeMacros: ['']
+
+
+# 完全なステートメントとして解釈されるべきマクロ: <List of Strings>
+# clang-format: 8
+# StatementMacros: ['']
+
+
+# タブストップに使用される列の数: <Unsigned>
+# clang-format: 3.7
+TabWidth: 2
+
+
+# 関数呼び出しではなく型宣言として解釈されるべきマクロ: <List of Strings>
+# clang-format: 9
+# TypenameMacros: ['']
+
+
+# \nの代わりに\r\nを使用する: true | false
+# clang-format: 11
+UseCRLF: false
+
+
+# 結果のファイルでタブ文字を使用する方法: Never | ForIndentation | ForContinuationAndIndentation | AlignWithSpaces | Always
+# clang-format: 3.7
+UseTab: Never
+
+
+# 空白に敏感で、触れてはならないマクロ: <List of Strings>
+# clang-format: 12
+# WhitespaceSensitiveMacros: ['']
