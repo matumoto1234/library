@@ -28,7 +28,7 @@ int main(){
   eratosthenes_sieve sieve(n);
   sieve.build();
 
-  for(int i=0;i<(int)sieve.prime_table.size();i++){
+  for(int i=0;i<static_cast<int>(sieve.prime_table.size());i++){
     if(sieve.prime_table[i]){
       cout<<i<<' ';
     }

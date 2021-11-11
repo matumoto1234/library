@@ -10,7 +10,7 @@ struct cumulative_sum {
   void set(int k, T x) { dat[k + 1] = x; }
 
   void build() {
-    for ( int i = 0; i < (int)dat.size() - 1; i++ ) {
+    for ( int i = 0; i < static_cast<int>(dat.size()) - 1; i++ ) {
       dat[i + 1] += dat[i];
     }
   }

@@ -31,7 +31,7 @@ private:
       int par = pars[v];
       int par_idx = -1;
       T accum = identity;
-      for (int j = 0; j < (int)g[v].size(); j++) {
+      for (int j = 0; j < static_cast<int>(g[v].size()); j++) {
         int to = g[v][j].first;
         if (to == par) {
           par_idx = j;
@@ -80,7 +80,7 @@ public:
     order.assign(g.size(), -1);
     results.assign(g.size(), identity);
     ch_tree.resize(g.size());
-    for (int i = 0; i < (int)g.size(); i++) {
+    for (int i = 0; i < static_cast<int>(g.size()); i++) {
       ch_tree[i].assign(g[i].size(), identity);
     }
     int idx = 0;

@@ -67,7 +67,7 @@ public:
   vector<vector<int>> topological_sort() {
     vector<vector<int>> graph(cnt);
     vector<int> in_degree(cnt);
-    for ( int i = 0; i < (int)edges.size(); i++ ) {
+    for ( int i = 0; i < static_cast<int>(edges.size()); i++ ) {
       auto [from, to] = edges[i];
       if ( same(from, to) ) continue;
       graph[groups[from]].emplace_back(groups[to]);
