@@ -39,7 +39,7 @@ public:
       twopow <<= 1;
     }
     for ( int sz = twopow; sz > 0; sz >>= 1 ) {
-      if ( x + sz < n && dat[x + sz] < w ) {
+      if ( x + sz < n and dat[x + sz] < w ) {
         w -= dat[x + sz];
         x += sz;
       }

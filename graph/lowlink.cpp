@@ -40,14 +40,14 @@ private:
         dfs(to, k, id);
 
         low[id] = min(low[id], low[to]);
-        if ( par != -1 && ord[id] <= low[to] ) is_articulation = true;
+        if ( par != -1 and ord[id] <= low[to] ) is_articulation = true;
         if ( ord[id] < low[to] ) bridges.emplace_back(min(id, to), max(id, to));
       } else if ( to != par ) {
         low[id] = min(low[id], ord[to]);
       }
     }
 
-    if ( par == -1 && child_cnt >= 2 ) is_articulation = true;
+    if ( par == -1 and child_cnt >= 2 ) is_articulation = true;
     if ( is_articulation ) articulations.emplace_back(id);
   }
 };

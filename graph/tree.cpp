@@ -4,14 +4,14 @@ using namespace std;
 // {{{
 #define debug(...) debug_function(#__VA_ARGS__, __VA_ARGS__)
 template <typename T, typename... T2>
-void debug_function(string_view name, const T &a, T2 &&...rest) {
+void debug_function(string_view name, const T &a, T2 and ...rest) {
   stack<char> bs;
   string_view lbs = "({[<", rbs = ")}]>";
   int end = name.size();
   for ( int i = 0; i < static_cast<int>(name.size()); i++ ) {
     if ( lbs.find(name[i]) != string::npos ) bs.push(name[i]);
-    if ( rbs.find(name[i]) != string::npos && !bs.empty() ) bs.pop();
-    if ( name[i] == ',' && bs.empty() ) {
+    if ( rbs.find(name[i]) != string::npos and !bs.empty() ) bs.pop();
+    if ( name[i] == ',' and bs.empty() ) {
       end = i;
       break;
     }
@@ -97,7 +97,7 @@ ostream &operator<<(ostream &os, const set<T> &v) {
 // op   : T, T -> T (operation)
 // e    : void -> T (identity element)
 // inv  : T    -> T (inverse element)
-// T is weight type && value type
+// T is weight type and value type
 template <typename T, T (*op)(T, T), T (*e)(), T (*inv)(T)>
 class weighted_tree {
 private:

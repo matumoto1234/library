@@ -170,19 +170,19 @@ class dynamic_connectivity {
       splay(t);
       function<void(np)> dfs = [&](np t) {
         assert(t);
-        if ( t->l < t->r && t->exact ) {
+        if ( t->l < t->r and t->exact ) {
           splay(t);
           t->exact = 0;
           update(t);
           g(t->l, t->r);
           return;
         }
-        if ( t->ch[0] && t->ch[0]->child_exact )
+        if ( t->ch[0] and t->ch[0]->child_exact )
           dfs(t->ch[0]);
         else
           dfs(t->ch[1]);
       };
-      while ( t && t->child_exact ) {
+      while ( t and t->child_exact ) {
         dfs(t);
         splay(t);
       }
@@ -196,7 +196,7 @@ class dynamic_connectivity {
           splay(t);
           return f(t->l);
         }
-        if ( t->ch[0] && t->ch[0]->child_edge_connected )
+        if ( t->ch[0] and t->ch[0]->child_edge_connected )
           return dfs(t->ch[0]);
         else
           return dfs(t->ch[1]);

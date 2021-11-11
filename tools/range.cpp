@@ -12,7 +12,7 @@ class Range {
   const Iterator end_;
 
 public:
-  Range(Iterator &&b, Iterator &&e) noexcept : begin_(forward<Iterator>(b)), end_(forward<Iterator>(e)) {}
+  Range(Iterator and b, Iterator and e) noexcept : begin_(forward<Iterator>(b)), end_(forward<Iterator>(e)) {}
 
   Iterator begin() const noexcept { return begin_; }
 
@@ -20,7 +20,7 @@ public:
 }; // class Range
 
 template <typename Iterator>
-Range<Iterator> make_range(Iterator &&begin, Iterator &&end) noexcept {
+Range<Iterator> make_range(Iterator and begin, Iterator and end) noexcept {
   return Range<Iterator>{ forward<Iterator>(begin), forward<Iterator>(end) };
 }
 
@@ -32,6 +32,6 @@ decltype(auto) make_reversed_range(const initializer_list<T> &init_list) noexcep
 
 // rbegin,rendを持っている方
 template <typename T>
-decltype(auto) make_reversed_range(T &&container) noexcept {
+decltype(auto) make_reversed_range(T and container) noexcept {
   return make_range(rbegin(container), rend(container));
 }

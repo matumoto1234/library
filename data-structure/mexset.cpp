@@ -14,7 +14,7 @@ struct mexset {
 
   bool contains(T x) const {
     auto [lower, upper] = *prev(s.lower_bound(make_pair(x + 1, x + 1)));
-    return lower <= x && x <= upper;
+    return lower <= x and x <= upper;
   }
 
   bool insert(T x) {
@@ -55,7 +55,7 @@ struct mexset {
 
   T mex(T x = 0) const {
     auto [l, u] = *prev(s.lower_bound(make_pair(x + 1, x + 1)));
-    if ( l <= x && x <= u ) {
+    if ( l <= x and x <= u ) {
       return u + 1;
     } else {
       return x;
