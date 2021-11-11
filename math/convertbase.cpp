@@ -5,7 +5,7 @@ using namespace std;
 template <typename T>
 vector<T> convert_base(vector<T> n, T from, T to) {
   auto to_base = [&](T n, T b) {
-    if ( n == 0 || b <= 1 ) return vector<T>{ 0 };
+    if ( n == 0 or b <= 1 ) return vector<T>{ 0 };
     vector<T> res;
     for ( ; n > 0; n /= b ) {
       res.emplace_back(n % b);
