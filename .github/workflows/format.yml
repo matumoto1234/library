@@ -1,0 +1,24 @@
+name: clang-format
+
+on:
+  push:
+    paths:
+    - /*
+
+jobs:
+  build:
+    runs-on: ubuntu-stable
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.LINTER_TOKEN }}
+    - uses: DoozyX/clang-format-lint-action@v0.13
+      with:
+        source: '.'
+        extensions: 'cpp,hpp'
+        clangFormatVersion: 12
+        style: file
+        inplace: True
+    - name: push
+      run: |
+        git push origin
