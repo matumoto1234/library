@@ -7,7 +7,7 @@
 # <Hoge>: <Value>
 
 #
-# BasedOnStyle: Google
+# BasedOnStyle: hoge
 
 # アクセス修飾子のインデント or アウトデント: Number
 # clang-format 3.3
@@ -279,7 +279,7 @@ FixNamespaceComments: true
 
 # 関数呼び出しとしてではなく、foreachループとして解釈される必要があるマクロ: <List of Strings>
 # clang-format: 3.7
-ForEachMacros: ['rep', 'REP']
+ForEachMacros: []
 
 
 # 関数呼び出しとしてではなく条件として解釈されるべきマクロ: <List of Strings>
