@@ -3,7 +3,7 @@ using namespace std;
 
 template <typename T>
 struct CumulativeSum {
-  vector<T> dat;
+  vector<T> data;
   CumulativeSum(int n) : dat(n + 1, 0) {}
   CumulativeSum(int n, T x) : dat(n + 1, x) {}
 
