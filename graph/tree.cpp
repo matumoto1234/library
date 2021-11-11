@@ -4,7 +4,7 @@ using namespace std;
 // {{{
 #define debug(...) debug_function(#__VA_ARGS__, __VA_ARGS__)
 template <typename T, typename... T2>
-void debug_function(string_view name, const T &a, T2 and ...rest) {
+void debug_function(string_view name, const T &a, T2 &&...rest) {
   stack<char> bs;
   string_view lbs = "({[<", rbs = ")}]>";
   int end = name.size();

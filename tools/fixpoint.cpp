@@ -3,16 +3,16 @@ using namespace std;
 
 template <typename F>
 struct fix_point : F {
-  fix_point(F and f) noexcept : F{ forward<F>(f) } {}
+  fix_point(F &&f) noexcept : F{ forward<F>(f) } {}
 
   template <typename... Args>
-  decltype(auto) operator()(Args and ...args) const {
+  decltype(auto) operator()(Args &&...args) const {
     return F::operator()(*this, forward<Args>(args)...);
   }
 };
 
 template <typename F>
-inline decltype(auto) make_fix_point(F and f) {
+inline decltype(auto) make_fix_point(F &&f) {
   return fix_point<F>{ forward<F>(f) };
 }
 
