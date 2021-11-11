@@ -19,7 +19,7 @@ vector<vector<int>> grid_bfs(vector<string> &s, char start, const string &wall =
     q.pop();
     for ( int i = 0; i < 4; i++ ) {
       int ny = p.first + dy[i], nx = p.second + dx[i];
-      if ( ny < 0 || nx < 0 || ny >= h || nx >= w ) continue;
+      if ( ny < 0 or nx < 0 or ny >= h or nx >= w ) continue;
       if ( res[ny][nx] != -1 ) continue;
       if ( wall.find(s[ny][nx]) != string::npos ) continue;
       res[ny][nx] = res[p.first][p.second] + 1;

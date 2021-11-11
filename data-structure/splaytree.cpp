@@ -26,8 +26,8 @@ struct splay_tree {
         p->right = c;
       }
 
-      if ( pp && pp->left == p ) pp->left = this;
-      if ( pp && pp->right == p ) pp->right = this;
+      if ( pp and pp->left == p ) pp->left = this;
+      if ( pp and pp->right == p ) pp->right = this;
       this->parent = pp;
       p->parent = this;
       if ( c ) c->parent = p;

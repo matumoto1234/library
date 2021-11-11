@@ -31,7 +31,7 @@ struct shortest_hamiltonian_cycle {
   // private method
   T dfs(int v, int Set) {
     T &res = dp[v][Set];
-    if ( Set + 1 == 1 << V && v == start ) res = 0;
+    if ( Set + 1 == 1 << V and v == start ) res = 0;
     if ( res != -1 ) return res;
     res = inf();
     for ( auto [to, cost] : G[v] ) {

@@ -30,7 +30,7 @@ public:
 
   // {h,w} += x
   void add(int h, int w, T x) {
-    assert(1 <= h && h <= H && 1 <= w && w <= W);
+    assert(1 <= h and h <= H and 1 <= w and w <= W);
     for ( int i = h; i < H; i += (i & -i) ) {
       for ( int j = w; j < W; j += (j & -j) ) {
         dat[i][j] += x;
@@ -40,7 +40,7 @@ public:
 
   // [{sy,sx}, {gy,gx})
   T sum(int sy, int sx, int gy, int gx) {
-    assert(1 <= sy && sy <= H && 1 <= sx && sx <= W && 2 <= gy && gy <= H + 1 && 2 <= gx && gx <= W + 1);
+    assert(1 <= sy and sy <= H and 1 <= sx and sx <= W and 2 <= gy and gy <= H + 1 and 2 <= gx and gx <= W + 1);
     return internal_sum(gy - 1, gx - 1) - internal_sum(gy - 1, sx - 1) - internal_sum(sy - 1, gx - 1) + internal_sum(sy - 1, sx - 1);
   }
 

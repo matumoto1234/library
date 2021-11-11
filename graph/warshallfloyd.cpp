@@ -27,7 +27,7 @@ struct warshall_floyd {
     for ( int k = 0; k < V; k++ ) {
       for ( int i = 0; i < V; i++ ) {
         for ( int j = 0; j < V; j++ ) {
-          if ( ds[i][k] == inf() || ds[k][j] == inf() ) continue;
+          if ( ds[i][k] == inf() or ds[k][j] == inf() ) continue;
           if ( ds[i][j] > ds[i][k] + ds[k][j] ) {
             ds[i][j] = ds[i][k] + ds[k][j];
             ns[i][j] = ns[i][k];

@@ -34,7 +34,7 @@ struct longest_common_subsequence {
   vector<T> restore() {
     vector<T> res;
     int i = h, j = w;
-    while ( i > 0 && j > 0 ) {
+    while ( i > 0 and j > 0 ) {
       if ( s[i - 1] == t[j - 1] ) {
         res.emplace_back(s[i - 1]);
         i--;
