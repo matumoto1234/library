@@ -11,8 +11,8 @@ struct cumulative_sum_2d {
   void set(int y, int x, T v) { data[y + 1][x + 1] = v; }
 
   void build() {
-    for ( int i = 1; i < (int)data.size(); i++ ) {
-      for ( int j = 1; j < (int)data[i].size(); j++ ) {
+    for ( int i = 1; i < static_cast<int>(data.size()); i++ ) {
+      for ( int j = 1; j < static_cast<int>(data[i].size()); j++ ) {
         data[i][j] += data[i][j - 1] + data[i - 1][j] - data[i - 1][j - 1];
       }
     }

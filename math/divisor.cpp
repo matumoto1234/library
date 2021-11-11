@@ -18,7 +18,7 @@ int main() {
   long long n;
   cin >> n;
   vector<long long> v = divisor(n);
-  for ( int i = 0; i < (int)v.size(); i++ ) {
+  for ( int i = 0; i < static_cast<int>(v.size()); i++ ) {
     if ( i ) cout << ' ';
     cout << v[i];
   }

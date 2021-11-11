@@ -33,12 +33,12 @@ int main() {
     cin >> s[i];
 
   vector<string> s2 = rotate_cw(s);
-  for (int i = 0; i < (int)s2.size(); i++) {
+  for (int i = 0; i < static_cast<int>(s2.size()); i++) {
     cout << s2[i] << endl;
   }
 
   s2 = rotate_ccw(s);
-  for (int i = 0; i < (int)s2.size(); i++) {
+  for (int i = 0; i < static_cast<int>(s2.size()); i++) {
     cout << s2[i] << endl;
   }
 }

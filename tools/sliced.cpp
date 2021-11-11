@@ -40,7 +40,7 @@ struct Sliced {
 } sliced;
 
 void output(vector<int> v){
-  for ( int i = 0; i < (int)v.size(); i++ ) {
+  for ( int i = 0; i < static_cast<int>(v.size()); i++ ) {
     if ( i ) cout << ' ';
     cout << v[i];
   }

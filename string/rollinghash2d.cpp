@@ -13,8 +13,8 @@ struct rolling_hash_2d {
     void set(int y, int x, ll v) { data[y + 1][x + 1] = v; }
 
     void build(ll mod) {
-      for ( int i = 1; i < (int)data.size(); i++ ) {
-        for ( int j = 1; j < (int)data[i].size(); j++ ) {
+      for ( int i = 1; i < static_cast<int>(data.size()); i++ ) {
+        for ( int j = 1; j < static_cast<int>(data[i].size()); j++ ) {
           data[i][j] += (data[i][j - 1] + data[i - 1][j] - data[i - 1][j - 1]) % mod;
           if ( data[i][j] < 0 ) data[i][j] += mod;
         }
@@ -39,7 +39,7 @@ struct rolling_hash_2d {
     set_base(B1, B2);
     set_mod(MOD);
     dat.resize(s.size());
-    for ( int i = 0; i < (int)s.size(); i++ ) {
+    for ( int i = 0; i < static_cast<int>(s.size()); i++ ) {
       for ( char c : s[i] ) {
         dat[i].emplace_back(c);
       }

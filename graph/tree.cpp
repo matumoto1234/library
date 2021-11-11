@@ -8,7 +8,7 @@ void debug_function(string_view name, const T &a, T2 &&...rest) {
   stack<char> bs;
   string_view lbs = "({[<", rbs = ")}]>";
   int end = name.size();
-  for ( int i = 0; i < (int)name.size(); i++ ) {
+  for ( int i = 0; i < static_cast<int>(name.size()); i++ ) {
     if ( lbs.find(name[i]) != string::npos ) bs.push(name[i]);
     if ( rbs.find(name[i]) != string::npos && !bs.empty() ) bs.pop();
     if ( name[i] == ',' && bs.empty() ) {
@@ -109,10 +109,10 @@ private:
 
     void build(const vector<pair<int, int>> &v) {
       int b = 0;
-      while ( (1 << b) <= (int)v.size() )
+      while ( (1 << b) <= static_cast<int>(v.size()) )
         ++b;
       st.assign(b, vector<pair<int, int>>(1 << b));
-      for ( int i = 0; i < (int)v.size(); i++ ) {
+      for ( int i = 0; i < static_cast<int>(v.size()); i++ ) {
         st[0][i] = v[i];
       }
       for ( int i = 1; i < b; i++ ) {
@@ -121,7 +121,7 @@ private:
         }
       }
       lookup.resize(v.size() + 1);
-      for ( int i = 2; i < (int)lookup.size(); i++ ) {
+      for ( int i = 2; i < static_cast<int>(lookup.size()); i++ ) {
         lookup[i] = lookup[i >> 1] + 1;
       }
     }
@@ -275,7 +275,7 @@ public:
 
     // build sparse table
     vector<pair<int, int>> dep_idx(dep.size());
-    for ( int i = 0; i < (int)dep.size(); i++ ) {
+    for ( int i = 0; i < static_cast<int>(dep.size()); i++ ) {
       auto &[depth, idx] = dep_idx[i];
       depth = dep[i];
       idx = i;
