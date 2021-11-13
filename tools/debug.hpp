@@ -14,7 +14,7 @@ int find_comma_not_bracketed(string_view s) {
   return s.size();
 }
 
-template<typename T, typename... Ts>
+template <typename T, typename... Ts>
 void debug_function(string_view name, const T &a, Ts &&...rest) {
   int end = find_comma_not_bracketed(name);
   cerr << name.substr(0, end) << ":" << a;

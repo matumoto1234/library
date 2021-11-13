@@ -1,17 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename F>
+template <typename F>
 struct FixPoint: F {
   FixPoint(F &&f) noexcept: F{ forward<F>(f) } {}
 
-  template<typename... Args>
+  template <typename... Args>
   decltype(auto) operator()(Args &&...args) const {
     return F::operator()(*this, forward<Args>(args)...);
   }
 };
 
-template<typename F>
+template <typename F>
 inline decltype(auto) make_fix_point(F &&f) {
   return FixPoint<F>{ forward<F>(f) };
 }

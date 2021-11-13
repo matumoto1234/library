@@ -1,8 +1,8 @@
 #pragma once
 
-#include <vector>
-
 #include "./base.hpp"
+
+#include <vector>
 
 namespace data_structure {
   template <typename T>

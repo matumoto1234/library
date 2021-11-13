@@ -183,7 +183,7 @@ namespace inner {
 }; // namespace inner
 using inner::is_prime;
 
-template<typename T>
+template <typename T>
 std::vector<T> fast_factorize(const T n) {
   auto tmp = inner::factorize(n);
   std::vector<T> res{ tmp.begin(), tmp.end() };

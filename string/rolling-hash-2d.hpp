@@ -105,7 +105,7 @@ struct RollingHash2D {
   ll find(int sy, int sx, int gy, int gx) { return mod_mul(sum.query(sy, sx, gy, gx, mod), inv[sy][sx]); }
 };
 
-template<typename T>
+template <typename T>
 struct Random {
   mt19937 mt;
   Random(): mt(chrono::steady_clock::now().time_since_epoch().count()) {}

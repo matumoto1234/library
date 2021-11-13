@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
+template <typename T>
 vector<T> factorize(T n) {
   vector<T> res;
   for (long long i = 2; i * i <= n; i++) {

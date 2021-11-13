@@ -5,7 +5,7 @@ using ll = long long;
 
 namespace power_helper {
 
-  template<typename T>
+  template <typename T>
   T extgcd(T a, T b, T &x, T &y) {
     if (b == 0) {
       x = 1;

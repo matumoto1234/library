@@ -72,7 +72,7 @@ struct RollingHash {
   }
 };
 
-template<typename T>
+template <typename T>
 struct Random {
   mt19937 mt;
   Random(): mt(chrono::steady_clock::now().time_since_epoch().count()) {}

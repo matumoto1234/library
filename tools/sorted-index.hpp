@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename Iterator>
+template <typename Iterator>
 vector<int> sorted_index(Iterator first, Iterator last) {
   using T = remove_reference_t<decltype(*first)>;
   vector<T> a(first, last);

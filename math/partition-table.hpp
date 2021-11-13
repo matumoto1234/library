@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
+template <typename T>
 vector<vector<T>> PartitionTable(int n, int k) {
   vector<vector<T>> dp(n + 1, vector<T>(k + 1));
   dp[0][0] = 1;

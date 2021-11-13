@@ -5,7 +5,7 @@ struct Sliced {
   static constexpr int init = INT32_MAX;
   Sliced() {}
 
-  template<typename T>
+  template <typename T>
   vector<T> operator()(const vector<T> &v, int l, int r = init, int stride = init) {
     assert(stride != 0);
     if (r == init) r = v.size();
