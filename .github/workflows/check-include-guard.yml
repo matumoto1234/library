@@ -1,0 +1,22 @@
+name: include-guard-check
+
+on:
+  push:
+    paths:
+      - '**.hpp'
+
+jobs:
+  checking-include-guard:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checking
+      run: |
+        for file in $(git diff ${{github.event.before}}..${{github.event.after}} --name-only --diff-filter=A -- '*.hpp') ; do
+          head -n 1 file | xargs echo | sed "s/ //g" | xargs test \#pragmaonce =
+          if [ $? != 0 ]; then
+            echo 'Failed'
+            exit 1
+          fi
+        done
+        echo 'Succeed!'
+        exit 0
