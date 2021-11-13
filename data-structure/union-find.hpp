@@ -1,6 +1,9 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include "./base.hpp"
+#include <vector>
+#include <numeric>
+#include <map>
 
+namespace data_structure {
 template <typename T>
 class UnionFind {
   int grp_cnt, merge_cnt;
@@ -39,10 +42,10 @@ public:
     par[y] = x;
     grp_cnt--;
     merge_cnt++;
-    if (vals[x] == -1) {
-      vals[x] = vals[y];
+    if (val[x] == -1) {
+      val[x] = val[y];
     } else {
-      vals[y] = vals[x];
+      val[y] = val[x];
     }
     return true;
   }
@@ -82,3 +85,4 @@ public:
     return res;
   }
 };
+}

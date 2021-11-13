@@ -1,47 +1,52 @@
-#include <bits/stdc++.h>
-using namespace std;
+#pragma once
 
+#include "./base.hpp"
 
-template <typename T>
-struct DynamicImos {
-  vector<T> xs, imos;
-  vector<tuple<T, T, T>> intervals;
+#include <tuple>
+#include <vector>
 
-  DynamicImos() {}
+namespace data_structure {
+  template <typename T>
+  struct DynamicImos {
+    vector<T> xs, imos;
+    vector<tuple<T, T, T>> intervals;
 
-  // [l, r)
-  void add(T l, T r, T v) {
-    intervals.emplace_back(l, r, v);
-    xs.emplace_back(l);
-    xs.emplace_back(r);
-  }
+    DynamicImos() {}
 
-  void build() {
-    sort(xs.begin(), xs.end());
-    xs.erase(unique(xs.begin(), xs.end()), xs.end());
-    imos.assign(xs.size(), 0);
-
-    for (auto [l, r, v]: intervals) {
-      l = lower_bound(xs.begin(), xs.end(), l) - xs.begin();
-      r = lower_bound(xs.begin(), xs.end(), r) - xs.begin();
-      imos[l] += v;
-      imos[r] -= v;
+    // [l, r)
+    void add(T l, T r, T v) {
+      intervals.emplace_back(l, r, v);
+      xs.emplace_back(l);
+      xs.emplace_back(r);
     }
 
-    for (int i = 1; i < static_cast<int>(imos.size()); i++) {
-      imos[i] += imos[i - 1];
-    }
-  }
+    void build() {
+      sort(xs.begin(), xs.end());
+      xs.erase(unique(xs.begin(), xs.end()), xs.end());
+      imos.assign(xs.size(), 0);
 
-  // vector<[l,r), value>
-  vector<pair<pair<T, T>, T>> interval_values() {
-    vector<pair<pair<T, T>, T>> res(xs.size() - 1);
-    for (int i = 0; i < static_cast<int>(xs.size()) - 1; i++) {
-      T l = xs[i];
-      T r = xs[i + 1];
-      T v = imos[i];
-      res[i] = pair(pair(l, r), v);
+      for (auto [l, r, v]: intervals) {
+        l = lower_bound(xs.begin(), xs.end(), l) - xs.begin();
+        r = lower_bound(xs.begin(), xs.end(), r) - xs.begin();
+        imos[l] += v;
+        imos[r] -= v;
+      }
+
+      for (int i = 1; i < static_cast<int>(imos.size()); i++) {
+        imos[i] += imos[i - 1];
+      }
     }
-    return res;
-  }
-};
+
+    // vector<[l,r), value>
+    vector<pair<pair<T, T>, T>> interval_values() {
+      vector<pair<pair<T, T>, T>> res(xs.size() - 1);
+      for (int i = 0; i < static_cast<int>(xs.size()) - 1; i++) {
+        T l = xs[i];
+        T r = xs[i + 1];
+        T v = imos[i];
+        res[i] = pair(pair(l, r), v);
+      }
+      return res;
+    }
+  };
+} // namespace data_structure

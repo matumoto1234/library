@@ -1,44 +1,48 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include "./base.hpp"
 
-template <typename T>
-struct WeightedUnionFind {
-  vector<int> par;
-  vector<int> siz;
-  vector<T> w;
-  WeightedUnionFind(int N): par(N), siz(N, 1), w(N, 0) { iota(par.begin(), par.end(), 0); }
+#include <numeric>
+#include <vector>
 
-  int size(int x) { return siz[x]; }
+namespace data_structure {
+  template <typename T>
+  struct WeightedUnionFind {
+    vector<int> par;
+    vector<int> siz;
+    vector<T> w;
+    WeightedUnionFind(int N): par(N), siz(N, 1), w(N, 0) { iota(par.begin(), par.end(), 0); }
 
-  T diff(int x, int y) { return weight(y) - weight(x); }
+    int size(int x) { return siz[x]; }
 
-  bool issame(int x, int y) { return root(x) == root(y); }
+    T diff(int x, int y) { return weight(y) - weight(x); }
 
-  void unite(int x, int y, T z) {
-    z += weight(x);
-    z -= weight(y);
-    x = root(x);
-    y = root(y);
-    if (x == y) return;
-    if (x < y) {
-      swap(x, y);
-      z = -z;
+    bool issame(int x, int y) { return root(x) == root(y); }
+
+    void unite(int x, int y, T z) {
+      z += weight(x);
+      z -= weight(y);
+      x = root(x);
+      y = root(y);
+      if (x == y) return;
+      if (x < y) {
+        swap(x, y);
+        z = -z;
+      }
+      siz[x] += siz[y];
+      par[y] = x;
+      w[y] = z;
     }
-    siz[x] += siz[y];
-    par[y] = x;
-    w[y] = z;
-  }
 
-  int root(int x) {
-    if (x == par[x]) return x;
-    int rx = root(par[x]);
-    w[x] += w[par[x]];
-    par[x] = rx;
-    return rx;
-  }
+    int root(int x) {
+      if (x == par[x]) return x;
+      int rx = root(par[x]);
+      w[x] += w[par[x]];
+      par[x] = rx;
+      return rx;
+    }
 
-  T weight(int x) {
-    root(x);
-    return w[x];
-  }
-};
+    T weight(int x) {
+      root(x);
+      return w[x];
+    }
+  };
+} // namespace data_structure
