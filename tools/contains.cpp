@@ -3,7 +3,7 @@ using namespace std;
 
 namespace helper {
   template<typename T>
-  class has_iterator {
+  class HasIterator {
     template<typename Container>
     static true_type test(typename Container::iterator *);
 
@@ -15,9 +15,9 @@ namespace helper {
   };
 
   template<typename Container, typename T>
-  class has_find {
+  class HasFind {
     template<typename InnerContainer,
-             int dummy = (static_cast<typename enable_if<has_iterator<InnerContainer>::value, InnerContainer>::type::iterator (InnerContainer::*)(const T &)>(&InnerContainer::find), 0)>
+             int dummy = (static_cast<typename enable_if<HasIterator<InnerContainer>::value, InnerContainer>::type::iterator (InnerContainer::*)(const T &)>(&InnerContainer::find), 0)>
     static true_type check(InnerContainer *);
     static false_type check(...);
     static Container *container;
@@ -29,7 +29,7 @@ namespace helper {
 
 template<typename Container, typename T>
 bool contains(const Container &container, const T &x) {
-  if constexpr (helper::has_find<Container, T>::value) {
+  if constexpr (helper::HasFind<Container, T>::value) {
     return container.find(x) != end(container);
   } else {
     return find(begin(container), end(container), x) != end(container);

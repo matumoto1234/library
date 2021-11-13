@@ -97,13 +97,13 @@ ostream &operator<<(ostream &os, const set<T> &v) {
 // inv  : T    -> T (inverse element)
 // T is weight type and value type
 template<typename T, T (*op)(T, T), T (*e)(), T (*inv)(T)>
-class weighted_tree {
+class WeightedTree {
 private:
-  struct sparse_table {
+  struct SparseTable {
     vector<vector<pair<int, int>>> st;
     vector<int> lookup;
 
-    sparse_table() {}
+    SparseTable() {}
 
     void build(const vector<pair<int, int>> &v) {
       int b = 0;
@@ -130,7 +130,7 @@ private:
     }
   };
 
-  class segment_tree {
+  class SegmentTree {
   private:
     int n;
     vector<T> dat;
@@ -147,7 +147,7 @@ private:
     }
 
   public:
-    segment_tree() {}
+    SegmentTree() {}
 
     void assign(int _n) {
       n = 1;
@@ -175,8 +175,8 @@ private:
     T all_prod() { return n != 0 ? dat[0] : e(); }
   };
 
-  sparse_table min_dep_idx;
-  segment_tree dat;
+  SparseTable min_dep_idx;
+  SegmentTree dat;
   vector<int> in, out, dep, par, dia_to, edge_table;
   pair<T, int> dia;
   vector<vector<int>> doubling_par;
@@ -221,7 +221,7 @@ private:
   }
 
 public:
-  weighted_tree(int n): G(n), dat(n), LOG(log_two(n)), dia(-1) { dat.assign(n); }
+  WeightedTree(int n): G(n), dat(n), LOG(log_two(n)), dia(-1) { dat.assign(n); }
 
   void add_edge(int from, int to, T cost = 1) { G[from].emplace_back(to, cost); }
 
@@ -346,7 +346,7 @@ int inv(int a) {
 int main() {
   int n;
   cin >> n;
-  weighted_tree<int, op, e, inv> t(n);
+  WeightedTree<int, op, e, inv> t(n);
   for (int i = 0; i < n - 1; i++) {
     int a, b;
     cin >> a >> b;
