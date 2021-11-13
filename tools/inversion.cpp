@@ -2,7 +2,7 @@
 using namespace std;
 
 template<typename T>
-class fenwick_tree {
+class FenwickTree {
 private:
   int n;
   vector<T> dat;
@@ -17,7 +17,7 @@ private:
   }
 
 public:
-  fenwick_tree(int n_): n(n_ + 2), dat(n_ + 2, 0) {}
+  FenwickTree(int n_): n(n_ + 2), dat(n_ + 2, 0) {}
 
   // i:0-indexed
   void add(int i, T x) {
@@ -61,7 +61,7 @@ long long inversion(vector<T> vs) {
   }
 
   int n = vs.size();
-  fenwick_tree<long long> ft(n + 1);
+  FenwickTree<long long> ft(n + 1);
   long long res = 0;
   for (T v: vs) {
     res += ft.sum(v + 1, n);

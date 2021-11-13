@@ -2,11 +2,11 @@
 using namespace std;
 
 template<typename T>
-struct compress {
+struct Compress {
   vector<T> xs;
-  compress() {}
-  compress(int N): xs(N, 0) {}
-  compress(const vector<T> &vs): xs(vs) {}
+  Compress() {}
+  Compress(int N): xs(N, 0) {}
+  Compress(const vector<T> &vs): xs(vs) {}
 
   void set(int i, T x) { xs[i] = x; }
 
@@ -24,7 +24,7 @@ struct compress {
     }
   }
 
-  compress<T> build() {
+  Compress<T> build() {
     sort(xs.begin(), xs.end());
     xs.erase(unique(xs.begin(), xs.end()), xs.end());
     return *this;
@@ -51,8 +51,8 @@ int main() {
   for (auto &a: as)
     cin >> a;
 
-  vector<int> compressed = compress(as).build().get(as);
-  for (auto x: compressed) {
+  vector<int> Compressed = Compress(as).build().get(as);
+  for (auto x: Compressed) {
     cout << x << "\n";
   }
 }

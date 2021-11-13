@@ -2,8 +2,8 @@
 using namespace std;
 
 template<typename F>
-struct fix_point: F {
-  fix_point(F &&f) noexcept: F{ forward<F>(f) } {}
+struct FixPoint: F {
+  FixPoint(F &&f) noexcept: F{ forward<F>(f) } {}
 
   template<typename... Args>
   decltype(auto) operator()(Args &&...args) const {
@@ -13,7 +13,7 @@ struct fix_point: F {
 
 template<typename F>
 inline decltype(auto) make_fix_point(F &&f) {
-  return fix_point<F>{ forward<F>(f) };
+  return FixPoint<F>{ forward<F>(f) };
 }
 
 int main() {
