@@ -6,9 +6,9 @@ struct RollingHash2D {
   using i128 = __int128_t;
   using ll = long long;
   ll mod, base1, base2;
-  struct cumulative_sum_2d {
+  struct CumulativeSum2D {
     vector<vector<ll>> data;
-    cumulative_sum_2d() {}
+    CumulativeSum2D() {}
 
     void set(int y, int x, ll v) { data[y + 1][x + 1] = v; }
 
@@ -29,7 +29,7 @@ struct RollingHash2D {
     }
   };
 
-  cumulative_sum_2d sum;
+  CumulativeSum2D sum;
   vector<vector<ll>> dat, inv;
   RollingHash2D(const vector<vector<ll>> &vs, ll B1 = (int)1e9 + 7, ll B2 = (int)1e8 + 7, ll MOD = (1LL << 61) - 1): dat(vs) {
     set_base(B1, B2);
