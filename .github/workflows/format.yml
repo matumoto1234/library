@@ -2,12 +2,10 @@ name: clang-format
 
 on:
   push:
-    paths:
-    - /*
 
 jobs:
   build:
-    runs-on: ubuntu-stable
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
       with:
@@ -21,4 +19,6 @@ jobs:
         inplace: True
     - name: push
       run: |
+        git add .
+        git commit -m "clang-format by GitHub Actions"
         git push origin
