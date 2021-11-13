@@ -19,3 +19,7 @@ jobs:
         done
         echo 'Succeed!'
         exit 0
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
