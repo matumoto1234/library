@@ -13,8 +13,8 @@ jobs:
     - name: checking
       run: |
         for file in $(git diff ${{ github.event.before }}..${{ github.event.after }} --name-only -- "*.hpp") ; do
-          echo file
-          head -n 1 file | xargs echo | sed "s/ //g" | xargs test \#pragmaonce =
+          echo $file
+          head -n 1 $file | xargs echo | sed "s/ //g" | xargs test \#pragmaonce =
           if [ $? != 0 ]; then
             echo 'Failed'
             exit 1
