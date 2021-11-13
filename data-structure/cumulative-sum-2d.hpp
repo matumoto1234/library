@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
-using namespace std;
 
 template <typename T>
 struct CumulativeSum2D {
+  using namespace std;
   vector<vector<T>> data;
   CumulativeSum2D(int H, int W): data(H + 1, vector<T>(W + 1, 0)) {}
   CumulativeSum2D(const vector<vector<T>> &vs): data(vs) {}
@@ -21,24 +21,3 @@ struct CumulativeSum2D {
   // [ (sy,sx), (gy,gx) )
   T query(int sy, int sx, int gy, int gx) { return data[gy][gx] - data[gy][sx] - data[sy][gx] + data[sy][sx]; }
 };
-
-int main() {
-  int h, w;
-  cin >> h >> w;
-  CumulativeSum2D<int> r(h, w);
-  vector<vector<int>> a(h, vector<int>(w));
-  for (int i = 0; i < h; i++) {
-    for (int j = 0; j < w; j++) {
-      cin >> a[i][j];
-      r.set(i, j, a[i][j]);
-    }
-  }
-  r.build();
-  for (int i = 0; i <= h; i++) {
-    for (int j = 0; j <= w; j++) {
-      cout << r.query(0, 0, i, j) << ' ';
-    }
-    cout << endl;
-  }
-  return 0;
-}
