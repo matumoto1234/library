@@ -24,6 +24,8 @@ jobs:
       run: |
         git config --global user.email "${{ secrets.EMAIL }}"
         git config --global user.name "matumoto1234"
-        git add .
+        for file in $(git diff ${{github.event.before}}..${{github.event.after}} --name-only --diff-filter=A -- "*.(cpp | hpp)") ; do
+            git add .
+        done
         git commit -m "clang-format by GitHub Actions"
         git push origin
