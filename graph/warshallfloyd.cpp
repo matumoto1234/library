@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
-struct warshall_floyd {
+template <typename T>
+struct WarshallFloyd {
   vector<vector<T>> ds;
   vector<vector<int>> ns;
 
   T inf() { return numeric_limits<T>::max() / 2; }
 
-  warshall_floyd(int V): ds(V, vector<T>(V, inf())) {
+  WarshallFloyd(int V): ds(V, vector<T>(V, inf())) {
     for (int i = 0; i < V; i++)
       ds[i][i] = 0;
   }
@@ -61,7 +61,7 @@ struct warshall_floyd {
 int main() {
   int V, E;
   cin >> V >> E;
-  warshall_floyd<long long> G(V);
+  WarshallFloyd<long long> G(V);
   for (int i = 0; i < E; i++) {
     int s, t, d;
     cin >> s >> t >> d;

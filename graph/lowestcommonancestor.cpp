@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class lowest_common_ancestor {
+class LowestCommonAncestor {
 private:
   int h;
   vector<vector<int>> G, par;
@@ -15,7 +15,7 @@ private:
   }
 
 public:
-  lowest_common_ancestor(int n): G(n), dep(n) {
+  LowestCommonAncestor(int n): G(n), dep(n) {
     h = 1;
     while ((1 << h) <= n)
       h++;
@@ -54,7 +54,7 @@ public:
 int main() {
   int n;
   cin >> n;
-  lowest_common_ancestor lca(n);
+  LowestCommonAncestor lca(n);
 
   for (int i = 0; i < n; i++) {
     int k;

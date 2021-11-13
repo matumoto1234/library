@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
-class bellmanford {
+template <typename T>
+class BellmanFord {
 public:
   struct edge {
     int from, to;
@@ -21,7 +21,7 @@ public:
   vector<T> ds;
   vector<int> bs;
 
-  bellmanford(int N): V(N), neg_cycle(false), neg_cycle_to_goal(false) {}
+  BellmanFord(int N): V(N), neg_cycle(false), neg_cycle_to_goal(false) {}
 
   void add_edge(int from, int to, T cost) { es.emplace_back(from, to, cost); }
 
@@ -77,7 +77,7 @@ int main() {
   using ll = long long;
   int V, E, r;
   cin >> V >> E >> r;
-  bellmanford<ll> G(V);
+  BellmanFord<ll> G(V);
   for (int i = 0; i < E; i++) {
     int s, t, d;
     cin >> s >> t >> d;

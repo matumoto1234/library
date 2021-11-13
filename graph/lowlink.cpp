@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class lowlink {
+class LowLink {
 public:
   vector<int> articulations;
   vector<pair<int, int>> bridges;
 
-  lowlink(int V): G(V) {}
+  LowLink(int V): G(V) {}
 
   void add_edge(int from, int to) { G[from].emplace_back(to); }
 
@@ -56,7 +56,7 @@ int main() {
   int V, E;
   cin >> V >> E;
 
-  lowlink G(V);
+  LowLink G(V);
   for (int i = 0; i < E; i++) {
     int s, t;
     cin >> s >> t;

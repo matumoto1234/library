@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class strongly_connected_component {
+class StronglyConnectedComponent {
 private:
   // sccは強連結成分ごとの集合
   vector<vector<int>> G, rG, scc;
@@ -29,7 +29,7 @@ private:
   }
 
 public:
-  strongly_connected_component(int V): G(V), rG(V) {}
+  StronglyConnectedComponent(int V): G(V), rG(V) {}
 
   void add_edge(int from, int to) {
     G[from].emplace_back(to);
@@ -104,7 +104,7 @@ int main() {
   int V, E;
   cin >> V >> E;
 
-  strongly_connected_component G(V);
+  StronglyConnectedComponent G(V);
   for (int i = 0; i < E; i++) {
     int s, t;
     cin >> s >> t;

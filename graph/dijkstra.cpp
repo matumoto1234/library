@@ -2,8 +2,8 @@
 using namespace std;
 using ll = long long;
 
-template<typename T>
-struct dijkstra {
+template <typename T>
+struct Dijkstra {
   struct edge {
     int to;
     T cost;
@@ -18,7 +18,7 @@ struct dijkstra {
   vector<T> ds;
   vector<int> bs;
   vector<pair<int, pair<int, T>>> es;
-  dijkstra(int n): G(n) {}
+  Dijkstra(int n): G(n) {}
 
   void add_edge(int from, int to, T cost) {
     G[from].emplace_back(to, cost);
@@ -74,7 +74,7 @@ int main() {
   int v, e, r;
 
   cin >> v >> e >> r;
-  dijkstra<ll> G(v);
+  Dijkstra<ll> G(v);
 
   for (int i = 0; i < e; i++) {
     int s, t, d;

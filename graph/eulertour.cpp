@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class euler_tour {
+class EulerTour {
 private:
   vector<int> _in, _out, _depth, _parent, _edge_table;
   vector<vector<int>> G;
@@ -22,7 +22,7 @@ private:
   }
 
 public:
-  euler_tour(int n): G(n) {}
+  EulerTour(int n): G(n) {}
 
   void add_edge(int from, int to) { G[from].emplace_back(to); }
 

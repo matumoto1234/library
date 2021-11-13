@@ -4,7 +4,7 @@ using namespace std;
 // sから始めて1度だけ訪問し、sに戻ってきた閉路の最短経路距離
 // buildでinfinity()が帰ってきたらそのような経路はない
 template<typename T>
-struct shortest_hamiltonian_cycle {
+struct ShortestHamiltonianCycle {
   struct edge {
     int to;
     T cost;
@@ -16,7 +16,7 @@ struct shortest_hamiltonian_cycle {
   vector<vector<edge>> G;
   vector<vector<T>> dp;
 
-  shortest_hamiltonian_cycle(int V_): V(V_), G(V_) {}
+  ShortestHamiltonianCycle(int V_): V(V_), G(V_) {}
 
   T inf() { return numeric_limits<T>::max() / 2; }
 
@@ -48,7 +48,7 @@ int main() {
   int V, E;
   cin >> V >> E;
 
-  shortest_hamiltonian_cycle<long long> G(V);
+  ShortestHamiltonianCycle<long long> G(V);
   for (int i = 0; i < E; i++) {
     int s, t, d;
     cin >> s >> t >> d;
