@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
+template <typename T>
 T binomial(T n, T r) {
   T res = 1;
   for (T i = 0; i < r; i++) {

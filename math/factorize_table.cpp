@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct factorize_table {
+struct FactorizeTable {
   vector<int> ps;
-  factorize_table(int N): ps(N + 1, 1) {}
+  FactorizeTable(int N): ps(N + 1, 1) {}
 
   void build() {
     int N = ps.size();

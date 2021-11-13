@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct divisor_table {
+struct DivisorTable {
   vector<int> smallest_ps;
-  divisor_table(int N): smallest_ps(N + 1, 1) {}
+  DivisorTable(int N): smallest_ps(N + 1, 1) {}
 
   void build() {
     int N = smallest_ps.size();

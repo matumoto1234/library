@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct eratosthenes_sieve {
+struct EratosthenesSieve {
   vector<bool> prime_table;
 
-  eratosthenes_sieve() {}
-  eratosthenes_sieve(int N): prime_table(N + 1, true) { prime_table[0] = prime_table[1] = false; }
+  EratosthenesSieve() {}
+  EratosthenesSieve(int N): prime_table(N + 1, true) { prime_table[0] = prime_table[1] = false; }
 
   void build() {
     int n = prime_table.size();
@@ -23,7 +23,7 @@ struct eratosthenes_sieve {
 int main() {
   int n;
   cin >> n;
-  eratosthenes_sieve sieve(n);
+  EratosthenesSieve sieve(n);
   sieve.build();
 
   for (int i = 0; i < static_cast<int>(sieve.prime_table.size()); i++) {

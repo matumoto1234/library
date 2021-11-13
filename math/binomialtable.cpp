@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
-struct binomial_table {
+template <typename T>
+struct BinomialTable {
   vector<vector<T>> data;
-  binomial_table(int N) {
+  BinomialTable(int N) {
     data.assign(N + 1, vector<T>(N + 1, 0));
     data[0][0] = 1;
     for (int i = 0; i < N; i++) {
@@ -21,7 +21,7 @@ struct binomial_table {
 int main() {
   int n;
   cin >> n;
-  binomial_table<int> table(n);
+  BinomialTable<int> table(n);
   for (int i = 0; i <= n; i++) {
     for (int j = 0; j <= i; j++) {
       if (j) cout << " ";

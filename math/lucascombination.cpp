@@ -2,10 +2,10 @@
 using namespace std;
 
 template<typename T>
-struct lucas_combination {
+struct LucasCombination {
   vector<vector<T>> data;
   int MOD;
-  lucas_combination(int _MOD) {
+  LucasCombination(int _MOD) {
     MOD = _MOD;
     data.assign(MOD + 1, vector<T>(MOD + 1, 0));
     data[0][0] = 1;
