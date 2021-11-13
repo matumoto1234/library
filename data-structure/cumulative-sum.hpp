@@ -1,42 +1,24 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include <vector>
 
 template <typename T>
 struct CumulativeSum {
+  using namespace std;
   vector<T> data;
-  CumulativeSum(int n): dat(n + 1, 0) {}
-  CumulativeSum(int n, T x): dat(n + 1, x) {}
+  CumulativeSum(int n): data(n + 1, 0) {}
+  CumulativeSum(int n, T x): data(n + 1, x) {}
 
-  void set(int k, T x) { dat[k + 1] = x; }
+  void set(int k, T x) { data[k + 1] = x; }
 
-  void add(int k, T x) { dat[k + 1] = x; }
+  void add(int k, T x) { data[k + 1] = x; }
 
-  T get(int k) { return dat[k + 1]; }
+  T get(int k) { return data[k + 1]; }
 
   void build() {
-    for (int i = 0; i < static_cast<int>(dat.size()) - 1; i++) {
-      dat[i + 1] += dat[i];
+    for (int i = 0; i < static_cast<int>(data.size()) - 1; i++) {
+      data[i + 1] += data[i];
     }
   }
 
   // [l,r)
-  T query(int l, int r) { return dat[r] - dat[l]; }
+  T query(int l, int r) { return data[r] - data[l]; }
 };
-
-int main() {
-  int n;
-  cin >> n;
-  vector<int> a(n);
-  for (int i = 0; i < n; i++) {
-    cin >> a[i];
-  }
-
-  CumulativeSum<int> sum(n);
-  for (int i = 0; i < n; i++) {
-    sum.set(i, a[i]);
-  }
-
-  sum.build();
-
-  cout << sum.query(0, n) << endl;
-}
