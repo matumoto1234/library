@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T, T (*op)(T, T) = nullptr>
+template<typename T, T (*op)(T, T) = nullptr>
 struct splay_tree {
   struct node {
     node *left, *right, *parent;
@@ -16,7 +16,7 @@ struct splay_tree {
       p = this->parent;
       pp = p->parent;
 
-      if ( p->left == this ) {
+      if (p->left == this) {
         c = this->right;
         this->right = p;
         p->left = c;
@@ -26,11 +26,11 @@ struct splay_tree {
         p->right = c;
       }
 
-      if ( pp && pp->left == p ) pp->left = this;
-      if ( pp && pp->right == p ) pp->right = this;
+      if (pp and pp->left == p) pp->left = this;
+      if (pp and pp->right == p) pp->right = this;
       this->parent = pp;
       p->parent = this;
-      if ( c ) c->parent = p;
+      if (c) c->parent = p;
 
       p->update();
       this->update();
@@ -38,19 +38,19 @@ struct splay_tree {
 
     // 根:0, 左:1, 右:-1
     int state() {
-      if ( !this->parent ) return 0;
-      if ( this->parent->left == this ) return 1;
-      if ( this->parent->right == this ) return -1;
+      if (!this->parent) return 0;
+      if (this->parent->left == this) return 1;
+      if (this->parent->right == this) return -1;
       return 0;
     }
 
     // 根になるまで回転
     void splay() {
-      while ( this->state() != 0 ) {
+      while (this->state() != 0) {
         // 親が根
-        if ( this->parent->state() == 0 ) {
+        if (this->parent->state() == 0) {
           this->rotate();
-        } else if ( this->state() == this->parent->state() ) {
+        } else if (this->state() == this->parent->state()) {
           this->parent->rotate();
           this->rotate();
         } else {
@@ -64,26 +64,26 @@ struct splay_tree {
     void update() {
       this->size = 1;
       this->calc_value = value;
-      if ( this->left ) {
+      if (this->left) {
         this->size += left->size;
-        if(op) this->calc_value = op(this->calc_value, this->left->calc_value);
+        if (op) this->calc_value = op(this->calc_value, this->left->calc_value);
       }
-      if ( this->right ) {
+      if (this->right) {
         this->size += right->size;
-        if(op) this->calc_value = op(this->calc_value, this->right->calc_value);
+        if (op) this->calc_value = op(this->calc_value, this->right->calc_value);
       }
     }
   };
 
   node *_root;
   vector<node> nodes;
-  splay_tree(int n):nodes(n){
-    for ( int i = 0; i < n-1; i++ ) {
+  splay_tree(int n): nodes(n) {
+    for (int i = 0; i < n - 1; i++) {
       nodes[i].parent = &nodes[i + 1];
       nodes[i + 1].left = &nodes[i];
       nodes[i + 1].update();
     }
-    _root = &nodes[n-1];
+    _root = &nodes[n - 1];
   }
 
   T &operator[](int idx) {
@@ -97,14 +97,14 @@ struct splay_tree {
   // rootの左からのidx番目の頂点を根にして返す
   node *get(int idx, node *root) {
     node *now = root;
-    while ( true ) {
+    while (true) {
       int lsize = now->left ? now->left->size : 0;
-      if ( idx < lsize ) now = now->left;
-      if ( idx == lsize ) {
+      if (idx < lsize) now = now->left;
+      if (idx == lsize) {
         now->splay();
         break;
       }
-      if ( idx > lsize ) {
+      if (idx > lsize) {
         now = now->right;
         idx = idx - lsize - 1;
       }
@@ -115,8 +115,8 @@ struct splay_tree {
 
   // lrootとrrootをマージ
   node *merge(node *lroot, node *rroot) {
-    if ( !lroot ) return rroot;
-    if ( !rroot ) return lroot;
+    if (!lroot) return rroot;
+    if (!rroot) return lroot;
     lroot = get(lroot->size - 1, lroot);
     lroot->right = rroot;
     rroot->parent = lroot;
@@ -126,8 +126,8 @@ struct splay_tree {
 
   // [0,n) -> [0,idx),[idx,n)
   pair<node *, node *> split(int idx, node *root) {
-    if ( idx == 0 ) return { nullptr, root };
-    if ( idx == root->size ) return { root, nullptr };
+    if (idx == 0) return { nullptr, root };
+    if (idx == root->size) return { root, nullptr };
 
     root = get(idx, root);
     node *lroot, *rroot;
@@ -150,8 +150,8 @@ struct splay_tree {
     root = get(idx, root);
     node *lroot = root->left;
     node *rroot = root->right;
-    if ( lroot ) lroot->parent = nullptr;
-    if ( rroot ) rroot->parent = nullptr;
+    if (lroot) lroot->parent = nullptr;
+    if (rroot) rroot->parent = nullptr;
     root->left = nullptr;
     root->right = nullptr;
     root->update();
@@ -177,8 +177,8 @@ struct splay_tree {
   }
 };
 
-int op(int a,int b){
-  return min(a,b);
+int op(int a, int b) {
+  return min(a, b);
 }
 
 int main() {
@@ -187,7 +187,7 @@ int main() {
 
   splay_tree<int, op> nodes(n);
 
-  for ( int i = 0; i < n; i++ ) {
+  for (int i = 0; i < n; i++) {
     cin >> nodes[i];
     // cin >> nodes[i].value;
     // nodes[i].update();
@@ -195,20 +195,20 @@ int main() {
 
   // splay_tree<int>::node *root = &nodes[n - 1];
 
-  for ( int i = 0; i < q; i++ ) {
+  for (int i = 0; i < q; i++) {
     int ord, pos, val, l, r;
     cin >> ord;
-    if ( ord == 0 ) {
+    if (ord == 0) {
       cin >> l >> r;
       nodes.root() = nodes.shift(l, r, nodes.root());
     }
-    if ( ord == 1 ) {
+    if (ord == 1) {
       cin >> l >> r;
       auto temp = nodes.prod(l, r, nodes.root());
       nodes.root() = temp.first;
       cout << temp.second << endl;
     }
-    if ( ord == 2 ) {
+    if (ord == 2) {
       cin >> pos >> val;
       nodes.root() = nodes.get(pos, nodes.root());
       nodes.root()->value = val;

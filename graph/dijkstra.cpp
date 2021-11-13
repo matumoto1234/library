@@ -2,13 +2,13 @@
 using namespace std;
 using ll = long long;
 
-template <typename T>
+template<typename T>
 struct dijkstra {
   struct edge {
     int to;
     T cost;
     edge() {}
-    edge(int to, T cost) : to(to), cost(cost) {}
+    edge(int to, T cost): to(to), cost(cost) {}
     bool operator<(const edge &e) const { return cost > e.cost; }
   };
 
@@ -18,7 +18,7 @@ struct dijkstra {
   vector<T> ds;
   vector<int> bs;
   vector<pair<int, pair<int, T>>> es;
-  dijkstra(int n) : G(n) {}
+  dijkstra(int n): G(n) {}
 
   void add_edge(int from, int to, T cost) {
     G[from].emplace_back(to, cost);
@@ -34,13 +34,13 @@ struct dijkstra {
     ds[start] = 0;
     Q.emplace(start, ds[start]);
 
-    while ( !Q.empty() ) {
+    while (!Q.empty()) {
       auto p = Q.top();
       Q.pop();
       int v = p.to;
-      if ( ds[v] < p.cost ) continue;
-      for ( auto e : G[v] ) {
-        if ( ds[e.to] > ds[v] + e.cost ) {
+      if (ds[v] < p.cost) continue;
+      for (auto e: G[v]) {
+        if (ds[e.to] > ds[v] + e.cost) {
           ds[e.to] = ds[v] + e.cost;
           bs[e.to] = v;
           Q.emplace(e.to, ds[e.to]);
@@ -57,11 +57,11 @@ struct dijkstra {
 
   vector<int> restore(int to) {
     vector<int> res;
-    if ( bs[to] == -1 ) {
+    if (bs[to] == -1) {
       res.emplace_back(to);
       return res;
     }
-    while ( to != -1 ) {
+    while (to != -1) {
       res.emplace_back(to);
       to = bs[to];
     }
@@ -76,15 +76,15 @@ int main() {
   cin >> v >> e >> r;
   dijkstra<ll> G(v);
 
-  for ( int i = 0; i < e; i++ ) {
+  for (int i = 0; i < e; i++) {
     int s, t, d;
     cin >> s >> t >> d;
     G.add_edge(s, t, d);
   }
   G.build(r);
 
-  for ( int i = 0; i < v; i++ ) {
-    if ( G[i] == G.inf() ) {
+  for (int i = 0; i < v; i++) {
+    if (G[i] == G.inf()) {
       cout << "INF\n";
       continue;
     }

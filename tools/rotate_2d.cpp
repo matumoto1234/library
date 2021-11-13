@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename ArrayType>
+template<typename ArrayType>
 vector<ArrayType> rotate_cw(const vector<ArrayType> &s) {
   int h = s.size(), w = s[0].size();
   vector<ArrayType> res(w);
@@ -13,7 +13,7 @@ vector<ArrayType> rotate_cw(const vector<ArrayType> &s) {
   return res;
 }
 
-template <typename ArrayType>
+template<typename ArrayType>
 vector<ArrayType> rotate_ccw(const vector<ArrayType> &s) {
   int h = s.size(), w = s[0].size();
   vector<ArrayType> res(w);
@@ -33,12 +33,12 @@ int main() {
     cin >> s[i];
 
   vector<string> s2 = rotate_cw(s);
-  for (int i = 0; i < (int)s2.size(); i++) {
+  for (int i = 0; i < static_cast<int>(s2.size()); i++) {
     cout << s2[i] << endl;
   }
 
   s2 = rotate_ccw(s);
-  for (int i = 0; i < (int)s2.size(); i++) {
+  for (int i = 0; i < static_cast<int>(s2.size()); i++) {
     cout << s2[i] << endl;
   }
 }

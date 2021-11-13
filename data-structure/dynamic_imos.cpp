@@ -2,8 +2,13 @@
 using namespace std;
 
 
+<<<<<<< HEAD
 template <typename T>
 struct DynamicImos {
+=======
+template<typename T>
+struct dynamic_imos {
+>>>>>>> c920eadb538d185c314be369ad7ecb8bf62feaa9
   vector<T> xs, imos;
   vector<tuple<T, T, T>> intervals;
 

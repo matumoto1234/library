@@ -3,7 +3,7 @@ using namespace std;
 
 string substr(const string &s, int l, int r) {
   string res = "";
-  for ( int i = l; i < r; i++ ) {
+  for (int i = l; i < r; i++) {
     res += s[i];
   }
   return res;

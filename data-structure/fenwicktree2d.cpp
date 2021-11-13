@@ -2,7 +2,7 @@
 using namespace std;
 
 // 1-indexed
-template <typename T>
+template<typename T>
 class fenwick_tree_2d {
 private:
   int H, W;
@@ -11,8 +11,8 @@ private:
   // 1<=i<=y 1<=j<=x
   T internal_sum(int y, int x) {
     T res = 0;
-    for ( int i = y; i > 0; i -= (i & -i) ) {
-      for ( int j = x; j > 0; j -= (j & -j) ) {
+    for (int i = y; i > 0; i -= (i & -i)) {
+      for (int j = x; j > 0; j -= (j & -j)) {
         res += dat[i][j];
       }
     }
@@ -30,9 +30,9 @@ public:
 
   // {h,w} += x
   void add(int h, int w, T x) {
-    assert(1 <= h && h <= H && 1 <= w && w <= W);
-    for ( int i = h; i < H; i += (i & -i) ) {
-      for ( int j = w; j < W; j += (j & -j) ) {
+    assert(1 <= h and h <= H and 1 <= w and w <= W);
+    for (int i = h; i < H; i += (i & -i)) {
+      for (int j = w; j < W; j += (j & -j)) {
         dat[i][j] += x;
       }
     }
@@ -40,7 +40,7 @@ public:
 
   // [{sy,sx}, {gy,gx})
   T sum(int sy, int sx, int gy, int gx) {
-    assert(1 <= sy && sy <= H && 1 <= sx && sx <= W && 2 <= gy && gy <= H + 1 && 2 <= gx && gx <= W + 1);
+    assert(1 <= sy and sy <= H and 1 <= sx and sx <= W and 2 <= gy and gy <= H + 1 and 2 <= gx and gx <= W + 1);
     return internal_sum(gy - 1, gx - 1) - internal_sum(gy - 1, sx - 1) - internal_sum(sy - 1, gx - 1) + internal_sum(sy - 1, sx - 1);
   }
 
@@ -51,25 +51,25 @@ int main() {
   int n;
   cin >> n;
   vector<vector<int>> d(n, vector<int>(n));
-  for ( int i = 0; i < n; i++ ) {
-    for ( int j = 0; j < n; j++ ) {
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
       cin >> d[i][j];
     }
   }
 
   fenwick_tree_2d<int> ft(n, n);
-  for ( int i = 0; i < n; i++ ) {
-    for ( int j = 0; j < n; j++ ) {
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
       ft.add(i + 1, j + 1, d[i][j]);
     }
   }
 
   vector<int> vs(n * n, 0);
 
-  for ( int i = 1; i <= n; i++ ) {
-    for ( int j = 1; j <= n; j++ ) {
-      for ( int k = i + 1; k <= n + 1; k++ ) {
-        for ( int l = j + 1; l <= n + 1; l++ ) {
+  for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= n; j++) {
+      for (int k = i + 1; k <= n + 1; k++) {
+        for (int l = j + 1; l <= n + 1; l++) {
           int area = (k - i) * (l - j);
           vs[area] = max(vs[area], ft.sum(i, j, k, l));
         }
@@ -79,11 +79,11 @@ int main() {
 
   int q;
   cin >> q;
-  for ( int i = 0; i < q; i++ ) {
+  for (int i = 0; i < q; i++) {
     int p;
     cin >> p;
     int ans = 0;
-    for ( int j = 0; j <= p; j++ ) {
+    for (int j = 0; j <= p; j++) {
       ans = max(ans, vs[j]);
     }
 

@@ -1,20 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T>
+template<typename T>
 struct matrix {
   vector<vector<T>> dat;
 
-  matrix(int r,int c):dat(r,vector<T>(c,0)){}
-  matrix(vector<vector<T>> _dat):dat(_dat){}
+  matrix(int r, int c): dat(r, vector<T>(c, 0)) {}
+  matrix(vector<vector<T>> _dat): dat(_dat) {}
 
   size_t size() const { return dat.size(); }
   bool empty() const { return dat.empty(); }
-  
 };
 
-long long fibonacci(long long n){
-  long long f0=1,f1=1;
+long long fibonacci(long long n) {
+  long long f0 = 1, f1 = 1;
   // {(1,1),(1,0)}
 
 
@@ -30,6 +29,5 @@ long long fibonacci(long long n){
 }
 
 
-int main(){
-
+int main() {
 }

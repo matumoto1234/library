@@ -14,7 +14,7 @@ struct CumulativeSum {
   T get(int k) { return dat[k + 1]; }
 
   void build() {
-    for (size_t i = 0; i < dat.size() - 1; i++) {
+    for (int i = 0; i < static_cast<int>(dat.size()) - 1; i++) {
       dat[i + 1] += dat[i];
     }
   }

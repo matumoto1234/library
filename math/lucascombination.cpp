@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T>
+template<typename T>
 struct lucas_combination {
   vector<vector<T>> data;
   int MOD;
@@ -9,8 +9,8 @@ struct lucas_combination {
     MOD = _MOD;
     data.assign(MOD + 1, vector<T>(MOD + 1, 0));
     data[0][0] = 1;
-    for ( int i = 0; i < MOD; i++ ) {
-      for ( int j = 0; j <= i; j++ ) {
+    for (int i = 0; i < MOD; i++) {
+      for (int j = 0; j <= i; j++) {
         data[i + 1][j] += data[i][j];
         data[i + 1][j] %= MOD;
         data[i + 1][j + 1] += data[i][j];
@@ -21,7 +21,7 @@ struct lucas_combination {
 
   T query(int n, int r) {
     T res = 1;
-    while ( n > 0 ) {
+    while (n > 0) {
       int ni = n % MOD;
       int ri = r % MOD;
       res *= data[ni][ri];

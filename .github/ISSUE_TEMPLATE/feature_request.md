@@ -3,7 +3,8 @@ name: Feature request
 about: 追加したい昨日や改善案を提案
 title: "[FEATURE] ここにタイトル"
 labels: enhancement
-assignees: ''
+assignees:
+  - matumoto1234
 ---
 
 ## 提案の詳細
