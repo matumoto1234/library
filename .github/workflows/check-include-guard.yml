@@ -7,6 +7,9 @@ jobs:
   checking-include-guard:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: checking
       run: |
         for file in $(git diff ${{ github.event.before }}..${{ github.event.after }} --name-only -- "*.hpp") ; do
