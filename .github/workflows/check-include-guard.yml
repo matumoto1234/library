@@ -7,9 +7,13 @@ jobs:
   checking-include-guard:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
     - name: checking
       run: |
-        for file in $(git diff ${{ github.event.before }}..${{ github.event.after }} --name-only --diff-filter=A -- "*.hpp") ; do
+        for file in $(git diff ${{ github.event.before }}..${{ github.event.after }} --name-only -- "*.hpp") ; do
           echo file
           head -n 1 file | xargs echo | sed "s/ //g" | xargs test \#pragmaonce =
           if [ $? != 0 ]; then
@@ -20,8 +24,4 @@ jobs:
         echo 'Succeed!'
         exit 0
     - name: Dump file
-      run: echo $(git diff ${{ github.event.before }}..${{ github.event.after }} --name-only --diff-filter=A -- "*.hpp")
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
+      run: echo $(git diff ${{ github.event.before }}..${{ github.event.after }} --name-only -- "*.hpp")
