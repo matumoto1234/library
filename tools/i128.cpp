@@ -4,10 +4,10 @@ using namespace std;
 namespace int128 {
   __int128_t parse(const string &s) {
     __int128_t res = 0;
-    for ( char c : s ) {
-      if ( isdigit(c) ) res = res * 10 + (c - '0');
+    for (char c: s) {
+      if (isdigit(c)) res = res * 10 + (c - '0');
     }
-    if ( s[0] == '-' ) res *= -1;
+    if (s[0] == '-') res *= -1;
     return res;
   }
 
@@ -19,7 +19,7 @@ namespace int128 {
   }
 
   ostream &operator<<(ostream &os, const __int128_t &v) {
-    if ( !ostream::sentry(os) ) return os;
+    if (!ostream::sentry(os)) return os;
     char buf[64];
     char *d = end(buf);
     __uint128_t tmp = (v < 0 ? -v : v);
@@ -28,19 +28,19 @@ namespace int128 {
       d--;
       *d = char(tmp % 10 + '0');
       tmp /= 10;
-    } while ( tmp );
-    if ( v < 0 ) {
+    } while (tmp);
+    if (v < 0) {
       d--;
       *d = '-';
     }
     int len = end(buf) - d;
-    if ( os.rdbuf()->sputn(d, len) != len ) { os.setstate(ios_base::badbit); }
+    if (os.rdbuf()->sputn(d, len) != len) { os.setstate(ios_base::badbit); }
     return os;
   }
 
   __int128_t gcd(__int128_t a, __int128_t b) {
     __int128_t tmp;
-    while ( b > 0 ) {
+    while (b > 0) {
       tmp = a;
       a = b;
       b = tmp % b;

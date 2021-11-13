@@ -2,21 +2,22 @@
 using namespace std;
 
 namespace helper {
-  template <typename T>
+  template<typename T>
   class has_iterator {
-    template <typename Container>
+    template<typename Container>
     static true_type test(typename Container::iterator *);
 
-    template <typename Container>
+    template<typename Container>
     static false_type test(...);
 
   public:
     static const bool value = decltype(test<T>(0))::value;
   };
 
-  template <typename Container, typename T>
+  template<typename Container, typename T>
   class has_find {
-    template <typename InnerContainer, int dummy = (static_cast<typename enable_if<has_iterator<InnerContainer>::value, InnerContainer>::type::iterator (InnerContainer::*)(const T &)>(&InnerContainer::find), 0)>
+    template<typename InnerContainer,
+             int dummy = (static_cast<typename enable_if<has_iterator<InnerContainer>::value, InnerContainer>::type::iterator (InnerContainer::*)(const T &)>(&InnerContainer::find), 0)>
     static true_type check(InnerContainer *);
     static false_type check(...);
     static Container *container;
@@ -26,7 +27,7 @@ namespace helper {
   };
 } // namespace helper
 
-template <typename Container, typename T>
+template<typename Container, typename T>
 bool contains(const Container &container, const T &x) {
   if constexpr (helper::has_find<Container, T>::value) {
     return container.find(x) != end(container);

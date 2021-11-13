@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename iter>
+template<typename iter>
 auto runlength(iter first, iter last) {
   vector<pair<decltype(*first), int>> res;
   for (auto it = first; it != last; it++) {

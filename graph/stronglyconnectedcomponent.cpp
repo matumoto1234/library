@@ -12,8 +12,8 @@ private:
 
   void dfs(int idx) {
     arrived[idx] = true;
-    for ( int to : G[idx] ) {
-      if ( arrived[to] ) continue;
+    for (int to: G[idx]) {
+      if (arrived[to]) continue;
       dfs(to);
     }
     post_order.emplace_back(idx);
@@ -22,14 +22,14 @@ private:
   void rdfs(int idx, int num) {
     arrived[idx] = true;
     groups[idx] = num;
-    for ( int to : rG[idx] ) {
-      if ( arrived[to] ) continue;
+    for (int to: rG[idx]) {
+      if (arrived[to]) continue;
       rdfs(to, num);
     }
   }
 
 public:
-  strongly_connected_component(int V) : G(V), rG(V) {}
+  strongly_connected_component(int V): G(V), rG(V) {}
 
   void add_edge(int from, int to) {
     G[from].emplace_back(to);
@@ -41,8 +41,8 @@ public:
     int V = G.size();
     arrived.assign(V, false);
 
-    for ( int i = 0; i < V; i++ ) {
-      if ( arrived[i] ) continue;
+    for (int i = 0; i < V; i++) {
+      if (arrived[i]) continue;
       dfs(i);
     }
 
@@ -51,14 +51,14 @@ public:
     arrived.assign(V, false);
     scc.resize(V);
 
-    for ( int i = V - 1; i >= 0; i-- ) {
+    for (int i = V - 1; i >= 0; i--) {
       int idx = post_order[i];
-      if ( arrived[idx] ) continue;
+      if (arrived[idx]) continue;
       rdfs(idx, cnt);
       cnt++;
     }
 
-    for ( int i = 0; i < V; i++ ) {
+    for (int i = 0; i < V; i++) {
       scc[groups[i]].emplace_back(i);
     }
   }
@@ -67,26 +67,26 @@ public:
   vector<vector<int>> topological_sort() {
     vector<vector<int>> graph(cnt);
     vector<int> in_degree(cnt);
-    for ( int i = 0; i < static_cast<int>(edges.size()); i++ ) {
+    for (int i = 0; i < static_cast<int>(edges.size()); i++) {
       auto [from, to] = edges[i];
-      if ( same(from, to) ) continue;
+      if (same(from, to)) continue;
       graph[groups[from]].emplace_back(groups[to]);
       in_degree[groups[to]]++;
     }
 
     queue<int> q;
-    for ( int i = 0; i < cnt; i++ ) {
-      if ( in_degree[i] == 0 ) q.push(i);
+    for (int i = 0; i < cnt; i++) {
+      if (in_degree[i] == 0) q.push(i);
     }
 
     vector<vector<int>> res;
-    while ( !q.empty() ) {
+    while (!q.empty()) {
       int v = q.front();
       q.pop();
       res.emplace_back(scc[v]);
-      for ( int to : graph[v] ) {
+      for (int to: graph[v]) {
         in_degree[to]--;
-        if ( in_degree[to] == 0 ) q.push(to);
+        if (in_degree[to] == 0) q.push(to);
       }
     }
 
@@ -105,7 +105,7 @@ int main() {
   cin >> V >> E;
 
   strongly_connected_component G(V);
-  for ( int i = 0; i < E; i++ ) {
+  for (int i = 0; i < E; i++) {
     int s, t;
     cin >> s >> t;
     G.add_edge(s, t);
@@ -115,7 +115,7 @@ int main() {
 
   int q;
   cin >> q;
-  for ( int i = 0; i < q; i++ ) {
+  for (int i = 0; i < q; i++) {
     int a, b;
     cin >> a >> b;
     cout << (int)(G[a] == G[b]) << '\n';

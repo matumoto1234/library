@@ -3,7 +3,7 @@ using namespace std;
 
 struct divisor_table {
   vector<int> smallest_ps;
-  divisor_table(int N) : smallest_ps(N + 1, 1) {}
+  divisor_table(int N): smallest_ps(N + 1, 1) {}
 
   void build() {
     int N = smallest_ps.size();
