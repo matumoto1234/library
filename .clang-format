@@ -562,7 +562,7 @@ SpaceAfterLogicalNot: false
 
 # trueの場合、「template」キーワードの後に​​スペースが挿入される: true | false
 # clang-format: 4
-SpaceAfterTemplateKeyword: false
+SpaceAfterTemplateKeyword: true
 
 
 # ポインタ修飾子の前後にスペースを入れる場合を定義: Default | Before | After | Both
