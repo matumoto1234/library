@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T>
+template<typename T>
 class interval_scheduling {
   vector<pair<T, T>> intervals_;
   vector<bool> used;

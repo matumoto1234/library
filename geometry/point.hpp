@@ -1,8 +1,8 @@
 #pragma once
 
-#include <complex>
-
 #include "./base.hpp"
+
+#include <complex>
 
 namespace geometry {
   using Point = complex<Real>;

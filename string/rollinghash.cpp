@@ -7,12 +7,12 @@ struct rolling_hash {
   using ll = long long;
   ll base, mod;
   vector<ll> dat, hash, cumulative_sum, inv;
-  rolling_hash(vector<ll> vs, ll B = (int)1e9 + 7, ll MOD = (1LL << 61) - 1) : dat(vs) {
+  rolling_hash(vector<ll> vs, ll B = (int)1e9 + 7, ll MOD = (1LL << 61) - 1): dat(vs) {
     set_base(B);
     set_mod(MOD);
   }
   rolling_hash(string &s, ll B = (int)1e9 + 7, ll MOD = (1LL << 61) - 1) {
-    for ( char c : s ) {
+    for (char c: s) {
       dat.emplace_back(c);
     }
     set_base(B);
@@ -27,13 +27,13 @@ struct rolling_hash {
     i128 res = a;
     res *= b;
     res = (res >> 61) + (res & mod);
-    if ( res >= mod ) res -= mod;
+    if (res >= mod) res -= mod;
     return (ll)res;
   }
 
   ll pow(ll a, i128 e) {
-    if ( e == 0 ) return 1;
-    if ( e % 2 == 0 ) {
+    if (e == 0) return 1;
+    if (e % 2 == 0) {
       ll res = pow(a, e / 2);
       return mod_mul(res, res);
     }
@@ -51,14 +51,14 @@ struct rolling_hash {
     inv[n] = pow(base, n * e);
     pow_table[0] = 1;
 
-    for ( int i = n - 1; i >= 0; i-- ) {
+    for (int i = n - 1; i >= 0; i--) {
       pow_table[n - i] = mod_mul(pow_table[n - i - 1], base);
       inv[i] = mod_mul(inv[i + 1], base);
     }
-    for ( int i = 0; i < n; i++ ) {
+    for (int i = 0; i < n; i++) {
       hash[i] = mod_mul(dat[i], pow_table[i]);
     }
-    for ( int i = 0; i < n; i++ ) {
+    for (int i = 0; i < n; i++) {
       cumulative_sum[i + 1] = (hash[i] + cumulative_sum[i]) % mod;
     }
   }
@@ -66,16 +66,16 @@ struct rolling_hash {
   // [l,r)
   long long find(int l, int r) {
     ll res = cumulative_sum[r] - cumulative_sum[l];
-    if ( res < 0 ) res += mod;
+    if (res < 0) res += mod;
     res = mod_mul(res, inv[l]);
     return (long long)res;
   }
 };
 
-template <typename T>
+template<typename T>
 struct Random {
   mt19937 mt;
-  Random() : mt(chrono::steady_clock::now().time_since_epoch().count()) {}
+  Random(): mt(chrono::steady_clock::now().time_since_epoch().count()) {}
 
   // [a, b)
   T operator()(T a, T b) {
@@ -103,8 +103,8 @@ int main() {
   b.build();
 
   int n = s.size(), m = t.size();
-  for ( int i = 0; i < n - m + 1; i++ ) {
-    if ( a.find(i, i + m) != b.find(0, m) ) continue;
+  for (int i = 0; i < n - m + 1; i++) {
+    if (a.find(i, i + m) != b.find(0, m)) continue;
     cout << i << "\n";
   }
 }

@@ -1,19 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T>
+template<typename T>
 class union_find {
   int grp_cnt, merge_cnt;
   vector<int> siz, par;
   vector<T> val;
 
 public:
-  union_find(int N) : grp_cnt(N), merge_cnt(0), siz(N, 1), par(N), val(N, 0) {
-    iota(par.begin(), par.end(), 0);
-  }
-  union_find(int N, T init) : grp_cnt(N), merge_cnt(0), siz(N, 1), par(N), val(N, init) {
-    iota(par.begin(), par.end(), 0);
-  }
+  union_find(int N): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N), val(N, 0) { iota(par.begin(), par.end(), 0); }
+  union_find(int N, T init): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N), val(N, init) { iota(par.begin(), par.end(), 0); }
 
   // 根（そのグループの識別番号）
   int root(int x) {

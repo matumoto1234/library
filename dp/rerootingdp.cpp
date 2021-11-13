@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T, typename CostType>
+template<typename T, typename CostType>
 class re_rooting_dp {
 private:
   vector<vector<pair<int, CostType>>> g;
@@ -62,7 +62,7 @@ private:
   }
 
 public:
-  re_rooting_dp(int n, T id, function<T(T, T)> f1, function<T(T, int, re_rooting_dp<T, CostType> &)> f2) : g(n), seen_idx(n) {
+  re_rooting_dp(int n, T id, function<T(T, T)> f1, function<T(T, int, re_rooting_dp<T, CostType> &)> f2): g(n), seen_idx(n) {
     identity = id;
     merge = f1;
     add_node = f2;

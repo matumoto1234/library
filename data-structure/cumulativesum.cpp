@@ -1,16 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T>
+template<typename T>
 struct cumulative_sum {
   vector<T> dat;
-  cumulative_sum(int n) : dat(n + 1, 0) {}
-  cumulative_sum(int n, T x) : dat(n + 1, x) {}
+  cumulative_sum(int n): dat(n + 1, 0) {}
+  cumulative_sum(int n, T x): dat(n + 1, x) {}
 
   void set(int k, T x) { dat[k + 1] = x; }
 
   void build() {
-    for ( int i = 0; i < static_cast<int>(dat.size()) - 1; i++ ) {
+    for (int i = 0; i < static_cast<int>(dat.size()) - 1; i++) {
       dat[i + 1] += dat[i];
     }
   }
@@ -25,12 +25,12 @@ int main() {
   int n;
   cin >> n;
   vector<int> a(n);
-  for ( int i = 0; i < n; i++ ) {
+  for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
 
   cumulative_sum<int> sum(n);
-  for ( int i = 0; i < n; i++ ) {
+  for (int i = 0; i < n; i++) {
     sum.set(i, a[i]);
   }
 

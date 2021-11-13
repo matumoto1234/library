@@ -13,10 +13,10 @@ struct rolling_hash_2d {
     void set(int y, int x, ll v) { data[y + 1][x + 1] = v; }
 
     void build(ll mod) {
-      for ( int i = 1; i < static_cast<int>(data.size()); i++ ) {
-        for ( int j = 1; j < static_cast<int>(data[i].size()); j++ ) {
+      for (int i = 1; i < static_cast<int>(data.size()); i++) {
+        for (int j = 1; j < static_cast<int>(data[i].size()); j++) {
           data[i][j] += (data[i][j - 1] + data[i - 1][j] - data[i - 1][j - 1]) % mod;
-          if ( data[i][j] < 0 ) data[i][j] += mod;
+          if (data[i][j] < 0) data[i][j] += mod;
         }
       }
     }
@@ -24,14 +24,14 @@ struct rolling_hash_2d {
     // [ (sy,sx), (gy,gx) )
     ll query(int sy, int sx, int gy, int gx, ll mod) {
       ll res = (data[gy][gx] - data[gy][sx] - data[sy][gx] + data[sy][sx]) % mod;
-      if ( res < 0 ) res += mod;
+      if (res < 0) res += mod;
       return res;
     }
   };
 
   cumulative_sum_2d sum;
   vector<vector<ll>> dat, inv;
-  rolling_hash_2d(const vector<vector<ll>> &vs, ll B1 = (int)1e9 + 7, ll B2 = (int)1e8 + 7, ll MOD = (1LL << 61) - 1) : dat(vs) {
+  rolling_hash_2d(const vector<vector<ll>> &vs, ll B1 = (int)1e9 + 7, ll B2 = (int)1e8 + 7, ll MOD = (1LL << 61) - 1): dat(vs) {
     set_base(B1, B2);
     set_mod(MOD);
   }
@@ -39,8 +39,8 @@ struct rolling_hash_2d {
     set_base(B1, B2);
     set_mod(MOD);
     dat.resize(s.size());
-    for ( int i = 0; i < static_cast<int>(s.size()); i++ ) {
-      for ( char c : s[i] ) {
+    for (int i = 0; i < static_cast<int>(s.size()); i++) {
+      for (char c: s[i]) {
         dat[i].emplace_back(c);
       }
     }
@@ -54,13 +54,13 @@ struct rolling_hash_2d {
     i128 res = a;
     res *= b;
     res = (res >> 61) + (res & mod);
-    if ( res >= mod ) res -= mod;
+    if (res >= mod) res -= mod;
     return (ll)res;
   }
 
   ll pow(ll a, i128 e) {
-    if ( e == 0 ) return 1;
-    if ( e % 2 == 0 ) {
+    if (e == 0) return 1;
+    if (e % 2 == 0) {
       ll res = pow(a, e / 2);
       return mod_mul(res, res);
     }
@@ -78,22 +78,22 @@ struct rolling_hash_2d {
     pow_table1[0] = 1;
     pow_table2[0] = 1;
 
-    for ( int i = h - 1; i >= 0; i-- ) {
+    for (int i = h - 1; i >= 0; i--) {
       pow_table1[h - i] = mod_mul(base1, pow_table1[h - i - 1]);
       inv[i][w] = mod_mul(base1, inv[i + 1][w]);
     }
-    for ( int j = w - 1; j >= 0; j-- ) {
+    for (int j = w - 1; j >= 0; j--) {
       pow_table2[w - j] = mod_mul(base2, pow_table2[w - j - 1]);
       inv[h][j] = mod_mul(base2, inv[h][j + 1]);
     }
-    for ( int i = h - 1; i >= 0; i-- ) {
-      for ( int j = w - 1; j >= 0; j-- ) {
+    for (int i = h - 1; i >= 0; i--) {
+      for (int j = w - 1; j >= 0; j--) {
         inv[i][j] = mod_mul(inv[i + 1][j + 1], base1);
         inv[i][j] = mod_mul(inv[i][j], base2);
       }
     }
-    for ( int i = 0; i < h; i++ ) {
-      for ( int j = 0; j < w; j++ ) {
+    for (int i = 0; i < h; i++) {
+      for (int j = 0; j < w; j++) {
         ll val = mod_mul(dat[i][j], pow_table1[i]);
         val = mod_mul(val, pow_table2[j]);
         sum.set(i, j, val);
@@ -102,15 +102,13 @@ struct rolling_hash_2d {
     sum.build(mod);
   }
 
-  ll find(int sy, int sx, int gy, int gx) {
-    return mod_mul(sum.query(sy, sx, gy, gx, mod), inv[sy][sx]);
-  }
+  ll find(int sy, int sx, int gy, int gx) { return mod_mul(sum.query(sy, sx, gy, gx, mod), inv[sy][sx]); }
 };
 
-template <typename T>
+template<typename T>
 struct Random {
   mt19937 mt;
-  Random() : mt(chrono::steady_clock::now().time_since_epoch().count()) {}
+  Random(): mt(chrono::steady_clock::now().time_since_epoch().count()) {}
 
   // [a, b)
   T operator()(T a, T b) {
@@ -127,13 +125,13 @@ int main() {
   int h1, w1;
   cin >> h1 >> w1;
   vector<string> s(h1);
-  for ( int i = 0; i < h1; i++ )
+  for (int i = 0; i < h1; i++)
     cin >> s[i];
 
   int h2, w2;
   cin >> h2 >> w2;
   vector<string> t(h2);
-  for ( int i = 0; i < h2; i++ ) {
+  for (int i = 0; i < h2; i++) {
     cin >> t[i];
   }
 
@@ -148,11 +146,9 @@ int main() {
   S.build();
   T.build();
 
-  for ( int i = 0; i < h1 - h2 + 1; i++ ) {
-    for ( int j = 0; j < w1 - w2 + 1; j++ ) {
-      if ( S.find(i, j, i + h2, j + w2) == T.find(0, 0, h2, w2) ) {
-        cout << i << ' ' << j << '\n';
-      }
+  for (int i = 0; i < h1 - h2 + 1; i++) {
+    for (int j = 0; j < w1 - w2 + 1; j++) {
+      if (S.find(i, j, i + h2, j + w2) == T.find(0, 0, h2, w2)) { cout << i << ' ' << j << '\n'; }
     }
   }
 }

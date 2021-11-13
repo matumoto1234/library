@@ -3,87 +3,85 @@ using namespace std;
 
 // {{{
 #define debug(...) debug_function(#__VA_ARGS__, __VA_ARGS__)
-template <typename T, typename... T2>
+template<typename T, typename... T2>
 void debug_function(string_view name, const T &a, T2 &&...rest) {
   stack<char> bs;
   string_view lbs = "({[<", rbs = ")}]>";
   int end = name.size();
-  for ( int i = 0; i < static_cast<int>(name.size()); i++ ) {
-    if ( lbs.find(name[i]) != string::npos ) bs.push(name[i]);
-    if ( rbs.find(name[i]) != string::npos and !bs.empty() ) bs.pop();
-    if ( name[i] == ',' and bs.empty() ) {
+  for (int i = 0; i < static_cast<int>(name.size()); i++) {
+    if (lbs.find(name[i]) != string::npos) bs.push(name[i]);
+    if (rbs.find(name[i]) != string::npos and !bs.empty()) bs.pop();
+    if (name[i] == ',' and bs.empty()) {
       end = i;
       break;
     }
   }
   cerr << name.substr(0, end) << ":" << a;
-  if constexpr ( sizeof...(rest) == 0 ) {
+  if constexpr (sizeof...(rest) == 0) {
     cerr << '\n';
   } else {
     cerr << ' ';
-    debug_function(name.substr(name.find_first_not_of(' ', end + 1)),
-        forward<T2>(rest)...);
+    debug_function(name.substr(name.find_first_not_of(' ', end + 1)), forward<T2>(rest)...);
   }
 }
-template <typename T1, typename T2>
+template<typename T1, typename T2>
 ostream &operator<<(ostream &os, const pair<T1, T2> &p) {
   os << p.first << ' ' << p.second;
   return os;
 }
-template <typename T1, typename T2>
+template<typename T1, typename T2>
 ostream &operator<<(ostream &os, const map<T1, T2> &v) {
-  for ( pair<T1, T2> x : v ) {
-    os << "(" << x.first << ", " << x.second << ")"
-       << (v.rbegin()->first == x.first ? "" : ", ");
+  for (pair<T1, T2> x: v) {
+    os << "(" << x.first << ", " << x.second << ")" << (v.rbegin()->first == x.first ? "" : ", ");
   }
   return os;
 }
-template <typename T>
+template<typename T>
 ostream &operator<<(ostream &os, queue<T> v) {
-  if ( !v.empty() ) {
+  if (!v.empty()) {
     os << v.front();
     v.pop();
   }
-  while ( !v.empty() ) {
+  while (!v.empty()) {
     os << " " << v.front();
     v.pop();
   }
   return os;
 }
-template <typename T>
+template<typename T>
 ostream &operator<<(ostream &os, stack<T> v) {
-  if ( !v.empty() ) {
+  if (!v.empty()) {
     os << v.top();
     v.pop();
   }
-  while ( !v.empty() ) {
+  while (!v.empty()) {
     os << " " << v.top();
     v.pop();
   }
   return os;
 }
-template <typename T>
+template<typename T>
 ostream &operator<<(ostream &os, const vector<T> &v) {
   bool is_f = true;
-  for ( T x : v ) {
+  for (T x: v) {
     os << (is_f ? "" : " ") << x;
     is_f = false;
   }
   return os;
 }
-template <typename T>
+template<typename T>
 ostream &operator<<(ostream &os, const deque<T> &v) {
   bool is_f = true;
-  for ( T x : v ) {
+  for (T x: v) {
     os << (is_f ? "" : " ") << x;
     is_f = false;
   }
   return os;
 }
-template <typename T>
+template<typename T>
 ostream &operator<<(ostream &os, const set<T> &v) {
   bool is_f = true;
-  for ( T x : v ) {
+  for (T x: v) {
     os << (is_f ? "" : " ") << x;
     is_f = false;
   }
@@ -98,7 +96,7 @@ ostream &operator<<(ostream &os, const set<T> &v) {
 // e    : void -> T (identity element)
 // inv  : T    -> T (inverse element)
 // T is weight type and value type
-template <typename T, T (*op)(T, T), T (*e)(), T (*inv)(T)>
+template<typename T, T (*op)(T, T), T (*e)(), T (*inv)(T)>
 class weighted_tree {
 private:
   struct sparse_table {
@@ -109,19 +107,19 @@ private:
 
     void build(const vector<pair<int, int>> &v) {
       int b = 0;
-      while ( (1 << b) <= static_cast<int>(v.size()) )
+      while ((1 << b) <= static_cast<int>(v.size()))
         ++b;
       st.assign(b, vector<pair<int, int>>(1 << b));
-      for ( int i = 0; i < static_cast<int>(v.size()); i++ ) {
+      for (int i = 0; i < static_cast<int>(v.size()); i++) {
         st[0][i] = v[i];
       }
-      for ( int i = 1; i < b; i++ ) {
-        for ( int j = 0; j + (1 << i) <= (1 << b); j++ ) {
+      for (int i = 1; i < b; i++) {
+        for (int j = 0; j + (1 << i) <= (1 << b); j++) {
           st[i][j] = min(st[i - 1][j], st[i - 1][j + (1 << (i - 1))]);
         }
       }
       lookup.resize(v.size() + 1);
-      for ( int i = 2; i < static_cast<int>(lookup.size()); i++ ) {
+      for (int i = 2; i < static_cast<int>(lookup.size()); i++) {
         lookup[i] = lookup[i >> 1] + 1;
       }
     }
@@ -140,9 +138,9 @@ private:
     T search(int l, int r) {
       T vl = e(), vr = e();
       l += n, r += n;
-      while ( l < r ) {
-        if ( l & 1 ) vl = op(vl, dat[l++]);
-        if ( r & 1 ) vr = op(vr, dat[--r]);
+      while (l < r) {
+        if (l & 1) vl = op(vl, dat[l++]);
+        if (r & 1) vr = op(vr, dat[--r]);
         l >>= 1, r >>= 1;
       }
       return op(vl, vr);
@@ -153,7 +151,7 @@ private:
 
     void assign(int _n) {
       n = 1;
-      while ( n < _n ) {
+      while (n < _n) {
         n <<= 1;
       }
       dat.assign(2 * n, e());
@@ -164,7 +162,7 @@ private:
     void set(int i, T key) {
       i += n;
       dat[i] = key;
-      while ( i > 0 ) {
+      while (i > 0) {
         i >>= 1;
         dat[i] = op(dat[i << 1 | 0], dat[i << 1 | 1]);
       }
@@ -190,8 +188,8 @@ private:
     in[v] = time;
     dep[time] = depth;
     edge_table[time++] = v;
-    for ( auto to : G[v] ) {
-      if ( in[to] != -1 ) continue;
+    for (auto to: G[v]) {
+      if (in[to] != -1) continue;
       par[to] = v;
       dfs(to, time, depth + 1);
     }
@@ -202,10 +200,10 @@ private:
 
   pair<T, int> dfs_diameter(int v, int p) {
     pair<T, int> res(0, v);
-    for ( auto [to, cost] : G[v] ) {
-      if ( to == par ) continue;
+    for (auto [to, cost]: G[v]) {
+      if (to == par) continue;
       auto [ncost, u] = dfs_diameter(to, v);
-      if ( res < make_pair(ncost + cost, u) ) {
+      if (res < make_pair(ncost + cost, u)) {
         res = make_pair(ncost + cost);
         dia_to[v] = to;
       }
@@ -216,16 +214,14 @@ private:
   // min({ x | 2^x > n })
   int log_two(int n) {
     int x = 1;
-    while ( (1 << x) <= n ) {
+    while ((1 << x) <= n) {
       x++;
     }
     return x;
   }
 
 public:
-  weighted_tree(int n) : G(n), dat(n), LOG(log_two(n)), dia(-1) {
-    dat.assign(n);
-  }
+  weighted_tree(int n): G(n), dat(n), LOG(log_two(n)), dia(-1) { dat.assign(n); }
 
   void add_edge(int from, int to, T cost = 1) { G[from].emplace_back(to, cost); }
 
@@ -260,12 +256,12 @@ public:
 
     // build doubling parent
     doubling_par.assign(LOG, vector<int>(n, -1));
-    for ( int i = 0; i < n; i++ ) {
+    for (int i = 0; i < n; i++) {
       doubling_par[0][i] = par[i];
     }
-    for ( int k = 0; k < LOG - 1; k++ ) {
-      for ( int i = 0; i < n; i++ ) {
-        if ( doubling_par[k][i] == -1 ) {
+    for (int k = 0; k < LOG - 1; k++) {
+      for (int i = 0; i < n; i++) {
+        if (doubling_par[k][i] == -1) {
           doubling_par[k + 1][i] = -1;
           continue;
         }
@@ -275,7 +271,7 @@ public:
 
     // build sparse table
     vector<pair<int, int>> dep_idx(dep.size());
-    for ( int i = 0; i < static_cast<int>(dep.size()); i++ ) {
+    for (int i = 0; i < static_cast<int>(dep.size()); i++) {
       auto &[depth, idx] = dep_idx[i];
       depth = dep[i];
       idx = i;
@@ -291,7 +287,7 @@ public:
     int v = dia.second;
     vector<int> path;
     path.reserve(dia.first);
-    while ( v != -1 ) {
+    while (v != -1) {
       path.emplace_back(v);
       v = dia_to[v];
     }
@@ -299,24 +295,21 @@ public:
   }
 
   // O(1)
-  bool in_subtree(int subroot, int v) {
-    return in[subroot] < in[v] and out[v] < out[subroot];
-  }
+  bool in_subtree(int subroot, int v) { return in[subroot] < in[v] and out[v] < out[subroot]; }
 
   // O(1) : lowest common ancestor
   int lca(int u, int v) {
-    int idx =
-        min_dep_idx.query(min(in[u], in[v]), max(in[u], in[v]) + 1).second;
+    int idx = min_dep_idx.query(min(in[u], in[v]), max(in[u], in[v]) + 1).second;
     int res = edge_table[idx];
-    if ( res < 0 ) res = par[-res];
+    if (res < 0) res = par[-res];
     return res;
   }
 
   // O(log N) : level ancestor
   int la(int v, int depth) {
     int anc = v;
-    for ( int i = 0; i < LOG; i++ ) {
-      if ( depth >> i & 1 ) anc = doubling_par[i][anc];
+    for (int i = 0; i < LOG; i++) {
+      if (depth >> i & 1) anc = doubling_par[i][anc];
     }
     return anc;
   }
@@ -325,16 +318,14 @@ public:
   int depth(int v) { return dep[in[v]]; }
 
   // O(1)
-  int distance(int u, int v) {
-    return depth(u) + depth(v) - 2 * depth(lca(u, v));
-  }
+  int distance(int u, int v) { return depth(u) + depth(v) - 2 * depth(lca(u, v)); }
 
   // O(1) : from v to root move k step
   int up(int v, int k) { return la(v, depth(v) - k); }
 
   // O(1) : from u to v move k step
   int next(int u, int v, int k = 1) {
-    if ( k <= distance(u, lca(u, v)) ) return up(u, k);
+    if (k <= distance(u, lca(u, v))) return up(u, k);
     return up(v, distance(v, lca(u, v)) - k);
   }
 };
@@ -356,7 +347,7 @@ int main() {
   int n;
   cin >> n;
   weighted_tree<int, op, e, inv> t(n);
-  for ( int i = 0; i < n - 1; i++ ) {
+  for (int i = 0; i < n - 1; i++) {
     int a, b;
     cin >> a >> b;
     a--, b--;
@@ -369,7 +360,7 @@ int main() {
   int m;
   cin >> m;
   vector<pair<int, int>> uvs(m);
-  for ( auto &[u, v] : uvs ) {
+  for (auto &[u, v]: uvs) {
     cin >> u >> v;
     u--, v--;
   }

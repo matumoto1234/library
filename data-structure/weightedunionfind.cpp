@@ -1,14 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T>
+template<typename T>
 struct weighted_union_find {
   vector<int> par;
   vector<int> siz;
   vector<T> w;
-  weighted_union_find(int N) : par(N), siz(N, 1), w(N, 0) {
-    iota(par.begin(), par.end(), 0);
-  }
+  weighted_union_find(int N): par(N), siz(N, 1), w(N, 0) { iota(par.begin(), par.end(), 0); }
 
   int size(int x) { return siz[x]; }
 
@@ -21,8 +19,8 @@ struct weighted_union_find {
     z -= weight(y);
     x = root(x);
     y = root(y);
-    if ( x == y ) return;
-    if ( x < y ) {
+    if (x == y) return;
+    if (x < y) {
       swap(x, y);
       z = -z;
     }
@@ -32,7 +30,7 @@ struct weighted_union_find {
   }
 
   int root(int x) {
-    if ( x == par[x] ) return x;
+    if (x == par[x]) return x;
     int rx = root(par[x]);
     w[x] += w[par[x]];
     par[x] = rx;
