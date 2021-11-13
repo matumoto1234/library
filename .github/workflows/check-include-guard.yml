@@ -22,5 +22,3 @@ jobs:
         done
         echo 'Succeed!'
         exit 0
-    - name: Dump file
-      run: echo $(git diff ${{ github.event.before }}..${{ github.event.after }} --name-only)
