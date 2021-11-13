@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T, typename CostType>
-class re_rooting_dp {
+template <typename T, typename CostType>
+class ReRootingDP {
 private:
   vector<vector<pair<int, CostType>>> g;
   vector<vector<int>> seen_idx;
@@ -12,7 +12,7 @@ private:
 
   T identity;
   function<T(T, T)> merge;
-  function<T(T, int, re_rooting_dp<T, CostType> &)> add_node;
+  function<T(T, int, ReRootingDP<T, CostType> &)> add_node;
 
   void dfs(int v, int par, int &idx) {
     order[idx++] = v;
@@ -62,7 +62,7 @@ private:
   }
 
 public:
-  re_rooting_dp(int n, T id, function<T(T, T)> f1, function<T(T, int, re_rooting_dp<T, CostType> &)> f2): g(n), seen_idx(n) {
+  ReRootingDP(int n, T id, function<T(T, T)> f1, function<T(T, int, ReRootingDP<T, CostType> &)> f2): g(n), seen_idx(n) {
     identity = id;
     merge = f1;
     add_node = f2;
@@ -107,7 +107,7 @@ Pll op(Pll a, Pll b) {
   return make_pair<ll, ll>(a.first + b.first, a.second + b.second);
 }
 
-Pll add_node(Pll res, int v, re_rooting_dp<Pll, ll> &tree) {
+Pll add_node(Pll res, int v, ReRootingDP<Pll, ll> &tree) {
   auto [child_result, mydistance] = res;
   return make_pair<ll, ll>(child_result + mydistance, mydistance + 1);
 }
@@ -117,7 +117,7 @@ int main() {
   int n;
   cin >> n;
 
-  re_rooting_dp<Pll, ll> tree(n, e(), op, add_node);
+  ReRootingDP<Pll, ll> tree(n, e(), op, add_node);
   for (int i = 0; i < n - 1; i++) {
     int u, v;
     cin >> u >> v;

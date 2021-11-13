@@ -1,16 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
-struct longest_common_subsequence {
+template <typename T>
+struct LongestCommonSubsequence {
   vector<T> s, t;
   int h, w;
   vector<vector<int>> dp;
-  longest_common_subsequence(vector<T> _s, vector<T> _t): s(_s), t(_t) {
+  LongestCommonSubsequence(vector<T> _s, vector<T> _t): s(_s), t(_t) {
     h = _s.size();
     w = _t.size();
   }
-  longest_common_subsequence(string _s, string _t) {
+  LongestCommonSubsequence(string _s, string _t) {
     h = _s.size(), w = _t.size();
     for (int i = 0; i < h; i++)
       s.emplace_back(_s[i]);
@@ -57,7 +57,7 @@ struct longest_common_subsequence {
 int main() {
   string s, t;
   cin >> s >> t;
-  longest_common_subsequence<char> LCS(s, t);
+  LongestCommonSubsequence<char> LCS(s, t);
   int length = LCS.build();
   vector<char> ans = LCS.restore();
 
