@@ -19,6 +19,8 @@ jobs:
         done
         echo 'Succeed!'
         exit 0
+    - name: Dump file
+      run: echo $(git diff ${{ github.event.before }}..${{ github.event.after }} --name-only --diff-filter=A -- "*.hpp")
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
