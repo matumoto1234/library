@@ -3,7 +3,7 @@ using namespace std;
 
 // sから始めて1度だけ訪問し、sに戻ってきた閉路の最短経路距離
 // buildでinfinity()が帰ってきたらそのような経路はない
-template<typename T>
+template <typename T>
 struct ShortestHamiltonianCycle {
   struct edge {
     int to;

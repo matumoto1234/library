@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T = long long>
+template <typename T = long long>
 vector<T> divisor(T n) {
   vector<T> res;
   for (long long i = 1; i * i <= n; i++) {

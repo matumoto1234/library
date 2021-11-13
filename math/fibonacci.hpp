@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
+template <typename T>
 struct matrix {
   vector<vector<T>> dat;
 

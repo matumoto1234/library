@@ -2,7 +2,7 @@
 using namespace std;
 
 // from-ary n -> to-ary n
-template<typename T>
+template <typename T>
 vector<T> convert_base(vector<T> n, T from, T to) {
   auto to_base = [&](T n, T b) {
     if (n == 0 or b <= 1) return vector<T>{ 0 };

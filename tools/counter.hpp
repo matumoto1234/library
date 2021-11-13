@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename Iterator>
+template <typename Iterator>
 auto counter(Iterator first, Iterator last) {
   using T = remove_reference_t<decltype(*first)>;
   map<T, int> res;

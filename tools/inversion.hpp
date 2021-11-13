@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
+template <typename T>
 class FenwickTree {
 private:
   int n;
@@ -51,7 +51,7 @@ public:
   int upper_bound(T w) { return lower_bound(w + 1); }
 };
 
-template<typename T>
+template <typename T>
 long long inversion(vector<T> vs) {
   auto uni = vs;
   sort(uni.begin(), uni.end());

@@ -2,8 +2,8 @@
 
 #include "./base.hpp"
 
-#include <numeric>
 #include <map>
+#include <numeric>
 #include <stack>
 #include <tuple>
 #include <vector>

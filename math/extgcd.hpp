@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
+template <typename T>
 T extgcd(T a, T b, T &x, T &y) {
   if (b == 0) {
     x = 1;
