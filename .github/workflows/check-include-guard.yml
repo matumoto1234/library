@@ -1,9 +1,7 @@
 name: include-guard-check
 
 on:
-  push:
-    paths:
-      - '**.hpp'
+  pull_request:
 
 jobs:
   checking-include-guard:
