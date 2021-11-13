@@ -7,12 +7,12 @@ namespace cpp_int_helper {
 
   string to_string(mp::cpp_int a) {
     string res = "";
-    if ( a < 0 ) {
+    if (a < 0) {
       a *= -1;
       res += "-";
     }
 
-    while ( a ) {
+    while (a) {
       res += static_cast<char>(a % 10 + '0');
       a /= 10;
     }
@@ -21,7 +21,7 @@ namespace cpp_int_helper {
 
   mp::cpp_int gcd(mp::cpp_int a, mp::cpp_int b) {
     mp::cpp_int tmp;
-    while ( b > 0 ) {
+    while (b > 0) {
       tmp = a;
       a = b;
       b = tmp % b;
@@ -32,7 +32,7 @@ namespace cpp_int_helper {
   mp::cpp_int lcm(mp::cpp_int a, mp::cpp_int b) { return a * b / gcd(a, b); }
 
   namespace power_helper {
-  
+
     mp::cpp_int extgcd(mp::cpp_int a, mp::cpp_int b, mp::cpp_int &x, mp::cpp_int &y) {
       if (b == 0) {
         x = 1;
@@ -43,13 +43,13 @@ namespace cpp_int_helper {
       y = y - (a / b) * x;
       return d;
     }
-  
+
   } // namespace power_helper
-  
+
   mp::cpp_int power(mp::cpp_int a, mp::cpp_int e, mp::cpp_int p = -1) {
     assert(p != 0);
     assert(p >= -1);
-  
+
     if (e < 0) {
       assert(p != -1 and gcd(a, p) == 1);
       mp::cpp_int x, y;
@@ -57,7 +57,7 @@ namespace cpp_int_helper {
       a = (x % p + p) % p;
       e *= -1;
     }
-  
+
     mp::cpp_int res = 1;
     while (e > 0) {
       if (e & 1) {

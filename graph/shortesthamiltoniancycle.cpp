@@ -3,12 +3,12 @@ using namespace std;
 
 // sから始めて1度だけ訪問し、sに戻ってきた閉路の最短経路距離
 // buildでinfinity()が帰ってきたらそのような経路はない
-template <typename T>
+template<typename T>
 struct shortest_hamiltonian_cycle {
   struct edge {
     int to;
     T cost;
-    edge(int to, T cost) : to(to), cost(cost) {}
+    edge(int to, T cost): to(to), cost(cost) {}
   };
 
   int V;
@@ -16,7 +16,7 @@ struct shortest_hamiltonian_cycle {
   vector<vector<edge>> G;
   vector<vector<T>> dp;
 
-  shortest_hamiltonian_cycle(int V_) : V(V_), G(V_) {}
+  shortest_hamiltonian_cycle(int V_): V(V_), G(V_) {}
 
   T inf() { return numeric_limits<T>::max() / 2; }
 
@@ -31,12 +31,12 @@ struct shortest_hamiltonian_cycle {
   // private method
   T dfs(int v, int Set) {
     T &res = dp[v][Set];
-    if ( Set + 1 == 1 << V and v == start ) res = 0;
-    if ( res != -1 ) return res;
+    if (Set + 1 == 1 << V and v == start) res = 0;
+    if (res != -1) return res;
     res = inf();
-    for ( auto [to, cost] : G[v] ) {
+    for (auto [to, cost]: G[v]) {
       int bit = 1 << to;
-      if ( Set & bit ) continue;
+      if (Set & bit) continue;
       res = min(res, dfs(to, Set | bit) + cost);
     }
     return res;
@@ -49,13 +49,13 @@ int main() {
   cin >> V >> E;
 
   shortest_hamiltonian_cycle<long long> G(V);
-  for ( int i = 0; i < E; i++ ) {
+  for (int i = 0; i < E; i++) {
     int s, t, d;
     cin >> s >> t >> d;
     G.add_edge(s, t, d);
   }
 
   int ans = G.build(0);
-  if ( ans == G.inf() ) ans = -1;
+  if (ans == G.inf()) ans = -1;
   cout << ans << endl;
 }

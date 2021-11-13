@@ -13,6 +13,5 @@ int logarithm(ll base, ll n) {
   return cnt;
 }
 
-int main(){
-
+int main() {
 }

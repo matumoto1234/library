@@ -11,8 +11,8 @@ private:
     _depth[v] = dep;
     _edge_table[time] = v;
     time++;
-    for ( auto to : G[v] ) {
-      if ( _in[to] != -1 ) continue;
+    for (auto to: G[v]) {
+      if (_in[to] != -1) continue;
       _parent[to] = v;
       dfs(to, time, dep + 1);
     }
@@ -22,7 +22,7 @@ private:
   }
 
 public:
-  euler_tour(int n) : G(n) {}
+  euler_tour(int n): G(n) {}
 
   void add_edge(int from, int to) { G[from].emplace_back(to); }
 
@@ -48,8 +48,8 @@ public:
 
   vector<int> vertex_table() {
     vector<int> res = _edge_table;
-    for ( auto &v : res ) {
-      if ( v < 0 ) v = _parent[v];
+    for (auto &v: res) {
+      if (v < 0) v = _parent[v];
     }
     // 半開区間->閉区間の誤差
     res.pop_back();

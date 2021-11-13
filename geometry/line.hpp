@@ -7,6 +7,6 @@ namespace geometry {
     Point a, b;
 
     Line() = default;
-    Line(const Point &a, const Point &b) : a(a), b(b) {}
+    Line(const Point &a, const Point &b): a(a), b(b) {}
   };
 } // namespace geometry
