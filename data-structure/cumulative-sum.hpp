@@ -1,24 +1,29 @@
+#pragma once
+
 #include <vector>
 
-template <typename T>
-struct CumulativeSum {
-  using namespace std;
-  vector<T> data;
-  CumulativeSum(int n): data(n + 1, 0) {}
-  CumulativeSum(int n, T x): data(n + 1, x) {}
+#include "./base.hpp"
 
-  void set(int k, T x) { data[k + 1] = x; }
+namespace data_structure {
+  template <typename T>
+  struct CumulativeSum {
+    vector<T> data;
+    CumulativeSum(int n): data(n + 1, 0) {}
+    CumulativeSum(int n, T x): data(n + 1, x) {}
 
-  void add(int k, T x) { data[k + 1] = x; }
+    void set(int k, T x) { data[k + 1] = x; }
 
-  T get(int k) { return data[k + 1]; }
+    void add(int k, T x) { data[k + 1] = x; }
 
-  void build() {
-    for (int i = 0; i < static_cast<int>(data.size()) - 1; i++) {
-      data[i + 1] += data[i];
+    T get(int k) { return data[k + 1]; }
+
+    void build() {
+      for (int i = 0; i < static_cast<int>(data.size()) - 1; i++) {
+        data[i + 1] += data[i];
+      }
     }
-  }
 
-  // [l,r)
-  T query(int l, int r) { return data[r] - data[l]; }
-};
+    // [l,r)
+    T query(int l, int r) { return data[r] - data[l]; }
+  };
+} // namespace data_structure
