@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
-class fenwick_tree {
+template <typename T>
+class FenwickTree {
 private:
   int n;
   vector<T> dat;
@@ -17,7 +17,7 @@ private:
   }
 
 public:
-  fenwick_tree(int n_): n(n_ + 2), dat(n_ + 2, 0) {}
+  FenwickTree(int n_): n(n_ + 2), dat(n_ + 2, 0) {}
 
   // i:0-indexed
   void add(int i, T x) {
@@ -56,7 +56,7 @@ int main() {
   int q;
   cin >> q;
 
-  fenwick_tree<int> xset(200000);
+  FenwickTree<int> xset(200000);
   for (int i = 0; i < q; i++) {
     int t, x;
     cin >> t >> x;

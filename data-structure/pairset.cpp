@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T = long long>
-struct pairset {
+template <typename T = long long>
+struct PairSet {
   set<pair<T, T>> s;
 
-  pairset() {}
+  PairSet() {}
 
   T inf() { return numeric_limits<T>::max() / 2; }
 
@@ -104,7 +104,7 @@ int main() {
   int l, q;
   cin >> l >> q;
 
-  pairset<int> s;
+  PairSet<int> s;
 
   s.insert(0, l);
 

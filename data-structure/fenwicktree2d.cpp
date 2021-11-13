@@ -2,8 +2,8 @@
 using namespace std;
 
 // 1-indexed
-template<typename T>
-class fenwick_tree_2d {
+template <typename T>
+class FenwickTree2D {
 private:
   int H, W;
   vector<vector<T>> dat;
@@ -20,8 +20,8 @@ private:
   }
 
 public:
-  fenwick_tree_2d() {}
-  fenwick_tree_2d(int H_, int W_) { init(H_, W_); }
+  FenwickTree2D() {}
+  FenwickTree2D(int H_, int W_) { init(H_, W_); }
   void init(int H_, int W_) {
     H = H_ + 1;
     W = W_ + 1;
@@ -57,7 +57,7 @@ int main() {
     }
   }
 
-  fenwick_tree_2d<int> ft(n, n);
+  FenwickTree2D<int> ft(n, n);
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
       ft.add(i + 1, j + 1, d[i][j]);

@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
-class dynamic_connectivity {
-  class euler_tour_tree {
+template <typename T>
+class DynamicConnectivity {
+  class EulerTourTree {
   public:
     struct node;
     using np = node *;
@@ -68,7 +68,7 @@ class dynamic_connectivity {
         return make_tuple(u.first, r.first, r.second);
       }
     }
-    template<typename First, typename... Rest>
+    template <typename First, typename... Rest>
     np merge(First s, Rest... t) {
       return merge(s, merge(t...));
     }
@@ -134,8 +134,8 @@ class dynamic_connectivity {
     }
 
   public:
-    euler_tour_tree() {}
-    euler_tour_tree(int sz) {
+    EulerTourTree() {}
+    EulerTourTree(int sz) {
       ptr.resize(sz);
       for (int i = 0; i < sz; i++)
         ptr[i][i] = new node(i, i);
@@ -238,12 +238,12 @@ class dynamic_connectivity {
     }
   };
   int dep = 1;
-  vector<euler_tour_tree> ett;
+  vector<EulerTourTree> ett;
   vector<vector<unordered_set<int>>> edges;
   int sz;
 
 public:
-  dynamic_connectivity(int sz): sz(sz) {
+  DynamicConnectivity(int sz): sz(sz) {
     ett.emplace_back(sz);
     edges.emplace_back(sz);
   }

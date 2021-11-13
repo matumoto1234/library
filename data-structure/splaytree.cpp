@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T, T (*op)(T, T) = nullptr>
-struct splay_tree {
+template <typename T, T (*op)(T, T) = nullptr>
+struct SplayTree {
   struct node {
     node *left, *right, *parent;
     int size;
@@ -77,7 +77,7 @@ struct splay_tree {
 
   node *_root;
   vector<node> nodes;
-  splay_tree(int n): nodes(n) {
+  SplayTree(int n): nodes(n) {
     for (int i = 0; i < n - 1; i++) {
       nodes[i].parent = &nodes[i + 1];
       nodes[i + 1].left = &nodes[i];
@@ -185,7 +185,7 @@ int main() {
   int n, q;
   cin >> n >> q;
 
-  splay_tree<int, op> nodes(n);
+  SplayTree<int, op> nodes(n);
 
   for (int i = 0; i < n; i++) {
     cin >> nodes[i];
@@ -193,7 +193,7 @@ int main() {
     // nodes[i].update();
   }
 
-  // splay_tree<int>::node *root = &nodes[n - 1];
+  // SplayTree<int>::node *root = &nodes[n - 1];
 
   for (int i = 0; i < q; i++) {
     int ord, pos, val, l, r;

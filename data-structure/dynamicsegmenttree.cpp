@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T, T (*op)(T, T), T (*e)()>
-class dynamic_segment_tree {
+template <typename T, T (*op)(T, T), T (*e)()>
+class DynamicSegmentTree {
 private:
   using ll = long long;
   struct node {
@@ -32,7 +32,7 @@ private:
 
 public:
   node *root;
-  dynamic_segment_tree(ll n_) {
+  DynamicSegmentTree(ll n_) {
     n = 1;
     while (n < n_) {
       n *= 2;
@@ -82,7 +82,7 @@ int main() {
   for (auto &a: as)
     cin >> a;
 
-  dynamic_segment_tree<long long, op, e> seg(n);
+  DynamicSegmentTree<long long, op, e> seg(n);
   for (int i = 0; i < n; i++) {
     seg.add(i, as[i]);
   }

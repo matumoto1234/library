@@ -2,11 +2,11 @@
 #include <vector>
 using namespace std;
 
-template<typename T>
-struct cumulative_sum_2d {
+template <typename T>
+struct CumulativeSum2D {
   vector<vector<T>> data;
-  cumulative_sum_2d(int H, int W): data(H + 1, vector<T>(W + 1, 0)) {}
-  cumulative_sum_2d(const vector<vector<T>> &vs): data(vs) {}
+  CumulativeSum2D(int H, int W): data(H + 1, vector<T>(W + 1, 0)) {}
+  CumulativeSum2D(const vector<vector<T>> &vs): data(vs) {}
 
   void set(int y, int x, T v) { data[y + 1][x + 1] = v; }
 
@@ -25,7 +25,7 @@ struct cumulative_sum_2d {
 int main() {
   int h, w;
   cin >> h >> w;
-  cumulative_sum_2d<int> r(h, w);
+  CumulativeSum2D<int> r(h, w);
   vector<vector<int>> a(h, vector<int>(w));
   for (int i = 0; i < h; i++) {
     for (int j = 0; j < w; j++) {

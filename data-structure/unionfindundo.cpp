@@ -3,14 +3,14 @@ using namespace std;
 using ll = long long;
 
 // 経路圧縮なし
-class union_find_undo {
+class UnionFindUndo {
 private:
   int grp_cnt, merge_cnt;
   vector<int> siz, par;
   stack<tuple<int, int, int>> history;
 
 public:
-  union_find_undo(int N): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N) { iota(par.begin(), par.end(), 0); }
+  UnionFindUndo(int N): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N) { iota(par.begin(), par.end(), 0); }
 
   // 根（そのグループの識別番号）
   int root(int x) {
@@ -83,7 +83,7 @@ public:
 
   // Θ(NlogN)
   // 2つのunion_findでi番目の頂点と同じ連結成分であるものの個数(i番目の頂点を含む)
-  vector<int> connect_count(union_find_undo tree) {
+  vector<int> connect_count(UnionFindUndo tree) {
     map<pair<int, int>, int> mp;
 
     int n = par.size();

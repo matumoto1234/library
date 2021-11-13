@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
-class interval_scheduling {
+template <typename T>
+class IntervalScheduling {
   vector<pair<T, T>> intervals_;
   vector<bool> used;
 
 public:
-  interval_scheduling() {}
+  IntervalScheduling() {}
 
   void add_interval(T l, T r) { intervals_.emplace_back(l, r); }
 
@@ -49,7 +49,7 @@ int main() {
   int n;
   cin >> n;
 
-  interval_scheduling<int> vs;
+  IntervalScheduling<int> vs;
 
   for (int i = 0; i < n; i++) {
     int x, l;

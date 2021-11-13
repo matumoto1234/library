@@ -1,29 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 1-indexed
-template<typename T>
-class range_fenwick_tree {
+template <typename T>
+class RangeFenwickTree {
 private:
   int n;
-  vector<T> dat[2];
+  vector<T> data[2];
 
   void init(int n_) {
     n = n_ + 1;
     for (int p = 0; p < 2; p++)
-      dat[p].assign(n, 0);
+      data[p].assign(n, 0);
   }
 
   void internal_add(int p, int i, T x) {
     for (int k = i; k < n; k += k & -k) {
-      dat[p][k] += x;
+      data[p][k] += x;
     }
   }
 
   T internal_sum(int p, int i) {
     T res = 0;
     for (int k = i; k > 0; k -= k & -k) {
-      res += dat[p][k];
+      res += data[p][k];
     }
     return res;
   }
@@ -35,7 +34,7 @@ private:
   }
 
 public:
-  range_fenwick_tree(int n_) { init(n_); }
+  RangeFenwickTree(int n_) { init(n_); }
 
   // [l, r)
   void add(int l, int r, T x) {
@@ -52,7 +51,7 @@ public:
 int main() {
   int n, q;
   cin >> n >> q;
-  range_fenwick_tree<int> tree(n);
+  RangeFenwickTree<int> tree(n);
   for (int i = 0; i < q; i++) {
     int ord;
     cin >> ord;

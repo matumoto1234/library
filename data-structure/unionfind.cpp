@@ -1,15 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
-class union_find {
+template <typename T>
+class UnionFind {
   int grp_cnt, merge_cnt;
   vector<int> siz, par;
   vector<T> val;
 
 public:
-  union_find(int N): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N), val(N, 0) { iota(par.begin(), par.end(), 0); }
-  union_find(int N, T init): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N), val(N, init) { iota(par.begin(), par.end(), 0); }
+  UnionFind(int N): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N), val(N, 0) { iota(par.begin(), par.end(), 0); }
+  UnionFind(int N, T init): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N), val(N, init) { iota(par.begin(), par.end(), 0); }
 
   // 根（そのグループの識別番号）
   int root(int x) {
@@ -64,8 +64,8 @@ public:
   }
 
   // Θ(NlogN)
-  // 2つのunion_findでi番目の頂点と同じ連結成分であるものの個数(i番目の頂点を含む)
-  vector<int> connect_count(union_find tree) {
+  // 2つのUnionFindでi番目の頂点と同じ連結成分であるものの個数(i番目の頂点を含む)
+  vector<int> connect_count(UnionFind tree) {
     map<pair<int, int>, int> mp;
 
     int n = par.size();

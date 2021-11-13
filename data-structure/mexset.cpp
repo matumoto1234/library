@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T = long long>
-struct mexset {
+template <typename T = long long>
+struct MexSet {
   set<pair<T, T>> s;
 
   T inf() { return numeric_limits<T>::max() / 2; }
 
-  mexset() {
+  MexSet() {
     s.emplace(inf(), inf());
     s.emplace(-inf(), -inf());
   }
@@ -68,7 +68,7 @@ int main() {
   int n;
   cin >> n;
 
-  mexset<int> s;
+  MexSet<int> s;
 
   for (int i = 0; i < n; i++) {
     int p;

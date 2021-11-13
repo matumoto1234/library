@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T>
-struct weighted_union_find {
+template <typename T>
+struct WeightedUnionFind {
   vector<int> par;
   vector<int> siz;
   vector<T> w;
-  weighted_union_find(int N): par(N), siz(N, 1), w(N, 0) { iota(par.begin(), par.end(), 0); }
+  WeightedUnionFind(int N): par(N), siz(N, 1), w(N, 0) { iota(par.begin(), par.end(), 0); }
 
   int size(int x) { return siz[x]; }
 

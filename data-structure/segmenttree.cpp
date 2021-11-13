@@ -1,50 +1,50 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template<typename T, T (*op)(T, T), T (*e)()>
-class segment_tree {
+template <typename T, T (*op)(T, T), T (*e)()>
+class SegmentTree {
 private:
   int n;
-  vector<T> dat;
+  vector<T> data;
 
   T search(int l, int r) {
     T vl = e(), vr = e();
     l += n, r += n;
     while (l < r) {
-      if (l & 1) vl = op(vl, dat[l++]);
-      if (r & 1) vr = op(vr, dat[--r]);
+      if (l & 1) vl = op(vl, data[l++]);
+      if (r & 1) vr = op(vr, data[--r]);
       l >>= 1, r >>= 1;
     }
     return op(vl, vr);
   }
 
 public:
-  segment_tree() {}
-  segment_tree(int _n) { assign(_n); }
+  SegmentTree() {}
+  SegmentTree(int _n) { assign(_n); }
 
   void assign(int _n) {
     n = 1;
     while (n < _n) {
       n <<= 1;
     }
-    dat.assign(2 * n, e());
+    data.assign(2 * n, e());
   }
 
-  T get(int i) { return dat[i + n]; }
+  T get(int i) { return data[i + n]; }
 
   void set(int i, T key) {
     i += n;
-    dat[i] = key;
+    data[i] = key;
     while (i > 0) {
       i >>= 1;
-      dat[i] = op(dat[i << 1 | 0], dat[i << 1 | 1]);
+      data[i] = op(data[i << 1 | 0], data[i << 1 | 1]);
     }
   }
 
   // [l, r)
   T prod(int l, int r) { return search(l, r); }
 
-  T all_prod() { return n != 0 ? dat[0] : e(); }
+  T all_prod() { return n != 0 ? data[0] : e(); }
 };
 
 int op(int a, int b) {
@@ -59,7 +59,7 @@ int e() {
 int main() {
   int n, q;
   cin >> n >> q;
-  segment_tree<int, op, e> seg(n);
+  SegmentTree<int, op, e> seg(n);
 
   for (int i = 0; i < q; i++) {
     int com, x, y;
