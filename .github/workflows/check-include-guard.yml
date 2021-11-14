@@ -12,7 +12,7 @@ jobs:
         fetch-depth: 0
     - name: checking
       run: |
-        for file in $(git diff ${{ github.event.before }}..${{ github.event.after }} --name-only -- "*.hpp") ; do
+        for file in $(git diff ${{ github.event.before }}..${{ github.event.after }} --name-only --diff-filter=d -- "*.hpp") ; do
           echo file
           head -n 1 file | xargs echo | sed "s/ //g" | xargs test \#pragmaonce =
           if [ $? != 0 ]; then
