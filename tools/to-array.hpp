@@ -1,14 +1,17 @@
-#include <bits/stdc++.h>
-using namespace std;
+#pragma once
 
-template <typename T, size_t length>
-array<T, length> to_array(const vector<T> &vs) {
-  array<T, length> res;
-  for (int i = 0; i < (int)length; i++) {
-    res[i] = vs[i];
+#include "./base.hpp"
+
+#include <array>
+#include <vector>
+
+namespace tools {
+  template <typename T, size_t length>
+  array<T, length> to_array(const vector<T> &vs) {
+    array<T, length> res;
+    for (int i = 0; i < (int)length; i++) {
+      res[i] = vs[i];
+    }
+    return res;
   }
-  return res;
-}
-
-int main() {
-}
+} // namespace tools

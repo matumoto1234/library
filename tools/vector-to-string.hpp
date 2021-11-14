@@ -1,17 +1,18 @@
-#include <bits/stdc++.h>
-using namespace std;
+#pragma once
 
-template <typename T>
-string vector_to_string(const vector<T> &vs, const string &sep = " ") {
-  stringstream ss;
-  for (int i = 0; i < static_cast<int>(vs.size()); i++) {
-    if (i) ss << sep;
-    ss << vs[i];
+#include "./base.hpp"
+
+#include <string>
+#include <vector>
+
+namespace tools {
+  template <typename T>
+  string vector_to_string(const vector<T> &vs, const string &sep = " ") {
+    stringstream ss;
+    for (int i = 0; i < static_cast<int>(vs.size()); i++) {
+      if (i) ss << sep;
+      ss << vs[i];
+    }
+    return ss.str();
   }
-  return ss.str();
-}
-
-int main() {
-  vector<bool> vs = { false, true, false };
-  cout << vector_to_string(vs) << endl;
-}
+} // namespace tools
