@@ -1,20 +1,22 @@
-#include <bits/stdc++.h>
-using namespace std;
+#pragma once
 
-vector<int> totient_table(int n) {
-  vector<int> euler(n + 1);
-  for (int i = 0; i <= n; i++) {
-    euler[i] = i;
-  }
-  for (int i = 2; i <= n; i++) {
-    if (euler[i] == i) {
-      for (int j = i; j <= n; j += i) {
-        euler[j] = euler[j] / i * (i - 1);
+#include "./base.hpp"
+
+#include <vector>
+
+namespace math {
+  vector<int> totient_table(int n) {
+    vector<int> euler(n + 1);
+    for (int i = 0; i <= n; i++) {
+      euler[i] = i;
+    }
+    for (int i = 2; i <= n; i++) {
+      if (euler[i] == i) {
+        for (int j = i; j <= n; j += i) {
+          euler[j] = euler[j] / i * (i - 1);
+        }
       }
     }
+    return euler;
   }
-  return euler;
-}
-
-int main() {
-}
+} // namespace math

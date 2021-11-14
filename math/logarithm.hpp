@@ -1,17 +1,16 @@
-#include <bits/stdc++.h>
-using namespace std;
+#pragma once
 
+#include <cassert>
 using ll = long long;
 
-int logarithm(ll base, ll n) {
-  assert(base != 0);
-  int cnt = 0;
-  while (n % base == 0) {
-    n /= base;
-    cnt++;
+namespace math {
+  int logarithm(ll base, ll n) {
+    assert(base != 0);
+    int cnt = 0;
+    while (n % base == 0) {
+      n /= base;
+      cnt++;
+    }
+    return cnt;
   }
-  return cnt;
-}
-
-int main() {
-}
+} // namespace math
