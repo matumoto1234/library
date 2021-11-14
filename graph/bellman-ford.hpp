@@ -1,99 +1,80 @@
-#include <bits/stdc++.h>
-using namespace std;
+#pragma once
 
-template <typename T>
-class BellmanFord {
-public:
-  struct edge {
-    int from, to;
-    T cost;
-    edge() {}
-    edge(int f, int t, T c): from(f), to(t), cost(c) {}
-  };
+#include "./base.hpp"
 
-private:
-  bool neg_cycle;
-  bool neg_cycle_to_goal;
+#include <vector>
+#include <algorithm>
 
-public:
-  int V;
-  vector<edge> es;
-  vector<T> ds;
-  vector<int> bs;
+namespace graph {
+  template <typename T>
+  class BellmanFord {
+  public:
+    struct edge {
+      int from, to;
+      T cost;
+      edge() {}
+      edge(int f, int t, T c): from(f), to(t), cost(c) {}
+    };
 
-  BellmanFord(int N): V(N), neg_cycle(false), neg_cycle_to_goal(false) {}
+  private:
+    bool neg_cycle;
+    bool neg_cycle_to_goal;
 
-  void add_edge(int from, int to, T cost) { es.emplace_back(from, to, cost); }
+  public:
+    int V;
+    vector<edge> es;
+    vector<T> ds;
+    vector<int> bs;
 
-  bool neg() { return neg_cycle; }
+    BellmanFord(int N): V(N), neg_cycle(false), neg_cycle_to_goal(false) {}
 
-  bool neg_to_goal() { return neg_cycle_to_goal; }
+    void add_edge(int from, int to, T cost) { es.emplace_back(from, to, cost); }
 
-  T inf() { return numeric_limits<T>::max() / 2; }
+    bool neg() { return neg_cycle; }
 
-  void build(int s, int g = -1) {
-    if (g == -1) g = V - 1;
-    ds.assign(V, inf());
-    bs.assign(V, -1);
-    ds[s] = 0;
+    bool neg_to_goal() { return neg_cycle_to_goal; }
 
-    for (int i = 0; i < 2 * V; i++) {
-      for (edge e: es) {
-        if (ds[e.from] >= inf()) continue;
-        if (ds[e.to] <= ds[e.from] + e.cost) continue;
+    T inf() { return numeric_limits<T>::max() / 2; }
 
-        ds[e.to] = ds[e.from] + e.cost;
-        bs[e.from] = e.to;
-        if (i >= V - 1) {
-          ds[e.to] = -inf();
-          neg_cycle = true;
-          if (e.to == g) {
-            neg_cycle_to_goal = true;
-            return;
+    void build(int s, int g = -1) {
+      if (g == -1) g = V - 1;
+      ds.assign(V, inf());
+      bs.assign(V, -1);
+      ds[s] = 0;
+
+      for (int i = 0; i < 2 * V; i++) {
+        for (edge e: es) {
+          if (ds[e.from] >= inf()) continue;
+          if (ds[e.to] <= ds[e.from] + e.cost) continue;
+
+          ds[e.to] = ds[e.from] + e.cost;
+          bs[e.from] = e.to;
+          if (i >= V - 1) {
+            ds[e.to] = -inf();
+            neg_cycle = true;
+            if (e.to == g) {
+              neg_cycle_to_goal = true;
+              return;
+            }
           }
         }
       }
     }
-  }
 
-  T operator[](int k) { return ds[k]; }
+    T operator[](int k) { return ds[k]; }
 
-  vector<int> restore(int to) {
-    vector<int> res;
-    if (bs[to] == -1) {
-      res.emplace_back(to);
+    vector<int> restore(int to) {
+      vector<int> res;
+      if (bs[to] == -1) {
+        res.emplace_back(to);
+        return res;
+      }
+      while (bs[to] != -1) {
+        res.emplace_back(to);
+        to = bs[to];
+      }
+      reverse(res.begin(), res.end());
       return res;
     }
-    while (bs[to] != -1) {
-      res.emplace_back(to);
-      to = bs[to];
-    }
-    reverse(res.begin(), res.end());
-    return res;
-  }
-};
-
-int main() {
-  using ll = long long;
-  int V, E, r;
-  cin >> V >> E >> r;
-  BellmanFord<ll> G(V);
-  for (int i = 0; i < E; i++) {
-    int s, t, d;
-    cin >> s >> t >> d;
-    G.add_edge(s, t, d);
-  }
-  G.build(r);
-  if (G.neg()) {
-    cout << "NEGATIVE CYCLE" << endl;
-    return 0;
-  }
-
-  for (int i = 0; i < V; i++) {
-    if (G[i] == G.inf()) {
-      cout << "INF" << '\n';
-    } else {
-      cout << G[i] << '\n';
-    }
-  }
-}
+  };
+} // namespace graph

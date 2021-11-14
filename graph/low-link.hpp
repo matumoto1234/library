@@ -1,79 +1,59 @@
-#include <bits/stdc++.h>
-using namespace std;
+#pragma once
 
-class LowLink {
-public:
-  vector<int> articulations;
-  vector<pair<int, int>> bridges;
+#include "./base.hpp"
 
-  LowLink(int V): G(V) {}
+#include <algorithm>
+#include <vector>
 
-  void add_edge(int from, int to) { G[from].emplace_back(to); }
+namespace graph {
+  class LowLink {
+  public:
+    vector<int> articulations;
+    vector<pair<int, int>> bridges;
 
-  void build() {
-    int V = G.size();
-    ord.assign(V, -1);
-    low.resize(V);
+    LowLink(int V): G(V) {}
 
-    int k = 0;
-    for (int i = 0; i < V; i++) {
-      if (ord[i] == -1) dfs(i, k, -1);
-    }
-    sort(articulations.begin(), articulations.end());
-    sort(bridges.begin(), bridges.end());
-  }
+    void add_edge(int from, int to) { G[from].emplace_back(to); }
 
-private:
-  vector<vector<int>> G;
-  vector<int> ord, low;
+    void build() {
+      int V = G.size();
+      ord.assign(V, -1);
+      low.resize(V);
 
-  void dfs(int id, int &k, int par) {
-    ord[id] = low[id] = k;
-    k++;
-
-    bool is_articulation = false;
-    int child_cnt = 0;
-
-    for (int to: G[id]) {
-      if (ord[to] == -1) {
-        child_cnt++;
-        dfs(to, k, id);
-
-        low[id] = min(low[id], low[to]);
-        if (par != -1 and ord[id] <= low[to]) is_articulation = true;
-        if (ord[id] < low[to]) bridges.emplace_back(min(id, to), max(id, to));
-      } else if (to != par) {
-        low[id] = min(low[id], ord[to]);
+      int k = 0;
+      for (int i = 0; i < V; i++) {
+        if (ord[i] == -1) dfs(i, k, -1);
       }
+      sort(articulations.begin(), articulations.end());
+      sort(bridges.begin(), bridges.end());
     }
 
-    if (par == -1 and child_cnt >= 2) is_articulation = true;
-    if (is_articulation) articulations.emplace_back(id);
-  }
-};
+  private:
+    vector<vector<int>> G;
+    vector<int> ord, low;
 
-int main() {
-  int V, E;
-  cin >> V >> E;
+    void dfs(int id, int &k, int par) {
+      ord[id] = low[id] = k;
+      k++;
 
-  LowLink G(V);
-  for (int i = 0; i < E; i++) {
-    int s, t;
-    cin >> s >> t;
-    G.add_edge(s, t);
-    G.add_edge(t, s);
-  }
+      bool is_articulation = false;
+      int child_cnt = 0;
 
-  G.build();
+      for (int to: G[id]) {
+        if (ord[to] == -1) {
+          child_cnt++;
+          dfs(to, k, id);
 
-  int asz = G.articulations.size();
-  for (int i = 0; i < asz; i++) {
-    cout << G.articulations[i] << endl;
-  }
+          low[id] = min(low[id], low[to]);
+          if (par != -1 and ord[id] <= low[to]) is_articulation = true;
+          if (ord[id] < low[to]) bridges.emplace_back(min(id, to), max(id, to));
+        } else if (to != par) {
+          low[id] = min(low[id], ord[to]);
+        }
+      }
 
-  int bsz = G.bridges.size();
-  for (int i = 0; i < bsz; i++) {
-    auto [from, to] = G.bridges[i];
-    cout << from << ' ' << to << endl;
-  }
-}
+      if (par == -1 and child_cnt >= 2) is_articulation = true;
+      if (is_articulation) articulations.emplace_back(id);
+    }
+  };
+} // namespace graph
