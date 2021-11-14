@@ -13,9 +13,9 @@ namespace math {
 
     void build() {
       int n = prime_table.size();
-      for (long long i = 2; i * i < n; i++) {
+      for (ll i = 2; i * i < n; i++) {
         if (!prime_table[i]) continue;
-        for (long long j = i * i; j < n; j += i) {
+        for (ll j = i * i; j < n; j += i) {
           prime_table[j] = false;
         }
       }

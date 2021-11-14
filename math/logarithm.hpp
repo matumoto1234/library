@@ -1,7 +1,8 @@
 #pragma once
 
+#include "./base.hpp"
+
 #include <cassert>
-using ll = long long;
 
 namespace math {
   int logarithm(ll base, ll n) {

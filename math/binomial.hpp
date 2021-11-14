@@ -1,10 +1,11 @@
 #pragma once
 
+#include "./base.hpp"
+
 namespace math {
-  template <typename T>
-  T binomial(T n, T r) {
-    T res = 1;
-    for (T i = 0; i < r; i++) {
+  ll binomial(ll n, ll r) {
+    ll res = 1;
+    for (ll i = 0; i < r; i++) {
       res *= n - i;
       res /= i + 1;
     }
