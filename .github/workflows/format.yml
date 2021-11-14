@@ -25,6 +25,11 @@ jobs:
         git config --global user.email "${{ secrets.EMAIL }}"
         git config --global user.name "matumoto1234"
         git add .
-        git commit -m "clang-format by GitHub Actions"
-        git push origin
-        exit 0
+        set +e
+        git diff --exit-code --quiet
+        if [[ $? -eq 1 ]]; then
+          git commit -m "clang-format by GitHub Actions"
+          git push origin
+        else
+          echo 'There are no changes'
+        fi
