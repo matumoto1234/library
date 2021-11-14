@@ -188,10 +188,10 @@ namespace math {
   }; // namespace inner
   using inner::is_prime;
 
-  template <typename T>
-  std::vector<T> fast_factorize(const T n) {
+  template <typename ll>
+  std::vector<ll> fast_factorize(const ll n) {
     auto tmp = inner::factorize(n);
-    std::vector<T> res{ tmp.begin(), tmp.end() };
+    std::vector<ll> res{ tmp.begin(), tmp.end() };
     std::sort(res.begin(), res.end());
     return res;
   }

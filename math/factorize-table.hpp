@@ -11,10 +11,10 @@ namespace math {
 
     void build() {
       int N = ps.size();
-      for (long long i = 2; i <= N; i++) {
+      for (ll i = 2; i <= N; i++) {
         if (ps[i] != 1) continue;
         ps[i] = i;
-        for (long long j = i * i; j <= N; j += i) {
+        for (ll j = i * i; j <= N; j += i) {
           if (ps[j] != 1) continue;
           ps[j] = i;
         }

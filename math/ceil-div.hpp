@@ -1,8 +1,11 @@
 #pragma once
 
+#include "./base.hpp"
+
+#include <cassert>
+
 namespace math {
-  template <typename T>
-  T ceil_div(T n, T d) {
+  ll ceil_div(ll n, ll d) {
     assert(d != 0);
     return n / d + ((n ^ d >= 0) and (n % d));
   }

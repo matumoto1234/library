@@ -5,7 +5,6 @@
 #include <cassert>
 #include <numeric>
 
-using ll = long long;
 namespace math {
   // verify:AOJ_NTL_1_B
   namespace power_helper {

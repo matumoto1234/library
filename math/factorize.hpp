@@ -3,10 +3,9 @@
 #include <vector>
 
 namespace math {
-  template <typename T>
-  vector<T> factorize(T n) {
-    vector<T> res;
-    for (long long i = 2; i * i <= n; i++) {
+  vector<ll> factorize(ll n) {
+    vector<ll> res;
+    for (ll i = 2; i * i <= n; i++) {
       while (n % i == 0) {
         res.emplace_back(i);
         n /= i;

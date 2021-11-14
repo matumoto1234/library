@@ -1,6 +1,6 @@
 #pragma once
 
-using ll = long long;
+#include "./base.hpp"
 
 namespace math {
   ll totient(ll n) {
