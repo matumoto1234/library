@@ -1,14 +1,17 @@
-#include <bits/stdc++.h>
-using namespace std;
+#pragma once
 
-string join(const vector<string> &strs, const string &sep) {
-  string res = "";
-  for (int i = 0; i < static_cast<int>(strs.size()); i++) {
-    if (i) res += sep;
-    res += strs[i];
+#include "./base.hpp"
+
+#include <string>
+#include <vector>
+
+namespace library_string {
+  string join(const vector<string> &strs, const string &sep) {
+    string res = "";
+    for (int i = 0; i < static_cast<int>(strs.size()); i++) {
+      if (i) res += sep;
+      res += strs[i];
+    }
+    return res;
   }
-  return res;
-}
-
-int main() {
-}
+} // namespace library_string

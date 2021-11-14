@@ -1,16 +1,15 @@
-#include <bits/stdc++.h>
-using namespace std;
+#pragma once
 
-string substr(const string &s, int l, int r) {
-  string res = "";
-  for (int i = l; i < r; i++) {
-    res += s[i];
+#include "./base.hpp"
+
+#include <string>
+
+namespace library_string {
+  string substr(const string &s, int l, int r) {
+    string res = "";
+    for (int i = l; i < r; i++) {
+      res += s[i];
+    }
+    return res;
   }
-  return res;
-}
-
-int main() {
-  string s;
-  cin >> s;
-  cout << substr(s, 1, s.size() - 1) << endl;
-}
+} // namespace library_string
