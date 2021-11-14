@@ -2,8 +2,8 @@
 
 #include "./base.hpp"
 
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 namespace math {
   template <typename T>

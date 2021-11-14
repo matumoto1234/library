@@ -2,8 +2,8 @@
 
 #include "./base.hpp"
 
-#include <vector>
 #include <queue>
+#include <vector>
 
 namespace graph {
   class StronglyConnectedComponent {

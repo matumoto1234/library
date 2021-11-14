@@ -2,8 +2,8 @@
 
 #include "./base.hpp"
 
-#include <vector>
 #include <limits>
+#include <vector>
 
 namespace graph {
   // verify:AOJ_DPL_2_A
