@@ -1,0 +1,7 @@
+[[languages.cpp.environments]]
+CXX = "g++"
+CXXFLAGS = ["-O2", "-Wall", "-fsplit-stack", "-fstack-protector-all", "-ftrapv", "-fsanitize=undefined", "-D_GLIBCXX_DEBUG", "-Wfloat-equal", "-std=c++17", "-I/home/matumoto/code_box/library/", "-o a.out"]
+
+[[languages.cpp.environments]]
+CXX = "clang++"
+CXXFLAGS = ["-std=c++17", "-Wall", "-g", "-fsanitize=undefined", "-D_GLIBCXX_DEBUG"]
