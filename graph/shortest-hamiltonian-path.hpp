@@ -2,8 +2,8 @@
 
 #include "./base.hpp"
 
-#include <vector>
 #include <limits>
+#include <vector>
 
 namespace graph {
   // 全頂点を1度だけ訪問したときの最短経路距離

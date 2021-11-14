@@ -2,8 +2,8 @@
 
 #include "./base.hpp"
 
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 namespace graph {
   template <typename T>

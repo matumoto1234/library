@@ -6,4 +6,4 @@ namespace math {
     assert(d != 0);
     return n / d + ((n ^ d >= 0) and (n % d));
   }
-}
+} // namespace math
