@@ -7,7 +7,7 @@
 #include <vector>
 
 namespace math {
-  long long alternative_totient_phi(long long x, long long n) {
+  long long alternative_totient(long long x, long long n) {
     if (x == 1) return n;
     auto ps = factorize(x);
     ps.erase(unique(ps.begin(), ps.end()), ps.end());
