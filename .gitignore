@@ -1,4 +1,2 @@
 *.out
-data-structure/baseint.cpp
-tools/dice.cpp
-geometry/matrix.cpp
+*.log
