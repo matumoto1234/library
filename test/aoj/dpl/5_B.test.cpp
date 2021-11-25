@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/5/DPL_5_D"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/5/DPL_5_B"
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -507,7 +507,7 @@ namespace atcoder {
 // modint.hpp end here
 
 
-#include "../../../../../math/mod-factorial.hpp"
+#include "../../../math/mod-factorial.hpp"
 using namespace math;
 
 int main() {
@@ -515,5 +515,5 @@ int main() {
   cin >> n >> k;
   ModFactorial mf;
 
-  cout << mf.combination(n + k - 1, n).val() << endl;
+  cout << mf.permutation(k, n).val() << endl;
 }
