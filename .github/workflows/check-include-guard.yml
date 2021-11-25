@@ -1,11 +1,10 @@
 name: include guard check
 
 on: 
-  workflow_run:
-    workflows:
-      - "verify"
-    types:
-      - completed
+  push:
+    paths:
+      - '**.cpp'
+      - '**.hpp'
 
 jobs:
   checking-include-guard:
