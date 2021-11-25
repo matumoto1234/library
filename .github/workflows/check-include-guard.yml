@@ -5,7 +5,7 @@ on:
     workflows:
       - verify
     types:
-      - 'completed'
+      - completed
 
 jobs:
   checking-include-guard:
