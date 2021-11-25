@@ -1,12 +1,19 @@
 name: include guard check
 
-on: push
+on: 
+  push:
+    paths:
+      - '**.cpp'
+      - '**.hpp'
 
 jobs:
   checking-include-guard:
+
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
+    - name: 'Checkout'
+      uses: actions/checkout@v2
       with:
         fetch-depth: 0
     - name: checking
