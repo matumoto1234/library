@@ -1,12 +1,20 @@
 name: include guard check
 
-on: push
+on: 
+  workflow_runs:
+    workflows:
+      - verify
+    types:
+      - 'completed'
 
 jobs:
   checking-include-guard:
+
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
+    - name: 'Checkout'
+      uses: actions/checkout@v2
       with:
         fetch-depth: 0
     - name: checking
