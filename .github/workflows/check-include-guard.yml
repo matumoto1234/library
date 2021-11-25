@@ -1,7 +1,6 @@
 name: include guard check
 
-on:
-  pull_request:
+on: push
 
 jobs:
   checking-include-guard:
