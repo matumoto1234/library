@@ -1,7 +1,7 @@
 name: include guard check
 
 on: 
-  workflow_runs:
+  workflow_run:
     workflows:
       - verify
     types:
