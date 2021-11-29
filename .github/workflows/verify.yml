@@ -1,12 +1,12 @@
 name: verify
 
 on:
-  push:
-    branches:
-      - '**'
   issue_comment:
     types:
       - created
+  push:
+    branches:
+      - '**'
  
 
 jobs:
