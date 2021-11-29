@@ -8,9 +8,7 @@ on:
 
 jobs:
   verify:
-    if: ${{ github.event_name == 'push' }} ||
-        (${{ github.event_name }} == 'issue_comment' &&
-        ${{ startsWith(github.event.comment.body, '!verify') }})
+    if: ${{ github.event_name == 'push' }} || ${{ github.event_name }} == 'issue_comment'
     runs-on: ubuntu-latest
 
     steps:
