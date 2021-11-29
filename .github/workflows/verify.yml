@@ -9,7 +9,9 @@ on:
 
 jobs:
   verify:
-    if: github.event_name == 'push' || ((github.event.issue.pull_request != null) && github.event.comment.body == '/verify')
+    if: github.event_name == 'push' ||
+        (github.event_name == 'issue_comment' &&
+        startsWith(github.event.comment.body, '/verify'))
     runs-on: ubuntu-latest
 
     steps:
