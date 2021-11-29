@@ -1,7 +1,7 @@
 name: verify
 
 on:
-  push
+  push:
   issue_comment:
     types:
       - created
