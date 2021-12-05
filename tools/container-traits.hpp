@@ -32,6 +32,9 @@ namespace tools {
   template <typename T, size_t Size>
   struct IsArray<array<T, Size>>: true_type {};
 
+  template <typename... Args>
+  inline constexpr bool is_array_v = IsArray<Args...>::value;
+
   template <typename T>
   using IsVector = traits_helper::IsTemplate<vector, T>;
 
@@ -65,10 +68,10 @@ namespace tools {
   using IsUnorderedMap = traits_helper::IsTemplate<unordered_map, T>;
 
   template <typename T>
-  using IsUnorderedMultiset = traits_helper::IsTemplate<unordered_multiset, T>;
+  using IsUnorderedMultiSet = traits_helper::IsTemplate<unordered_multiset, T>;
 
   template <typename T>
-  using IsUnorderedMultimap = traits_helper::IsTemplate<unordered_multimap, T>;
+  using IsUnorderedMultiMap = traits_helper::IsTemplate<unordered_multimap, T>;
 
   // Container adaptors
   template <typename T>
@@ -85,10 +88,10 @@ namespace tools {
   using IsSequenceContainer = disjunction<IsArray<T>, IsVector<T>, IsDeque<T>, IsForwardList<T>, IsList<T>>;
 
   template <typename T>
-  using IsAssociativeContainer = disjunction<IsSet<T>, IsMap<T>, IsMultiset<T>, IsMultimap<T>>;
+  using IsAssociativeContainer = disjunction<IsSet<T>, IsMap<T>, IsMultiSet<T>, IsMultiMap<T>>;
 
   template <typename T>
-  using IsUnorderedAssociativeContainer = disjunction<IsUnorderedSet<T>, IsUnorderedMap<T>, IsUnorderedMultiset<T>, IsUnorderedMultimap<T>>;
+  using IsUnorderedAssociativeContainer = disjunction<IsUnorderedSet<T>, IsUnorderedMap<T>, IsUnorderedMultiSet<T>, IsUnorderedMultiMap<T>>;
 
   template <typename T>
   using IsContainerAdaptor = disjunction<IsQueue<T>, IsStack<T>, IsPriorityQueue<T>>;
