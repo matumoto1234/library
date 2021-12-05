@@ -52,10 +52,10 @@ namespace tools {
   using IsMap = traits_helper::IsTemplate<map, T>;
 
   template <typename T>
-  using IsMultiset = traits_helper::IsTemplate<multiset, T>;
+  using IsMultiSet = traits_helper::IsTemplate<multiset, T>;
 
   template <typename T>
-  using IsMultimap = traits_helper::IsTemplate<multimap, T>;
+  using IsMultiMap = traits_helper::IsTemplate<multimap, T>;
 
   // Unordered associative containers
   template <typename T>
