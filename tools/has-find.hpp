@@ -2,13 +2,22 @@
 
 #include "./has-iterator.hpp"
 
+#include <cstddef>
+
 namespace tools {
-  template <typename Container, typename T, enable_if_t<(static_cast<has_iterator_t<Container> (Container::*)(const T &)>(&Container::find), true), nullptr_t> = nullptr>
-  class HasFind: public true_type {};
+  template <typename Container, typename T>
+  class HasFind {
+    static false_type check(...);
+
+    template <typename C, enable_if_t<(static_cast<has_iterator_t<C> (C::*)(const T &)>(&C::find), true), nullptr_t> = nullptr>
+    static true_type check(C *);
+
+    static Container *container;
+
+  public:
+    static constexpr bool value = decltype(check(container))::value;
+  };
 
   template <typename Container, typename T>
-  class HasFind: public false_type {};
-
-  template <typename Container, typename T>
-  using has_find_v = HasFind<Container, T>::value;
+  static constexpr bool has_find_v = HasFind<Container, T>::value;
 } // namespace tools
