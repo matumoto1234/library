@@ -2,6 +2,7 @@
 
 #include "./has-find.hpp"
 
+#include <algorithm>
 #include <iterator>
 
 namespace tools {
