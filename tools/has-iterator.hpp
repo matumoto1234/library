@@ -17,4 +17,6 @@ namespace tools {
     static const bool value = decltype(check<T>(0))::value;
   };
 
+  template <typename T>
+  using has_iterator_t = enable_if_t<HasIterator<T>::value, typename T::iterator>;
 } // namespace tools
