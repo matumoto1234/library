@@ -567,7 +567,7 @@ SpaceAfterTemplateKeyword: true
 
 # ポインタ修飾子の前後にスペースを入れる場合を定義: Default | Before | After | Both
 # clang-format: 12
-SpaceAroundPointerQualifiers: Default
+# SpaceAroundPointerQualifiers: Default
 
 
 # falseの場合、代入演算子の前にスペースが削除される: true | false
