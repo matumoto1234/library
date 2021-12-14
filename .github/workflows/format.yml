@@ -30,6 +30,7 @@ jobs:
       run: |
         clang-format -i -style=file ./*
         git add .
+        set +e
         git commit -m 'clang-format by GitHub Actions'
 
     - name: Push
