@@ -51,7 +51,7 @@ AlignEscapedNewlines: DontAlign
 
 # trueの場合、2進式と3進式のオペランドを水平方向に揃える: DontAlign | Align | AlignAfterOperator
 # clang-format: 12
-AlignOperands: DontAlign
+# AlignOperands: DontAlign
 
 
 # trueの場合、末尾のコメントを揃える
@@ -86,7 +86,7 @@ AllowShortCaseLabelsOnASingleLine: false
 
 # 短い列挙型を1行に配置できる: true | false
 # clang-format: 12
-AllowShortEnumsOnASingleLine: false
+# AllowShortEnumsOnASingleLine: false
 
 
 # 値に応じて関数を1行に配置できる: None | InlineOnly | Empty | Inline | All
@@ -146,7 +146,7 @@ BinPackParameters: false
 
 # ビットフィールドに使用するスタイル: Both | None | Before | After
 # clang-format: 12
-BitFieldColonSpacing: None
+# BitFieldColonSpacing: None
 
 
 # 使用するブレースブレイクスタイル: Attach | Linux | Mozilla | Stroustrup | Allman | Whitesmiths | GNU | WebKit | Custom
@@ -323,7 +323,7 @@ IndentCaseLabels: true
 
 # externブロックのインデントのタイプ: AfterExternBlock | NoIndent | Indent
 # clang-format: 12
-IndentExternBlock: Indent
+# IndentExternBlock: Indent
 
 
 # gotoラベルをインデント: true | false
@@ -357,7 +357,7 @@ IndentWrappedFunctionNames: true
 # Wrappedに設定すると、複数行にまたがるコンテナリテラル（配列とオブジェクト）に末尾のコンマが挿入される
 # 現在、JavaScriptでのみ使用可能であり、デフォルトで無効になっている(None): None | Wrapped
 # clang-format: 12
-InsertTrailingCommas: None
+# InsertTrailingCommas: None
 
 
 # Javaインポートの目的のグループによって順序付けられたプレフィックス: <List of Strings>
