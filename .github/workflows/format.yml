@@ -20,6 +20,7 @@ jobs:
         sudo add-apt-repository http://archive.ubuntu.com/ubuntu
         sudo apt update
         sudo apt install clang-format
+        clang-format --version
 
     - name: Set git config
       run: |
@@ -28,7 +29,7 @@ jobs:
 
     - name: Run format
       run: |
-        clang-format -i -style=file ./*
+        find ./ -name *.cpp -or -name *.hpp | xargs clang-format -i -style=file
         git add .
         set +e
         git commit -m 'clang-format by GitHub Actions'
