@@ -39,9 +39,9 @@ AlignConsecutiveBitFields: None
 AlignConsecutiveDeclarations: None
 
 
-# 連続するマクロ定義を整列するスタイル: None | Consecutive | AcrossEmptyLines | AcrossComments | AcrossEmptyLinesAndComments 
+# 連続するマクロ定義を整列するスタイル: true | false
 # clang-format: 9
-AlignConsecutiveMacros: None
+AlignConsecutiveMacros: false
 
 
 # エスケープされた改行で円記号を揃えるためのオプション: DontAlign | Left | Right
