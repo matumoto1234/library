@@ -24,19 +24,19 @@ AlignAfterOpenBracket: Align
 # AlignArrayOfStructures: Right
 
 
-# 変数初期化をイコールで整列する: None | Consecutive | AcrossEmptyLines | AcrossComments | AcrossEmptyLinesAndComments
+# 変数初期化をイコールで整列する: true | false
 # clang-format: 3.8
-AlignConsecutiveAssignments: None
+AlignConsecutiveAssignments: false
 
 
-# ビットフィールドを整列する: None | Consecutive | AcrossEmptyLines | AcrossComments | AcrossEmptyLinesAndComments 
+# ビットフィールドを整列する: true | false
 # clang-format: 11
-AlignConsecutiveBitFields: None
+AlignConsecutiveBitFields: false
 
 
-# 連続する宣言を整列するスタイル: None | Consecutive | AcrossEmptyLines | AcrossComments | AcrossEmptyLinesAndComments 
+# 連続する宣言を整列するスタイル: true | false
 # clang-format: 3.8
-AlignConsecutiveDeclarations: None
+AlignConsecutiveDeclarations: false
 
 
 # 連続するマクロ定義を整列するスタイル: true | false
