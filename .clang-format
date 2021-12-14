@@ -490,7 +490,7 @@ PenaltyExcessCharacter: 100
 
 # 空白インデントの各文字に対するペナルティ（先頭の非空白列と比較してカウント）: <Unsigned>
 # clang-format: 12
-PenaltyIndentedWhitespace: 10
+# PenaltyIndentedWhitespace: 10
 
 
 # 関数の戻り型をそれ自体の行に置くことに対するペナルティ: <Unsigned>
