@@ -19,7 +19,7 @@ jobs:
       run: |
         sudo add-apt-repository http://archive.ubuntu.com/ubuntu
         sudo apt update
-        sudo apt install clang-format
+        sudo apt install clang-format-12
         clang-format --version
 
     - name: Set git config
