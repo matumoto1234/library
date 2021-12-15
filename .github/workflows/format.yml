@@ -34,5 +34,5 @@ jobs:
     - name: Add Commit Push
       run: |
         git add .
-        git commit -m 'clang-format by GitHub Actions'
+        git commit --allow-empty -m 'clang-format by GitHub Actions'
         git push origin ${{ github.ref }}
