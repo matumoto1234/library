@@ -29,11 +29,10 @@ jobs:
 
     - name: Run format
       run: |
-        find ./ -name *.cpp -or -name *.hpp | xargs clang-format -i -style=file
-        git add .
-        set +e
-        git commit -m 'clang-format by GitHub Actions'
+        find ./ -name *.cpp -or -name *.hpp | xargs clang-format-12 -i -style=file
 
-    - name: Push
+    - name: Add Commit Push
       run: |
+        git add .
+        git commit -m 'clang-format by GitHub Actions'
         git push origin ${{ github.ref }}
