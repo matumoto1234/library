@@ -24,24 +24,24 @@ AlignAfterOpenBracket: Align
 # AlignArrayOfStructures: Right
 
 
-# 変数初期化をイコールで整列する: None | Consecutive | AcrossEmptyLines | AcrossComments | AcrossEmptyLinesAndComments
+# 変数初期化をイコールで整列する: true | false
 # clang-format: 3.8
-AlignConsecutiveAssignments: None
+AlignConsecutiveAssignments: false
 
 
-# ビットフィールドを整列する: None | Consecutive | AcrossEmptyLines | AcrossComments | AcrossEmptyLinesAndComments 
+# ビットフィールドを整列する: true | false
 # clang-format: 11
-AlignConsecutiveBitFields: None
+AlignConsecutiveBitFields: false
 
 
-# 連続する宣言を整列するスタイル: None | Consecutive | AcrossEmptyLines | AcrossComments | AcrossEmptyLinesAndComments 
+# 連続する宣言を整列するスタイル: true | false
 # clang-format: 3.8
-AlignConsecutiveDeclarations: None
+AlignConsecutiveDeclarations: false
 
 
-# 連続するマクロ定義を整列するスタイル: None | Consecutive | AcrossEmptyLines | AcrossComments | AcrossEmptyLinesAndComments 
+# 連続するマクロ定義を整列するスタイル: true | false
 # clang-format: 9
-AlignConsecutiveMacros: None
+AlignConsecutiveMacros: false
 
 
 # エスケープされた改行で円記号を揃えるためのオプション: DontAlign | Left | Right
@@ -51,7 +51,7 @@ AlignEscapedNewlines: DontAlign
 
 # trueの場合、2進式と3進式のオペランドを水平方向に揃える: DontAlign | Align | AlignAfterOperator
 # clang-format: 12
-AlignOperands: DontAlign
+# AlignOperands: DontAlign
 
 
 # trueの場合、末尾のコメントを揃える
@@ -86,7 +86,7 @@ AllowShortCaseLabelsOnASingleLine: false
 
 # 短い列挙型を1行に配置できる: true | false
 # clang-format: 12
-AllowShortEnumsOnASingleLine: false
+# AllowShortEnumsOnASingleLine: false
 
 
 # 値に応じて関数を1行に配置できる: None | InlineOnly | Empty | Inline | All
@@ -146,7 +146,7 @@ BinPackParameters: false
 
 # ビットフィールドに使用するスタイル: Both | None | Before | After
 # clang-format: 12
-BitFieldColonSpacing: None
+# BitFieldColonSpacing: None
 
 
 # 使用するブレースブレイクスタイル: Attach | Linux | Mozilla | Stroustrup | Allman | Whitesmiths | GNU | WebKit | Custom
@@ -323,7 +323,7 @@ IndentCaseLabels: true
 
 # externブロックのインデントのタイプ: AfterExternBlock | NoIndent | Indent
 # clang-format: 12
-IndentExternBlock: Indent
+# IndentExternBlock: Indent
 
 
 # gotoラベルをインデント: true | false
@@ -357,7 +357,7 @@ IndentWrappedFunctionNames: true
 # Wrappedに設定すると、複数行にまたがるコンテナリテラル（配列とオブジェクト）に末尾のコンマが挿入される
 # 現在、JavaScriptでのみ使用可能であり、デフォルトで無効になっている(None): None | Wrapped
 # clang-format: 12
-InsertTrailingCommas: None
+# InsertTrailingCommas: None
 
 
 # Javaインポートの目的のグループによって順序付けられたプレフィックス: <List of Strings>
@@ -490,7 +490,7 @@ PenaltyExcessCharacter: 100
 
 # 空白インデントの各文字に対するペナルティ（先頭の非空白列と比較してカウント）: <Unsigned>
 # clang-format: 12
-PenaltyIndentedWhitespace: 10
+# PenaltyIndentedWhitespace: 10
 
 
 # 関数の戻り型をそれ自体の行に置くことに対するペナルティ: <Unsigned>
@@ -567,7 +567,7 @@ SpaceAfterTemplateKeyword: true
 
 # ポインタ修飾子の前後にスペースを入れる場合を定義: Default | Before | After | Both
 # clang-format: 12
-SpaceAroundPointerQualifiers: Default
+# SpaceAroundPointerQualifiers: Default
 
 
 # falseの場合、代入演算子の前にスペースが削除される: true | false
