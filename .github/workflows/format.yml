@@ -8,7 +8,6 @@ on:
 
 jobs:
   format:
-    needs: verify
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
