@@ -14,8 +14,6 @@ namespace dp {
   // e: opに関する単位元
   template <typename T, T (*add_node)(T, int), T (*op)(T, T), T (*e)()>
   class ReRootingDP {
-    using Edge = pair<int, T>;
-    vector<vector<Edge>> m_tree;
     vector<vector<int>> m_index_for_adjacents;
     vector<vector<T>> m_child_subtree_results;
     vector<int> m_parents, m_order;
@@ -98,13 +96,15 @@ namespace dp {
     }
 
   public:
+    using Edge = pair<int, T>;
+    vector<vector<Edge>> m_tree;
+
     ReRootingDP(int n): m_tree(n), m_index_for_adjacents(n), m_parents(n), m_order(n), m_node_results(n) {}
 
     void add_edge(int from, int to, T cost) {
       m_tree[from].emplace_back(to, cost);
       m_index_for_adjacents[to].emplace_back(m_tree[from].size() - 1);
     }
-
 
     void build() {
       m_child_subtree_results.resize(m_tree.size());
@@ -115,5 +115,7 @@ namespace dp {
       post_order();
       pre_order();
     }
+
+    T operator[](int node) { return m_node_results[node]; }
   };
 } // namespace dp
