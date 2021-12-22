@@ -2,103 +2,118 @@
 
 #include "./base.hpp"
 
-#include <functional>
+#include <algorithm>
+#include <cassert>
+#include <stack>
 #include <vector>
 
 namespace dp {
   // verify:ABC220-F
-  template <typename T, typename CostType>
+  // add_node: 自身の値を追加して親方向へ渡す関数 (T result, int index) |-> T
+  // op: 二項演算 (monoid)
+  // e: opに関する単位元
+  template <typename T, T (*add_node)(T, int), T (*op)(T, T), T (*e)()>
   class ReRootingDP {
-  private:
-    vector<vector<pair<int, CostType>>> g;
-    vector<vector<int>> seen_idx;
-    vector<vector<T>> ch_tree;
-    vector<int> pars, deps, sizs, order;
-    vector<T> results;
+    using Edge = pair<int, T>;
+    vector<vector<Edge>> m_tree;
+    vector<vector<int>> m_index_for_adjacents;
+    vector<vector<T>> m_child_subtree_results;
+    vector<int> m_parents, m_order;
+    vector<T> m_node_results;
 
-    T identity;
-    function<T(T, T)> merge;
-    function<T(T, int, ReRootingDP<T, CostType> &)> add_node;
+    // order と parents の前計算
+    void dfs(int root) {
+      int index = 0;
+      stack<int> s;
+      s.push(root);
+      m_parents[root] = -1;
 
-    void dfs(int v, int par, int &idx) {
-      order[idx++] = v;
-      pars[v] = par;
-      deps[v] = par == -1 ? 0 : deps[par] + 1;
-      for (auto [to, ignore]: g[v]) {
-        if (to == par) continue;
-        dfs(to, v, idx);
+      while (not s.empty()) {
+        int node = s.top();
+        s.pop();
+
+        m_order[index++] = node;
+        for (int adjacent: m_tree[node]) {
+          if (adjacent == m_parents[node]) continue;
+          s.push(adjacent);
+          m_parents[adjacent] = node;
+        }
       }
-      if (par != -1) sizs[par] = ++sizs[v];
     }
 
+    // 根の値を求めるために全頂点の子方向の値を帰りがけ順で求める
+    // child_subtree_results[node][i] (頂点nodeのi番目の子部分木の値) が求まる
+    // ただし、子方向を親としたときの child_subtree_results[node][i] は求まらない
     void post_order() {
-      for (int i = order.size() - 1; i >= 1; i--) {
-        int v = order[i];
-        int par = pars[v];
-        int par_idx = -1;
-        T accum = identity;
-        for (int j = 0; j < static_cast<int>(g[v].size()); j++) {
-          int to = g[v][j].first;
-          if (to == par) {
-            par_idx = j;
+      vector<int> reversed_order = m_order;
+      reverse(reversed_order.begin(), reversed_order.end());
+
+      for (int node: reversed_order) {
+        int parent = m_parents[node];
+        int parent_index = -1;
+        T result = e();
+
+        for (int i = 0; i < (int)m_tree[node].size(); i++) {
+          int to = m_tree[node][i].first;
+          if (to == parent) {
+            parent_index = i;
             continue;
           }
-          accum = merge(accum, ch_tree[v][j]);
+
+          result = op(result, m_child_subtree_results[node][i]);
         }
-        if (par_idx != -1) { ch_tree[par][seen_idx[v][par_idx]] = add_node(accum, v, *this); }
+
+        assert(parent_index != -1);
+        m_child_subtree_results[parent][m_index_for_adjacents[node][parent_index]] = add_node(result, node);
       }
     }
 
+    // 全頂点の親方向の値を両側累積を使って求める(行きがけ順)
+    // node_results[node] が求まる
     void pre_order() {
-      for (auto v: order) {
-        int adj_cnt = g[v].size();
-        vector<T> accum_back(adj_cnt);
-        accum_back.back() = identity;
-        for (int j = adj_cnt - 1; j >= 1; j--) {
-          accum_back[j - 1] = merge(accum_back[j], ch_tree[v][j]);
+      for (int node: m_order) {
+        int size = m_tree[node].size();
+        vector<T> accums_front(size, e()), accums_back(size, e());
+
+        for (int i = 0; i < size - 1; i++) {
+          T child_subtree_result = m_child_subtree_results[node][m_index_for_adjacents[node][i]];
+          accums_front[i + 1] = op(accums_front[i], child_subtree_result);
         }
-        T accum_front = identity;
-        for (int j = 0; j < adj_cnt; j++) {
-          T res = add_node(merge(accum_front, accum_back[j]), v, *this);
-          ch_tree[g[v][j].first][seen_idx[v][j]] = res;
-          accum_front = merge(accum_front, ch_tree[v][j]);
+        for (int i = size - 1; i >= 1; i--) {
+          T child_subtree_result = m_child_subtree_results[node][m_index_for_adjacents[node][i]];
+          accums_back[i - 1] = op(accums_back[i], child_subtree_result);
         }
-        results[v] = add_node(accum_front, v, *this);
+
+        for (int i = 0; i < size; i++) {
+          T result = add_node(op(accums_front[i], accums_back[i]), node);
+
+          int parent = m_tree[node][i];
+          int index_from_parent = m_index_for_adjacents[node][i];
+
+          m_child_subtree_results[parent][index_from_parent] = result;
+        }
+        T accum_child_subtree_result = accums_front.back();
+        m_node_results[node] = add_node(accum_child_subtree_result, node);
       }
     }
 
   public:
-    ReRootingDP(int n, T id, function<T(T, T)> f1, function<T(T, int, ReRootingDP<T, CostType> &)> f2): g(n), seen_idx(n) {
-      identity = id;
-      merge = f1;
-      add_node = f2;
+    ReRootingDP(int n): m_tree(n), m_index_for_adjacents(n), m_parents(n), m_order(n), m_node_results(n) {}
+
+    void add_edge(int from, int to, T cost) {
+      m_tree[from].emplace_back(to, cost);
+      m_index_for_adjacents[to].emplace_back(m_tree[from].size() - 1);
     }
 
-    void add_edge(int from, int to, CostType cost) {
-      g[from].emplace_back(to, cost);
-      seen_idx[to].emplace_back(g[from].size() - 1);
-    }
 
-    void build(int root) {
-      pars.assign(g.size(), -1);
-      deps.assign(g.size(), -1);
-      sizs.assign(g.size(), 0);
-      order.assign(g.size(), -1);
-      results.assign(g.size(), identity);
-      ch_tree.resize(g.size());
-      for (int i = 0; i < static_cast<int>(g.size()); i++) {
-        ch_tree[i].assign(g[i].size(), identity);
+    void build() {
+      m_child_subtree_results.resize(m_tree.size());
+      for (int i = 0; i < (int)m_tree.size(); i++) {
+        m_child_subtree_results[i].assign(m_tree[i].size(), e());
       }
-      int idx = 0;
-      dfs(root, -1, idx);
+      dfs(/* root = */ 0);
       post_order();
       pre_order();
     }
-
-    int size(int v) { return sizs[v]; }
-    int depth(int v) { return deps[v]; }
-    int parent(int v) { return pars[v]; }
-    T query(int v) { return results[v]; }
-    T operator[](int v) { return results[v]; }
   };
 } // namespace dp
