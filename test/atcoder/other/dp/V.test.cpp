@@ -24,6 +24,11 @@ int main() {
   ll n;
   cin >> n >> m;
 
+  if (n == 1) {
+    cout << 1 << endl;
+    return 0;
+  }
+
   ReRootingDP<ll, add_node, op, e> dp(n);
 
   for (int i = 0; i < n - 1; i++) {
