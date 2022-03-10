@@ -67,10 +67,12 @@ namespace tools {
       while (e > 0) {
         if (e & 1) {
           res *= a;
-          if (p != -1) res %= p;
+          if (p != -1)
+            res %= p;
         }
         a *= a;
-        if (p != -1) a %= p;
+        if (p != -1)
+          a %= p;
         e >>= 1;
       }
       return res;

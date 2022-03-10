@@ -21,7 +21,8 @@ namespace data_structure {
 
     // 根（そのグループの識別番号）
     int root(int x) {
-      if (x == par[x]) return x;
+      if (x == par[x])
+        return x;
       return root(par[x]);
     }
 
@@ -37,8 +38,10 @@ namespace data_structure {
     bool merge(int x, int y) {
       x = root(x);
       y = root(y);
-      if (x == y) return false;
-      if (siz[x] < siz[y]) swap(x, y);
+      if (x == y)
+        return false;
+      if (siz[x] < siz[y])
+        swap(x, y);
       history.emplace(make_tuple(x, par[x], siz[x]));
       history.emplace(make_tuple(y, par[y], siz[y]));
       siz[x] += siz[y];
@@ -49,7 +52,8 @@ namespace data_structure {
     }
 
     bool undo() {
-      if (history.empty()) return false;
+      if (history.empty())
+        return false;
       auto [x, x_par, x_siz] = history.top();
       history.pop();
       auto [y, y_par, y_siz] = history.top();
@@ -82,7 +86,8 @@ namespace data_structure {
       vector<vector<int>> res;
       res.reserve(group_count());
       for (int i = 0; i < n; i++) {
-        if (grps[i].empty()) continue;
+        if (grps[i].empty())
+          continue;
         res.emplace_back(grps[i]);
       }
       return res;

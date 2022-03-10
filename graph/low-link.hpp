@@ -22,7 +22,8 @@ namespace graph {
 
       int k = 0;
       for (int i = 0; i < V; i++) {
-        if (ord[i] == -1) dfs(i, k, -1);
+        if (ord[i] == -1)
+          dfs(i, k, -1);
       }
       sort(articulations.begin(), articulations.end());
       sort(bridges.begin(), bridges.end());
@@ -45,15 +46,19 @@ namespace graph {
           dfs(to, k, id);
 
           low[id] = min(low[id], low[to]);
-          if (par != -1 and ord[id] <= low[to]) is_articulation = true;
-          if (ord[id] < low[to]) bridges.emplace_back(min(id, to), max(id, to));
+          if (par != -1 and ord[id] <= low[to])
+            is_articulation = true;
+          if (ord[id] < low[to])
+            bridges.emplace_back(min(id, to), max(id, to));
         } else if (to != par) {
           low[id] = min(low[id], ord[to]);
         }
       }
 
-      if (par == -1 and child_cnt >= 2) is_articulation = true;
-      if (is_articulation) articulations.emplace_back(id);
+      if (par == -1 and child_cnt >= 2)
+        is_articulation = true;
+      if (is_articulation)
+        articulations.emplace_back(id);
     }
   };
 } // namespace graph

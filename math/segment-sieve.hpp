@@ -22,11 +22,13 @@ namespace math {
       aux.assign(r - l, 1);
 
       for (ll i = 2; i * i < r; i++) {
-        if (small_sieve[i] < i) continue;
+        if (small_sieve[i] < i)
+          continue;
 
         small_sieve[i] = i;
         for (ll j = i * i; j < sqrt_r; j += i) {
-          if (small_sieve[j] == j) small_sieve[j] = i;
+          if (small_sieve[j] == j)
+            small_sieve[j] = i;
         }
 
         ll begin = (l + i - 1) / i * i;
@@ -35,7 +37,8 @@ namespace math {
           ll k = j;
           do {
             // aux[j - l] > sqrt_r ?
-            if (aux[j - l] * aux[j - l] > r) break;
+            if (aux[j - l] * aux[j - l] > r)
+              break;
 
             large_sieve[j - l].push_back(i);
             aux[j - l] *= i;

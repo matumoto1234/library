@@ -15,7 +15,8 @@ namespace graph {
       par[0][v] = p;
       dep[v] = d;
       for (int u: G[v])
-        if (u != p) dfs(u, v, d + 1);
+        if (u != p)
+          dfs(u, v, d + 1);
     }
 
   public:
@@ -36,18 +37,23 @@ namespace graph {
       dfs(root, -1, 0);
       for (int k = 0; k + 1 < h; k++)
         for (int v = 0; v < n; v++)
-          if (~par[k][v]) par[k + 1][v] = par[k][par[k][v]];
+          if (~par[k][v])
+            par[k + 1][v] = par[k][par[k][v]];
     }
 
     int query(int u, int v) {
-      if (dep[u] > dep[v]) swap(u, v);
+      if (dep[u] > dep[v])
+        swap(u, v);
       for (int k = 0; k < h; k++)
-        if ((dep[v] - dep[u]) >> k & 1) v = par[k][v];
+        if ((dep[v] - dep[u]) >> k & 1)
+          v = par[k][v];
 
-      if (u == v) return u;
+      if (u == v)
+        return u;
 
       for (int k = h - 1; k >= 0; k--)
-        if (par[k][u] != par[k][v]) u = par[k][u], v = par[k][v];
+        if (par[k][u] != par[k][v])
+          u = par[k][u], v = par[k][v];
 
       return par[0][u];
     }

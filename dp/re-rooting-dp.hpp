@@ -27,7 +27,8 @@ namespace dp {
 
         m_order[index++] = node;
         for (auto [adjacent, ignore]: m_tree[node]) {
-          if (adjacent == m_parents[node]) continue;
+          if (adjacent == m_parents[node])
+            continue;
           s.push(adjacent);
           m_parents[adjacent] = node;
         }
@@ -42,7 +43,8 @@ namespace dp {
       reverse(reversed_order.begin(), reversed_order.end());
 
       for (int node: reversed_order) {
-        if (node == root) continue;
+        if (node == root)
+          continue;
 
         int parent = m_parents[node];
         int parent_index = -1;
@@ -69,7 +71,8 @@ namespace dp {
       for (int node: m_order) {
         int size = m_tree[node].size();
 
-        if (size == 0) continue;
+        if (size == 0)
+          continue;
 
         vector<T> accums_front(size + 1, e()), accums_back(size, e());
 

@@ -24,7 +24,8 @@ namespace data_structure {
       z -= weight(y);
       x = root(x);
       y = root(y);
-      if (x == y) return;
+      if (x == y)
+        return;
       if (x < y) {
         swap(x, y);
         z = -z;
@@ -35,7 +36,8 @@ namespace data_structure {
     }
 
     int root(int x) {
-      if (x == par[x]) return x;
+      if (x == par[x])
+        return x;
       int rx = root(par[x]);
       w[x] += w[par[x]];
       par[x] = rx;

@@ -33,12 +33,14 @@ namespace library_string {
       i128 res = a;
       res *= b;
       res = (res >> 61) + (res & mod);
-      if (res >= mod) res -= mod;
+      if (res >= mod)
+        res -= mod;
       return (ll)res;
     }
 
     ll pow(ll a, i128 e) {
-      if (e == 0) return 1;
+      if (e == 0)
+        return 1;
       if (e % 2 == 0) {
         ll res = pow(a, e / 2);
         return mod_mul(res, res);
@@ -72,7 +74,8 @@ namespace library_string {
     // [l,r)
     long long find(int l, int r) {
       ll res = cumulative_sum[r] - cumulative_sum[l];
-      if (res < 0) res += mod;
+      if (res < 0)
+        res += mod;
       res = mod_mul(res, inv[l]);
       return (long long)res;
     }

@@ -12,10 +12,12 @@ namespace math {
     void build() {
       int N = smallest_ps.size();
       for (long long i = 2; i <= N; i++) {
-        if (smallest_ps[i] != 1) continue;
+        if (smallest_ps[i] != 1)
+          continue;
         smallest_ps[i] = i;
         for (long long j = i * i; j <= N; j += i) {
-          if (smallest_ps[j] != 1) continue;
+          if (smallest_ps[j] != 1)
+            continue;
           smallest_ps[j] = i;
         }
       }
@@ -34,7 +36,8 @@ namespace math {
       for (int i = 0; i < (1 << m); i++) {
         int prod = 1;
         for (int j = 0; j < m; j++) {
-          if (i >> j & 1) prod *= ps[j];
+          if (i >> j & 1)
+            prod *= ps[j];
         }
         ds[i] = prod;
       }
@@ -42,7 +45,8 @@ namespace math {
     }
 
     bool is_prime(int k) {
-      if (k <= 1) return false;
+      if (k <= 1)
+        return false;
       return smallest_ps[k] == k;
     }
 

@@ -10,8 +10,10 @@ namespace geometry {
   constexpr Real EPS = 1e-9;
 
   inline int sign(Real a) {
-    if (a < -EPS) return -1;
-    if (a > +EPS) return +1;
+    if (a < -EPS)
+      return -1;
+    if (a > +EPS)
+      return +1;
     return 0;
   }
 

@@ -15,7 +15,8 @@ namespace graph {
       edge_table_[time] = v;
       time++;
       for (auto to: G[v]) {
-        if (in_time[to] != -1) continue;
+        if (in_time[to] != -1)
+          continue;
         par[to] = v;
         dfs(to, time, d + 1);
       }
@@ -52,7 +53,8 @@ namespace graph {
     vector<int> vertex_table() {
       vector<int> res = edge_table_;
       for (auto &v: res) {
-        if (v < 0) v = par[v];
+        if (v < 0)
+          v = par[v];
       }
       // 半開区間->閉区間の誤差
       res.pop_back();

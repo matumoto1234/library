@@ -21,7 +21,8 @@ namespace data_structure {
     bool empty() const { return static_cast<int>(s.size()) == 2; }
 
     bool contains(T x) const {
-      if (empty()) return false;
+      if (empty())
+        return false;
       auto [lower, upper] = *prev(s.lower_bound(pair(x + 1, x + 1)));
       return lower <= x and x <= upper;
     }
@@ -33,7 +34,8 @@ namespace data_structure {
     }
 
     bool insert(T x) {
-      if (contains(x)) return false;
+      if (contains(x))
+        return false;
       auto nit = s.lower_bound(pair(x + 1, x + 1));
       auto it = prev(nit);
       auto [l, u] = *it;
@@ -55,7 +57,8 @@ namespace data_structure {
     }
 
     bool insert(T x, T y) {
-      if (x > y) swap(x, y);
+      if (x > y)
+        swap(x, y);
       bool contains_x = contains(x);
       bool contains_y = contains(y);
       if (!contains_x and !contains_y) {
@@ -73,7 +76,8 @@ namespace data_structure {
       } else {
         auto xit = prev(s.lower_bound(pair(x + 1, x + 1)));
         auto yit = prev(s.lower_bound(pair(y + 1, y + 1)));
-        if (xit == yit) return false;
+        if (xit == yit)
+          return false;
         auto [xl, xu] = *xit;
         auto [yl, yu] = *yit;
         s.erase(xit);
@@ -88,19 +92,23 @@ namespace data_structure {
     // { (l, u) | l <= x <= u } => { (l, x - 1), (x + 1, u) | l <= x <= u }
     bool erase(T x) {
       assert(x != -inf() and x != inf());
-      if (!contains(x)) return false;
+      if (!contains(x))
+        return false;
       auto it = prev(s.lower_bound(pair(x + 1, x + 1)));
       auto [l, u] = *it;
       s.erase(it);
-      if (x != l) s.emplace(l, x - 1);
-      if (x != u) s.emplace(x + 1, u);
+      if (x != l)
+        s.emplace(l, x - 1);
+      if (x != u)
+        s.emplace(x + 1, u);
       return true;
     }
 
     // { (l, u) | l <= x <= u } => { (l, x), (x, u) | l <= x <= u }
     bool cut(T x) {
       assert(x != -inf() and x != inf());
-      if (!contains(x)) return false;
+      if (!contains(x))
+        return false;
       auto it = prev(s.lower_bound(pair(x + 1, x + 1)));
       auto [l, u] = *it;
       s.erase(it);

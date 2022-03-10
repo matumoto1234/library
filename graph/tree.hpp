@@ -56,8 +56,10 @@ namespace graph {
         T vl = e(), vr = e();
         l += n, r += n;
         while (l < r) {
-          if (l & 1) vl = op(vl, data[l++]);
-          if (r & 1) vr = op(vr, data[--r]);
+          if (l & 1)
+            vl = op(vl, data[l++]);
+          if (r & 1)
+            vr = op(vr, data[--r]);
           l >>= 1, r >>= 1;
         }
         return op(vl, vr);
@@ -106,7 +108,8 @@ namespace graph {
       dep[time] = depth;
       edge_table[time++] = v;
       for (auto to: G[v]) {
-        if (in[to] != -1) continue;
+        if (in[to] != -1)
+          continue;
         par[to] = v;
         dfs(to, time, depth + 1);
       }
@@ -118,7 +121,8 @@ namespace graph {
     pair<T, int> dfs_diameter(int v, int p) {
       pair<T, int> res(0, v);
       for (auto [to, cost]: G[v]) {
-        if (to == par) continue;
+        if (to == par)
+          continue;
         auto [ncost, u] = dfs_diameter(to, v);
         if (res < make_pair(ncost + cost, u)) {
           res = make_pair(ncost + cost);
@@ -218,7 +222,8 @@ namespace graph {
     int lca(int u, int v) {
       int idx = min_dep_idx.query(min(in[u], in[v]), max(in[u], in[v]) + 1).second;
       int res = edge_table[idx];
-      if (res < 0) res = par[-res];
+      if (res < 0)
+        res = par[-res];
       return res;
     }
 
@@ -226,7 +231,8 @@ namespace graph {
     int la(int v, int depth) {
       int anc = v;
       for (int i = 0; i < LOG; i++) {
-        if (depth >> i & 1) anc = doubling_par[i][anc];
+        if (depth >> i & 1)
+          anc = doubling_par[i][anc];
       }
       return anc;
     }
@@ -242,7 +248,8 @@ namespace graph {
 
     // O(1) : from u to v move k step
     int next(int u, int v, int k = 1) {
-      if (k <= distance(u, lca(u, v))) return up(u, k);
+      if (k <= distance(u, lca(u, v)))
+        return up(u, k);
       return up(v, distance(v, lca(u, v)) - k);
     }
   };

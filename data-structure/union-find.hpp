@@ -19,7 +19,8 @@ namespace data_structure {
 
     // 根（そのグループの識別番号）
     int root(int x) {
-      if (x == par[x]) return x;
+      if (x == par[x])
+        return x;
       return par[x] = root(par[x]);
     }
 
@@ -39,8 +40,10 @@ namespace data_structure {
     bool merge(int x, int y) {
       x = root(x);
       y = root(y);
-      if (x == y) return false;
-      if (siz[x] < siz[y]) swap(x, y);
+      if (x == y)
+        return false;
+      if (siz[x] < siz[y])
+        swap(x, y);
       siz[x] += siz[y];
       par[y] = x;
       grp_cnt--;
@@ -63,7 +66,8 @@ namespace data_structure {
       vector<vector<int>> res;
       res.reserve(group_count());
       for (int i = 0; i < n; i++) {
-        if (grps[i].empty()) continue;
+        if (grps[i].empty())
+          continue;
         res.emplace_back(grps[i]);
       }
       return res;

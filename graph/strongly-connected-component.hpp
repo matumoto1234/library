@@ -18,7 +18,8 @@ namespace graph {
     void dfs(int idx) {
       arrived[idx] = true;
       for (int to: G[idx]) {
-        if (arrived[to]) continue;
+        if (arrived[to])
+          continue;
         dfs(to);
       }
       post_order.emplace_back(idx);
@@ -28,7 +29,8 @@ namespace graph {
       arrived[idx] = true;
       groups[idx] = num;
       for (int to: rG[idx]) {
-        if (arrived[to]) continue;
+        if (arrived[to])
+          continue;
         rdfs(to, num);
       }
     }
@@ -47,7 +49,8 @@ namespace graph {
       arrived.assign(V, false);
 
       for (int i = 0; i < V; i++) {
-        if (arrived[i]) continue;
+        if (arrived[i])
+          continue;
         dfs(i);
       }
 
@@ -58,7 +61,8 @@ namespace graph {
 
       for (int i = V - 1; i >= 0; i--) {
         int idx = post_order[i];
-        if (arrived[idx]) continue;
+        if (arrived[idx])
+          continue;
         rdfs(idx, cnt);
         cnt++;
       }
@@ -74,14 +78,16 @@ namespace graph {
       vector<int> in_degree(cnt);
       for (int i = 0; i < static_cast<int>(edges.size()); i++) {
         auto [from, to] = edges[i];
-        if (same(from, to)) continue;
+        if (same(from, to))
+          continue;
         graph[groups[from]].emplace_back(groups[to]);
         in_degree[groups[to]]++;
       }
 
       queue<int> q;
       for (int i = 0; i < cnt; i++) {
-        if (in_degree[i] == 0) q.push(i);
+        if (in_degree[i] == 0)
+          q.push(i);
       }
 
       vector<vector<int>> res;
@@ -91,7 +97,8 @@ namespace graph {
         res.emplace_back(scc[v]);
         for (int to: graph[v]) {
           in_degree[to]--;
-          if (in_degree[to] == 0) q.push(to);
+          if (in_degree[to] == 0)
+            q.push(to);
         }
       }
 

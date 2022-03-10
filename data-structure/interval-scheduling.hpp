@@ -22,7 +22,8 @@ namespace data_structure {
       used.assign(intervals_.size(), false);
 
       sort(intervals_.begin(), intervals_.end(), [](pair<T, T> a, pair<T, T> b) {
-        if (a.second != b.second) return a.second < b.second;
+        if (a.second != b.second)
+          return a.second < b.second;
         return a.first < b.first;
       });
 
@@ -42,7 +43,8 @@ namespace data_structure {
     vector<pair<T, T>> intervals() {
       vector<pair<T, T>> res;
       for (size_t i = 0; i < intervals_.size(); i++) {
-        if (!used[i]) continue;
+        if (!used[i])
+          continue;
         res.emplace_back(intervals_[i]);
       }
       return res;

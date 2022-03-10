@@ -11,7 +11,8 @@ namespace math {
         n /= i;
       }
     }
-    if (n > 1) res.emplace_back(n);
+    if (n > 1)
+      res.emplace_back(n);
     return res;
   }
 } // namespace math
