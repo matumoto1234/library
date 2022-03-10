@@ -7,7 +7,7 @@ on:
       - '**.hpp'
 
 jobs:
-  format:
+  compile:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
