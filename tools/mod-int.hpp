@@ -44,12 +44,14 @@ namespace tools {
 
     ModInt &operator++() {
       v++;
-      if (v == umod()) v = 0;
+      if (v == umod())
+        v = 0;
       return *this;
     }
 
     ModInt &operator--() {
-      if (v == 0) v = umod();
+      if (v == 0)
+        v = umod();
       v--;
       return *this;
     }
@@ -68,13 +70,15 @@ namespace tools {
 
     ModInt &operator+=(const ModInt &rhs) {
       v += rhs.v;
-      if (v >= umod()) v -= umod();
+      if (v >= umod())
+        v -= umod();
       return *this;
     }
 
     ModInt &operator-=(const ModInt &rhs) {
       v -= rhs.v;
-      if (v >= umod()) v += umod();
+      if (v >= umod())
+        v += umod();
       return *this;
     }
 
@@ -94,7 +98,8 @@ namespace tools {
       assert(0 <= n);
       ModInt x = *this, res = 1;
       while (n) {
-        if (n & 1) res *= x;
+        if (n & 1)
+          res *= x;
         x *= x;
         n >>= 1;
       }

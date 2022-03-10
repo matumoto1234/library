@@ -16,7 +16,8 @@ namespace graph {
         int from = i * w + j;
         for (int k = 0; k < 4; k++) {
           int ny = i + dy[k], nx = j + dx[k];
-          if (ny < 0 or nx < 0 or ny >= h or nx >= w) continue;
+          if (ny < 0 or nx < 0 or ny >= h or nx >= w)
+            continue;
           int to = ny * w + j;
           res[from].push_back(to);
         }

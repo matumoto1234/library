@@ -38,12 +38,15 @@ namespace graph {
     // private method
     T dfs(int v, int Set) {
       T &res = dp[v][Set];
-      if (Set + 1 == 1 << V) res = 0;
-      if (res != -1) return res;
+      if (Set + 1 == 1 << V)
+        res = 0;
+      if (res != -1)
+        return res;
       res = inf();
       for (auto [to, cost]: G[v]) {
         int bit = 1 << to;
-        if (Set & bit) continue;
+        if (Set & bit)
+          continue;
         res = min(res, dfs(to, Set | bit) + cost);
       }
       return res;

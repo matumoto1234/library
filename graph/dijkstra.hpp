@@ -44,7 +44,8 @@ namespace graph {
         auto p = Q.top();
         Q.pop();
         int v = p.to;
-        if (ds[v] < p.cost) continue;
+        if (ds[v] < p.cost)
+          continue;
         for (auto e: G[v]) {
           if (ds[e.to] > ds[v] + e.cost) {
             ds[e.to] = ds[v] + e.cost;

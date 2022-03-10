@@ -19,7 +19,8 @@ namespace library_string {
       t = "";
       cnt_split++;
     }
-    if (t != "") res.emplace_back(t);
+    if (t != "")
+      res.emplace_back(t);
     return res;
   }
 } // namespace library_string

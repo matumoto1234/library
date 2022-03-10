@@ -21,7 +21,8 @@ namespace graph {
       int V = G.size();
       queue<int> q;
       for (int i = 0; i < V; i++) {
-        if (in_degree[i] == 0) q.push(i);
+        if (in_degree[i] == 0)
+          q.push(i);
       }
 
       vector<int> res;
@@ -31,7 +32,8 @@ namespace graph {
         res.emplace_back(v);
         for (int to: G[v]) {
           in_degree[to]--;
-          if (in_degree[to] == 0) q.push(to);
+          if (in_degree[to] == 0)
+            q.push(to);
         }
       }
 

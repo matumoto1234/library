@@ -11,7 +11,8 @@ namespace math {
     vector<int> table(N + 1, 0);
 
     for (int i = 2; i <= N; i++) {
-      if (table[i]) continue;
+      if (table[i])
+        continue;
       table[i] = 1;
       for (int j = 2 * i; j <= N; j += i) {
         if (j % (i * i) == 0)

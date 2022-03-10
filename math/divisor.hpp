@@ -11,7 +11,8 @@ namespace math {
     for (ll i = 1; i * i <= n; i++) {
       if (n % i == 0) {
         res.emplace_back(i);
-        if (i * i != n) res.emplace_back(n / i);
+        if (i * i != n)
+          res.emplace_back(n / i);
       }
     }
     sort(res.begin(), res.end());

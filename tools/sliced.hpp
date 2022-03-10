@@ -15,8 +15,10 @@ namespace tools {
     template <typename T>
     vector<T> operator()(const vector<T> &v, int l, int r = init, int stride = init) {
       assert(stride != 0);
-      if (r == init) r = v.size();
-      if (stride == init) stride = 1;
+      if (r == init)
+        r = v.size();
+      if (stride == init)
+        stride = 1;
       vector<T> res;
       int start = (stride > 0 ? l : r - 1);
       for (int i = start; (stride > 0 ? i < r : i >= l); i += stride) {
@@ -31,8 +33,10 @@ namespace tools {
 
     string operator()(const string &s, int l, int r = init, int stride = init) {
       assert(stride != 0);
-      if (r == init) r = s.size();
-      if (stride == init) stride = 1;
+      if (r == init)
+        r = s.size();
+      if (stride == init)
+        stride = 1;
       string res;
       int start = (stride > 0 ? l : r - 1);
       for (int i = start; (stride > 0 ? i < r : i >= l); i += stride) {

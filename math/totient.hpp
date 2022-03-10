@@ -12,7 +12,8 @@ namespace math {
           n /= i;
       }
     }
-    if (n > 1) res -= res / n;
+    if (n > 1)
+      res -= res / n;
     return res;
   }
 } // namespace math

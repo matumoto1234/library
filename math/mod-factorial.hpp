@@ -22,8 +22,10 @@ namespace math {
     ModFactorial(): fact(1, 1), invfact(1, 1) {}
 
     ModInt factorial(int k) {
-      if (k < 0) return 0;
-      if (k < static_cast<int>(fact.size())) return fact[k];
+      if (k < 0)
+        return 0;
+      if (k < static_cast<int>(fact.size()))
+        return fact[k];
 
       int pow2 = min_pow2_greater_equal_than(k);
       int old_size = fact.size();
@@ -36,8 +38,10 @@ namespace math {
     }
 
     ModInt inv_factorial(int k) {
-      if (k < 0) return 0;
-      if (k < static_cast<int>(invfact.size())) return invfact[k];
+      if (k < 0)
+        return 0;
+      if (k < static_cast<int>(invfact.size()))
+        return invfact[k];
 
       int pow2 = min_pow2_greater_equal_than(k);
       int old_size = fact.size();

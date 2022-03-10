@@ -13,9 +13,12 @@ namespace tools {
     stack<char> bs;
     string lbs = "({[", rbs = ")}]";
     for (size_t i = 0; i < s.size(); i++) {
-      if (lbs.find(s[i]) != string::npos) bs.push(s[i]);
-      if (rbs.find(s[i]) != string::npos and !bs.empty()) bs.pop();
-      if (s[i] == ',' and bs.empty()) return i;
+      if (lbs.find(s[i]) != string::npos)
+        bs.push(s[i]);
+      if (rbs.find(s[i]) != string::npos and !bs.empty())
+        bs.pop();
+      if (s[i] == ',' and bs.empty())
+        return i;
     }
     return s.size();
   }

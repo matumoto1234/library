@@ -22,7 +22,8 @@ namespace library_string {
         for (int i = 1; i < static_cast<int>(data.size()); i++) {
           for (int j = 1; j < static_cast<int>(data[i].size()); j++) {
             data[i][j] += (data[i][j - 1] + data[i - 1][j] - data[i - 1][j - 1]) % mod;
-            if (data[i][j] < 0) data[i][j] += mod;
+            if (data[i][j] < 0)
+              data[i][j] += mod;
           }
         }
       }
@@ -30,7 +31,8 @@ namespace library_string {
       // [ (sy,sx), (gy,gx) )
       ll query(int sy, int sx, int gy, int gx, ll mod) {
         ll res = (data[gy][gx] - data[gy][sx] - data[sy][gx] + data[sy][sx]) % mod;
-        if (res < 0) res += mod;
+        if (res < 0)
+          res += mod;
         return res;
       }
     };
@@ -60,12 +62,14 @@ namespace library_string {
       i128 res = a;
       res *= b;
       res = (res >> 61) + (res & mod);
-      if (res >= mod) res -= mod;
+      if (res >= mod)
+        res -= mod;
       return (ll)res;
     }
 
     ll pow(ll a, i128 e) {
-      if (e == 0) return 1;
+      if (e == 0)
+        return 1;
       if (e % 2 == 0) {
         ll res = pow(a, e / 2);
         return mod_mul(res, res);

@@ -12,10 +12,12 @@ namespace math {
     void build() {
       int N = ps.size();
       for (ll i = 2; i <= N; i++) {
-        if (ps[i] != 1) continue;
+        if (ps[i] != 1)
+          continue;
         ps[i] = i;
         for (ll j = i * i; j <= N; j += i) {
-          if (ps[j] != 1) continue;
+          if (ps[j] != 1)
+            continue;
           ps[j] = i;
         }
       }
@@ -31,7 +33,8 @@ namespace math {
     }
 
     bool is_prime(int k) {
-      if (k <= 1) return false;
+      if (k <= 1)
+        return false;
       return ps[k] == k;
     }
 

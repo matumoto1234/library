@@ -17,7 +17,8 @@ namespace math {
     }
 
     for (int i = 2; i <= N; i++) {
-      if (table[i] < 0) continue;
+      if (table[i] < 0)
+        continue;
 
       for (int j = i; j < N; j += i) {
         if (table[i] % 2) {

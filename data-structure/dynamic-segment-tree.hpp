@@ -20,19 +20,29 @@ namespace data_structure {
     ll n;
 
     T prod(ll a, ll b, node *now, ll l, ll r) {
-      if (a <= l and r <= b) { return now->v; }
-      if (r <= a or b <= l) { return e(); }
+      if (a <= l and r <= b) {
+        return now->v;
+      }
+      if (r <= a or b <= l) {
+        return e();
+      }
 
       T lv = e(), rv = e();
-      if (now->left) lv = prod(a, b, now->left, l, (l + r) / 2);
-      if (now->right) rv = prod(a, b, now->right, (l + r) / 2, r);
+      if (now->left)
+        lv = prod(a, b, now->left, l, (l + r) / 2);
+      if (now->right)
+        rv = prod(a, b, now->right, (l + r) / 2, r);
       return op(lv, rv);
     }
 
     void debug_dfs(node *now, string spaces) {
-      if (now->right) { debug_dfs(now->right, spaces + "   "); }
+      if (now->right) {
+        debug_dfs(now->right, spaces + "   ");
+      }
       cerr << spaces << now->v << "\n";
-      if (now->left) { debug_dfs(now->left, spaces + "   "); }
+      if (now->left) {
+        debug_dfs(now->left, spaces + "   ");
+      }
     }
 
   public:
@@ -52,11 +62,13 @@ namespace data_structure {
       while (r - l > 1) {
         ll m = (l + r) / 2;
         if (k < m) {
-          if (!now->left) now->left = new node();
+          if (!now->left)
+            now->left = new node();
           now = now->left;
           r = m;
         } else {
-          if (!now->right) now->right = new node();
+          if (!now->right)
+            now->right = new node();
           now = now->right;
           l = m;
         }

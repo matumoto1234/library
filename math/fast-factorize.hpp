@@ -23,7 +23,8 @@ namespace math {
         bool p = t < m * K;
         n = q ? m : t;
         m = q ? t : m;
-        if (m == 0) return n;
+        if (m == 0)
+          return n;
         n = p ? n : s;
       }
       return gcd_impl(m, n % m);
@@ -35,7 +36,8 @@ namespace math {
         bool q = t < m;
         n = q ? m : t;
         m = q ? t : m;
-        if (m == 0) return n;
+        if (m == 0)
+          return n;
       }
       return gcd_impl(n, m);
     }
@@ -58,12 +60,14 @@ namespace math {
       modint64(const i64 &b): a(reduce((u128(b) + mod) * n2)) {}
 
       modint64 &operator+=(const modint64 &b) {
-        if (i64(a += b.a - 2 * mod) < 0) a += 2 * mod;
+        if (i64(a += b.a - 2 * mod) < 0)
+          a += 2 * mod;
         return *this;
       }
 
       modint64 &operator-=(const modint64 &b) {
-        if (i64(a -= b.a) < 0) a += 2 * mod;
+        if (i64(a -= b.a) < 0)
+          a += 2 * mod;
         return *this;
       }
 
@@ -85,7 +89,8 @@ namespace math {
       modint64 pow(u128 n) const {
         modint64 ret(1), mul(*this);
         while (n > 0) {
-          if (n & 1) ret *= mul;
+          if (n & 1)
+            ret *= mul;
           mul *= mul;
           n >>= 1;
         }
@@ -122,28 +127,36 @@ namespace math {
     }
 
     bool is_prime(const u64 n) {
-      if (~n & 1) return n == 2;
-      if (n < (1ll << 30)) return atcoder::internal::is_prime_constexpr(n);
+      if (~n & 1)
+        return n == 2;
+      if (n < (1ll << 30))
+        return atcoder::internal::is_prime_constexpr(n);
       u64 d = n - 1;
       while (~d & 1)
         d >>= 1;
-      if (modint64::get_mod() != n) modint64::set_mod(n);
+      if (modint64::get_mod() != n)
+        modint64::set_mod(n);
       for (const u64 a: { 2, 325, 9375, 28178, 450775, 9780504, 1795265022 }) {
-        if (n <= a) break;
+        if (n <= a)
+          break;
         modint64 t = d, y = modint64(a).pow(d);
         while (t.val() != n - 1 and y.val() != 1 and y.val() != n - 1) {
           y *= y;
           t *= 2;
         }
-        if (y.val() != n - 1 and ~t.val() & 1) return false;
+        if (y.val() != n - 1 and ~t.val() & 1)
+          return false;
       }
       return true;
     }
 
     u64 pollard_rho(const u64 n) {
-      if (~n & 1) return 2;
-      if (is_prime(n)) return n;
-      if (modint64::get_mod() != n) modint64::set_mod(n);
+      if (~n & 1)
+        return 2;
+      if (is_prime(n))
+        return n;
+      if (modint64::get_mod() != n)
+        modint64::set_mod(n);
       modint64 R, one = 1;
       auto f = [&](modint64 x) {
         return x * x + R;
@@ -167,17 +180,21 @@ namespace math {
             g = gcd_fast(q.val(), n);
           }
         }
-        if (g == n) do
+        if (g == n)
+          do
             g = gcd_fast((x - (ys = f(ys))).val(), n);
           while (g == 1);
-        if (g != n) return g;
+        if (g != n)
+          return g;
       }
       exit(1);
     }
 
     std::vector<u64> factorize(const u64 n) {
-      if (n == 1) return {};
-      if (is_prime(n)) return { n };
+      if (n == 1)
+        return {};
+      if (is_prime(n))
+        return { n };
       auto d = pollard_rho(n);
       auto res = factorize(d);
       auto sub = factorize(n / d);

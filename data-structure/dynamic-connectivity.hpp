@@ -31,18 +31,22 @@ namespace data_structure {
       };
       vector<unordered_map<int, np>> ptr;
       np get_node(int l, int r) {
-        if (ptr[l].find(r) == ptr[l].end()) ptr[l][r] = new node(l, r);
+        if (ptr[l].find(r) == ptr[l].end())
+          ptr[l][r] = new node(l, r);
         return ptr[l][r];
       }
       np root(np t) {
-        if (!t) return t;
+        if (!t)
+          return t;
         while (t->p)
           t = t->p;
         return t;
       }
       bool same(np s, np t) {
-        if (s) splay(s);
-        if (t) splay(t);
+        if (s)
+          splay(s);
+        if (t)
+          splay(t);
         return root(s) == root(t);
       }
       np reroot(np t) {
@@ -52,7 +56,8 @@ namespace data_structure {
       pair<np, np> split(np s) {
         splay(s);
         np t = s->ch[0];
-        if (t) t->p = nullptr;
+        if (t)
+          t->p = nullptr;
         s->ch[0] = nullptr;
         return { t, update(s) };
       }
@@ -60,9 +65,11 @@ namespace data_structure {
         splay(s);
         np t = s->ch[0];
         np u = s->ch[1];
-        if (t) t->p = nullptr;
+        if (t)
+          t->p = nullptr;
         s->ch[0] = nullptr;
-        if (u) u->p = nullptr;
+        if (u)
+          u->p = nullptr;
         s->ch[1] = nullptr;
         return { t, u };
       }
@@ -81,21 +88,27 @@ namespace data_structure {
         return merge(s, merge(t...));
       }
       np merge(np s, np t) {
-        if (!s) return t;
-        if (!t) return s;
+        if (!s)
+          return t;
+        if (!t)
+          return s;
         while (s->ch[1])
           s = s->ch[1];
         splay(s);
         s->ch[1] = t;
-        if (t) t->p = s;
+        if (t)
+          t->p = s;
         return update(s);
       }
       int size(np t) { return t ? t->sz : 0; }
       np update(np t) {
         t->sum = et;
-        if (t->ch[0]) t->sum = fn(t->sum, t->ch[0]->sum);
-        if (t->l == t->r) t->sum = fn(t->sum, t->val);
-        if (t->ch[1]) t->sum = fn(t->sum, t->ch[1]->sum);
+        if (t->ch[0])
+          t->sum = fn(t->sum, t->ch[0]->sum);
+        if (t->l == t->r)
+          t->sum = fn(t->sum, t->val);
+        if (t->ch[1])
+          t->sum = fn(t->sum, t->ch[1]->sum);
         t->sz = size(t->ch[0]) + (t->l == t->r) + size(t->ch[1]);
         t->child_edge_connected = (t->ch[0] ? t->ch[0]->child_edge_connected : 0) | (t->edge_connected) | (t->ch[1] ? t->ch[1]->child_edge_connected : 0);
         t->child_exact = (t->ch[0] ? t->ch[0]->child_exact : 0) | (t->exact) | (t->ch[1] ? t->ch[1]->child_exact : 0);
@@ -106,13 +119,16 @@ namespace data_structure {
       }
       void rot(np t, bool b) {
         np x = t->p, y = x->p;
-        if ((x->ch[1 - b] = t->ch[b])) t->ch[b]->p = x;
+        if ((x->ch[1 - b] = t->ch[b]))
+          t->ch[b]->p = x;
         t->ch[b] = x, x->p = t;
         update(x);
         update(t);
         if ((t->p = y)) {
-          if (y->ch[0] == x) y->ch[0] = t;
-          if (y->ch[1] == x) y->ch[1] = t;
+          if (y->ch[0] == x)
+            y->ch[0] = t;
+          if (y->ch[1] == x)
+            y->ch[1] = t;
           update(y);
         }
       }
@@ -135,7 +151,8 @@ namespace data_structure {
         }
       }
       void debug(np t) {
-        if (!t) return;
+        if (!t)
+          return;
         debug(t->ch[0]);
         cerr << t->l << "-" << t->r << " ";
         debug(t->ch[1]);
@@ -202,7 +219,8 @@ namespace data_structure {
             return dfs(t->ch[1]);
         };
         while (t->child_edge_connected) {
-          if (dfs(t)) return 1;
+          if (dfs(t))
+            return 1;
           splay(t);
         }
         return 0;
@@ -214,12 +232,14 @@ namespace data_structure {
         update(t);
       }
       bool link(int l, int r) {
-        if (same(l, r)) return 0;
+        if (same(l, r))
+          return 0;
         merge(reroot(get_node(l, l)), get_node(l, r), reroot(get_node(r, r)), get_node(r, l));
         return 1;
       }
       bool cut(int l, int r) {
-        if (ptr[l].find(r) == ptr[l].end()) return 0;
+        if (ptr[l].find(r) == ptr[l].end())
+          return 0;
         np s, t, u;
         tie(s, t, u) = split(get_node(l, r), get_node(r, l));
         merge(s, u);
@@ -256,12 +276,16 @@ namespace data_structure {
       edges.emplace_back(sz);
     }
     bool link(int s, int t) {
-      if (s == t) return 0;
-      if (ett[0].link(s, t)) return 1;
+      if (s == t)
+        return 0;
+      if (ett[0].link(s, t))
+        return 1;
       edges[0][s].insert(t);
       edges[0][t].insert(s);
-      if (edges[0][s].size() == 1) ett[0].edge_connected_update(s, 1);
-      if (edges[0][t].size() == 1) ett[0].edge_connected_update(t, 1);
+      if (edges[0][s].size() == 1)
+        ett[0].edge_connected_update(s, 1);
+      if (edges[0][t].size() == 1)
+        ett[0].edge_connected_update(t, 1);
       return 0;
     }
 
@@ -276,12 +300,15 @@ namespace data_structure {
     T get_sum(int s) { return ett[0].get_sum(s); }
 
     bool cut(int s, int t) {
-      if (s == t) return 0;
+      if (s == t)
+        return 0;
       for (int i = 0; i < dep; i++) {
         edges[i][s].erase(t);
         edges[i][t].erase(s);
-        if (edges[i][s].size() == 0) ett[i].edge_connected_update(s, 0);
-        if (edges[i][t].size() == 0) ett[i].edge_connected_update(t, 0);
+        if (edges[i][s].size() == 0)
+          ett[i].edge_connected_update(s, 0);
+        if (edges[i][t].size() == 0)
+          ett[i].edge_connected_update(t, 0);
       }
       for (int i = dep - 1; i >= 0; i--) {
         if (ett[i].cut(s, t)) {
@@ -301,7 +328,8 @@ namespace data_structure {
         ett[i].cut(s, t);
       }
       for (int i = k; i >= 0; i--) {
-        if (ett[i].size(s) > ett[i].size(t)) swap(s, t);
+        if (ett[i].size(s) > ett[i].size(t))
+          swap(s, t);
         auto g = [&](int s, int t) {
           ett[i + 1].link(s, t);
         };
@@ -311,13 +339,17 @@ namespace data_structure {
             auto y = *itr;
             itr = edges[i][x].erase(itr);
             edges[i][y].erase(x);
-            if (edges[i][x].size() == 0) ett[i].edge_connected_update(x, 0);
-            if (edges[i][y].size() == 0) ett[i].edge_connected_update(y, 0);
+            if (edges[i][x].size() == 0)
+              ett[i].edge_connected_update(x, 0);
+            if (edges[i][y].size() == 0)
+              ett[i].edge_connected_update(y, 0);
             if (ett[i].same(x, y)) {
               edges[i + 1][x].insert(y);
               edges[i + 1][y].insert(x);
-              if (edges[i + 1][x].size() == 1) ett[i + 1].edge_connected_update(x, 1);
-              if (edges[i + 1][y].size() == 1) ett[i + 1].edge_connected_update(y, 1);
+              if (edges[i + 1][x].size() == 1)
+                ett[i + 1].edge_connected_update(x, 1);
+              if (edges[i + 1][y].size() == 1)
+                ett[i + 1].edge_connected_update(y, 1);
             } else {
               for (int j = 0; j <= i; j++) {
                 ett[j].link(x, y);
@@ -327,7 +359,8 @@ namespace data_structure {
           }
           return 0;
         };
-        if (ett[i].try_reconnect(s, f)) return 1;
+        if (ett[i].try_reconnect(s, f))
+          return 1;
       }
       return 0;
     }

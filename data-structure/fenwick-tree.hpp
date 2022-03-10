@@ -38,7 +38,8 @@ namespace data_structure {
 
     // min({x | sum(x) >= w})
     int lower_bound(T w) {
-      if (w <= 0) return 0;
+      if (w <= 0)
+        return 0;
       int x = 0, twopow = 1;
       while (twopow < n) {
         twopow <<= 1;

@@ -30,11 +30,14 @@ namespace data_structure {
           p->right = c;
         }
 
-        if (pp and pp->left == p) pp->left = this;
-        if (pp and pp->right == p) pp->right = this;
+        if (pp and pp->left == p)
+          pp->left = this;
+        if (pp and pp->right == p)
+          pp->right = this;
         this->parent = pp;
         p->parent = this;
-        if (c) c->parent = p;
+        if (c)
+          c->parent = p;
 
         p->update();
         this->update();
@@ -42,9 +45,12 @@ namespace data_structure {
 
       // 根:0, 左:1, 右:-1
       int state() {
-        if (!this->parent) return 0;
-        if (this->parent->left == this) return 1;
-        if (this->parent->right == this) return -1;
+        if (!this->parent)
+          return 0;
+        if (this->parent->left == this)
+          return 1;
+        if (this->parent->right == this)
+          return -1;
         return 0;
       }
 
@@ -70,11 +76,13 @@ namespace data_structure {
         this->calc_value = value;
         if (this->left) {
           this->size += left->size;
-          if (op) this->calc_value = op(this->calc_value, this->left->calc_value);
+          if (op)
+            this->calc_value = op(this->calc_value, this->left->calc_value);
         }
         if (this->right) {
           this->size += right->size;
-          if (op) this->calc_value = op(this->calc_value, this->right->calc_value);
+          if (op)
+            this->calc_value = op(this->calc_value, this->right->calc_value);
         }
       }
     };
@@ -103,7 +111,8 @@ namespace data_structure {
       node *now = root;
       while (true) {
         int lsize = now->left ? now->left->size : 0;
-        if (idx < lsize) now = now->left;
+        if (idx < lsize)
+          now = now->left;
         if (idx == lsize) {
           now->splay();
           break;
@@ -119,8 +128,10 @@ namespace data_structure {
 
     // lrootとrrootをマージ
     node *merge(node *lroot, node *rroot) {
-      if (!lroot) return rroot;
-      if (!rroot) return lroot;
+      if (!lroot)
+        return rroot;
+      if (!rroot)
+        return lroot;
       lroot = get(lroot->size - 1, lroot);
       lroot->right = rroot;
       rroot->parent = lroot;
@@ -130,8 +141,10 @@ namespace data_structure {
 
     // [0,n) -> [0,idx),[idx,n)
     pair<node *, node *> split(int idx, node *root) {
-      if (idx == 0) return { nullptr, root };
-      if (idx == root->size) return { root, nullptr };
+      if (idx == 0)
+        return { nullptr, root };
+      if (idx == root->size)
+        return { root, nullptr };
 
       root = get(idx, root);
       node *lroot, *rroot;
@@ -154,8 +167,10 @@ namespace data_structure {
       root = get(idx, root);
       node *lroot = root->left;
       node *rroot = root->right;
-      if (lroot) lroot->parent = nullptr;
-      if (rroot) rroot->parent = nullptr;
+      if (lroot)
+        lroot->parent = nullptr;
+      if (rroot)
+        rroot->parent = nullptr;
       root->left = nullptr;
       root->right = nullptr;
       root->update();

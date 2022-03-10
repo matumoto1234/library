@@ -37,15 +37,18 @@ namespace graph {
     T inf() { return numeric_limits<T>::max() / 2; }
 
     void build(int s, int g = -1) {
-      if (g == -1) g = V - 1;
+      if (g == -1)
+        g = V - 1;
       ds.assign(V, inf());
       bs.assign(V, -1);
       ds[s] = 0;
 
       for (int i = 0; i < 2 * V; i++) {
         for (edge e: es) {
-          if (ds[e.from] >= inf()) continue;
-          if (ds[e.to] <= ds[e.from] + e.cost) continue;
+          if (ds[e.from] >= inf())
+            continue;
+          if (ds[e.to] <= ds[e.from] + e.cost)
+            continue;
 
           ds[e.to] = ds[e.from] + e.cost;
           bs[e.from] = e.to;

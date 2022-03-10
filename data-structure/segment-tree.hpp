@@ -16,8 +16,10 @@ namespace data_structure {
       T vl = e(), vr = e();
       l += n, r += n;
       while (l < r) {
-        if (l & 1) vl = op(vl, data[l++]);
-        if (r & 1) vr = op(vr, data[--r]);
+        if (l & 1)
+          vl = op(vl, data[l++]);
+        if (r & 1)
+          vr = op(vr, data[--r]);
         l >>= 1, r >>= 1;
       }
       return op(vl, vr);

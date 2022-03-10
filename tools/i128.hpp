@@ -11,9 +11,11 @@ namespace tools {
     __int128_t parse(const string &s) {
       __int128_t res = 0;
       for (char c: s) {
-        if (isdigit(c)) res = res * 10 + (c - '0');
+        if (isdigit(c))
+          res = res * 10 + (c - '0');
       }
-      if (s[0] == '-') res *= -1;
+      if (s[0] == '-')
+        res *= -1;
       return res;
     }
 
@@ -25,7 +27,8 @@ namespace tools {
     }
 
     ostream &operator<<(ostream &os, const __int128_t &v) {
-      if (!ostream::sentry(os)) return os;
+      if (!ostream::sentry(os))
+        return os;
       char buf[64];
       char *d = end(buf);
       __uint128_t tmp = (v < 0 ? -v : v);
@@ -40,7 +43,9 @@ namespace tools {
         *d = '-';
       }
       int len = end(buf) - d;
-      if (os.rdbuf()->sputn(d, len) != len) { os.setstate(ios_base::badbit); }
+      if (os.rdbuf()->sputn(d, len) != len) {
+        os.setstate(ios_base::badbit);
+      }
       return os;
     }
 
@@ -88,10 +93,12 @@ namespace tools {
       while (e > 0) {
         if (e & 1) {
           res *= a;
-          if (p != -1) res %= p;
+          if (p != -1)
+            res %= p;
         }
         a *= a;
-        if (p != -1) a %= p;
+        if (p != -1)
+          a %= p;
         e >>= 1;
       }
       return res;

@@ -23,7 +23,8 @@ namespace data_structure {
     }
 
     bool insert(T x) {
-      if (contains(x)) return false;
+      if (contains(x))
+        return false;
       auto nit = s.lower_bound(pair(x + 1, x + 1));
       auto it = prev(nit);
       auto [l, u] = *it;
@@ -49,12 +50,15 @@ namespace data_structure {
     }
 
     bool erase(T x) {
-      if (!contains(x)) return false;
+      if (!contains(x))
+        return false;
       auto it = prev(s.lower_bound(pair(x + 1, x + 1)));
       auto [l, u] = *it;
       s.erase(it);
-      if (x != l) s.emplace(l, x - 1);
-      if (x != u) s.emplace(x + 1, u);
+      if (x != l)
+        s.emplace(l, x - 1);
+      if (x != u)
+        s.emplace(x + 1, u);
       return true;
     }
 
