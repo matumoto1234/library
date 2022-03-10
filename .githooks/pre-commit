@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+
+def verify_commit_branch():
+    import subprocess
+    result = subprocess.run('git rev-parse --abbrev-ref HEAD', shell=True, capture_output=True, text=True)
+
+    branch = result.stdout
+
+    if branch == 'main\n':
+        prefix = 'fatal: '
+        print(prefix + 'Please do not commit to the main branch.')
+        exit(1)
+
+
+def main():
+    verify_commit_branch()
+
+main()
