@@ -32,7 +32,7 @@ jobs:
     - name: Compile
       run: |
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          if [ "${file##*.}" = ".cpp" || "${file##*.}" = ".hpp" ]; then
+          if [ "${file##*.}" = ".cpp" ] || [ "${file##*.}" = ".hpp" ]; then
             g++ $file
           fi
         done
