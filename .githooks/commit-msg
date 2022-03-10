@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+
+def get_issue_number() -> str:
+    import subprocess
+
+    result = subprocess.run('git rev-parse --abbrev-ref HEAD', shell=True, capture_output=True, text=True)
+    branch_name = result.stdout
+
+    splitted = branch_name.split('/')
+
+    # invalid branch name
+    if len(splitted) != 3:
+        return ''
+
+    # note : label is 'feature' | 'bug' and so on.
+    label, issue_number, commit_message = branch_name.split('/')
+
+    
+    return issue_number
+
+
+def verify_message():
+    import sys
+    import re
+    import codecs
+
+    commit_message_file_path = sys.argv[1]
+
+    issue_number = get_issue_number()
+
+    if issue_number == '':
+        issue_number = '#[0-9]+'
+
+    with codecs.open(commit_message_file_path, mode='r', encoding='utf-8') as f:
+        commit_message = f.read()
+
+        valid_pattern = issue_number + ':'
+      
+        if re.match(valid_pattern, commit_message) == None:
+            prefix = 'fatal: '
+            spaces = ' ' * len(prefix)
+            print(prefix + 'No issue number at the beginning of the commit message.')
+            print(spaces + 'The accepted format is as follows:')
+            print(spaces + spaces + valid_pattern)
+            print()
+            print(spaces + 'The valid example: git commit -m \'#10:Update README.md\'')
+            exit(1)
+
+
+
+def main():
+    verify_message()
+
+main()
