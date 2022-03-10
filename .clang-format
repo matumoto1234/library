@@ -96,7 +96,7 @@ AllowShortFunctionsOnASingleLine: InlineOnly
 
 # 値に応じてif文を1行に配置できる: Never | WithoutElse | OnlyFirstIf | AllIfsAndElse
 # clang-format: 9
-AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortIfStatementsOnASingleLine: Never
 
 
 # 値に応じてラムダを1行に配置できる: None | Empty | Inline | All
