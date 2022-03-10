@@ -26,4 +26,4 @@ jobs:
 
     - name: Diff
       run: |
-        git diff
+        git diff --exit-code --quiet
