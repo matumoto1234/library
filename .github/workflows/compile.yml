@@ -28,8 +28,11 @@ jobs:
       run: |
         g++ --version
 
+    # 拡張子が .cpp or .hpp のもののみ
     - name: Compile
       run: |
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          g++ $file
+          if [ "${file##*.}" = ".cpp" || "${file##*.}" = ".hpp" ]; then
+            g++ $file
+          fi
         done
