@@ -32,7 +32,6 @@ jobs:
     - name: Compile
       run: |
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          echo ${file##*.}
           if [ "${file##*.}" = "cpp" ] || [ "${file##*.}" = "hpp" ]; then
             g++ $file
           fi
