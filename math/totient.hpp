@@ -3,7 +3,7 @@
 #include "./base.hpp"
 
 namespace math {
-  ll totient(ll n) {
+  constexpr ll totient(ll n) {
     ll res = n;
     for (ll i = 2; i * i <= n; i++) {
       if (n % i == 0) {

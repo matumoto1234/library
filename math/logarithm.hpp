@@ -5,7 +5,7 @@
 #include <cassert>
 
 namespace math {
-  int logarithm(ll base, ll n) {
+  constexpr int logarithm(ll base, ll n) {
     assert(base != 0);
     int cnt = 0;
     while (n % base == 0) {

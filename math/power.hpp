@@ -8,7 +8,7 @@
 
 namespace math {
   // verify:AOJ_NTL_1_B
-  ll power(ll a, ll e, ll p = -1) {
+  constexpr ll power(ll a, ll e, ll p = -1) {
     assert(p != 0);
     assert(p >= -1);
 
