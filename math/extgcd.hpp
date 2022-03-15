@@ -3,7 +3,7 @@
 #include "./base.hpp"
 
 namespace math {
-  ll extgcd(ll a, ll b, ll &x, ll &y) {
+  constexpr ll extgcd(ll a, ll b, ll &x, ll &y) {
     if (b == 0) {
       x = 1;
       y = 0;

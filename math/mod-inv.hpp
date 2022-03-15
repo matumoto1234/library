@@ -4,8 +4,8 @@
 #include "./extgcd.hpp"
 
 namespace math {
-  ll modinv(ll n, ll mod) {
-    ll x, y;
+  constexpr ll modinv(ll n, ll mod) {
+    ll x = 0, y = 0;
     extgcd(n, mod, x, y);
     return (x % mod + mod) % mod;
   }
