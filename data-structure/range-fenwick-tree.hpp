@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace data_structure {
+namespace library_data_structure {
   template <typename T>
   class RangeFenwickTree {
   private:
@@ -51,4 +51,4 @@ namespace data_structure {
     // [l,r)
     T sum(int l, int r) { return sum(r) - sum(l); }
   };
-} // namespace data_structure
+} // namespace library_data_structure

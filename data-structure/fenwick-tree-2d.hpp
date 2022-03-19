@@ -5,7 +5,7 @@
 #include <cassert>
 #include <vector>
 
-namespace data_structure {
+namespace library_data_structure {
   // 1-indexed
   template <typename T>
   class FenwickTree2D {
@@ -51,4 +51,4 @@ namespace data_structure {
 
     T get(int y, int x) { return sum(y, x, y + 1, x + 1); }
   };
-} // namespace data_structure
+} // namespace library_data_structure

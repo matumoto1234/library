@@ -5,7 +5,7 @@
 #include <cassert>
 #include <set>
 
-namespace data_structure {
+namespace library_data_structure {
   // verify:ABC228_D
   template <typename T = long long>
   struct IntervalSet {
@@ -117,4 +117,4 @@ namespace data_structure {
       return true;
     }
   };
-} // namespace data_structure
+} // namespace library_data_structure

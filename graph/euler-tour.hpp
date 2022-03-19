@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace graph {
+namespace library_graph {
   class EulerTour {
     vector<int> in_time, out_time, dep, par, edge_table_;
     vector<vector<int>> G;
@@ -61,4 +61,4 @@ namespace graph {
       return res;
     }
   };
-} // namespace graph
+} // namespace library_graph

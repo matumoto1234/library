@@ -5,7 +5,7 @@
 #include <utility>
 #include <vector>
 
-namespace graph {
+namespace library_graph {
   template <typename Cost>
   class WeightedGraph {
   public:
@@ -29,4 +29,4 @@ namespace graph {
     vector<tuple<int, int, Cost>> edges() const { return edges_; }
     vector<vector<WeightedEdge>> graph() const { return graph_; }
   };
-} // namespace graph
+} // namespace library_graph

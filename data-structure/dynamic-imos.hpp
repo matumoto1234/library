@@ -5,7 +5,7 @@
 #include <tuple>
 #include <vector>
 
-namespace data_structure {
+namespace library_data_structure {
   template <typename T>
   struct DynamicImos {
     vector<T> xs, imos;
@@ -49,4 +49,4 @@ namespace data_structure {
       return res;
     }
   };
-} // namespace data_structure
+} // namespace library_data_structure

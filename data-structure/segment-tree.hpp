@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace data_structure {
+namespace library_data_structure {
   // verify:AOJ_DSL_2_A
   template <typename T, T (*op)(T, T), T (*e)()>
   class SegmentTree {
@@ -53,4 +53,4 @@ namespace data_structure {
 
     T all_prod() { return n != 0 ? data[0] : e(); }
   };
-} // namespace data_structure
+} // namespace library_data_structure

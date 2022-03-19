@@ -508,7 +508,7 @@ namespace atcoder {
 
 
 #include "../../../math/mod-factorial.hpp"
-using namespace math;
+using namespace library_math;
 
 int main() {
   int n, k;

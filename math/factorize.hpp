@@ -2,7 +2,7 @@
 
 #include <vector>
 
-namespace math {
+namespace library_math {
   vector<ll> factorize(ll n) {
     vector<ll> res;
     for (ll i = 2; i * i <= n; i++) {
@@ -15,4 +15,4 @@ namespace math {
       res.emplace_back(n);
     return res;
   }
-} // namespace math
+} // namespace library_math

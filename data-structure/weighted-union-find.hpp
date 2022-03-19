@@ -5,7 +5,7 @@
 #include <numeric>
 #include <vector>
 
-namespace data_structure {
+namespace library_data_structure {
   template <typename T>
   struct WeightedUnionFind {
     vector<int> par;
@@ -49,4 +49,4 @@ namespace data_structure {
       return w[x];
     }
   };
-} // namespace data_structure
+} // namespace library_data_structure

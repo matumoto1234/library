@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace math {
+namespace library_math {
   using mint = atcoder::modint1000000007;
   template <typename ModInt = mint>
   class ModFactorial {
@@ -60,4 +60,4 @@ namespace math {
     ModInt combination(int n, int k) { return factorial(n) * inv_factorial(k) * inv_factorial(n - k); }
     ModInt homogeneous(int n, int k) { return combination(n + k - 1, k); }
   };
-} // namespace math
+} // namespace library_math

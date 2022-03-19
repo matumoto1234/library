@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <vector>
 
-namespace graph {
+namespace library_graph {
   class LowLink {
   public:
     vector<int> articulations;
@@ -61,4 +61,4 @@ namespace graph {
         articulations.emplace_back(id);
     }
   };
-} // namespace graph
+} // namespace library_graph

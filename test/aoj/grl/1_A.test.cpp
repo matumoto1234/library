@@ -4,7 +4,7 @@
 using namespace std;
 
 #include "graph/dijkstra.hpp"
-using namespace graph;
+using namespace library_graph;
 
 // {{{ Templates
 

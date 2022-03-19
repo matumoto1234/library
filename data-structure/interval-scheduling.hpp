@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace data_structure {
+namespace library_data_structure {
   // verify:https://atcoder.jp/contests/keyence2020/tasks/keyence2020_b
   template <typename T>
   class IntervalScheduling {
@@ -50,4 +50,4 @@ namespace data_structure {
       return res;
     }
   };
-} // namespace data_structure
+} // namespace library_data_structure

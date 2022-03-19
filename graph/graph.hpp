@@ -5,7 +5,7 @@
 #include <utility>
 #include <vector>
 
-namespace graph {
+namespace library_graph {
   class Graph {
     vector<pair<int, int>> edges_;
     vector<vector<int>> graph_;
@@ -22,4 +22,4 @@ namespace graph {
     vector<pair<int, int>> edges() { return edges_; }
     vector<vector<int>> graph() { return graph_; }
   };
-} // namespace graph
+} // namespace library_graph

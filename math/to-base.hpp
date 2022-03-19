@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <vector>
 
-namespace math {
+namespace library_math {
   // decimal n -> b-ary
   template <typename T>
   vector<T> to_base(T n, T b) {
@@ -18,4 +18,4 @@ namespace math {
     reverse(res.begin(), res.end());
     return res;
   }
-} // namespace math
+} // namespace library_math

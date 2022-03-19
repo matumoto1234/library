@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-namespace geometry {
+namespace library_geometry {
   using namespace std;
   using Real = double;
 
@@ -18,4 +18,4 @@ namespace geometry {
   }
 
   inline bool equals(Real a, Real b) { return sign(a - b) == 0; }
-} // namespace geometry
+} // namespace library_geometry

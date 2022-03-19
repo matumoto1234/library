@@ -6,7 +6,7 @@
 #include <cassert>
 #include <numeric>
 
-namespace math {
+namespace library_math {
   // verify:AOJ_NTL_1_B
   constexpr ll power(ll a, ll e, ll p = -1) {
     assert(p != 0);
@@ -34,4 +34,4 @@ namespace math {
     }
     return res;
   }
-} // namespace math
+} // namespace library_math

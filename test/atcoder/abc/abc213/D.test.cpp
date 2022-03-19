@@ -66,7 +66,7 @@ constexpr char newl = '\n';
 
 
 #include "graph/euler-tour.hpp"
-using namespace graph;
+using namespace library_graph;
 
 int main() {
   int n;
