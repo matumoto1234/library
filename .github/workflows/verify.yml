@@ -6,7 +6,7 @@ on:
       - '**.cpp'
       - '**.hpp'
       - '.github/workflows/verify.yml'
-      - '.vefify-helper/timesamps.remote.json'
+      - '.vefify-helper/timestamps.remote.json'
   workflow_dispatch:
 
 jobs:
