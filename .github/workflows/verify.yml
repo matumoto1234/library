@@ -1,12 +1,6 @@
 name: verify
 
 on:
-  push:
-    paths:
-      - '**.cpp'
-      - '**.hpp'
-      - '.github/workflows/verify.yml'
-      - '.vefify-helper/timestamps.remote.json'
   workflow_dispatch:
 
 jobs:
