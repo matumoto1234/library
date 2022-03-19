@@ -5,7 +5,7 @@
 #include <limits>
 #include <vector>
 
-namespace graph {
+namespace library_graph {
   template <typename T>
   struct WarshallFloyd {
     vector<vector<T>> ds;
@@ -64,4 +64,4 @@ namespace graph {
       return res;
     }
   };
-} // namespace graph
+} // namespace library_graph

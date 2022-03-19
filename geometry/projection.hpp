@@ -5,8 +5,8 @@
 #include "./point.hpp"
 #include "./product.hpp"
 
-namespace geometry {
+namespace library_geometry {
   Point projection(const Line &l, const Point &p) {
     // Real
   }
-} // namespace geometry
+} // namespace library_geometry

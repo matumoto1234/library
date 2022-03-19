@@ -8,7 +8,7 @@
 #include <unordered_set>
 #include <vector>
 
-namespace data_structure {
+namespace library_data_structure {
   template <typename T>
   class DynamicConnectivity {
     class EulerTourTree {
@@ -367,4 +367,4 @@ namespace data_structure {
     constexpr static T et = T();
     constexpr static T fn(T s, T t) { return s + t; }
   };
-} // namespace data_structure
+} // namespace library_data_structure

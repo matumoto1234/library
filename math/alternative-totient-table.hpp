@@ -5,7 +5,7 @@
 
 #include <vector>
 
-namespace math {
+namespace library_math {
   // Θ(NloglogN)
   vector<int> alternative_totient_table(int N) {
     vector<int> table = count_factor(N);
@@ -30,4 +30,4 @@ namespace math {
     }
     return alt;
   }
-} // namespace math
+} // namespace library_math

@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace data_structure {
+namespace library_data_structure {
   // verify:ARC033_C
   template <typename T>
   class FenwickTree {
@@ -56,4 +56,4 @@ namespace data_structure {
     // min({x | sum(x) > w})
     int upper_bound(T w) { return lower_bound(w + 1); }
   };
-} // namespace data_structure
+} // namespace library_data_structure

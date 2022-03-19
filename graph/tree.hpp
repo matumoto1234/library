@@ -6,7 +6,7 @@
 
 // WIP
 
-namespace graph {
+namespace library_graph {
   // path_query    : op,e,inv
   // subtree_query : op,e
   // op   : T, T -> T (operation)
@@ -253,4 +253,4 @@ namespace graph {
       return up(v, distance(v, lca(u, v)) - k);
     }
   };
-} // namespace graph
+} // namespace library_graph

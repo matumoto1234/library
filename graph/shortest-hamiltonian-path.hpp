@@ -5,7 +5,7 @@
 #include <limits>
 #include <vector>
 
-namespace graph {
+namespace library_graph {
   // 全頂点を1度だけ訪問したときの最短経路距離
   // buildでinfが帰ってきたらそのような経路はない
   template <typename T>
@@ -52,4 +52,4 @@ namespace graph {
       return res;
     }
   };
-} // namespace graph
+} // namespace library_graph

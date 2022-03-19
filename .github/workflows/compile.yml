@@ -5,6 +5,7 @@ on:
     paths:
       - '**.cpp'
       - '**.hpp'
+      - '.github/workflows/compile.yml'
 
 jobs:
   compile:
@@ -36,6 +37,8 @@ jobs:
 
     - name: Compile
       run: |
+        echo ${{ steps.changed-files.outputs.all_changed_files }}
+
         for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
           g++ $file
         done

@@ -4,7 +4,7 @@
 
 #include <cassert>
 
-namespace math {
+namespace library_math {
   constexpr int logarithm(ll base, ll n) {
     assert(base != 0);
     int cnt = 0;
@@ -14,4 +14,4 @@ namespace math {
     }
     return cnt;
   }
-} // namespace math
+} // namespace library_math

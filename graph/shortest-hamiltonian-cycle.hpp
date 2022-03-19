@@ -5,7 +5,7 @@
 #include <limits>
 #include <vector>
 
-namespace graph {
+namespace library_graph {
   // verify:AOJ_DPL_2_A
   // sから始めて1度だけ訪問し、sに戻ってきた閉路の最短経路距離
   // buildでinfinity()が帰ってきたらそのような経路はない
@@ -51,4 +51,4 @@ namespace graph {
       return res;
     }
   };
-} // namespace graph
+} // namespace library_graph
