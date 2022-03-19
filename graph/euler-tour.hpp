@@ -54,7 +54,7 @@ namespace graph {
       vector<int> res = edge_table_;
       for (auto &v: res) {
         if (v < 0)
-          v = par[v];
+          v = par[-v];
       }
       // 半開区間->閉区間の誤差
       res.pop_back();
