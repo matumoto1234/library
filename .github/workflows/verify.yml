@@ -7,7 +7,7 @@ on:
       - '**.hpp'
       - '.github/workflows/verify.yml'
       - '.vefify-helper/timesamps.remote.json'
-  on_workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   verify:
