@@ -27,7 +27,9 @@ namespace library_data_structure {
 
   public:
     SegmentTree() {}
-    SegmentTree(int _n) { assign(_n); }
+    SegmentTree(int _n) {
+      assign(_n);
+    }
 
     void assign(int _n) {
       n = 1;
@@ -37,7 +39,9 @@ namespace library_data_structure {
       data.assign(2 * n, e());
     }
 
-    T get(int i) { return data[i + n]; }
+    T get(int i) {
+      return data[i + n];
+    }
 
     void set(int i, T key) {
       i += n;
@@ -49,8 +53,12 @@ namespace library_data_structure {
     }
 
     // [l, r)
-    T prod(int l, int r) { return search(l, r); }
+    T prod(int l, int r) {
+      return search(l, r);
+    }
 
-    T all_prod() { return n != 0 ? data[0] : e(); }
+    T all_prod() {
+      return n != 0 ? data[0] : e();
+    }
   };
 } // namespace library_data_structure

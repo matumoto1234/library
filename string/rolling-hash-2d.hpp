@@ -16,7 +16,9 @@ namespace library_string {
       vector<vector<ll>> data;
       CumulativeSum2D() {}
 
-      void set(int y, int x, ll v) { data[y + 1][x + 1] = v; }
+      void set(int y, int x, ll v) {
+        data[y + 1][x + 1] = v;
+      }
 
       void build(ll mod) {
         for (int i = 1; i < static_cast<int>(data.size()); i++) {
@@ -54,8 +56,12 @@ namespace library_string {
       }
     }
 
-    void set_mod(ll M) { mod = M; }
-    void set_base(ll B1, ll B2) { base1 = B1, base2 = B2; }
+    void set_mod(ll M) {
+      mod = M;
+    }
+    void set_base(ll B1, ll B2) {
+      base1 = B1, base2 = B2;
+    }
 
     // mod multiprecation
     ll mod_mul(ll a, ll b) {
@@ -112,6 +118,8 @@ namespace library_string {
       sum.build(mod);
     }
 
-    ll find(int sy, int sx, int gy, int gx) { return mod_mul(sum.query(sy, sx, gy, gx, mod), inv[sy][sx]); }
+    ll find(int sy, int sx, int gy, int gx) {
+      return mod_mul(sum.query(sy, sx, gy, gx, mod), inv[sy][sx]);
+    }
   };
 } // namespace library_string

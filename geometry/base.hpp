@@ -17,5 +17,7 @@ namespace library_geometry {
     return 0;
   }
 
-  inline bool equals(Real a, Real b) { return sign(a - b) == 0; }
+  inline bool equals(Real a, Real b) {
+    return sign(a - b) == 0;
+  }
 } // namespace library_geometry

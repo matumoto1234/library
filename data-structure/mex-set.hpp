@@ -10,7 +10,9 @@ namespace library_data_structure {
   struct MexSet {
     set<pair<T, T>> s;
 
-    T inf() { return numeric_limits<T>::max() / 2; }
+    T inf() {
+      return numeric_limits<T>::max() / 2;
+    }
 
     MexSet() {
       s.emplace(inf(), inf());

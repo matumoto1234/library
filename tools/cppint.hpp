@@ -34,7 +34,9 @@ namespace tools {
       return a;
     }
 
-    mp::cpp_int lcm(mp::cpp_int a, mp::cpp_int b) { return a * b / gcd(a, b); }
+    mp::cpp_int lcm(mp::cpp_int a, mp::cpp_int b) {
+      return a * b / gcd(a, b);
+    }
 
     namespace power_helper {
 

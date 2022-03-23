@@ -19,6 +19,8 @@ namespace library_math {
       }
     }
 
-    T query(int n, int r) { return data[n][r]; }
+    T query(int n, int r) {
+      return data[n][r];
+    }
   };
 } // namespace library_math

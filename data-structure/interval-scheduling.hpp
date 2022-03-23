@@ -14,9 +14,13 @@ namespace library_data_structure {
   public:
     IntervalScheduling() {}
 
-    void add_interval(T l, T r) { intervals_.emplace_back(l, r); }
+    void add_interval(T l, T r) {
+      intervals_.emplace_back(l, r);
+    }
 
-    int inf() { return numeric_limits<int>::max() / 2; }
+    int inf() {
+      return numeric_limits<int>::max() / 2;
+    }
 
     void build() {
       used.assign(intervals_.size(), false);
@@ -38,7 +42,9 @@ namespace library_data_structure {
       }
     }
 
-    bool is_used(int k) { return used[k]; }
+    bool is_used(int k) {
+      return used[k];
+    }
 
     vector<pair<T, T>> intervals() {
       vector<pair<T, T>> res;

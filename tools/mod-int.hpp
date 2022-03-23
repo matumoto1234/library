@@ -11,9 +11,13 @@ namespace tools {
   class ModInt {
     unsigned int v;
 
-    static constexpr unsigned int umod() { return m; }
+    static constexpr unsigned int umod() {
+      return m;
+    }
 
-    void static_assertions() const { static_assert(1 <= m); }
+    void static_assertions() const {
+      static_assert(1 <= m);
+    }
 
     long long extgcd(long long a, long long b, long long &x, long long &y) {
       if (b == 0) {
@@ -34,13 +38,17 @@ namespace tools {
     }
 
   public:
-    ModInt(): v(0) { static_assertions(); }
+    ModInt(): v(0) {
+      static_assertions();
+    }
     ModInt(long long x) {
       static_assertions();
       v = x % umod();
     }
 
-    unsigned int val() const { return v; }
+    unsigned int val() const {
+      return v;
+    }
 
     ModInt &operator++() {
       v++;
@@ -89,10 +97,16 @@ namespace tools {
       return *this;
     }
 
-    ModInt operator/=(const ModInt &rhs) { return *this = *this * rhs.inv(); }
+    ModInt operator/=(const ModInt &rhs) {
+      return *this = *this * rhs.inv();
+    }
 
-    ModInt operator+() const { return *this; }
-    ModInt operator-() const { return ModInt() - *this; }
+    ModInt operator+() const {
+      return *this;
+    }
+    ModInt operator-() const {
+      return ModInt() - *this;
+    }
 
     ModInt pow(long long n) const {
       assert(0 <= n);
@@ -112,17 +126,29 @@ namespace tools {
       return x;
     }
 
-    friend ModInt operator+(const ModInt &lhs, const ModInt &rhs) { return ModInt(lhs) += rhs; }
+    friend ModInt operator+(const ModInt &lhs, const ModInt &rhs) {
+      return ModInt(lhs) += rhs;
+    }
 
-    friend ModInt operator-(const ModInt &lhs, const ModInt &rhs) { return ModInt(lhs) -= rhs; }
+    friend ModInt operator-(const ModInt &lhs, const ModInt &rhs) {
+      return ModInt(lhs) -= rhs;
+    }
 
-    friend ModInt operator*(const ModInt &lhs, const ModInt &rhs) { return ModInt(lhs) *= rhs; }
+    friend ModInt operator*(const ModInt &lhs, const ModInt &rhs) {
+      return ModInt(lhs) *= rhs;
+    }
 
-    friend ModInt operator/(const ModInt &lhs, const ModInt &rhs) { return ModInt(lhs) /= rhs; }
+    friend ModInt operator/(const ModInt &lhs, const ModInt &rhs) {
+      return ModInt(lhs) /= rhs;
+    }
 
-    friend bool operator==(const ModInt &lhs, const ModInt &rhs) { return lhs.v == rhs.v; }
+    friend bool operator==(const ModInt &lhs, const ModInt &rhs) {
+      return lhs.v == rhs.v;
+    }
 
-    friend bool operator!=(const ModInt &lhs, const ModInt &rhs) { return lhs.v != rhs.v; }
+    friend bool operator!=(const ModInt &lhs, const ModInt &rhs) {
+      return lhs.v != rhs.v;
+    }
 
     friend istream &operator>>(istream &is, ModInt &rhs) {
       long long temp;

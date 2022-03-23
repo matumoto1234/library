@@ -54,10 +54,18 @@ namespace library_math {
       return invfact[k];
     }
 
-    ModInt inv(int k) { return ModInt(1) / ModInt(k); }
+    ModInt inv(int k) {
+      return ModInt(1) / ModInt(k);
+    }
 
-    ModInt permutation(int n, int k) { return factorial(n) * inv_factorial(n - k); }
-    ModInt combination(int n, int k) { return factorial(n) * inv_factorial(k) * inv_factorial(n - k); }
-    ModInt homogeneous(int n, int k) { return combination(n + k - 1, k); }
+    ModInt permutation(int n, int k) {
+      return factorial(n) * inv_factorial(n - k);
+    }
+    ModInt combination(int n, int k) {
+      return factorial(n) * inv_factorial(k) * inv_factorial(n - k);
+    }
+    ModInt homogeneous(int n, int k) {
+      return combination(n + k - 1, k);
+    }
   };
 } // namespace library_math

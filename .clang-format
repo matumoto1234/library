@@ -91,7 +91,7 @@ AllowShortCaseLabelsOnASingleLine: false
 
 # 値に応じて関数を1行に配置できる: None | InlineOnly | Empty | Inline | All
 # clang-format: 3.5
-AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortFunctionsOnASingleLine: Empty
 
 
 # 値に応じてif文を1行に配置できる: Never | WithoutElse | OnlyFirstIf | AllIfsAndElse

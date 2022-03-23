@@ -50,6 +50,8 @@ namespace library_math {
       return smallest_ps[k] == k;
     }
 
-    int operator[](int i) { return smallest_ps[i]; }
+    int operator[](int i) {
+      return smallest_ps[i];
+    }
   };
 } // namespace library_math

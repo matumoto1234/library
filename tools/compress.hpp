@@ -14,7 +14,9 @@ namespace tools {
     Compress(int N): xs(N, 0) {}
     Compress(const vector<T> &vs): xs(vs) {}
 
-    void set(int i, T x) { xs[i] = x; }
+    void set(int i, T x) {
+      xs[i] = x;
+    }
 
     void set(const vector<T> &vs) {
       for (int i = 0; i < min<int>(xs.size(), vs.size()); i++) {
@@ -22,7 +24,9 @@ namespace tools {
       }
     }
 
-    void add(T x) { xs.emplace_back(x); }
+    void add(T x) {
+      xs.emplace_back(x);
+    }
 
     void add(const vector<T> &vs) {
       for (const T &x: vs) {
@@ -44,8 +48,12 @@ namespace tools {
       return res;
     }
 
-    int get(T k) const { return lower_bound(xs.begin(), xs.end(), k) - xs.begin(); }
+    int get(T k) const {
+      return lower_bound(xs.begin(), xs.end(), k) - xs.begin();
+    }
 
-    const T &operator[](int k) const { return xs[k]; }
+    const T &operator[](int k) const {
+      return xs[k];
+    }
   };
 } // namespace tools

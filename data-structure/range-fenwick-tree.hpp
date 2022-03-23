@@ -38,7 +38,9 @@ namespace library_data_structure {
     }
 
   public:
-    RangeFenwickTree(int n_) { init(n_); }
+    RangeFenwickTree(int n_) {
+      init(n_);
+    }
 
     // [l, r)
     void add(int l, int r, T x) {
@@ -49,6 +51,8 @@ namespace library_data_structure {
     }
 
     // [l,r)
-    T sum(int l, int r) { return sum(r) - sum(l); }
+    T sum(int l, int r) {
+      return sum(r) - sum(l);
+    }
   };
 } // namespace library_data_structure

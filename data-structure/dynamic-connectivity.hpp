@@ -27,7 +27,9 @@ namespace library_data_structure {
         bool child_edge_connected = 0;
         node() {}
         node(int l, int r): l(l), r(r), sz(l == r), exact(l < r), child_exact(l < r) {}
-        bool is_root() { return !p; }
+        bool is_root() {
+          return !p;
+        }
       };
       vector<unordered_map<int, np>> ptr;
       np get_node(int l, int r) {
@@ -100,7 +102,9 @@ namespace library_data_structure {
           t->p = s;
         return update(s);
       }
-      int size(np t) { return t ? t->sz : 0; }
+      int size(np t) {
+        return t ? t->sz : 0;
+      }
       np update(np t) {
         t->sum = et;
         if (t->ch[0])
@@ -170,7 +174,9 @@ namespace library_data_structure {
         splay(t);
         return t->sz;
       }
-      bool same(int s, int t) { return same(get_node(s, s), get_node(t, t)); }
+      bool same(int s, int t) {
+        return same(get_node(s, s), get_node(t, t));
+      }
       void set_size(int sz) {
         ptr.resize(sz);
         for (int i = 0; i < sz; i++)
@@ -289,15 +295,25 @@ namespace library_data_structure {
       return 0;
     }
 
-    bool same(int s, int t) { return ett[0].same(s, t); }
+    bool same(int s, int t) {
+      return ett[0].same(s, t);
+    }
 
-    int size(int s) { return ett[0].size(s); }
+    int size(int s) {
+      return ett[0].size(s);
+    }
 
-    vector<int> get_vertex(int s) { return ett[0].vertex_list(s); }
+    vector<int> get_vertex(int s) {
+      return ett[0].vertex_list(s);
+    }
 
-    void update(int s, T x) { ett[0].update(s, x); }
+    void update(int s, T x) {
+      ett[0].update(s, x);
+    }
 
-    T get_sum(int s) { return ett[0].get_sum(s); }
+    T get_sum(int s) {
+      return ett[0].get_sum(s);
+    }
 
     bool cut(int s, int t) {
       if (s == t)
@@ -365,6 +381,8 @@ namespace library_data_structure {
       return 0;
     }
     constexpr static T et = T();
-    constexpr static T fn(T s, T t) { return s + t; }
+    constexpr static T fn(T s, T t) {
+      return s + t;
+    }
   };
 } // namespace library_data_structure

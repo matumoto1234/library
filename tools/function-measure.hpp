@@ -22,7 +22,9 @@ namespace tools {
     }
 
     // bias:1000 -> [ms]
-    double time(double bias = 1000.0) { return static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / bias); }
+    double time(double bias = 1000.0) {
+      return static_cast<double>(chrono::duration_cast<chrono::microseconds>(end - start).count() / bias);
+    }
 
     void print(double bias = 1000.0) {
       cout << fixed << setprecision(10);

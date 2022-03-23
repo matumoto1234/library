@@ -25,8 +25,12 @@ namespace library_string {
       set_mod(MOD);
     }
 
-    void set_base(ll B) { base = B; }
-    void set_mod(ll MOD) { mod = MOD; }
+    void set_base(ll B) {
+      base = B;
+    }
+    void set_mod(ll MOD) {
+      mod = MOD;
+    }
 
     // mod multiprecation
     ll mod_mul(ll a, ll b) {

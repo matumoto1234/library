@@ -17,7 +17,9 @@ namespace library_data_structure {
     stack<tuple<int, int, int>> history;
 
   public:
-    UnionFindUndo(int N): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N) { iota(par.begin(), par.end(), 0); }
+    UnionFindUndo(int N): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N) {
+      iota(par.begin(), par.end(), 0);
+    }
 
     // 根（そのグループの識別番号）
     int root(int x) {
@@ -27,13 +29,21 @@ namespace library_data_structure {
     }
 
     // 連結成分の個数
-    int group_count() { return grp_cnt; }
+    int group_count() {
+      return grp_cnt;
+    }
 
-    int merge_count() { return merge_cnt; }
+    int merge_count() {
+      return merge_cnt;
+    }
 
-    int size(int x) { return siz[root(x)]; }
+    int size(int x) {
+      return siz[root(x)];
+    }
 
-    bool same(int x, int y) { return root(x) == root(y); }
+    bool same(int x, int y) {
+      return root(x) == root(y);
+    }
 
     bool merge(int x, int y) {
       x = root(x);
