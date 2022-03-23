@@ -42,7 +42,9 @@ namespace library_math {
       return gcd_impl(n, m);
     }
 
-    u64 gcd_fast(u64 n, u64 m) { return n > m ? gcd_pre(n, m) : gcd_pre(m, n); }
+    u64 gcd_fast(u64 n, u64 m) {
+      return n > m ? gcd_pre(n, m) : gcd_pre(m, n);
+    }
 
     struct modint64 {
       using u64 = uint64_t;
@@ -81,10 +83,18 @@ namespace library_math {
         return *this;
       }
 
-      modint64 operator+(const modint64 &b) const { return modint64(*this) += b; }
-      modint64 operator-(const modint64 &b) const { return modint64(*this) -= b; }
-      modint64 operator*(const modint64 &b) const { return modint64(*this) *= b; }
-      modint64 operator/(const modint64 &b) const { return modint64(*this) /= b; }
+      modint64 operator+(const modint64 &b) const {
+        return modint64(*this) += b;
+      }
+      modint64 operator-(const modint64 &b) const {
+        return modint64(*this) -= b;
+      }
+      modint64 operator*(const modint64 &b) const {
+        return modint64(*this) *= b;
+      }
+      modint64 operator/(const modint64 &b) const {
+        return modint64(*this) /= b;
+      }
 
       modint64 pow(u128 n) const {
         modint64 ret(1), mul(*this);
@@ -97,14 +107,18 @@ namespace library_math {
         return ret;
       }
 
-      modint64 inverse() const { return pow(mod - 2); }
+      modint64 inverse() const {
+        return pow(mod - 2);
+      }
 
       u64 val() const {
         u64 ret = reduce(a);
         return ret >= mod ? ret - mod : ret;
       }
 
-      static u64 get_mod() { return mod; }
+      static u64 get_mod() {
+        return mod;
+      }
 
     private:
       u64 a;
@@ -116,7 +130,9 @@ namespace library_math {
         return ret;
       }
 
-      static u64 reduce(const u128 &b) { return (b + u128(u64(b) * u64(-r)) * mod) >> 64; }
+      static u64 reduce(const u128 &b) {
+        return (b + u128(u64(b) * u64(-r)) * mod) >> 64;
+      }
     };
     typename modint64::u64 modint64::mod, modint64::r, modint64::n2;
 

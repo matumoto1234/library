@@ -16,7 +16,9 @@ namespace library_graph {
     vector<Cost> ds;
     vector<int> bs;
 
-    static constexpr Cost inf() { return numeric_limits<Cost>::max() / 2; }
+    static constexpr Cost inf() {
+      return numeric_limits<Cost>::max() / 2;
+    }
 
     Dijkstra(WeightedGraph<Cost> g, int start): ds(g.size(), inf()), bs(g.size(), -1) {
       assert(0 <= start and start < g.size());
@@ -42,7 +44,9 @@ namespace library_graph {
       }
     }
 
-    Cost operator[](int k) { return ds.at(k); }
+    Cost operator[](int k) {
+      return ds.at(k);
+    }
 
     vector<int> restore(int to) {
       vector<int> res;

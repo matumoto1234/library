@@ -59,7 +59,9 @@ namespace tools {
       return a;
     }
 
-    __int128_t lcm(__int128_t a, __int128_t b) { return a * b / gcd(a, b); }
+    __int128_t lcm(__int128_t a, __int128_t b) {
+      return a * b / gcd(a, b);
+    }
 
 
     namespace template_internal_math {

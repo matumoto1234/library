@@ -31,10 +31,14 @@ namespace library_data_structure {
       }
     }
 
-    T get(int k) { return dat[++k]; }
+    T get(int k) {
+      return dat[++k];
+    }
 
     // [l,r)
-    T sum(int l, int r) { return sum(r) - sum(l); }
+    T sum(int l, int r) {
+      return sum(r) - sum(l);
+    }
 
     // min({x | sum(x) >= w})
     int lower_bound(T w) {
@@ -54,6 +58,8 @@ namespace library_data_structure {
     }
 
     // min({x | sum(x) > w})
-    int upper_bound(T w) { return lower_bound(w + 1); }
+    int upper_bound(T w) {
+      return lower_bound(w + 1);
+    }
   };
 } // namespace library_data_structure

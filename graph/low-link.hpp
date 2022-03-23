@@ -13,7 +13,9 @@ namespace library_graph {
 
     LowLink(int V): G(V) {}
 
-    void add_edge(int from, int to) { G[from].emplace_back(to); }
+    void add_edge(int from, int to) {
+      G[from].emplace_back(to);
+    }
 
     void build() {
       int V = G.size();

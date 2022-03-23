@@ -58,6 +58,8 @@ namespace library_graph {
       return par[0][u];
     }
 
-    int distance(int u, int v) { return dep[u] + dep[v] - dep[query(u, v)] * 2; }
+    int distance(int u, int v) {
+      return dep[u] + dep[v] - dep[query(u, v)] * 2;
+    }
   };
 } // namespace library_graph

@@ -8,9 +8,13 @@ namespace tools {
   struct Stopwatch {
     chrono::high_resolution_clock::time_point start;
 
-    Stopwatch() { restart(); }
+    Stopwatch() {
+      restart();
+    }
 
-    void restart() { start = chrono::high_resolution_clock::now(); }
+    void restart() {
+      start = chrono::high_resolution_clock::now();
+    }
 
     chrono::milliseconds::rep elapsed() {
       auto end = chrono::high_resolution_clock::now();

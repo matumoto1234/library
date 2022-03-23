@@ -38,6 +38,8 @@ namespace library_math {
       return ps[k] == k;
     }
 
-    int operator[](int i) { return ps[i]; }
+    int operator[](int i) {
+      return ps[i];
+    }
   };
 } // namespace library_math

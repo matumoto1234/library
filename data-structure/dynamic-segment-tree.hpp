@@ -76,8 +76,12 @@ namespace library_data_structure {
       }
     }
 
-    void debug() { debug_dfs(root, ""); }
+    void debug() {
+      debug_dfs(root, "");
+    }
 
-    T prod(ll l, ll r) { return prod(l, r, root, 0, n); }
+    T prod(ll l, ll r) {
+      return prod(l, r, root, 0, n);
+    }
   };
 } // namespace library_data_structure

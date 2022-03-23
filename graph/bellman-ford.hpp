@@ -28,13 +28,21 @@ namespace library_graph {
 
     BellmanFord(int N): V(N), neg_cycle(false), neg_cycle_to_goal(false) {}
 
-    void add_edge(int from, int to, T cost) { es.emplace_back(from, to, cost); }
+    void add_edge(int from, int to, T cost) {
+      es.emplace_back(from, to, cost);
+    }
 
-    bool neg() { return neg_cycle; }
+    bool neg() {
+      return neg_cycle;
+    }
 
-    bool neg_to_goal() { return neg_cycle_to_goal; }
+    bool neg_to_goal() {
+      return neg_cycle_to_goal;
+    }
 
-    T inf() { return numeric_limits<T>::max() / 2; }
+    T inf() {
+      return numeric_limits<T>::max() / 2;
+    }
 
     void build(int s, int g = -1) {
       if (g == -1)
@@ -64,7 +72,9 @@ namespace library_graph {
       }
     }
 
-    T operator[](int k) { return ds[k]; }
+    T operator[](int k) {
+      return ds[k];
+    }
 
     vector<int> restore(int to) {
       vector<int> res;

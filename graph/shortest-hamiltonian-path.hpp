@@ -22,9 +22,13 @@ namespace library_graph {
 
     ShortestHamiltonianPath(int V_): V(V_), G(V_) {}
 
-    T inf() { return numeric_limits<T>::max() / 2; }
+    T inf() {
+      return numeric_limits<T>::max() / 2;
+    }
 
-    void add_edge(int from, int to, T cost) { G[from].emplace_back(to, cost); }
+    void add_edge(int from, int to, T cost) {
+      G[from].emplace_back(to, cost);
+    }
 
     T build() {
       T res = inf();

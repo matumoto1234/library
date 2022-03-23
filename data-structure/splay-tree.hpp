@@ -104,7 +104,9 @@ namespace library_data_structure {
       return _root->value;
     }
 
-    node *&root() { return _root; }
+    node *&root() {
+      return _root;
+    }
 
     // rootの左からのidx番目の頂点を根にして返す
     node *get(int idx, node *root) {

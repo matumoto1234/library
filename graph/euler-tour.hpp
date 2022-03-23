@@ -28,7 +28,9 @@ namespace library_graph {
   public:
     EulerTour(int n): G(n) {}
 
-    void add_edge(int from, int to) { G[from].emplace_back(to); }
+    void add_edge(int from, int to) {
+      G[from].emplace_back(to);
+    }
 
     void build(int s) {
       in_time.assign(G.size(), -1);
@@ -41,14 +43,26 @@ namespace library_graph {
       dfs(s, time, 0);
     }
 
-    int in(int v) { return in_time[v]; }
-    int out(int v) { return out_time[v]; }
-    int depth(int v) { return dep[v]; }
-    int parent(int v) { return par[v]; }
-    vector<int> edge_table() { return edge_table_; }
+    int in(int v) {
+      return in_time[v];
+    }
+    int out(int v) {
+      return out_time[v];
+    }
+    int depth(int v) {
+      return dep[v];
+    }
+    int parent(int v) {
+      return par[v];
+    }
+    vector<int> edge_table() {
+      return edge_table_;
+    }
 
     // edge_table:[first, second), vertex_table:[first, second]
-    pair<int, int> subtree(int v) { return pair(in_time[v], out_time[v]); }
+    pair<int, int> subtree(int v) {
+      return pair(in_time[v], out_time[v]);
+    }
 
     vector<int> vertex_table() {
       vector<int> res = edge_table_;

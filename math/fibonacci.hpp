@@ -14,8 +14,12 @@ namespace library_math {
     matrix(int r, int c): dat(r, vector<T>(c, 0)) {}
     matrix(vector<vector<T>> _dat): dat(_dat) {}
 
-    size_t size() const { return dat.size(); }
-    bool empty() const { return dat.empty(); }
+    size_t size() const {
+      return dat.size();
+    }
+    bool empty() const {
+      return dat.empty();
+    }
   };
 
   long long fibonacci(long long n) {

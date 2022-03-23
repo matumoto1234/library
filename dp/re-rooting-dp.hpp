@@ -127,6 +127,8 @@ namespace library_dp {
       pre_order();
     }
 
-    T operator[](int node) { return m_node_results[node]; }
+    T operator[](int node) {
+      return m_node_results[node];
+    }
   };
 } // namespace library_dp

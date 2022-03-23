@@ -83,7 +83,9 @@ int main() {
     G[b].push_back(a);
   }
 
-  rep(i, n) { whole(sort, G[i]); }
+  rep(i, n) {
+    whole(sort, G[i]);
+  }
 
   EulerTour et(n);
   rep(i, n) {

@@ -105,10 +105,16 @@ namespace library_graph {
       return res;
     }
 
-    int size() { return cnt; }
+    int size() {
+      return cnt;
+    }
 
-    bool same(int a, int b) { return groups[a] == groups[b]; }
+    bool same(int a, int b) {
+      return groups[a] == groups[b];
+    }
 
-    int operator[](int k) { return groups[k]; }
+    int operator[](int k) {
+      return groups[k];
+    }
   };
 } // namespace library_graph

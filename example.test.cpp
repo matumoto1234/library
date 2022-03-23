@@ -10,7 +10,9 @@ int main() {
   int n;
   cin >> n;
   vector<int> s(n);
-  REP(i, n) { cin >> s[i]; }
+  REP(i, n) {
+    cin >> s[i];
+  }
   int q;
   cin >> q;
   int cnt = 0;

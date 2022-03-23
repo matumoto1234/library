@@ -16,9 +16,13 @@ namespace tools {
   public:
     Range(Iterator &&b, Iterator &&e) noexcept: begin_(forward<Iterator>(b)), end_(forward<Iterator>(e)) {}
 
-    Iterator begin() const noexcept { return begin_; }
+    Iterator begin() const noexcept {
+      return begin_;
+    }
 
-    Iterator end() const noexcept { return end_; }
+    Iterator end() const noexcept {
+      return end_;
+    }
   }; // class Range
 
   template <typename Iterator>
