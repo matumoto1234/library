@@ -39,12 +39,12 @@ namespace tools {
     }
 
   public:
-    using nullval_t = nullptr_t;
-    static constexpr nullval_t nullval = nullptr;
+    using nullval_t = nullopt_t;
+    static constexpr nullval_t nullval = nullopt;
 
     constexpr ModInt() noexcept: v_(0), has_nullval_(false) {}
     constexpr ModInt(nullval_t x): v_(0), has_nullval_(true) {}
-    ModInt(ll x) {
+    ModInt(ll x): has_nullval_(false) {
       if (abs(x) >= umod())
         x %= umod();
 
@@ -54,7 +54,7 @@ namespace tools {
       v_ = x;
     }
 
-    constexpr nullval_t has_nullval() const noexcept {
+    constexpr bool has_nullval() const noexcept {
       return has_nullval_;
     }
 
