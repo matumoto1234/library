@@ -5,6 +5,7 @@
 #include <cassert>
 #include <iostream>
 #include <utility>
+#include <optional>
 
 namespace tools {
   template <int m>
