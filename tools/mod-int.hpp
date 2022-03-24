@@ -14,6 +14,7 @@ namespace tools {
     static_assert(1 <= m);
 
     unsigned int v_;
+    bool has_nullval_;
 
     static constexpr unsigned int umod() {
       return m;
@@ -30,7 +31,7 @@ namespace tools {
       return d;
     }
 
-    // pair(g, x), g = gcd(v, umod()), vx = g (mod umod())
+    // gcd_inv:()|-> pair(g, x). g := gcd(v, umod()). vx = g (mod umod())
     constexpr pair<ll, ll> gcd_inv() const {
       ll x = 0, y = 0;
       ll d = extgcd(v_, umod(), x, y);
@@ -38,11 +39,23 @@ namespace tools {
     }
 
   public:
-    constexpr ModInt() noexcept: v_(0) {}
+    using nullval_t = nullptr_t;
+    static constexpr nullval_t nullval = nullptr;
+
+    constexpr ModInt() noexcept: v_(0), has_nullval_(false) {}
+    constexpr ModInt(nullval_t x): v_(0), has_nullval_(true) {}
     ModInt(ll x) {
+      if (abs(x) >= umod())
+        x %= umod();
+
       if (x < 0)
         x += umod();
-      v_ = x % umod();
+
+      v_ = x;
+    }
+
+    constexpr nullval_t has_nullval() const noexcept {
+      return has_nullval_;
     }
 
     constexpr unsigned int val() const noexcept {
@@ -110,7 +123,7 @@ namespace tools {
 
     constexpr ModInt pow(ll n) const {
       // x = base の 2べき乗
-      ModInt x = /* base = */*this, res = 1;
+      ModInt x = /* base = */ *this, res = 1;
       if (n < 0) {
         const auto &[gcd, inverse] = gcd_inv();
         assert(gcd == 1);
