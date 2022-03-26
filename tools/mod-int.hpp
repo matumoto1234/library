@@ -4,113 +4,133 @@
 
 #include <cassert>
 #include <iostream>
+#include <optional>
 #include <utility>
 
 namespace tools {
   template <int m>
   class ModInt {
-    unsigned int v;
+    using ll = long long;
+    using ull = unsigned long long;
+    static_assert(1 <= m);
+
+    unsigned int v_;
+    bool has_nullval_;
 
     static constexpr unsigned int umod() {
       return m;
     }
 
-    void static_assertions() const {
-      static_assert(1 <= m);
-    }
-
-    long long extgcd(long long a, long long b, long long &x, long long &y) {
+    constexpr ll extgcd(ll a, ll b, ll &x, ll &y) {
       if (b == 0) {
         x = 1;
         y = 0;
         return a;
       }
-      long long d = extgcd(b, a % b, y, x);
+      ll d = extgcd(b, a % b, y, x);
       y -= a / b * x;
       return d;
     }
 
-    // pair(g, x), g = gcd(v, umod()), vx = g (mod umod())
-    pair<long long, long long> gcd_inv() const {
-      long long x, y;
-      long long d = extgcd(v, umod(), x, y);
+    // gcd_inv:()|-> pair(g, x). g := gcd(v, umod()). vx = g (mod umod())
+    constexpr pair<ll, ll> gcd_inv() const {
+      ll x = 0, y = 0;
+      ll d = extgcd(v_, umod(), x, y);
       return pair(d, x);
     }
 
   public:
-    ModInt(): v(0) {
-      static_assertions();
-    }
-    ModInt(long long x) {
-      static_assertions();
-      v = x % umod();
+    using nullval_t = nullopt_t;
+    static constexpr nullval_t nullval = nullopt;
+
+    constexpr ModInt() noexcept: v_(0), has_nullval_(false) {}
+    constexpr ModInt(nullval_t x): v_(0), has_nullval_(true) {}
+    ModInt(ll x): has_nullval_(false) {
+      if (abs(x) >= umod())
+        x %= umod();
+
+      if (x < 0)
+        x += umod();
+
+      v_ = x;
     }
 
-    unsigned int val() const {
-      return v;
+    constexpr bool has_nullval() const noexcept {
+      return has_nullval_;
     }
 
-    ModInt &operator++() {
-      v++;
-      if (v == umod())
-        v = 0;
+    constexpr unsigned int val() const noexcept {
+      return v_;
+    }
+
+    constexpr ModInt &operator++() noexcept {
+      v_++;
+      if (v_ == umod())
+        v_ = 0;
       return *this;
     }
 
-    ModInt &operator--() {
-      if (v == 0)
-        v = umod();
-      v--;
+    constexpr ModInt &operator--() noexcept {
+      if (v_ == 0)
+        v_ = umod();
+      v_--;
       return *this;
     }
 
-    ModInt operator++([[maybe_unused]] int unused) {
+    constexpr ModInt operator++([[maybe_unused]] int unused) noexcept {
       ModInt old = *this;
       ++*this;
       return old;
     }
 
-    ModInt operator--([[maybe_unused]] int unused) {
+    constexpr ModInt operator--([[maybe_unused]] int unused) noexcept {
       ModInt old = *this;
       --*this;
       return old;
     }
 
-    ModInt &operator+=(const ModInt &rhs) {
-      v += rhs.v;
-      if (v >= umod())
-        v -= umod();
+    constexpr ModInt &operator+=(const ModInt &rhs) noexcept {
+      v_ += rhs.v_;
+      if (v_ >= umod())
+        v_ -= umod();
       return *this;
     }
 
-    ModInt &operator-=(const ModInt &rhs) {
-      v -= rhs.v;
-      if (v >= umod())
-        v += umod();
+    constexpr ModInt &operator-=(const ModInt &rhs) noexcept {
+      v_ -= rhs.v_;
+      if (v_ < 0)
+        v_ += umod();
       return *this;
     }
 
-    ModInt &operator*=(const ModInt &rhs) {
-      unsigned long long z = v;
-      z *= rhs.v;
-      v = z % umod();
+    constexpr ModInt &operator*=(const ModInt &rhs) noexcept {
+      ull z = v_;
+      z *= rhs.v_;
+      v_ = z % umod();
       return *this;
     }
 
-    ModInt operator/=(const ModInt &rhs) {
+    constexpr ModInt operator/=(const ModInt &rhs) {
+      assert(rhs.v_ != 0);
       return *this = *this * rhs.inv();
     }
 
-    ModInt operator+() const {
+    constexpr ModInt operator+() const noexcept {
       return *this;
     }
-    ModInt operator-() const {
+    constexpr ModInt operator-() const noexcept {
       return ModInt() - *this;
     }
 
-    ModInt pow(long long n) const {
-      assert(0 <= n);
-      ModInt x = *this, res = 1;
+    constexpr ModInt pow(ll n) const {
+      // x = base の 2べき乗
+      ModInt x = /* base = */ *this, res = 1;
+      if (n < 0) {
+        const auto &[gcd, inverse] = gcd_inv();
+        assert(gcd == 1);
+        x = inverse;
+        n *= -1;
+      }
       while (n) {
         if (n & 1)
           res *= x;
@@ -120,38 +140,38 @@ namespace tools {
       return res;
     }
 
-    ModInt inv() const {
-      const auto &[g, x] = gcd_inv();
-      assert(g == 1);
-      return x;
+    constexpr ModInt inv() const {
+      const auto &[gcd, inverse] = gcd_inv();
+      assert(gcd == 1);
+      return inverse;
     }
 
-    friend ModInt operator+(const ModInt &lhs, const ModInt &rhs) {
+    constexpr friend ModInt operator+(const ModInt &lhs, const ModInt &rhs) noexcept {
       return ModInt(lhs) += rhs;
     }
 
-    friend ModInt operator-(const ModInt &lhs, const ModInt &rhs) {
+    constexpr friend ModInt operator-(const ModInt &lhs, const ModInt &rhs) noexcept {
       return ModInt(lhs) -= rhs;
     }
 
-    friend ModInt operator*(const ModInt &lhs, const ModInt &rhs) {
+    constexpr friend ModInt operator*(const ModInt &lhs, const ModInt &rhs) noexcept {
       return ModInt(lhs) *= rhs;
     }
 
-    friend ModInt operator/(const ModInt &lhs, const ModInt &rhs) {
+    constexpr friend ModInt operator/(const ModInt &lhs, const ModInt &rhs) {
       return ModInt(lhs) /= rhs;
     }
 
-    friend bool operator==(const ModInt &lhs, const ModInt &rhs) {
-      return lhs.v == rhs.v;
+    constexpr friend bool operator==(const ModInt &lhs, const ModInt &rhs) noexcept {
+      return lhs.v_ == rhs.v_;
     }
 
-    friend bool operator!=(const ModInt &lhs, const ModInt &rhs) {
-      return lhs.v != rhs.v;
+    constexpr friend bool operator!=(const ModInt &lhs, const ModInt &rhs) noexcept {
+      return lhs.v_ != rhs.v_;
     }
 
     friend istream &operator>>(istream &is, ModInt &rhs) {
-      long long temp;
+      ll temp;
       cin >> temp;
       rhs = ModInt(temp);
       return is;
@@ -162,4 +182,7 @@ namespace tools {
       return os;
     }
   };
+
+  using ModInt1000000007 = ModInt<1000000007>;
+  using ModInt998244353 = ModInt<998244353>;
 } // namespace tools
