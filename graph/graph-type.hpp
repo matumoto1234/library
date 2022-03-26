@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-namespace library_graph {
+namespace graph_library {
   namespace {
     struct EdgeInterface {
       virtual int &from() = 0;
@@ -147,4 +147,4 @@ namespace library_graph {
       return graph_;
     }
   };
-} // namespace library_graph
+} // namespace graph_library

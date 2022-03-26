@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace library_graph {
+namespace graph_library {
   // grid graph -> adjacency list
   vector<vector<int>> convert_graph(const vector<string> &s) {
     int h = s.size(), w = s[0].size();
@@ -25,4 +25,4 @@ namespace library_graph {
     }
     return res;
   }
-} // namespace library_graph
+} // namespace graph_library

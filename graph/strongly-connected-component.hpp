@@ -5,7 +5,7 @@
 #include <queue>
 #include <vector>
 
-namespace library_graph {
+namespace graph_library {
   class StronglyConnectedComponent {
   private:
     // sccは強連結成分ごとの集合
@@ -117,4 +117,4 @@ namespace library_graph {
       return groups[k];
     }
   };
-} // namespace library_graph
+} // namespace graph_library

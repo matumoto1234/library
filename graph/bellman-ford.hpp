@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <vector>
 
-namespace library_graph {
+namespace graph_library {
   template <typename T>
   class BellmanFord {
   public:
@@ -90,4 +90,4 @@ namespace library_graph {
       return res;
     }
   };
-} // namespace library_graph
+} // namespace graph_library
