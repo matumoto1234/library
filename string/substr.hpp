@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace library_string {
+namespace string_library {
   string substr(const string &s, int l, int r) {
     string res = "";
     for (int i = l; i < r; i++) {
@@ -12,4 +12,4 @@ namespace library_string {
     }
     return res;
   }
-} // namespace library_string
+} // namespace string_library

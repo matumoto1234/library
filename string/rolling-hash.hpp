@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace library_string {
+namespace string_library {
   // verify:AOJ_ALDS1_14_B
   // recommend { MOD:2^61-1, base:random }
   struct RollingHash {
@@ -84,4 +84,4 @@ namespace library_string {
       return (long long)res;
     }
   };
-} // namespace library_string
+} // namespace string_library

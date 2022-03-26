@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace library_string {
+namespace string_library {
   // verify:AOJ_ALDS1_14_C
   // recomend:{ MOD:2^61-1, base1,base2:random }
   struct RollingHash2D {
@@ -122,4 +122,4 @@ namespace library_string {
       return mod_mul(sum.query(sy, sx, gy, gx, mod), inv[sy][sx]);
     }
   };
-} // namespace library_string
+} // namespace string_library
