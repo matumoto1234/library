@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-namespace data_structure {
+namespace library_data_structure {
   template <typename T, T (*op)(T, T), T (*e)()>
   class DynamicSegmentTree {
   private:
@@ -76,8 +76,12 @@ namespace data_structure {
       }
     }
 
-    void debug() { debug_dfs(root, ""); }
+    void debug() {
+      debug_dfs(root, "");
+    }
 
-    T prod(ll l, ll r) { return prod(l, r, root, 0, n); }
+    T prod(ll l, ll r) {
+      return prod(l, r, root, 0, n);
+    }
   };
-} // namespace data_structure
+} // namespace library_data_structure

@@ -4,12 +4,14 @@
 
 #include <vector>
 
-namespace math {
+namespace library_math {
   struct EratosthenesSieve {
     vector<bool> prime_table;
 
     EratosthenesSieve() {}
-    EratosthenesSieve(int N): prime_table(N + 1, true) { prime_table[0] = prime_table[1] = false; }
+    EratosthenesSieve(int N): prime_table(N + 1, true) {
+      prime_table[0] = prime_table[1] = false;
+    }
 
     void build() {
       int n = prime_table.size();
@@ -22,6 +24,8 @@ namespace math {
       }
     }
 
-    bool operator[](int k) { return prime_table[k]; }
+    bool operator[](int k) {
+      return prime_table[k];
+    }
   };
-} // namespace math
+} // namespace library_math

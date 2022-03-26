@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace data_structure {
+namespace library_data_structure {
   // verify:https://atcoder.jp/contests/keyence2020/tasks/keyence2020_b
   template <typename T>
   class IntervalScheduling {
@@ -14,9 +14,13 @@ namespace data_structure {
   public:
     IntervalScheduling() {}
 
-    void add_interval(T l, T r) { intervals_.emplace_back(l, r); }
+    void add_interval(T l, T r) {
+      intervals_.emplace_back(l, r);
+    }
 
-    int inf() { return numeric_limits<int>::max() / 2; }
+    int inf() {
+      return numeric_limits<int>::max() / 2;
+    }
 
     void build() {
       used.assign(intervals_.size(), false);
@@ -38,7 +42,9 @@ namespace data_structure {
       }
     }
 
-    bool is_used(int k) { return used[k]; }
+    bool is_used(int k) {
+      return used[k];
+    }
 
     vector<pair<T, T>> intervals() {
       vector<pair<T, T>> res;
@@ -50,4 +56,4 @@ namespace data_structure {
       return res;
     }
   };
-} // namespace data_structure
+} // namespace library_data_structure

@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace math {
+namespace library_math {
   struct DivisorTable {
     vector<int> smallest_ps;
     DivisorTable(int N): smallest_ps(N + 1, 1) {}
@@ -50,6 +50,8 @@ namespace math {
       return smallest_ps[k] == k;
     }
 
-    int operator[](int i) { return smallest_ps[i]; }
+    int operator[](int i) {
+      return smallest_ps[i];
+    }
   };
-} // namespace math
+} // namespace library_math

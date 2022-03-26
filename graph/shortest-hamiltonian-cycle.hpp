@@ -5,7 +5,7 @@
 #include <limits>
 #include <vector>
 
-namespace graph {
+namespace library_graph {
   // verify:AOJ_DPL_2_A
   // sから始めて1度だけ訪問し、sに戻ってきた閉路の最短経路距離
   // buildでinfinity()が帰ってきたらそのような経路はない
@@ -24,9 +24,13 @@ namespace graph {
 
     ShortestHamiltonianCycle(int V_): V(V_), G(V_) {}
 
-    T inf() { return numeric_limits<T>::max() / 2; }
+    T inf() {
+      return numeric_limits<T>::max() / 2;
+    }
 
-    void add_edge(int from, int to, T cost) { G[from].emplace_back(to, cost); }
+    void add_edge(int from, int to, T cost) {
+      G[from].emplace_back(to, cost);
+    }
 
     T build(int s) {
       start = s;
@@ -51,4 +55,4 @@ namespace graph {
       return res;
     }
   };
-} // namespace graph
+} // namespace library_graph

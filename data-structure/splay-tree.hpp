@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace data_structure {
+namespace library_data_structure {
   template <typename T, T (*op)(T, T) = nullptr>
   struct SplayTree {
     struct node {
@@ -104,7 +104,9 @@ namespace data_structure {
       return _root->value;
     }
 
-    node *&root() { return _root; }
+    node *&root() {
+      return _root;
+    }
 
     // rootの左からのidx番目の頂点を根にして返す
     node *get(int idx, node *root) {
@@ -195,4 +197,4 @@ namespace data_structure {
       return { merge(merge(lroot, croot), rroot), ans };
     }
   };
-} // namespace data_structure
+} // namespace library_data_structure

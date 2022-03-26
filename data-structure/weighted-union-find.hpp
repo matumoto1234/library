@@ -5,19 +5,27 @@
 #include <numeric>
 #include <vector>
 
-namespace data_structure {
+namespace library_data_structure {
   template <typename T>
   struct WeightedUnionFind {
     vector<int> par;
     vector<int> siz;
     vector<T> w;
-    WeightedUnionFind(int N): par(N), siz(N, 1), w(N, 0) { iota(par.begin(), par.end(), 0); }
+    WeightedUnionFind(int N): par(N), siz(N, 1), w(N, 0) {
+      iota(par.begin(), par.end(), 0);
+    }
 
-    int size(int x) { return siz[x]; }
+    int size(int x) {
+      return siz[x];
+    }
 
-    T diff(int x, int y) { return weight(y) - weight(x); }
+    T diff(int x, int y) {
+      return weight(y) - weight(x);
+    }
 
-    bool issame(int x, int y) { return root(x) == root(y); }
+    bool issame(int x, int y) {
+      return root(x) == root(y);
+    }
 
     void unite(int x, int y, T z) {
       z += weight(x);
@@ -49,4 +57,4 @@ namespace data_structure {
       return w[x];
     }
   };
-} // namespace data_structure
+} // namespace library_data_structure

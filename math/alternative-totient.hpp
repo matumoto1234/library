@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <vector>
 
-namespace math {
+namespace library_math {
   long long alternative_totient(long long x, long long n) {
     if (x == 1)
       return n;
@@ -31,4 +31,4 @@ namespace math {
     }
     return res;
   }
-} // namespace math
+} // namespace library_math

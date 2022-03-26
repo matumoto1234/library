@@ -5,7 +5,7 @@
 #include <cassert>
 #include <set>
 
-namespace data_structure {
+namespace library_data_structure {
   // verify:ABC228_D
   template <typename T = long long>
   struct IntervalSet {
@@ -16,9 +16,13 @@ namespace data_structure {
       s.emplace(inf(), inf());
     }
 
-    T inf() const { return numeric_limits<T>::max() / 2; }
+    T inf() const {
+      return numeric_limits<T>::max() / 2;
+    }
 
-    bool empty() const { return static_cast<int>(s.size()) == 2; }
+    bool empty() const {
+      return static_cast<int>(s.size()) == 2;
+    }
 
     bool contains(T x) const {
       if (empty())
@@ -87,7 +91,9 @@ namespace data_structure {
       return true;
     }
 
-    bool insert(pair<T, T> p) { return insert(p.first, p.second); }
+    bool insert(pair<T, T> p) {
+      return insert(p.first, p.second);
+    }
 
     // { (l, u) | l <= x <= u } => { (l, x - 1), (x + 1, u) | l <= x <= u }
     bool erase(T x) {
@@ -117,4 +123,4 @@ namespace data_structure {
       return true;
     }
   };
-} // namespace data_structure
+} // namespace library_data_structure

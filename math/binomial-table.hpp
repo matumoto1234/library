@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace math {
+namespace library_math {
   template <typename T>
   struct BinomialTable {
     vector<vector<T>> data;
@@ -19,6 +19,8 @@ namespace math {
       }
     }
 
-    T query(int n, int r) { return data[n][r]; }
+    T query(int n, int r) {
+      return data[n][r];
+    }
   };
-} // namespace math
+} // namespace library_math

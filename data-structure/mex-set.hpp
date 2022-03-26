@@ -4,13 +4,15 @@
 
 #include <set>
 
-namespace data_structure {
+namespace library_data_structure {
   // verify:hhkb2020_C
   template <typename T = long long>
   struct MexSet {
     set<pair<T, T>> s;
 
-    T inf() { return numeric_limits<T>::max() / 2; }
+    T inf() {
+      return numeric_limits<T>::max() / 2;
+    }
 
     MexSet() {
       s.emplace(inf(), inf());
@@ -71,4 +73,4 @@ namespace data_structure {
       }
     }
   };
-} // namespace data_structure
+} // namespace library_data_structure

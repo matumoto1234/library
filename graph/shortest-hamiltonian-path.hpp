@@ -5,7 +5,7 @@
 #include <limits>
 #include <vector>
 
-namespace graph {
+namespace library_graph {
   // 全頂点を1度だけ訪問したときの最短経路距離
   // buildでinfが帰ってきたらそのような経路はない
   template <typename T>
@@ -22,9 +22,13 @@ namespace graph {
 
     ShortestHamiltonianPath(int V_): V(V_), G(V_) {}
 
-    T inf() { return numeric_limits<T>::max() / 2; }
+    T inf() {
+      return numeric_limits<T>::max() / 2;
+    }
 
-    void add_edge(int from, int to, T cost) { G[from].emplace_back(to, cost); }
+    void add_edge(int from, int to, T cost) {
+      G[from].emplace_back(to, cost);
+    }
 
     T build() {
       T res = inf();
@@ -52,4 +56,4 @@ namespace graph {
       return res;
     }
   };
-} // namespace graph
+} // namespace library_graph

@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace graph {
+namespace library_graph {
   class LowestCommonAncestor {
   private:
     int h;
@@ -58,6 +58,8 @@ namespace graph {
       return par[0][u];
     }
 
-    int distance(int u, int v) { return dep[u] + dep[v] - dep[query(u, v)] * 2; }
+    int distance(int u, int v) {
+      return dep[u] + dep[v] - dep[query(u, v)] * 2;
+    }
   };
-} // namespace graph
+} // namespace library_graph

@@ -4,7 +4,7 @@
 
 #include <complex>
 
-namespace geometry {
+namespace library_geometry {
   using Point = complex<Real>;
 
   istream &operator>>(istream &is, Point &p) {
@@ -19,7 +19,9 @@ namespace geometry {
     return os;
   }
 
-  Point operator*(const Point &p, const Real &k) { return Point(p.real() * k, p.imag() * k); }
+  Point operator*(const Point &p, const Real &k) {
+    return Point(p.real() * k, p.imag() * k);
+  }
 
   Point rotate_cw(const Real &radian, Point p, const Point &origin = Point(0, 0)) {
     p -= origin;
@@ -39,5 +41,7 @@ namespace geometry {
     return p;
   }
 
-  bool equals(const Point &a, const Point &b) { return equals(a.real(), b.real()) and equals(a.imag(), b.imag()); }
-} // namespace geometry
+  bool equals(const Point &a, const Point &b) {
+    return equals(a.real(), b.real()) and equals(a.imag(), b.imag());
+  }
+} // namespace library_geometry

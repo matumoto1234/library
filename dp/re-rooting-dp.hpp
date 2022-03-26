@@ -7,7 +7,7 @@
 #include <stack>
 #include <vector>
 
-namespace dp {
+namespace library_dp {
   // TODO verify:EDPC-V, ABC220-F, ABC160-F
   // add_node: 自身の値を追加して親方向へ渡す関数 (T result, int index) |-> T
   // op: 二項演算 (monoid)
@@ -127,6 +127,8 @@ namespace dp {
       pre_order();
     }
 
-    T operator[](int node) { return m_node_results[node]; }
+    T operator[](int node) {
+      return m_node_results[node];
+    }
   };
-} // namespace dp
+} // namespace library_dp

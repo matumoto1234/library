@@ -1,5 +1,5 @@
 #pragma once
 
-namespace graph {
+namespace library_graph {
   using namespace std;
 }

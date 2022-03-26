@@ -3,7 +3,7 @@
 using namespace std;
 
 #include "dp/re-rooting-dp.hpp"
-using namespace dp;
+using namespace library_dp;
 
 using ll = long long;
 ll m;

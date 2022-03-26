@@ -5,20 +5,24 @@
 #include <limits>
 #include <vector>
 
-namespace graph {
+namespace library_graph {
   template <typename T>
   struct WarshallFloyd {
     vector<vector<T>> ds;
     vector<vector<int>> ns;
 
-    T inf() { return numeric_limits<T>::max() / 2; }
+    T inf() {
+      return numeric_limits<T>::max() / 2;
+    }
 
     WarshallFloyd(int V): ds(V, vector<T>(V, inf())) {
       for (int i = 0; i < V; i++)
         ds[i][i] = 0;
     }
 
-    void add_edge(int from, int to, T cost) { ds[from][to] = cost; }
+    void add_edge(int from, int to, T cost) {
+      ds[from][to] = cost;
+    }
 
     void build() {
       int V = ds.size();
@@ -44,7 +48,9 @@ namespace graph {
       }
     }
 
-    vector<T> &operator[](int k) { return ds[k]; }
+    vector<T> &operator[](int k) {
+      return ds[k];
+    }
 
     bool neg_cycle() {
       int V = ds.size();
@@ -64,4 +70,4 @@ namespace graph {
       return res;
     }
   };
-} // namespace graph
+} // namespace library_graph

@@ -6,7 +6,7 @@
 #include <numeric>
 #include <vector>
 
-namespace data_structure {
+namespace library_data_structure {
   template <typename T>
   class UnionFind {
     int grp_cnt, merge_cnt;
@@ -14,8 +14,12 @@ namespace data_structure {
     vector<T> val;
 
   public:
-    UnionFind(int N): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N), val(N, 0) { iota(par.begin(), par.end(), 0); }
-    UnionFind(int N, T init): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N), val(N, init) { iota(par.begin(), par.end(), 0); }
+    UnionFind(int N): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N), val(N, 0) {
+      iota(par.begin(), par.end(), 0);
+    }
+    UnionFind(int N, T init): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N), val(N, init) {
+      iota(par.begin(), par.end(), 0);
+    }
 
     // 根（そのグループの識別番号）
     int root(int x) {
@@ -24,18 +28,30 @@ namespace data_structure {
       return par[x] = root(par[x]);
     }
 
-    T root_value(int x) { return val[root(x)]; }
+    T root_value(int x) {
+      return val[root(x)];
+    }
 
-    void set_root_value(int x, T v) { val[root(x)] = v; }
+    void set_root_value(int x, T v) {
+      val[root(x)] = v;
+    }
 
     // 連結成分の個数
-    int group_count() { return grp_cnt; }
+    int group_count() {
+      return grp_cnt;
+    }
 
-    int merge_count() { return merge_cnt; }
+    int merge_count() {
+      return merge_cnt;
+    }
 
-    int size(int x) { return siz[root(x)]; }
+    int size(int x) {
+      return siz[root(x)];
+    }
 
-    bool same(int x, int y) { return root(x) == root(y); }
+    bool same(int x, int y) {
+      return root(x) == root(y);
+    }
 
     bool merge(int x, int y) {
       x = root(x);
@@ -92,4 +108,4 @@ namespace data_structure {
       return res;
     }
   };
-} // namespace data_structure
+} // namespace library_data_structure

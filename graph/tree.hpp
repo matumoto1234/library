@@ -6,7 +6,7 @@
 
 // WIP
 
-namespace graph {
+namespace library_graph {
   // path_query    : op,e,inv
   // subtree_query : op,e
   // op   : T, T -> T (operation)
@@ -76,7 +76,9 @@ namespace graph {
         data.assign(2 * n, e());
       }
 
-      T get(int i) { return data[i + n]; }
+      T get(int i) {
+        return data[i + n];
+      }
 
       void set(int i, T key) {
         i += n;
@@ -87,11 +89,17 @@ namespace graph {
         }
       }
 
-      void add(int i, T key) { set(i, get(i) + key); }
+      void add(int i, T key) {
+        set(i, get(i) + key);
+      }
 
-      T prod(int l, int r) { return search(l, r); }
+      T prod(int l, int r) {
+        return search(l, r);
+      }
 
-      T all_prod() { return n != 0 ? data[0] : e(); }
+      T all_prod() {
+        return n != 0 ? data[0] : e();
+      }
     };
 
     SparseTable min_dep_idx;
@@ -142,11 +150,17 @@ namespace graph {
     }
 
   public:
-    WeightedTree(int n): G(n), data(n), LOG(log_two(n)), dia(-1) { data.assign(n); }
+    WeightedTree(int n): G(n), data(n), LOG(log_two(n)), dia(-1) {
+      data.assign(n);
+    }
 
-    void add_edge(int from, int to, T cost = 1) { G[from].emplace_back(to, cost); }
+    void add_edge(int from, int to, T cost = 1) {
+      G[from].emplace_back(to, cost);
+    }
 
-    T path_query(int v) { return data.prod(0, in[v] + 1); }
+    T path_query(int v) {
+      return data.prod(0, in[v] + 1);
+    }
 
     // O(log N)
     T path_query(int u, int v) {
@@ -157,7 +171,9 @@ namespace graph {
     }
 
     // O(log N)
-    T subtree_query(int v) { return data.prod(in[v], out[v]); }
+    T subtree_query(int v) {
+      return data.prod(in[v], out[v]);
+    }
 
     // O(Nlog N)
     void build(int s) {
@@ -201,7 +217,9 @@ namespace graph {
     }
 
     // O(1)
-    T diameter() { return dia.first; }
+    T diameter() {
+      return dia.first;
+    }
 
     // O(N)
     vector<int> diameter_path() {
@@ -216,7 +234,9 @@ namespace graph {
     }
 
     // O(1)
-    bool in_subtree(int subroot, int v) { return in[subroot] < in[v] and out[v] < out[subroot]; }
+    bool in_subtree(int subroot, int v) {
+      return in[subroot] < in[v] and out[v] < out[subroot];
+    }
 
     // O(1) : lowest common ancestor
     int lca(int u, int v) {
@@ -238,13 +258,19 @@ namespace graph {
     }
 
     // O(1)
-    int depth(int v) { return dep[in[v]]; }
+    int depth(int v) {
+      return dep[in[v]];
+    }
 
     // O(1)
-    int distance(int u, int v) { return depth(u) + depth(v) - 2 * depth(lca(u, v)); }
+    int distance(int u, int v) {
+      return depth(u) + depth(v) - 2 * depth(lca(u, v));
+    }
 
     // O(1) : from v to root move k step
-    int up(int v, int k) { return la(v, depth(v) - k); }
+    int up(int v, int k) {
+      return la(v, depth(v) - k);
+    }
 
     // O(1) : from u to v move k step
     int next(int u, int v, int k = 1) {
@@ -253,4 +279,4 @@ namespace graph {
       return up(v, distance(v, lca(u, v)) - k);
     }
   };
-} // namespace graph
+} // namespace library_graph

@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <vector>
 
-namespace graph {
+namespace library_graph {
   class LowLink {
   public:
     vector<int> articulations;
@@ -13,7 +13,9 @@ namespace graph {
 
     LowLink(int V): G(V) {}
 
-    void add_edge(int from, int to) { G[from].emplace_back(to); }
+    void add_edge(int from, int to) {
+      G[from].emplace_back(to);
+    }
 
     void build() {
       int V = G.size();
@@ -61,4 +63,4 @@ namespace graph {
         articulations.emplace_back(id);
     }
   };
-} // namespace graph
+} // namespace library_graph

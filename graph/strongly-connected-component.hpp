@@ -5,7 +5,7 @@
 #include <queue>
 #include <vector>
 
-namespace graph {
+namespace library_graph {
   class StronglyConnectedComponent {
   private:
     // sccは強連結成分ごとの集合
@@ -105,10 +105,16 @@ namespace graph {
       return res;
     }
 
-    int size() { return cnt; }
+    int size() {
+      return cnt;
+    }
 
-    bool same(int a, int b) { return groups[a] == groups[b]; }
+    bool same(int a, int b) {
+      return groups[a] == groups[b];
+    }
 
-    int operator[](int k) { return groups[k]; }
+    int operator[](int k) {
+      return groups[k];
+    }
   };
-} // namespace graph
+} // namespace library_graph
