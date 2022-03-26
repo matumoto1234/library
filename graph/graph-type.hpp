@@ -2,9 +2,7 @@
 
 #include "./base.hpp"
 
-#include <functional>
-#include <iostream>
-#include <string>
+#include <cassert>
 #include <vector>
 
 namespace graph_library {
@@ -78,6 +76,7 @@ namespace graph_library {
       virtual int size() const = 0;
       virtual Edge get_edge(int k) const = 0;
       virtual Edges edges() const = 0;
+      virtual void pop_back_edge() = 0;
       virtual vector<Edges> graph() const = 0;
     };
   } // namespace
@@ -108,6 +107,14 @@ namespace graph_library {
 
     WeightedEdges<Cost> edges() const {
       return edges_;
+    }
+
+    void pop_back_edge() {
+      assert(not edges_.empty());
+
+      WeightedEdge<Cost> e = edges_.back();
+      edges_.pop_back();
+      graph_.at(e.from()).pop_back();
     }
 
     vector<WeightedEdges<Cost>> graph() const {
@@ -141,6 +148,14 @@ namespace graph_library {
 
     UnWeightedEdges edges() const {
       return edges_;
+    }
+
+    void pop_back_edge() {
+      assert(not edges_.empty());
+
+      UnWeightedEdge e = edges_.back();
+      edges_.pop_back();
+      graph_.at(e.from()).pop_back();
     }
 
     vector<UnWeightedEdges> graph() const {
