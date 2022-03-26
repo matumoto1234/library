@@ -3,7 +3,7 @@
 #include "./base.hpp"
 #include "./point.hpp"
 
-namespace library_geometry {
+namespace geometry_library {
   Real cross(const Point &a, const Point &b) {
     return a.real() * b.imag() - a.imag() * b.real();
   }
@@ -11,4 +11,4 @@ namespace library_geometry {
   Real dot(const Point &a, const Point &b) {
     return a.real() * b.real() + a.imag() * b.imag();
   }
-} // namespace library_geometry
+} // namespace geometry_library
