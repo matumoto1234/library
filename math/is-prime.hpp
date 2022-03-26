@@ -1,6 +1,6 @@
 #pragma once
 
-namespace library_math {
+namespace math_library {
   constexpr bool is_prime(int n) {
     if (n <= 1)
       return false;
@@ -10,4 +10,4 @@ namespace library_math {
     }
     return true;
   }
-} // namespace library_math
+} // namespace math_library

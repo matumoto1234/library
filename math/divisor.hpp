@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <vector>
 
-namespace library_math {
+namespace math_library {
   vector<ll> divisor(ll n) {
     vector<ll> res;
     for (ll i = 1; i * i <= n; i++) {
@@ -18,4 +18,4 @@ namespace library_math {
     sort(res.begin(), res.end());
     return res;
   }
-} // namespace library_math
+} // namespace math_library

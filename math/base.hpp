@@ -1,6 +1,6 @@
 #pragma once
 
-namespace library_math {
+namespace math_library {
   using namespace std;
   using ll = long long;
-} // namespace library_math
+} // namespace math_library

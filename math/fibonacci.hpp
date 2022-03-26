@@ -6,7 +6,7 @@
 
 // WIP
 
-namespace library_math {
+namespace math_library {
   template <typename T>
   struct matrix {
     vector<vector<T>> dat;
@@ -37,4 +37,4 @@ namespace library_math {
     // }
     // return res;
   }
-} // namespace library_math
+} // namespace math_library

@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace library_math {
+namespace math_library {
   template <typename T>
   vector<vector<T>> PartitionTable(int n, int k) {
     vector<vector<T>> dp(n + 1, vector<T>(k + 1));
@@ -19,4 +19,4 @@ namespace library_math {
     }
     return dp;
   }
-} // namespace library_math
+} // namespace math_library

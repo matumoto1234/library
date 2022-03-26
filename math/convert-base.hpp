@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace library_math {
+namespace math_library {
   // from-ary n -> to-ary n
   template <typename T>
   vector<T> convert_base(vector<T> n, T from, T to) {
@@ -30,4 +30,4 @@ namespace library_math {
     T temp = to_decimal(n, from);
     return to_base(temp, to);
   }
-} // namespace library_math
+} // namespace math_library

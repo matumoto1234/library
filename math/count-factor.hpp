@@ -5,7 +5,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace library_math {
+namespace math_library {
   vector<int> count_factor(int N) {
     constexpr int INF = INT32_MAX / 2;
     vector<int> table(N + 1, 0);
@@ -23,4 +23,4 @@ namespace library_math {
     }
     return table;
   }
-} // namespace library_math
+} // namespace math_library
