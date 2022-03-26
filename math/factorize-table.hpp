@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace library_math {
+namespace math_library {
   struct FactorizeTable {
     vector<int> ps;
     FactorizeTable(int N): ps(N + 1, 1) {}
@@ -42,4 +42,4 @@ namespace library_math {
       return ps[i];
     }
   };
-} // namespace library_math
+} // namespace math_library

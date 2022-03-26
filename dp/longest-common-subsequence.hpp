@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace library_dp {
+namespace dp_library {
   // verify:EDPC_F
   template <typename T>
   struct LongestCommonSubsequence {
@@ -58,4 +58,4 @@ namespace library_dp {
       return res;
     }
   };
-} // namespace library_dp
+} // namespace dp_library

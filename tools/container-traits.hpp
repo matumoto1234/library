@@ -15,7 +15,7 @@
 #include <vector>
 
 
-namespace tools {
+namespace tools_library {
 
   namespace traits_helper {
     template <template <typename...> typename Container, typename Type>
@@ -159,4 +159,4 @@ namespace tools {
   template <typename T>
   inline constexpr bool is_container_v = IsContainer<T>::value;
 
-} // namespace tools
+} // namespace tools_library

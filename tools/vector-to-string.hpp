@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace tools {
+namespace tools_library {
   template <typename T>
   string vector_to_string(const vector<T> &vs, const string &sep = " ") {
     stringstream ss;
@@ -16,4 +16,4 @@ namespace tools {
     }
     return ss.str();
   }
-} // namespace tools
+} // namespace tools_library

@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <iterator>
 
-namespace tools {
+namespace tools_library {
   template <typename Container, typename T>
   bool contains(const Container &container, const T &x) {
     if constexpr (has_find_v<Container, T>) {
@@ -14,4 +14,4 @@ namespace tools {
       return find(begin(container), end(container), x) != end(container);
     }
   }
-} // namespace tools
+} // namespace tools_library

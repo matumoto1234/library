@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace library_math {
+namespace math_library {
   struct EratosthenesSieve {
     vector<bool> prime_table;
 
@@ -28,4 +28,4 @@ namespace library_math {
       return prime_table[k];
     }
   };
-} // namespace library_math
+} // namespace math_library

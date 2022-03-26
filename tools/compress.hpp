@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <vector>
 
-namespace tools {
+namespace tools_library {
   // verify:ABC036_C
   template <typename T>
   struct Compress {
@@ -56,4 +56,4 @@ namespace tools {
       return xs[k];
     }
   };
-} // namespace tools
+} // namespace tools_library

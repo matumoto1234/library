@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <vector>
 
-namespace library_math {
+namespace math_library {
   namespace inner {
     using u32 = uint32_t;
     using u64 = uint64_t;
@@ -228,4 +228,4 @@ namespace library_math {
     std::sort(res.begin(), res.end());
     return res;
   }
-} // namespace library_math
+} // namespace math_library

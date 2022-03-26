@@ -8,7 +8,7 @@
 #include <ios>
 #include <iostream>
 
-namespace tools {
+namespace tools_library {
   struct FunctionMeasure {
     chrono::system_clock::time_point start, end;
 
@@ -31,4 +31,4 @@ namespace tools {
       cout << time(bias) << "\n";
     }
   };
-} // namespace tools
+} // namespace tools_library

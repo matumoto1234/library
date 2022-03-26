@@ -4,7 +4,7 @@
 
 #include <chrono>
 
-namespace tools {
+namespace tools_library {
   struct Stopwatch {
     chrono::high_resolution_clock::time_point start;
 
@@ -21,4 +21,4 @@ namespace tools {
       return chrono::duration_cast<chrono::milliseconds>(end - start).count();
     }
   };
-} // namespace tools
+} // namespace tools_library

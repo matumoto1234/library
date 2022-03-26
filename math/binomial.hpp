@@ -2,7 +2,7 @@
 
 #include "./base.hpp"
 
-namespace library_math {
+namespace math_library {
   constexpr ll binomial(ll n, ll r) {
     ll res = 1;
     for (ll i = 0; i < r; i++) {
@@ -11,4 +11,4 @@ namespace library_math {
     }
     return res;
   }
-} // namespace library_math
+} // namespace math_library

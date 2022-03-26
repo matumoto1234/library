@@ -4,7 +4,7 @@
 
 #include <type_traits>
 
-namespace tools {
+namespace tools_library {
   template <typename T>
   class HasIterator {
     template <typename Container>
@@ -19,4 +19,4 @@ namespace tools {
 
   template <typename T>
   using has_iterator_t = enable_if_t<HasIterator<T>::value, typename T::iterator>;
-} // namespace tools
+} // namespace tools_library

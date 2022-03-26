@@ -4,7 +4,7 @@
 
 #include <utility>
 
-namespace tools {
+namespace tools_library {
   template <typename F>
   struct FixPoint: F {
     FixPoint(F &&f) noexcept: F{ forward<F>(f) } {}
@@ -19,4 +19,4 @@ namespace tools {
   inline decltype(auto) make_fix_point(F &&f) {
     return FixPoint<F>{ forward<F>(f) };
   }
-} // namespace tools
+} // namespace tools_library

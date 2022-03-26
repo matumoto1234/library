@@ -1,5 +1,5 @@
 #pragma once
 
-namespace library_string {
+namespace string_library {
   using namespace std;
 }

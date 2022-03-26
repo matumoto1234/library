@@ -2,7 +2,7 @@
 
 #include "./base.hpp"
 
-namespace library_math {
+namespace math_library {
   constexpr ll totient(ll n) {
     ll res = n;
     for (ll i = 2; i * i <= n; i++) {
@@ -16,4 +16,4 @@ namespace library_math {
       res -= res / n;
     return res;
   }
-} // namespace library_math
+} // namespace math_library

@@ -5,7 +5,7 @@
 #include <queue>
 #include <vector>
 
-namespace library_graph {
+namespace graph_library {
   struct TopologicalSort {
     vector<vector<int>> G;
     vector<int> in_degree;
@@ -40,4 +40,4 @@ namespace library_graph {
       return res;
     }
   };
-} // namespace library_graph
+} // namespace graph_library

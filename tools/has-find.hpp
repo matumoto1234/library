@@ -4,7 +4,7 @@
 
 #include <cstddef>
 
-namespace tools {
+namespace tools_library {
   template <typename Container, typename T>
   class HasFind {
     static false_type check(...);
@@ -20,4 +20,4 @@ namespace tools {
 
   template <typename Container, typename T>
   static constexpr bool has_find_v = HasFind<Container, T>::value;
-} // namespace tools
+} // namespace tools_library

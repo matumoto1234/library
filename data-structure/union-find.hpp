@@ -6,7 +6,7 @@
 #include <numeric>
 #include <vector>
 
-namespace library_data_structure {
+namespace data_structure_library {
   template <typename T>
   class UnionFind {
     int grp_cnt, merge_cnt;
@@ -108,4 +108,4 @@ namespace library_data_structure {
       return res;
     }
   };
-} // namespace library_data_structure
+} // namespace data_structure_library

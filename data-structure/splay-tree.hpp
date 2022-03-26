@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace library_data_structure {
+namespace data_structure_library {
   template <typename T, T (*op)(T, T) = nullptr>
   struct SplayTree {
     struct node {
@@ -197,4 +197,4 @@ namespace library_data_structure {
       return { merge(merge(lroot, croot), rroot), ans };
     }
   };
-} // namespace library_data_structure
+} // namespace data_structure_library

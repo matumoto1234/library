@@ -5,7 +5,7 @@
 #include <numeric>
 #include <vector>
 
-namespace tools {
+namespace tools_library {
   template <typename Iterator>
   vector<int> sorted_index(Iterator first, Iterator last) {
     using T = remove_reference_t<decltype(*first)>;
@@ -17,4 +17,4 @@ namespace tools {
     });
     return res;
   }
-} // namespace tools
+} // namespace tools_library

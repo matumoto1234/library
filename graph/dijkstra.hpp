@@ -9,7 +9,7 @@
 #include <vector>
 
 
-namespace library_graph {
+namespace graph_library {
   template <typename Cost>
   struct Dijkstra {
     using Edge = typename WeightedGraph<Cost>::WeightedEdge;
@@ -62,4 +62,4 @@ namespace library_graph {
       return res;
     }
   };
-} // namespace library_graph
+} // namespace graph_library

@@ -7,7 +7,7 @@
 #include <numeric>
 #include <vector>
 
-namespace library_math {
+namespace math_library {
   class SegmentSieve {
     ll l, r, sqrt_r;
     vector<int> small_sieve;
@@ -67,4 +67,4 @@ namespace library_math {
       return res;
     }
   };
-}; // namespace library_math
+}; // namespace math_library

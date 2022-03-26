@@ -2,7 +2,7 @@
 
 #include "./base.hpp"
 
-namespace library_math {
+namespace math_library {
   constexpr ll extgcd(ll a, ll b, ll &x, ll &y) {
     if (b == 0) {
       x = 1;
@@ -13,4 +13,4 @@ namespace library_math {
     y = y - (a / b) * x;
     return d;
   }
-} // namespace library_math
+} // namespace math_library

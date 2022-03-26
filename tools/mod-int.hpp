@@ -7,7 +7,7 @@
 #include <optional>
 #include <utility>
 
-namespace tools {
+namespace tools_library {
   template <int m>
   class ModInt {
     using ll = long long;
@@ -185,4 +185,4 @@ namespace tools {
 
   using ModInt1000000007 = ModInt<1000000007>;
   using ModInt998244353 = ModInt<998244353>;
-} // namespace tools
+} // namespace tools_library

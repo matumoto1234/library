@@ -3,7 +3,7 @@
 using namespace std;
 
 #include "math/ceil-div.hpp"
-using namespace library_math;
+using namespace math_library;
 
 int main() {
   int n, k;

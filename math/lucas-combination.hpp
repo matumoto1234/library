@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace library_math {
+namespace math_library {
   struct LucasCombination {
     vector<vector<ll>> data;
     int MOD;
@@ -35,4 +35,4 @@ namespace library_math {
       return res;
     }
   };
-} // namespace library_math
+} // namespace math_library

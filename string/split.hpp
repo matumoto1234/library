@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace library_string {
+namespace string_library {
   vector<string> split(const string &str, const string &sep, const int &max_split = INT32_MAX) {
     vector<string> res;
     string t = "";
@@ -23,4 +23,4 @@ namespace library_string {
       res.emplace_back(t);
     return res;
   }
-} // namespace library_string
+} // namespace string_library

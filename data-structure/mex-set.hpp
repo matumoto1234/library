@@ -4,7 +4,7 @@
 
 #include <set>
 
-namespace library_data_structure {
+namespace data_structure_library {
   // verify:hhkb2020_C
   template <typename T = long long>
   struct MexSet {
@@ -73,4 +73,4 @@ namespace library_data_structure {
       }
     }
   };
-} // namespace library_data_structure
+} // namespace data_structure_library

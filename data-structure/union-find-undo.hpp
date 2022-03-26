@@ -8,7 +8,7 @@
 #include <tuple>
 #include <vector>
 
-namespace library_data_structure {
+namespace data_structure_library {
   // 経路圧縮なし
   class UnionFindUndo {
   private:
@@ -123,4 +123,4 @@ namespace library_data_structure {
     }
   };
 
-} // namespace library_data_structure
+} // namespace data_structure_library

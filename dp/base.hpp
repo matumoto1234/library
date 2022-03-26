@@ -1,5 +1,5 @@
 #pragma once
 
-namespace library_dp {
+namespace dp_library {
   using namespace std;
 }

@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace library_data_structure {
+namespace data_structure_library {
   // verify:ARC033_C
   template <typename T>
   class FenwickTree {
@@ -62,4 +62,4 @@ namespace library_data_structure {
       return lower_bound(w + 1);
     }
   };
-} // namespace library_data_structure
+} // namespace data_structure_library
