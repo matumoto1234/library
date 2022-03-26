@@ -2,8 +2,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "tools/mod-int.hpp"
-using namespace tools;
+#include "tools_library/mod-int.hpp"
+using namespace tools_library;
 
 // {{{ Templates
 

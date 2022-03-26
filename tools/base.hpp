@@ -1,5 +1,5 @@
 #pragma once
 
-namespace tools {
+namespace tools_library {
   using namespace std;
 }

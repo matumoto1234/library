@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-namespace tools {
+namespace tools_library {
   struct Sliced {
     static constexpr int init = INT32_MAX;
     Sliced() {}
@@ -49,4 +49,4 @@ namespace tools {
       return res;
     }
   };
-} // namespace tools
+} // namespace tools_library
