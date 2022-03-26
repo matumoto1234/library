@@ -4,8 +4,8 @@
 
 #include <cassert>
 #include <iostream>
-#include <utility>
 #include <optional>
+#include <utility>
 
 namespace tools {
   template <int m>
