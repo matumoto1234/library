@@ -10,6 +10,8 @@ namespace graph_library {
     struct EdgeInterface {
       virtual int &from() = 0;
       virtual int &to() = 0;
+      virtual const int &from() const = 0;
+      virtual const int &to() const = 0;
 
       // If you want to get high performance, should comment out below line.
       virtual ~EdgeInterface() = default;
@@ -31,13 +33,28 @@ namespace graph_library {
     bool operator<(const WeightedEdge &rhs) const {
       return cost_ < rhs.cost_;
     }
+
     int &from() override {
       return from_;
     }
+
+    const int &from() const override {
+      return from_;
+    }
+
     int &to() override {
       return to_;
     }
+
+    const int &to() const override {
+      return to_;
+    }
+
     Cost &cost() {
+      return cost_;
+    }
+
+    const Cost &cost() const {
       return cost_;
     }
   };
@@ -56,7 +73,15 @@ namespace graph_library {
       return from_;
     }
 
+    const int &from() const override {
+      return from_;
+    }
+
     int &to() override {
+      return to_;
+    }
+
+    const int &to() const override {
       return to_;
     }
   };
