@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace library_data_structure {
+namespace data_structure_library {
   template <typename T>
   struct CumulativeSum2D {
     vector<vector<T>> data;
@@ -28,4 +28,4 @@ namespace library_data_structure {
       return data[gy][gx] - data[gy][sx] - data[sy][gx] + data[sy][sx];
     }
   };
-} // namespace library_data_structure
+} // namespace data_structure_library

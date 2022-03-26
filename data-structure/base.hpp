@@ -1,5 +1,5 @@
 #pragma once
 
-namespace library_data_structure {
+namespace data_structure_library {
   using namespace std;
 }
