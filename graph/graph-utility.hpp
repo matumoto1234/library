@@ -5,7 +5,7 @@
 
 namespace graph_library {
   template <typename Cost>
-  WeightedGraph<Cost> reverse(const WeightedGraph<Cost> &g) {
+  WeightedGraph<Cost> reverse_edges(const WeightedGraph<Cost> &g) {
     const WeightedEdges<Cost> &edges = g.edges();
     WeightedGraph<Cost> rg(g.size());
     for (const WeightedEdge<Cost> &edge: edges) {
@@ -15,7 +15,7 @@ namespace graph_library {
     return rg;
   }
 
-  UnWeightedGraph reverse(const UnWeightedGraph &g) {
+  UnWeightedGraph reverse_edges(const UnWeightedGraph &g) {
     const UnWeightedEdges &edges = g.edges();
     UnWeightedGraph rg(g.size());
     for (const auto &edge: edges) {
