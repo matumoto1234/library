@@ -46,6 +46,22 @@ namespace graph_library {
       return cost_ < rhs.cost_;
     }
 
+    bool operator<=(const WeightedEdge<Cost> &rhs) const {
+      return cost_ <= rhs.cost_;
+    }
+
+    bool operator>(const WeightedEdge<Cost> &rhs) const {
+      return cost_ > rhs.cost_;
+    }
+
+    bool operator>=(const WeightedEdge<Cost> &rhs) const {
+      return cost_ >= rhs.cost_;
+    }
+
+    bool operator!=(const WeightedEdge<Cost> &rhs) const {
+      return from_ != rhs.from_ and to_ != rhs.to_ and cost_ != rhs.cost_;
+    }
+
     int &from() {
       return from_;
     }
@@ -79,6 +95,10 @@ namespace graph_library {
     UnWeightedEdge() = default;
     UnWeightedEdge(int to_): to_(to_) {}
     UnWeightedEdge(int from_, int to_): from_(from_), to_(to_) {}
+
+    bool operator!=(const UnWeightedEdge &rhs) const {
+      return from_ != rhs.from_ and to_ != rhs.to_;
+    }
 
     int &from() {
       return from_;
