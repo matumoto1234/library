@@ -7,30 +7,28 @@
 #include <vector>
 
 namespace graph_library {
-  namespace {
-    template <class T>
-    class EdgeInterface {
-      // TODO: Do implement constructor
-      // UnWeightedEdge(from, to)
-      // WeightedEdge  (from, to, cost)
-    public:
-      int &from() {
-        return static_cast<T &>(this)->from();
-      }
+  template <class T>
+  class EdgeInterface {
+    // TODO: Do implement constructor
+    // UnWeightedEdge(from, to)
+    // WeightedEdge  (from, to, cost)
+  public:
+    int &from() {
+      return static_cast<T &>(this)->from();
+    }
 
-      const int &from() const {
-        return static_cast<T &>(this)->from();
-      }
+    const int &from() const {
+      return static_cast<T &>(this)->from();
+    }
 
-      int &to() {
-        return static_cast<T &>(this)->to();
-      }
+    int &to() {
+      return static_cast<T &>(this)->to();
+    }
 
-      const int &to() const {
-        return static_cast<T &>(this)->to();
-      }
-    };
-  } // namespace
+    const int &to() const {
+      return static_cast<T &>(this)->to();
+    }
+  };
 
   template <typename Cost>
   class WeightedEdge: public EdgeInterface<WeightedEdge<Cost>> {
