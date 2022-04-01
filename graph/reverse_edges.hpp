@@ -4,22 +4,16 @@
 #include "./graph-type.hpp"
 
 namespace graph_library {
-  template <typename Cost>
-  WeightedGraph<Cost> reverse_edges(const WeightedGraph<Cost> &g) {
-    const WeightedEdges<Cost> &edges = g.edges();
-    WeightedGraph<Cost> rg(g.size());
-    for (const WeightedEdge<Cost> &edge: edges) {
-      rg.add_edge(edge.to(), edge.from(), edge.cost());
-    }
+  // want to use concept
 
-    return rg;
-  }
+  template <class Graph>
+  Graph reverse_edges(const Graph &g) {
+    const auto &edges = g.edges();
+    Graph rg(g.size());
 
-  UnWeightedGraph reverse_edges(const UnWeightedGraph &g) {
-    const UnWeightedEdges &edges = g.edges();
-    UnWeightedGraph rg(g.size());
-    for (const auto &edge: edges) {
-      rg.add_edge(edge.to(), edge.from());
+    for (auto edge: edges) {
+      swap(edge.from(), edge.to());
+      rg.add_edge(edge);
     }
 
     return rg;
