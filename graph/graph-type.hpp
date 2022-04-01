@@ -3,23 +3,37 @@
 #include "./base.hpp"
 
 #include <cassert>
+#include <type_traits>
 #include <vector>
 
 namespace graph_library {
   namespace {
-    struct EdgeInterface {
-      virtual int &from() = 0;
-      virtual int &to() = 0;
-      virtual const int &from() const = 0;
-      virtual const int &to() const = 0;
+    template <class T>
+    class EdgeInterface {
+      // TODO: Do implement constructor
+      // UnWeightedEdge(from, to)
+      // WeightedEdge  (from, to, cost)
+    public:
+      int &from() {
+        return static_cast<T &>(this)->from();
+      }
 
-      // If you want to get high performance, should comment out below line.
-      virtual ~EdgeInterface() = default;
+      const int &from() const {
+        return static_cast<T &>(this)->from();
+      }
+
+      int &to() {
+        return static_cast<T &>(this)->to();
+      }
+
+      const int &to() const {
+        return static_cast<T &>(this)->to();
+      }
     };
   } // namespace
 
   template <typename Cost>
-  struct WeightedEdge: public EdgeInterface {
+  class WeightedEdge: public EdgeInterface<WeightedEdge<Cost>> {
   private:
     int from_, to_;
     Cost cost_;
@@ -30,15 +44,15 @@ namespace graph_library {
     WeightedEdge(int to_, Cost cost_): to_(to_), cost_(cost_) {}
     WeightedEdge(int from_, int to_, Cost cost_): from_(from_), to_(to_), cost_(cost_) {}
 
-    bool operator<(const WeightedEdge &rhs) const {
+    bool operator<(const WeightedEdge<Cost> &rhs) const {
       return cost_ < rhs.cost_;
     }
 
-    int &from() override {
+    int &from() {
       return from_;
     }
 
-    const int &from() const override {
+    const int &from() const {
       return from_;
     }
 
@@ -46,7 +60,7 @@ namespace graph_library {
       return to_;
     }
 
-    const int &to() const override {
+    const int &to() const {
       return to_;
     }
 
@@ -60,7 +74,7 @@ namespace graph_library {
   };
 
 
-  struct UnWeightedEdge: public EdgeInterface {
+  class UnWeightedEdge: public EdgeInterface<UnWeightedEdge> {
   private:
     int from_, to_;
 
@@ -69,19 +83,19 @@ namespace graph_library {
     UnWeightedEdge(int to_): to_(to_) {}
     UnWeightedEdge(int from_, int to_): from_(from_), to_(to_) {}
 
-    int &from() override {
+    int &from() {
       return from_;
     }
 
-    const int &from() const override {
+    const int &from() const {
       return from_;
     }
 
-    int &to() override {
+    int &to() {
       return to_;
     }
 
-    const int &to() const override {
+    const int &to() const {
       return to_;
     }
   };
@@ -91,99 +105,52 @@ namespace graph_library {
 
   using UnWeightedEdges = vector<UnWeightedEdge>;
 
-  namespace {
-    template <typename Edge>
-    struct GraphInterface {
-    private:
-      using Edges = vector<Edge>;
 
-    public:
-      virtual int size() const = 0;
-      virtual Edge get_edge(int k) const = 0;
-      virtual Edges edges() const = 0;
-      virtual void pop_back_edge() = 0;
-      virtual vector<Edges> graph() const = 0;
-    };
-  } // namespace
-
-  template <typename Cost>
-  struct WeightedGraph: public GraphInterface<WeightedEdge<Cost>> {
-  private:
-    WeightedEdges<Cost> edges_;
-    vector<WeightedEdges<Cost>> graph_;
-    int size_;
-
-  public:
-    WeightedGraph(int N): graph_(N), size_(N) {}
-
-    void add_edge(int from, int to, Cost cost) {
-      graph_.at(from).emplace_back(to, cost);
-      edges_.emplace_back(from, to, cost);
-    }
-
-    // Number of vertices
-    int size() const {
-      return size_;
-    }
-
-    WeightedEdge<Cost> get_edge(int k) const {
-      return edges_.at(k);
-    }
-
-    WeightedEdges<Cost> edges() const {
-      return edges_;
-    }
-
-    void pop_back_edge() {
-      assert(not edges_.empty());
-
-      WeightedEdge<Cost> e = edges_.back();
-      edges_.pop_back();
-      graph_.at(e.from()).pop_back();
-    }
-
-    vector<WeightedEdges<Cost>> graph() const {
-      return graph_;
-    }
+  template <class Edge, bool is_extended_edge = is_base_of_v<EdgeInterface<Edge>, Edge>>
+  class Graph {
+    static_assert(is_extended_edge, "Edge is not extended edge interface class.");
   };
 
+  template <class Edge>
+  class Graph<Edge, true> {
+  public:
+    using Edges = vector<Edge>;
 
-  struct UnWeightedGraph: public GraphInterface<UnWeightedEdge> {
   private:
-    UnWeightedEdges edges_;
-    vector<UnWeightedEdges> graph_;
+    Edges edges_;
+    vector<Edges> graph_;
     int size_;
 
   public:
-    UnWeightedGraph(int N): graph_(N), size_(N) {}
+    Graph(int N): graph_(N), size_(N) {}
 
-    void add_edge(int from, int to) {
-      graph_.at(from).emplace_back(to);
-      edges_.emplace_back(from, to);
-    }
-
-    // Number of vertices
     int size() const {
       return size_;
     }
 
-    UnWeightedEdge get_edge(int k) const {
+    void add_edge(const Edge &edge) {
+      const int &from = edge.from();
+      graph_.at(from).push_back(edge);
+      edges_.push_back(edge);
+    }
+
+    Edge get_edge(int k) const {
       return edges_.at(k);
     }
 
-    UnWeightedEdges edges() const {
+    Edges edges() const {
       return edges_;
     }
 
     void pop_back_edge() {
       assert(not edges_.empty());
 
-      UnWeightedEdge e = edges_.back();
+      const Edge e = edges_.back();
       edges_.pop_back();
       graph_.at(e.from()).pop_back();
     }
 
-    vector<UnWeightedEdges> graph() const {
+    vector<Edges> graph() const {
       return graph_;
     }
   };
