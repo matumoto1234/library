@@ -73,7 +73,6 @@ namespace graph_library {
     }
   };
 
-
   class UnWeightedEdge: public EdgeInterface<UnWeightedEdge> {
   private:
     int from_, to_;
@@ -154,4 +153,9 @@ namespace graph_library {
       return graph_;
     }
   };
+
+  template <typename Cost>
+  using WeightedGraph = Graph<WeightedEdge<Cost>>;
+
+  using UnWeightedGraph = Graph<UnWeightedEdge>;
 } // namespace graph_library
