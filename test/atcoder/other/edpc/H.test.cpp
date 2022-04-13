@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "tools_library/mod-int.hpp"
+#include "tools/mod-int.hpp"
 using namespace tools_library;
 
 // {{{ Templates
