@@ -74,12 +74,13 @@ int main() {
   int V, E, r;
   cin >> V >> E >> r;
 
+  using Edge = WeightedEdge<ll>;
   WeightedGraph<ll> G(V);
   rep(i, E) {
     int s, t, d;
     cin >> s >> t >> d;
 
-    G.add_edge(s, t, d);
+    G.add_edge(Edge(s, t, d));
   }
 
   Dijkstra<ll> dists(G, r);
