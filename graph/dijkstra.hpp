@@ -1,7 +1,7 @@
 #pragma once
 
 #include "./base.hpp"
-#include "./weighted-graph.hpp"
+#include "./graph-type.hpp"
 
 #include <algorithm>
 #include <limits>
@@ -12,7 +12,7 @@
 namespace graph_library {
   template <typename Cost>
   struct Dijkstra {
-    using Edge = typename WeightedGraph<Cost>::WeightedEdge;
+    using Edge = WeightedEdge<Cost>;
     vector<Cost> ds;
     vector<int> bs;
 
@@ -28,13 +28,16 @@ namespace graph_library {
       Q.emplace(start, ds[start]);
 
       while (!Q.empty()) {
-        auto [v, dist] = Q.top();
+        Edge p = Q.top();
+        int v = p.to();
         Q.pop();
 
-        if (ds[v] < dist)
+        if (ds[v] < p.cost())
           continue;
 
-        for (auto [to, cost]: G[v]) {
+        for (Edge e: G[v]) {
+          int to = e.to();
+          Cost cost = e.cost();
           if (ds[to] > ds[v] + cost) {
             ds[to] = ds[v] + cost;
             bs[to] = v;
