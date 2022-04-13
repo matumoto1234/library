@@ -70,7 +70,7 @@ namespace graph_library {
       return from_;
     }
 
-    int &to() override {
+    int &to() {
       return to_;
     }
 
