@@ -23,4 +23,4 @@ jobs:
     - name: Run snippet-generator
       working-directory: ./.snippet-generator
       run: |
-        ./src/main.py
+        python ./src/main.py
