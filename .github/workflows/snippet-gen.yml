@@ -1,0 +1,27 @@
+name: snippet generate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GH_PAT }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v1
+
+    - name: Install dependencies
+      run: pip3 install -U online-judge-verify-helper
+
+    - name: Run snippet-generator
+      working-directory: ./snippet-generator
+      run: |
+        ./src/main.py
+
+

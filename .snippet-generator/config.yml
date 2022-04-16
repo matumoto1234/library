@@ -1,0 +1,30 @@
+# absolute path or relative path from main.py
+# The '/' of end is not care.
+paths: 
+  - '../data-structure'
+  - '../dp'
+  - '../geometry'
+  - '../graph'
+  - '../math'
+  - '../string'
+  - '../tools'
+
+prefix: 'cpp'
+
+# can use regular expression
+excludeLines:
+  - '#pragma once'
+  - '#line*'
+
+excludeExtensions:
+  - '.out'
+  - '.exe'
+
+# prefixNameCase: 'Snake' | 'Camel' | 'Kebab' | 'Pascal' | ''
+prefixNameCase: 'Snake'
+
+jsonIndent: 2
+
+useOjBundle: True
+
+scope: 'cpp'
