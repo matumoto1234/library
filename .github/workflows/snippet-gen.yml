@@ -20,7 +20,7 @@ jobs:
       run: pip3 install -U online-judge-verify-helper
 
     - name: Run snippet-generator
-      working-directory: ./snippet-generator
+      working-directory: ./.snippet-generator
       run: |
         ./src/main.py
 
