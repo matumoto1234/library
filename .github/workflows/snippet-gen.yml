@@ -16,6 +16,9 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v1
 
+    - name: Install dependencies
+      run: pip3 install -U online-judge-verify-helper
+
     - name: 
       run: |
         pwd
