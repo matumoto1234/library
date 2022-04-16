@@ -1,10 +1,17 @@
-# Write absolute paths
+# absolute path or relative path from main.py
 # The '/' of end is not care.
 paths: 
-  # - '/home/matumoto/code_box/code_box_sub/Products/snippet-generator/test_dir'
+  - '../data-structure'
+  - '../dp'
+  - '../geometry'
+  - '../graph'
+  - '../math'
+  - '../string'
+  - '../tools'
 
 prefix: 'cpp'
 
+# can use regular expression
 excludeLines:
   - '#pragma once'
   - '#line*'
@@ -19,3 +26,5 @@ prefixNameCase: 'Snake'
 jsonIndent: 2
 
 useOjBundle: True
+
+scope: 'cpp'
