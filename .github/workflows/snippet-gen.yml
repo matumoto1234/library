@@ -27,3 +27,13 @@ jobs:
       working-directory: ./.snippet-generator
       run: |
         python ./src/main.py
+
+    - name: Push
+      run: |
+        pwd
+        ls
+        git status
+        git log --graph
+        git add .
+        git commit -m "Run snippet generator"
+        git push origin HEAD:${GITHUB_REF}
