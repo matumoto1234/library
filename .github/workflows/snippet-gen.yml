@@ -19,11 +19,9 @@ jobs:
     - name: Install dependencies
       run: pip3 install -U online-judge-verify-helper
 
-    - name: 
+    - name: Run snippet-generator
+      working-directory: ./snippet-generator
       run: |
-        pwd
-        ls
-        cd .snippet-generator
         ./src/main.py
 
 
