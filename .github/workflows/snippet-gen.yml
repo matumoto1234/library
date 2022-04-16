@@ -1,0 +1,26 @@
+name: snippet generate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GH_PAT }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v1
+
+    - name: 
+      run: |
+        pwd
+        ls
+        cd .snippet-generator
+        ./src/main.py
+
+
