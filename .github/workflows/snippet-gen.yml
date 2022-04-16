@@ -16,10 +16,6 @@ jobs:
       with:
         python-version: '3.8'
 
-    # - name: Pip install
-    #   working-directory: ./.snippet-generator
-    #   run: pip install -r requirements.txt
-
     - name: Install dependencies
       run: pip3 install -U online-judge-verify-helper
 
