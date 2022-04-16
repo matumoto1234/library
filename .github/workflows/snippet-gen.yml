@@ -9,19 +9,26 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        token: ${{ secrets.GH_PAT }}
+      uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v1
+    - name: Setup python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.8'
 
     - name: Install dependencies
       run: pip3 install -U online-judge-verify-helper
 
     - name: Run snippet-generator
-      working-directory: ./snippet-generator
+      working-directory: ./.snippet-generator
       run: |
-        ./src/main.py
+        python ./src/main.py
 
-
+    - name: Push
+      run: |
+        git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
+        git config --global user.name "${GITHUB_ACTOR}"
+        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git add .snippet-generator/template.code-snippets.json
+        git commit -m "Run snippet generator"
+        git push origin HEAD:${GITHUB_REF}
