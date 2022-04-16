@@ -1,13 +1,6 @@
 # Write absolute paths
 # The '/' of end is not care.
 paths: 
-  - '/home/matumoto/code_box/library/data-structure'
-  - '/home/matumoto/code_box/library/dp'
-  - '/home/matumoto/code_box/library/geometry'
-  - '/home/matumoto/code_box/library/graph'
-  - '/home/matumoto/code_box/library/math'
-  - '/home/matumoto/code_box/library/string'
-  - '/home/matumoto/code_box/library/tools'
   # - '/home/matumoto/code_box/code_box_sub/Products/snippet-generator/test_dir'
 
 prefix: 'cpp'
