@@ -23,22 +23,13 @@ namespace geometry_library {
     return Point(p.real() * k, p.imag() * k);
   }
 
-  Point rotate_cw(const Real &radian, Point p, const Point &origin = Point(0, 0)) {
-    p -= origin;
-    Real r = cosl(radian) * p.real() + sinl(-radian) * p.imag();
-    Real i = sinl(radian) * p.real() + cosl(-radian) * p.imag();
-    p = Point(r, i);
-    p += origin;
-    return p;
-  }
+  Point rotate_ccw(const Point &p, const Real &radian, const Point center = Point(0, 0)) {
+    Point np(p - center);
+    Real r = cos(radian) * np.real() + sin(-radian) * np.imag();
+    Real i = sin(radian) * np.real() + cos(-radian) * np.imag();
 
-  Point rotate_ccw(const Real &radian, Point p, const Point &origin = Point(0, 0)) {
-    p -= origin;
-    Real r = cosl(radian) * p.real() + sinl(-radian) * p.real();
-    Real i = sinl(radian) * p.imag() + cosl(-radian) * p.imag();
-    p = Point(r, i);
-    p += origin;
-    return p;
+    Point rotated = Point(r, i);
+    return rotated + center;
   }
 
   bool equals(const Point &a, const Point &b) {
