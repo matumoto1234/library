@@ -7,6 +7,6 @@
 
 namespace geometry_library {
   Point projection(const Line &l, const Point &p) {
-    // Real
+    // TODO:やる
   }
 } // namespace geometry_library
