@@ -1,12 +1,14 @@
 #pragma once
 
-#include "./base.hpp"
-#include "./line.hpp"
-#include "./point.hpp"
 #include "./product.hpp"
+#include "./segment.hpp"
+
+#include <cassert>
 
 namespace geometry_library {
-  Point projection(const Line &l, const Point &p) {
-    // TODO:やる
+  Point projection(const Segment &s, const Point &p) {
+    Point a = s.first;
+    Point b = s.second;
+    return a + (b - a) * dot(p - a, b - a) / norm(b - a);
   }
 } // namespace geometry_library
