@@ -6,7 +6,6 @@
 #include <cassert>
 #include <numeric>
 #include <string>
-#include <variant>
 #include <vector>
 
 namespace string_library {
