@@ -4,10 +4,15 @@ from typing import List
 def trimming_empty_lines(lines: List[str]) -> List[str]:
     idx = 0
     while lines[idx] == '':
+
+        # if the file includes only empty lines
+        if idx == len(lines):
+            return []
+
         idx += 1
 
     result_lines: List[str] = []
-    
+
     for i in range(idx, len(lines)):
         result_lines.append(lines[i])
 
