@@ -2,6 +2,9 @@ name: verify
 
 on:
   push:
+    paths:
+      - '**.cpp'
+      - '**.hpp'
   workflow_dispatch:
 
 jobs:
