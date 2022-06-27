@@ -12,73 +12,75 @@ namespace data_structure_library {
   // 経路圧縮なし
   class UnionFindUndo {
   private:
-    int grp_cnt, merge_cnt;
-    vector<int> siz, par;
-    stack<tuple<int, int, int>> history;
+    // number of vertices
+    int n_;
+
+    vector<int> sizes_, parents_;
+
+    // <index, parent(index), size(index)>
+    stack<tuple<int, int, int>> history_;
 
   public:
-    UnionFindUndo(int N): grp_cnt(N), merge_cnt(0), siz(N, 1), par(N) {
-      iota(par.begin(), par.end(), 0);
+    UnionFindUndo(int N): sizes_(N, 1), parents_(N) {
+      iota(parents_.begin(), parents_.end(), 0);
     }
 
     // 根（そのグループの識別番号）
     int root(int x) {
-      if (x == par[x])
+      if (x == parents_[x])
         return x;
-      return root(par[x]);
-    }
-
-    // 連結成分の個数
-    int group_count() {
-      return grp_cnt;
-    }
-
-    int merge_count() {
-      return merge_cnt;
+      return root(parents_[x]);
     }
 
     int size(int x) {
-      return siz[root(x)];
+      return sizes_[root(x)];
     }
 
     bool same(int x, int y) {
       return root(x) == root(y);
     }
 
-    bool merge(int x, int y) {
+    // size(x) < size(y): -1
+    // not merged:         0
+    // size(x) > size(y): +1
+    int merge(int x, int y) {
       x = root(x);
       y = root(y);
       if (x == y)
-        return false;
-      if (siz[x] < siz[y])
+        return 0;
+
+      int result = +1;
+      if (sizes_[x] < sizes_[y]) {
         swap(x, y);
-      history.emplace(make_tuple(x, par[x], siz[x]));
-      history.emplace(make_tuple(y, par[y], siz[y]));
-      siz[x] += siz[y];
-      par[y] = x;
-      grp_cnt--;
-      merge_cnt++;
-      return true;
+        result = -1;
+      }
+
+      history_.emplace(tuple(x, parents_[x], sizes_[x]));
+      history_.emplace(tuple(y, parents_[y], sizes_[y]));
+      sizes_[x] += sizes_[y];
+      parents_[y] = x;
+      return result;
     }
 
     bool undo() {
-      if (history.empty())
+      if (history_.empty())
         return false;
-      auto [x, x_par, x_siz] = history.top();
-      history.pop();
-      auto [y, y_par, y_siz] = history.top();
-      history.pop();
 
-      par[x] = x_par;
-      siz[x] = x_siz;
-      par[y] = y_par;
-      siz[y] = y_siz;
+      auto [x, x_parent, x_size] = history_.top();
+      history_.pop();
+      auto [y, y_parent, y_size] = history_.top();
+      history_.pop();
+
+      parents_[x] = x_parent;
+      sizes_[x] = x_size;
+      parents_[y] = y_parent;
+      sizes_[y] = y_size;
       return true;
     }
 
     void clear_history() {
-      while (!history.empty()) {
-        history.pop();
+      while (not history_.empty()) {
+        history_.pop();
       }
     }
 
@@ -86,41 +88,20 @@ namespace data_structure_library {
       while (undo()) {}
     }
 
-    // Θ(N)
+    // Θ(N log(N))
     vector<vector<int>> groups() {
-      int n = par.size();
-      vector<vector<int>> grps(n);
-      for (int i = 0; i < n; i++) {
+      vector<vector<int>> grps(n_);
+      for (int i = 0; i < n_; i++) {
         grps[root(i)].emplace_back(i);
       }
+
       vector<vector<int>> res;
-      res.reserve(group_count());
-      for (int i = 0; i < n; i++) {
+      for (int i = 0; i < n_; i++) {
         if (grps[i].empty())
           continue;
         res.emplace_back(grps[i]);
       }
       return res;
     }
-
-    // Θ(NlogN)
-    // 2つのunion_findでi番目の頂点と同じ連結成分であるものの個数(i番目の頂点を含む)
-    vector<int> connect_count(UnionFindUndo tree) {
-      map<pair<int, int>, int> mp;
-
-      int n = par.size();
-      for (int i = 0; i < n; i++) {
-        pair<int, int> p = make_pair(root(i), tree.root(i));
-        mp[p]++;
-      }
-
-      vector<int> res(n);
-      for (int i = 0; i < n; i++) {
-        pair<int, int> p = make_pair(root(i), tree.root(i));
-        res[i] = mp[p];
-      }
-      return res;
-    }
   };
-
 } // namespace data_structure_library
