@@ -1,7 +1,12 @@
-name: snippet generate
+name: generate snippet
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - '**.cpp'
+      - '**.hpp'
+
 
 jobs:
   generate:
