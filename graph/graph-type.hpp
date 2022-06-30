@@ -139,6 +139,7 @@ namespace graph_library {
     int size_;
 
   public:
+    Graph() = default;
     Graph(int N): graph_(N), size_(N) {}
 
     int size() const {
