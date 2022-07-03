@@ -241,4 +241,25 @@ namespace graph_library {
   using WeightedGraph = Graph<WeightedEdge<Cost>>;
 
   using UnWeightedGraph = Graph<UnWeightedEdge>;
+
+  // graph utility
+  template <typename Cost>
+  WeightedGraph<Cost> to_weighted(const UnWeightedGraph &ug, Cost weight = 1) {
+    WeightedGraph<Cost> wg(ug.size());
+    auto edges = ug.edges();
+    for (auto edge: edges) {
+      wg.add_edge(WeightedEdge<Cost>(edge.from(), edge.to(), weight));
+    }
+    return wg;
+  }
+
+  template <typename Cost>
+  UnWeightedGraph to_unweighted(const WeightedGraph<Cost> &wg) {
+    UnWeightedGraph ug(wg.size());
+    auto edges = wg.edges();
+    for (auto edge: edges) {
+      ug.add_edge(UnWeightedEdge(edge.from(), edge.to()));
+    }
+    return ug;
+  }
 } // namespace graph_library
