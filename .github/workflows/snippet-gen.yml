@@ -12,6 +12,7 @@ on:
 
 jobs:
   generate:
+    needs: verify
     runs-on: ubuntu-latest
 
     steps:
