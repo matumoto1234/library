@@ -1,70 +1,55 @@
 #pragma once
 
 #include "./base.hpp"
+#include "./graph-type.hpp"
 
 #include <algorithm>
-#include <vector>
 
 namespace graph_library {
-  template <typename T>
+  template <typename Cost>
   class BellmanFord {
-  public:
-    struct edge {
-      int from, to;
-      T cost;
-      edge() {}
-      edge(int f, int t, T c): from(f), to(t), cost(c) {}
-    };
-
-  private:
-    bool neg_cycle;
-    bool neg_cycle_to_goal;
+    WeightedGraph<Cost> graph_;
+    WeightedEdges<Cost> edges_;
+    vector<Cost> distances_;
+    vector<int> befores_;
+    int start_, goal_;
+    bool has_neg_cycle_, has_neg_cycle_to_goal_;
 
   public:
-    int V;
-    vector<edge> es;
-    vector<T> ds;
-    vector<int> bs;
+    BellmanFord(const WeightedGraph<Cost> &graph, int start, int goal = -1): graph_(graph), start_(start), goal_(goal), has_neg_cycle_(false), has_neg_cycle_to_goal_(false) {
+      int n = graph_.size();
 
-    BellmanFord(int N): V(N), neg_cycle(false), neg_cycle_to_goal(false) {}
+      if (goal_ == -1)
+        goal_ = n - 1;
 
-    void add_edge(int from, int to, T cost) {
-      es.emplace_back(from, to, cost);
-    }
+      edges_ = graph_.edges();
 
-    bool neg() {
-      return neg_cycle;
-    }
+      distances_.assign(n, inf());
+      befores_.assign(n, -1);
 
-    bool neg_to_goal() {
-      return neg_cycle_to_goal;
-    }
+      distances_.at(start) = 0;
 
-    T inf() {
-      return numeric_limits<T>::max() / 2;
-    }
+      for (int i = 0; i < 2 * n; i++) {
+        for (auto edge: edges_) {
+          int from = edge.from();
+          int to = edge.to();
+          Cost cost = edge.cost();
 
-    void build(int s, int g = -1) {
-      if (g == -1)
-        g = V - 1;
-      ds.assign(V, inf());
-      bs.assign(V, -1);
-      ds[s] = 0;
-
-      for (int i = 0; i < 2 * V; i++) {
-        for (edge e: es) {
-          if (ds[e.from] >= inf())
-            continue;
-          if (ds[e.to] <= ds[e.from] + e.cost)
+          if (distances_.at(from) >= inf())
             continue;
 
-          ds[e.to] = ds[e.from] + e.cost;
-          bs[e.from] = e.to;
-          if (i >= V - 1) {
-            ds[e.to] = -inf();
-            neg_cycle = true;
-            if (e.to == g) {
-              neg_cycle_to_goal = true;
+          if (distances_.at(to) <= distances_.at(from) + cost)
+            continue;
+
+          distances_.at(to) = distances_.at(from) + cost;
+          befores_.at(from) = to;
+
+          if (i >= n - 1) {
+            distances_.at(to) = -inf();
+            has_neg_cycle_ = true;
+
+            if (to == goal_) {
+              has_neg_cycle_to_goal_ = true;
               return;
             }
           }
@@ -72,22 +57,35 @@ namespace graph_library {
       }
     }
 
-    T operator[](int k) {
-      return ds[k];
+    static constexpr Cost inf() {
+      return numeric_limits<Cost>::max() / 2;
+    }
+
+    bool has_negative_cycle() const {
+      return has_neg_cycle_;
+    }
+
+    bool has_negative_cycle_to_goal_() const {
+      return has_neg_cycle_to_goal_;
+    }
+
+    Cost operator[](int k) {
+      return distances_.at(k);
     }
 
     vector<int> restore(int to) {
-      vector<int> res;
-      if (bs[to] == -1) {
-        res.emplace_back(to);
-        return res;
+      vector<int> path;
+      if (befores_.at(to) == -1) {
+        path.emplace_back(to);
+        return path;
       }
-      while (bs[to] != -1) {
-        res.emplace_back(to);
-        to = bs[to];
+
+      while (befores_.at(to) != -1) {
+        path.emplace_back(to);
+        to = befores_.at(to);
       }
-      reverse(res.begin(), res.end());
-      return res;
+      reverse(path.begin(), path.end());
+      return path;
     }
   };
 } // namespace graph_library
