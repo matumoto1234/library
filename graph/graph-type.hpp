@@ -43,23 +43,47 @@ namespace graph_library {
     WeightedEdge(int from_, int to_, Cost cost_): from_(from_), to_(to_), cost_(cost_) {}
 
     bool operator<(const WeightedEdge<Cost> &rhs) const {
-      return cost_ < rhs.cost_;
+      if (cost_ != rhs.cost_)
+        return cost_ < rhs.cost_;
+
+      if (from_ != rhs.from_)
+        return from_ < rhs.from_;
+
+      return to_ < rhs.to_;
     }
 
     bool operator<=(const WeightedEdge<Cost> &rhs) const {
-      return cost_ <= rhs.cost_;
+      if (cost_ != rhs.cost_)
+        return cost_ <= rhs.cost_;
+
+      if (from_ != rhs.from_)
+        return from_ <= rhs.from_;
+
+      return to_ <= rhs.to_;
     }
 
     bool operator>(const WeightedEdge<Cost> &rhs) const {
-      return cost_ > rhs.cost_;
+      if (cost_ != rhs.cost_)
+        return cost_ > rhs.cost_;
+
+      if (from_ != rhs.from_)
+        return from_ > rhs.from_;
+
+      return to_ > rhs.to_;
     }
 
     bool operator>=(const WeightedEdge<Cost> &rhs) const {
-      return cost_ >= rhs.cost_;
+      if (cost_ != rhs.cost_)
+        return cost_ >= rhs.cost_;
+
+      if (from_ != rhs.from_)
+        return from_ >= rhs.from_;
+
+      return to_ >= rhs.to_;
     }
 
     bool operator!=(const WeightedEdge<Cost> &rhs) const {
-      return from_ != rhs.from_ and to_ != rhs.to_ and cost_ != rhs.cost_;
+      return from_ != rhs.from_ or to_ != rhs.to_ or cost_ != rhs.cost_;
     }
 
     int &from() {
@@ -85,6 +109,12 @@ namespace graph_library {
     const Cost &cost() const {
       return cost_;
     }
+
+    template <typename T>
+    friend ostream &operator<<(ostream &os, const WeightedEdge<T> rhs) {
+      os << lhs.from_ << ' ' << lhs.to_ << ' ' << lhs.cost_;
+      return os;
+    }
   };
 
   class UnWeightedEdge: public EdgeInterface<UnWeightedEdge> {
@@ -96,8 +126,36 @@ namespace graph_library {
     UnWeightedEdge(int to_): to_(to_) {}
     UnWeightedEdge(int from_, int to_): from_(from_), to_(to_) {}
 
+    bool operator<(const UnWeightedEdge &rhs) const {
+      if (from_ != rhs.from_)
+        return from_ < rhs.from_;
+
+      return to_ < rhs.to_;
+    }
+
+    bool operator<=(const UnWeightedEdge &rhs) const {
+      if (from_ != rhs.from_)
+        return from_ <= rhs.from_;
+
+      return to_ <= rhs.to_;
+    }
+
+    bool operator>(const UnWeightedEdge &rhs) const {
+      if (from_ != rhs.from_)
+        return from_ > rhs.from_;
+
+      return to_ > rhs.to_;
+    }
+
+    bool operator>=(const UnWeightedEdge &rhs) const {
+      if (from_ != rhs.from_)
+        return from_ >= rhs.from_;
+
+      return to_ >= rhs.to_;
+    }
+
     bool operator!=(const UnWeightedEdge &rhs) const {
-      return from_ != rhs.from_ and to_ != rhs.to_;
+      return from_ != rhs.from_ or to_ != rhs.to_;
     }
 
     int &from() {
