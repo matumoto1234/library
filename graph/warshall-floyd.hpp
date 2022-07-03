@@ -1,73 +1,85 @@
 #pragma once
 
 #include "./base.hpp"
+#include "./graph-type.hpp"
 
 #include <limits>
-#include <vector>
 
 namespace graph_library {
-  template <typename T>
-  struct WarshallFloyd {
-    vector<vector<T>> ds;
-    vector<vector<int>> ns;
+  template <typename Cost>
+  class WarshallFloyd {
+    WeightedGraph<Cost> graph_;
+    vector<vector<Cost>> distances_;
+    vector<vector<int>> nexts_;
+    bool has_neg_cycle_;
 
-    T inf() {
-      return numeric_limits<T>::max() / 2;
-    }
+  public:
+    WarshallFloyd(const WeightedGraph<Cost> &graph): graph_(graph), has_neg_cycle_(false) {
+      int n = graph_.size();
+      distances_.assign(n, vector<Cost>(n, inf()));
+      for (int i = 0; i < n; i++) {
+        distances_[i][i] = 0;
+      }
 
-    WarshallFloyd(int V): ds(V, vector<T>(V, inf())) {
-      for (int i = 0; i < V; i++)
-        ds[i][i] = 0;
-    }
-
-    void add_edge(int from, int to, T cost) {
-      ds[from][to] = cost;
-    }
-
-    void build() {
-      int V = ds.size();
-
-      ns.resize(V, vector<int>(V));
-      for (int i = 0; i < V; i++) {
-        for (int j = 0; j < V; j++) {
-          ns[i][j] = j;
+      nexts_.assign(n, vector<int>(n, 0));
+      for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+          nexts_[i][j] = j;
         }
       }
 
-      for (int k = 0; k < V; k++) {
-        for (int i = 0; i < V; i++) {
-          for (int j = 0; j < V; j++) {
-            if (ds[i][k] == inf() or ds[k][j] == inf())
+      auto edges = graph_.edges();
+      for(auto edge: edges) {
+        int from = edge.from();
+        int to = edge.to();
+        Cost cost = edge.cost();
+
+        // if there are multiple edges, use the minimum cost edge.
+        distances_.at(from).at(to) = min(distances_.at(from).at(to), cost);
+      }
+
+      for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+          for (int j = 0; j < n; j++) {
+            if (distances_[i][k] == inf() or distances_[k][j] == inf()) {
               continue;
-            if (ds[i][j] > ds[i][k] + ds[k][j]) {
-              ds[i][j] = ds[i][k] + ds[k][j];
-              ns[i][j] = ns[i][k];
+            }
+
+            if (distances_[i][j] > distances_[i][k] + distances_[k][j]) {
+              distances_[i][j] = distances_[i][k] + distances_[k][j];
+              nexts_[i][j] = nexts_[i][k];
             }
           }
         }
       }
-    }
 
-    vector<T> &operator[](int k) {
-      return ds[k];
-    }
-
-    bool neg_cycle() {
-      int V = ds.size();
-      for (int i = 0; i < V; i++) {
-        if (ds[i][i] < 0)
-          return true;
+      for (int i = 0; i < n; i++) {
+        if (distances_[i][i] < 0) {
+          has_neg_cycle_ = true;
+          break;
+        }
       }
-      return true;
+    }
+
+    static constexpr Cost inf() {
+      return numeric_limits<Cost>::max() / 2;
+    }
+
+    vector<Cost> &operator[](int k) {
+      return distances_.at(k);
+    }
+
+    bool has_negative_cycle() const {
+      return has_neg_cycle_;
     }
 
     vector<int> restore(int s, int g) {
-      vector<int> res;
-      for (int v = s; v != g; v = ns[v][g]) {
-        res.emplace_back(v);
+      vector<int> path;
+      for (int v = s; v != g; v = nexts_.at(v).at(g)) {
+        path.emplace_back(v);
       }
-      res.emplace_back(g);
-      return res;
+      path.emplace_back(g);
+      return path;
     }
   };
 } // namespace graph_library
