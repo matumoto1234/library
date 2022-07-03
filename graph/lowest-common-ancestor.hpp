@@ -1,65 +1,77 @@
 #pragma once
 
 #include "./base.hpp"
+#include "./graph-type.hpp"
 
-#include <vector>
+#include <stack>
+#include <tuple>
 
 namespace graph_library {
   class LowestCommonAncestor {
-  private:
-    int h;
-    vector<vector<int>> G, par;
-    vector<int> dep;
-
-    void dfs(int v, int p, int d) {
-      par[0][v] = p;
-      dep[v] = d;
-      for (int u: G[v])
-        if (u != p)
-          dfs(u, v, d + 1);
-    }
+    UnWeightedGraph graph_;
+    int height_, root_;
+    vector<vector<int>> doubling_parents_;
+    vector<int> depths_;
 
   public:
-    LowestCommonAncestor(int n): G(n), dep(n) {
-      h = 1;
-      while ((1 << h) <= n)
-        h++;
-      par.assign(h, vector<int>(n, -1));
-    }
+    LowestCommonAncestor(const UnWeightedGraph &graph, int root = 0): graph_(graph), root_(root) {
+      int n = graph_.size();
 
-    void add_edge(int u, int v) {
-      G[u].emplace_back(v);
-      // G[v].emplace_back(u);
-    }
+      height_ = 1;
+      while ((1 << height_) <= n) {
+        height_++;
+      }
 
-    void build(int root = 0) {
-      int n = G.size();
-      dfs(root, -1, 0);
-      for (int k = 0; k + 1 < h; k++)
-        for (int v = 0; v < n; v++)
-          if (~par[k][v])
-            par[k + 1][v] = par[k][par[k][v]];
+      doubling_parents_.assign(height_, vector<int>(n, -1));
+      depths_.assign(n, 0);
+
+      vector<UnWeightedEdges> adj_list = graph_.graph();
+      // <v, par, dep>
+      stack<tuple<int, int, int>> st;
+      st.emplace(root, -1, 0);
+      while (not st.empty()) {
+        auto [v, par, dep] = st.top();
+        st.pop();
+
+        doubling_parents_.at(0).at(v) = par;
+        depths_.at(v) = dep;
+        for (UnWeightedEdge e: adj_list.at(v)) {
+          int to = e.to();
+          if (to != par) {
+            st.emplace(to, v, dep + 1);
+          }
+        }
+      }
+
+      for (int k = 0; k + 1 < height_; k++) {
+        for (int v = 0; v < n; v++) {
+          if (doubling_parents_.at(k).at(v) != -1) {
+            int kth_pow_par = doubling_parents_.at(k).at(v);
+            doubling_parents_.at(k + 1).at(v) = doubling_parents_.at(k).at(kth_pow_par);
+          }
+        }
+      }
     }
 
     int query(int u, int v) {
-      if (dep[u] > dep[v])
+      if (depths_.at(u) > depths_.at(v))
         swap(u, v);
-      for (int k = 0; k < h; k++)
-        if ((dep[v] - dep[u]) >> k & 1)
-          v = par[k][v];
+      for (int k = 0; k < height_; k++)
+        if ((depths_.at(v) - depths_.at(u)) >> k & 1)
+          v = doubling_parents_.at(k).at(v);
 
       if (u == v)
         return u;
 
-      for (int k = h - 1; k >= 0; k--)
-        if (par[k][u] != par[k][v])
-          u = par[k][u], v = par[k][v];
+      for (int k = height_ - 1; k >= 0; k--)
+        if (doubling_parents_.at(k).at(u) != doubling_parents_.at(k).at(v))
+          u = doubling_parents_.at(k).at(u), v = doubling_parents_.at(k).at(v);
 
-      return par[0][u];
+      return doubling_parents_.at(0).at(u);
     }
 
     int distance(int u, int v) {
-      return dep[u] + dep[v] - dep[query(u, v)] * 2;
+      return depths_.at(u) + depths_.at(v) - depths_[query(u, v)] * 2;
     }
   };
 } // namespace graph_library
