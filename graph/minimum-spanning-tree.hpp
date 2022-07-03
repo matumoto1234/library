@@ -5,7 +5,6 @@
 #include "./graph-type.hpp"
 
 #include <queue>
-#include <vector>
 
 namespace graph_library {
 
