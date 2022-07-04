@@ -1,120 +1,101 @@
 #pragma once
 
 #include "./base.hpp"
-
-#include <queue>
-#include <vector>
+#include "./graph-type.hpp"
+#include "./reverse-edges.hpp"
 
 namespace graph_library {
   class StronglyConnectedComponent {
-  private:
-    // sccは強連結成分ごとの集合
-    vector<vector<int>> G, rG, scc;
-    vector<int> groups, post_order;
-    vector<bool> arrived;
-    vector<pair<int, int>> edges;
-    int cnt;
-
-    void dfs(int idx) {
-      arrived[idx] = true;
-      for (int to: G[idx]) {
-        if (arrived[to])
-          continue;
-        dfs(to);
-      }
-      post_order.emplace_back(idx);
-    }
-
-    void rdfs(int idx, int num) {
-      arrived[idx] = true;
-      groups[idx] = num;
-      for (int to: rG[idx]) {
-        if (arrived[to])
-          continue;
-        rdfs(to, num);
-      }
-    }
+    UnWeightedGraph graph_, scc_graph_;
+    vector<vector<int>> scc_;
+    vector<bool> used_;
+    vector<int> post_order_, group_;
 
   public:
-    StronglyConnectedComponent(int V): G(V), rG(V) {}
+    StronglyConnectedComponent(const UnWeightedGraph &graph): graph_(graph) {
+      int n = graph_.size();
 
-    void add_edge(int from, int to) {
-      G[from].emplace_back(to);
-      rG[to].emplace_back(from);
-      edges.emplace_back(from, to);
-    }
+      // get post order
+      used_.assign(n, false);
+      auto adj_list = graph_.graph();
 
-    void build() {
-      int V = G.size();
-      arrived.assign(V, false);
-
-      for (int i = 0; i < V; i++) {
-        if (arrived[i])
+      for (int i = 0; i < n; i++) {
+        if (used_[i])
           continue;
-        dfs(i);
+
+        dfs(adj_list, i);
       }
 
-      cnt = 0;
-      groups.assign(V, 0);
-      arrived.assign(V, false);
-      scc.resize(V);
+      int scc_cnt = 0;
+      group_.assign(n, 0);
+      used_.assign(n, false);
 
-      for (int i = V - 1; i >= 0; i--) {
-        int idx = post_order[i];
-        if (arrived[idx])
+      UnWeightedGraph rgraph = reverse_edges(graph_);
+      vector<UnWeightedEdges> radj_list = rgraph.graph();
+
+      // scc grouping
+      for (int i = n - 1; i >= 0; i--) {
+        int idx = post_order_[i];
+        if (used_[idx])
           continue;
-        rdfs(idx, cnt);
-        cnt++;
+
+        rdfs(radj_list, idx, scc_cnt);
+        scc_cnt++;
       }
 
-      for (int i = 0; i < V; i++) {
-        scc[groups[i]].emplace_back(i);
-      }
-    }
+      scc_.assign(scc_cnt, vector<int>(0));
+      scc_graph_ = UnWeightedGraph(scc_cnt);
 
-    // 強連結成分をトポロジカルソートしたもの
-    vector<vector<int>> topological_sort() {
-      vector<vector<int>> graph(cnt);
-      vector<int> in_degree(cnt);
-      for (int i = 0; i < static_cast<int>(edges.size()); i++) {
-        auto [from, to] = edges[i];
-        if (same(from, to))
-          continue;
-        graph[groups[from]].emplace_back(groups[to]);
-        in_degree[groups[to]]++;
-      }
+      for (int i = 0; i < n; i++) {
+        // build scc
+        scc_[group_[i]].push_back(i);
 
-      queue<int> q;
-      for (int i = 0; i < cnt; i++) {
-        if (in_degree[i] == 0)
-          q.push(i);
-      }
+        // build scc graph
+        for (auto e: adj_list[i]) {
+          bool is_same_scc = group_[i] == group_[e.to()];
+          if (is_same_scc)
+            continue;
 
-      vector<vector<int>> res;
-      while (!q.empty()) {
-        int v = q.front();
-        q.pop();
-        res.emplace_back(scc[v]);
-        for (int to: graph[v]) {
-          in_degree[to]--;
-          if (in_degree[to] == 0)
-            q.push(to);
+          scc_graph_.add_edge(UnWeightedEdge(group_[i], group_[e.to()]));
         }
       }
-
-      return res;
     }
 
-    int size() {
-      return cnt;
+    vector<int> group() const {
+      return group_;
     }
 
-    bool same(int a, int b) {
-      return groups[a] == groups[b];
+    vector<vector<int>> scc() const {
+      return scc_;
     }
 
-    int operator[](int k) {
-      return groups[k];
+    UnWeightedGraph scc_graph() const {
+      return scc_graph_;
+    }
+
+  private:
+    void dfs(const vector<UnWeightedEdges> &adj_list, int idx) {
+      used_[idx] = true;
+      for (const auto &e: adj_list[idx]) {
+        const int &to = e.to();
+        if (used_[to])
+          continue;
+
+        dfs(adj_list, to);
+      }
+      post_order_.emplace_back(idx);
+    }
+
+    void rdfs(const vector<UnWeightedEdges> &adj_list, int idx, int group_id) {
+      used_[idx] = true;
+      group_[idx] = group_id;
+      for (const auto &e: adj_list[idx]) {
+        const int &to = e.to();
+        if (used_[to])
+          continue;
+
+        rdfs(adj_list, to, group_id);
+      }
     }
   };
 } // namespace graph_library
