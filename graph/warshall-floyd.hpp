@@ -29,7 +29,7 @@ namespace graph_library {
       }
 
       auto edges = graph_.edges();
-      for(auto edge: edges) {
+      for (auto edge: edges) {
         int from = edge.from();
         int to = edge.to();
         Cost cost = edge.cost();
