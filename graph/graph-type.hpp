@@ -3,6 +3,7 @@
 #include "./base.hpp"
 
 #include <cassert>
+#include <iostream>
 #include <type_traits>
 #include <vector>
 
@@ -111,8 +112,8 @@ namespace graph_library {
     }
 
     template <typename T>
-    friend ostream &operator<<(ostream &os, const WeightedEdge<T> rhs) {
-      os << lhs.from_ << ' ' << lhs.to_ << ' ' << lhs.cost_;
+    friend ostream &operator<<(ostream &os, const WeightedEdge<T> &rhs) {
+      os << rhs.from_ << ' ' << rhs.to_ << ' ' << rhs.cost_;
       return os;
     }
   };
@@ -172,6 +173,11 @@ namespace graph_library {
 
     const int &to() const {
       return to_;
+    }
+
+    friend ostream &operator<<(ostream &os, const UnWeightedEdge &rhs) {
+      os << rhs.from_ << ' ' << rhs.to_;
+      return os;
     }
   };
 
