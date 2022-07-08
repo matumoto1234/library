@@ -91,4 +91,3 @@ int main() {
     cout << bridge << newl;
   }
 }
-
