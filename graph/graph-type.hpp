@@ -39,9 +39,9 @@ namespace graph_library {
 
   public:
     WeightedEdge() = default;
-    WeightedEdge(int to_): to_(to_) {}
-    WeightedEdge(int to_, Cost cost_): to_(to_), cost_(cost_) {}
-    WeightedEdge(int from_, int to_, Cost cost_): from_(from_), to_(to_), cost_(cost_) {}
+    WeightedEdge(int to): to_(to) {}
+    WeightedEdge(int to, Cost cost): to_(to), cost_(cost) {}
+    WeightedEdge(int from, int to, Cost cost): from_(from), to_(to), cost_(cost) {}
 
     bool operator<(const WeightedEdge<Cost> &rhs) const {
       if (cost_ != rhs.cost_)
