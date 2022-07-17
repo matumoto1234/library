@@ -33,7 +33,7 @@ jobs:
     - name: Pull gh-pages branch
       run: |
         git config --global user.email ${{ secrets.EMAIL }}
-        git config --global user.name ${ GITHUB_ACTOR }
+        git config --global user.name $GITHUB_ACTOR
         git switch -c 'gh-pages'
         git fetch
         git merge --allow-unrelated-histories origin/gh-pages
