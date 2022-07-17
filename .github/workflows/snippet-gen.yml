@@ -15,8 +15,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout with submodule
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GH_PAT }}
+        submodules: true
 
     - name: Setup python
       uses: actions/setup-python@v3
@@ -30,6 +34,7 @@ jobs:
       working-directory: ./.snippet-generator
       run: |
         python ./src/main.py
+
     - name: Push
       run: |
         git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
