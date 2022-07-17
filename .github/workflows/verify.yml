@@ -30,6 +30,12 @@ jobs:
         path: ~/.verify-helper
         key: ${{ runner.os }}-verify-${{ hashFiles('**/timestamps.remote.json') }}
 
+    - name: Pull gh-pages branch
+      run: |
+        git switch -c 'gh-pages'
+        git pull origin gh-pages
+        git switch -
+
     - name: Run tests
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
