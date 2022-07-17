@@ -33,7 +33,8 @@ jobs:
     - name: Pull gh-pages branch
       run: |
         git switch -c 'gh-pages'
-        git pull origin gh-pages
+        git fetch
+        git merge --allow-unrelated-histories origin/gh-pages
         git switch -
 
     - name: Run tests
