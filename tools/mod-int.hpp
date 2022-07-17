@@ -172,7 +172,7 @@ namespace tools_library {
 
     friend istream &operator>>(istream &is, ModInt &rhs) {
       ll temp;
-      cin >> temp;
+      is >> temp;
       rhs = ModInt(temp);
       return is;
     }
