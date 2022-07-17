@@ -1,0 +1,3 @@
+[submodule ".snippet-generator"]
+	path = .snippet-generator
+	url = git@github.com:matumoto1234/snippet-generator.git
