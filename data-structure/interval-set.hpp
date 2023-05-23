@@ -3,124 +3,155 @@
 #include "./base.hpp"
 
 #include <cassert>
+#include <iostream>
+#include <numeric>
 #include <set>
+#include <utility>
+#include <vector>
 
 namespace data_structure_library {
+  // verify:ABC001_D
   // verify:ABC228_D
+
+  /**
+   * @brief [l, r)の区間を管理する
+   *        2つの区間[l1, r1), [l2, r2)は重複、連結していない
+   *        任意の整数xを含む区間の数は高々1つ
+   */
   template <typename T = long long>
   struct IntervalSet {
     set<pair<T, T>> s;
 
     IntervalSet() {
-      s.emplace(-inf(), -inf());
-      s.emplace(inf(), inf());
+      s.emplace(-inf(), -inf() + 1);
+      s.emplace(inf(), inf() + 1);
     }
 
     T inf() const {
       return numeric_limits<T>::max() / 2;
     }
 
+    bool is_inf(const pair<T, T> &p) const {
+      return p.first == inf() or p.second == inf() or p.first == -inf() or p.second == -inf();
+    }
+
     bool empty() const {
-      return static_cast<int>(s.size()) == 2;
+      return s.size() <= 2;
     }
 
+    // contains { (l, r) | l <= x < r }
     bool contains(T x) const {
-      if (empty())
+      if (empty()) {
         return false;
-      auto [lower, upper] = *prev(s.lower_bound(pair(x + 1, x + 1)));
-      return lower <= x and x <= upper;
+      }
+
+      auto [l, r] = *(this->find(x));
+      return l <= x and x < r;
     }
 
-    // max({ (lower, upper) | lower <= x <= upper })
-    pair<T, T> get(T x) const {
-      assert(contains(x));
-      return *prev(s.lower_bound(pair(x + 1, x + 1)));
+    // find { (l, r) | l <= x < r }
+    typename set<pair<T, T>>::iterator find(int x) const {
+      // 1以上の正整数nについてpair(x, x+n) < pair(x+1, x+2)が成り立つ
+      // また、pair(x, x+n) < a < pair(x+1, x+2)なるaは存在しないので
+      // contains(x)が成り立つならばlower_boundを取ったprevにxが含まれている
+      return prev(s.lower_bound(pair(x + 1, x + 2)));
     }
 
-    bool insert(T x) {
-      if (contains(x))
-        return false;
-      auto nit = s.lower_bound(pair(x + 1, x + 1));
-      auto it = prev(nit);
-      auto [l, u] = *it;
-      auto [nl, nu] = *nit;
-      if (u == x - 1 and nl == x + 1) {
-        s.erase(it);
-        s.erase(nit);
-        s.emplace(l, nu);
-      } else if (u == x - 1 and nl != x + 1) {
-        s.erase(it);
+    pair<typename set<pair<T, T>>::iterator, bool> insert(T x) {
+      return insert(pair(x, x + 1));
+    }
+
+    // insert [l, r)
+    // もし[l, r)に重複or連続する区間が存在するならばそれらを削除する
+    // 計算量 : ならし対数時間
+    // 返り値 : std::set::insertに準拠
+    pair<typename set<pair<T, T>>::iterator, bool> insert(pair<T, T> p) {
+      assert(p.first < p.second);
+
+      auto l_itr = find(p.first);
+      while (intersect(*l_itr, p) or continuous(*l_itr, p)) {
+        p = extend_interval(*l_itr, p);
+        s.erase(l_itr);
+        l_itr = find(p.first);
+      }
+
+      auto r_itr = find(p.second);
+      while (intersect(*r_itr, p) or continuous(*r_itr, p)) {
+        p = extend_interval(*r_itr, p);
+        s.erase(r_itr);
+        r_itr = find(p.second);
+      }
+
+      return s.insert(p);
+    }
+
+    // erase { (l, r) | l <= x < r }
+    void erase_interval(T x) {
+      if (not contains(x)) {
+        return;
+      }
+
+      auto it = find(x);
+      s.erase(it);
+    }
+
+    // { (l, r) | l <= x < r } => { (l, x), (x+1, r) | l < x && x+1 < r}
+    void cut(T x) {
+      if (not contains(x)) {
+        return;
+      }
+
+      auto it = find(x);
+      auto [l, r] = *it;
+      s.erase(it);
+      if (l < x) {
         s.emplace(l, x);
-      } else if (u != x - 1 and nl == x + 1) {
-        s.erase(nit);
-        s.emplace(x, nu);
-      } else if (u != x - 1 and nl != x + 1) {
-        s.emplace(x, x);
       }
-      return true;
-    }
-
-    bool insert(T x, T y) {
-      if (x > y)
-        swap(x, y);
-      bool contains_x = contains(x);
-      bool contains_y = contains(y);
-      if (!contains_x and !contains_y) {
-        s.emplace(x, y);
-      } else if (!contains_x and contains_y) {
-        auto yit = prev(s.lower_bound(pair(y + 1, y + 1)));
-        auto [yl, yu] = *yit;
-        s.erase(yit);
-        s.emplace(x, yu);
-      } else if (contains_x and !contains_y) {
-        auto xit = prev(s.lower_bound(pair(x + 1, x + 1)));
-        auto [xl, xu] = *xit;
-        s.erase(xit);
-        s.emplace(xl, y);
-      } else {
-        auto xit = prev(s.lower_bound(pair(x + 1, x + 1)));
-        auto yit = prev(s.lower_bound(pair(y + 1, y + 1)));
-        if (xit == yit)
-          return false;
-        auto [xl, xu] = *xit;
-        auto [yl, yu] = *yit;
-        s.erase(xit);
-        s.erase(yit);
-        s.emplace(xl, yu);
+      if (x + 1 < r) {
+        s.emplace(x + 1, r);
       }
-      return true;
     }
 
-    bool insert(pair<T, T> p) {
-      return insert(p.first, p.second);
+    template <typename T1>
+    friend ostream &operator<<(ostream &os, const IntervalSet<T1> &rhs) {
+      os << "{";
+      bool is_first = true;
+      for (const pair<T, T> &p: rhs.s) {
+        if (rhs.is_inf(p)) {
+          continue;
+        }
+        if (not is_first) {
+          os << ", ";
+        }
+        is_first = false;
+        os << "[" << p.first << "," << p.second << ")";
+      }
+      os << "}";
+      return os;
     }
 
-    // { (l, u) | l <= x <= u } => { (l, x - 1), (x + 1, u) | l <= x <= u }
-    bool erase(T x) {
-      assert(x != -inf() and x != inf());
-      if (!contains(x))
-        return false;
-      auto it = prev(s.lower_bound(pair(x + 1, x + 1)));
-      auto [l, u] = *it;
-      s.erase(it);
-      if (x != l)
-        s.emplace(l, x - 1);
-      if (x != u)
-        s.emplace(x + 1, u);
-      return true;
+    pair<T, T> extend_interval(const pair<T, T> &p1, const pair<T, T> &p2) const {
+      assert(intersect(p1, p2) or continuous(p1, p2));
+
+      vector<T> a{ p1.first, p1.second, p2.first, p2.second };
+      sort(a.begin(), a.end());
+      return { a.front(), a.back() };
     }
 
-    // { (l, u) | l <= x <= u } => { (l, x), (x, u) | l <= x <= u }
-    bool cut(T x) {
-      assert(x != -inf() and x != inf());
-      if (!contains(x))
-        return false;
-      auto it = prev(s.lower_bound(pair(x + 1, x + 1)));
-      auto [l, u] = *it;
-      s.erase(it);
-      s.emplace(l, x);
-      s.emplace(x, u);
-      return true;
+    bool intersect(pair<T, T> p1, pair<T, T> p2) const {
+      if (p1 > p2) {
+        swap(p1, p2);
+      }
+      const auto &[a, b] = p1;
+      const auto &[c, d] = p2;
+      return (a <= c and c < b) or (c <= a and a < d);
+    }
+
+    bool continuous(pair<T, T> p1, pair<T, T> p2) const {
+      if (p1 > p2) {
+        swap(p1, p2);
+      }
+      return p1.second == p2.first;
     }
   };
 } // namespace data_structure_library
