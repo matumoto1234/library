@@ -20,7 +20,7 @@ namespace matumoto {
       return numeric_limits<Cost>::max() / 2;
     }
 
-    Dijkstra(WeightedGraph<Cost> g, int start): ds(g.size(), inf()), bs(g.size(), -1) {
+    Dijkstra(vector<pair<Cost, int>> g, int start): ds(g.size(), inf()), bs(g.size(), -1) {
       assert(0 <= start and start < g.size());
       auto G = g.graph();
       priority_queue<Edge, vector<Edge>, greater<Edge>> Q;

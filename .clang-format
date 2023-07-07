@@ -198,7 +198,7 @@ BreakBeforeTernaryOperators: true
 
 # 使用するブレークコンストラクタイニシャライザスタイル: BeforeColon | BeforeComma | AfterColon
 # clang-format: 5
-BreakConstructorInitializers: AfterColon
+BreakConstructorInitializers: BeforeColon
 
 
 # 使用する継承リストのスタイル: BeforeColon | BeforeComma | AfterColon | AfterComma
@@ -233,7 +233,7 @@ CompactNamespaces: false
 
 # コンストラクター初期化子リストと継承リストのインデントに使用する文字数: <Unsigned>
 # clang-format: 3.7
-ConstructorInitializerIndentWidth: 0
+ConstructorInitializerIndentWidth: 2
 
 
 # trueの場合、ブレースリストをC ++ 11ブレースリストに最適な形式に設定する: treu | false
@@ -446,7 +446,7 @@ ObjCSpaceBeforeProtocolList: false
 
 # 使用するパックコンストラクタイニシャライザスタイル: Never | BinPack | CurrentLine | NextLine
 # clang-format: 14
-# PackConstructorInitializers: NextLine
+PackConstructorInitializers: CurrentLine
 
 
 

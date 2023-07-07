@@ -8,13 +8,13 @@
 namespace matumoto {
   template <typename Cost>
   class WarshallFloyd {
-    WeightedGraph<Cost> graph_;
+    vector<pair<Cost, int>> graph_;
     vector<vector<Cost>> distances_;
     vector<vector<int>> nexts_;
     bool has_neg_cycle_;
 
   public:
-    WarshallFloyd(const WeightedGraph<Cost> &graph): graph_(graph), has_neg_cycle_(false) {
+    WarshallFloyd(const vector<pair<Cost, int>> &graph): graph_(graph), has_neg_cycle_(false) {
       int n = graph_.size();
       distances_.assign(n, vector<Cost>(n, inf()));
       for (int i = 0; i < n; i++) {

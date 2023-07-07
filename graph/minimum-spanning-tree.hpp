@@ -10,12 +10,12 @@ namespace matumoto {
 
   template <typename Cost>
   struct MinimumSpanningTree {
-    WeightedGraph<Cost> graph_;
-    WeightedGraph<Cost> mst_;
-    MinimumSpanningTree(const WeightedGraph<Cost> &graph): graph_(graph) {}
+    vector<pair<Cost, int>> graph_;
+    vector<pair<Cost, int>> mst_;
+    MinimumSpanningTree(const vector<pair<Cost, int>> &graph): graph_(graph) {}
 
     Cost kruskal() {
-      mst_ = WeightedGraph<Cost>(graph_.size()); // init
+      mst_ = vector<pair<Cost, int>>(graph_.size()); // init
       if (graph_.size() == 0) {
         return Cost(0);
       }
@@ -43,7 +43,7 @@ namespace matumoto {
     }
 
     Cost prim() {
-      mst_ = WeightedGraph<Cost>(graph_.size()); // init
+      mst_ = vector<pair<Cost, int>>(graph_.size()); // init
       if (graph_.size() == 0) {
         return Cost(0);
       }
