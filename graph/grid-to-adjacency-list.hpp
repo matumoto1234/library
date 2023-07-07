@@ -3,6 +3,7 @@
 #include "base.hpp"
 
 #include <string>
+#include <vector>
 
 namespace matumoto {
   // grid graph -> adjacency list
