@@ -5,7 +5,7 @@ using namespace std;
 
 
 #include "string/huffman.hpp"
-using namespace string_library;
+using namespace matumoto;
 
 
 // {{{ Templates

@@ -6,7 +6,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace tools_library {
+namespace matumoto {
   // begin,endを持つ構造体
   template <typename Iterator>
   class Range {
@@ -41,4 +41,4 @@ namespace tools_library {
   decltype(auto) make_reversed_range(T &&container) noexcept {
     return make_range(rbegin(container), rend(container));
   }
-} // namespace tools_library
+} // namespace matumoto

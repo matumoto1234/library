@@ -5,7 +5,7 @@
 
 #include <algorithm>
 
-namespace graph_library {
+namespace matumoto {
   class LowLink {
     UnWeightedGraph graph_;
     vector<UnWeightedEdges> adj_list_;
@@ -69,4 +69,4 @@ namespace graph_library {
         articulations_.emplace_back(idx);
     }
   };
-} // namespace graph_library
+} // namespace matumoto

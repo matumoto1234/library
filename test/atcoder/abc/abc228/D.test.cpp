@@ -14,7 +14,7 @@ int main() {
   int q;
   cin >> q;
 
-  data_structure_library::IntervalSet s;
+  matumoto::IntervalSet s;
 
   constexpr ll mod = 1 << 20;
   vector<ll> a(mod, -1);

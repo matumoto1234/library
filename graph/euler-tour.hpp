@@ -3,7 +3,7 @@
 #include "./base.hpp"
 #include "./graph-type.hpp"
 
-namespace graph_library {
+namespace matumoto {
   class EulerTour {
     vector<int> in_time_, out_time_, depths_, parents_, edge_table_;
 
@@ -74,4 +74,4 @@ namespace graph_library {
       return res;
     }
   };
-} // namespace graph_library
+} // namespace matumoto

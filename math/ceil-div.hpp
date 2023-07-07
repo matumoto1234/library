@@ -4,9 +4,9 @@
 
 #include <cassert>
 
-namespace math_library {
+namespace matumoto {
   constexpr ll ceil_div(ll n, ll d) {
     assert(d != 0);
     return n / d + (((n ^ d) >= 0) and (n % d));
   }
-} // namespace math_library
+} // namespace matumoto

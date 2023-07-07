@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-namespace string_library {
+namespace matumoto {
   // recommend { MOD:2^61-1, base:random }
   template <typename Container, long long base = 998244353, long long mod = (1LL << 61) - 1>
   class RollingHash {
@@ -71,7 +71,7 @@ namespace string_library {
       inv_.assign(n + 1, 0);
 
       ull accum_pow = 1;
-      inv_[n] = mod_pow(math_library::modinv(llbase(), ullmod()), n);
+      inv_[n] = mod_pow(matumoto::modinv(llbase(), ullmod()), n);
 
       for (int i = 0; i < n; i++) {
         int ri = n - i - 1;
@@ -140,4 +140,4 @@ namespace string_library {
       return raw_.at(idx) < rhs.at(idx);
     }
   };
-} // namespace string_library
+} // namespace matumoto

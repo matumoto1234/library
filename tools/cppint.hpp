@@ -6,7 +6,7 @@
 #include <cassert>
 #include <string>
 
-namespace tools_library {
+namespace matumoto {
   namespace cpp_int_helper {
     namespace mp = boost::multiprecision;
 
@@ -83,4 +83,4 @@ namespace tools_library {
   } // namespace cpp_int_helper
   using namespace cpp_int_helper;
   using cint = boost::multiprecision::cpp_int;
-} // namespace tools_library
+} // namespace matumoto

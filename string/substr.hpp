@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace string_library {
+namespace matumoto {
   string substr(const string &s, int l, int r) {
     string res = "";
     for (int i = l; i < r; i++) {
@@ -12,4 +12,4 @@ namespace string_library {
     }
     return res;
   }
-} // namespace string_library
+} // namespace matumoto

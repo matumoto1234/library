@@ -1,5 +1,5 @@
 #pragma once
 
-namespace string_library {
+namespace matumoto {
   using namespace std;
 }

@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <type_traits>
 
-namespace tools_library {
+namespace matumoto {
   // array or vector or deque or string
   template <typename Container>
   constexpr Container reversed(const Container &c) {
@@ -62,4 +62,4 @@ namespace tools_library {
       return res;
     }
   }
-} // namespace tools_library
+} // namespace matumoto

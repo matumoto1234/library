@@ -7,7 +7,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace graph_library {
+namespace matumoto {
   template <class T>
   class EdgeInterface {
     // TODO: Do implement constructor
@@ -241,4 +241,4 @@ namespace graph_library {
   using WeightedGraph = Graph<WeightedEdge<Cost>>;
 
   using UnWeightedGraph = Graph<UnWeightedEdge>;
-} // namespace graph_library
+} // namespace matumoto

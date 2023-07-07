@@ -3,7 +3,7 @@
 using namespace std;
 
 #include "math/ceil-div.hpp"
-using namespace math_library;
+using namespace matumoto;
 
 int main() {
   int n, k;

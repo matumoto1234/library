@@ -6,7 +6,7 @@
 
 // WIP
 
-namespace math_library {
+namespace matumoto {
   template <typename T>
   struct matrix {
     vector<vector<T>> dat;
@@ -37,4 +37,4 @@ namespace math_library {
     // }
     // return res;
   }
-} // namespace math_library
+} // namespace matumoto

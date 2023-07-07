@@ -10,8 +10,8 @@
 #include <unordered_map>
 #include <utility>
 
-namespace string_library {
-  class HuffmanEdge: public graph_library::EdgeInterface<HuffmanEdge> {
+namespace matumoto {
+  class HuffmanEdge: public matumoto::EdgeInterface<HuffmanEdge> {
     int from_, to_, bit_;
 
   public:
@@ -52,7 +52,7 @@ namespace string_library {
 
 
   class HuffmanCoding {
-    graph_library::Graph<HuffmanEdge> binary_tree_;
+    matumoto::Graph<HuffmanEdge> binary_tree_;
     unordered_map<int, vector<bool>> huffman_code_;
     unordered_map<char, int> ch_to_idx_, frequency_;
     unordered_map<int, char> idx_to_ch_;
@@ -102,7 +102,7 @@ namespace string_library {
         pq.emplace(/*count=*/0, nodes_count /*to 0-indexed*/ - 1);
       }
 
-      binary_tree_ = graph_library::Graph<HuffmanEdge>(nodes_count);
+      binary_tree_ = matumoto::Graph<HuffmanEdge>(nodes_count);
 
       constexpr int LEFT_BIT = 0;
       constexpr int RIGHT_BIT = 1;
@@ -126,7 +126,7 @@ namespace string_library {
       dfs(binary_tree_.graph(), /*root=*/idx - 1, /*not exist node=*/-1);
     }
 
-    graph_library::Graph<HuffmanEdge> binary_tree() const {
+    matumoto::Graph<HuffmanEdge> binary_tree() const {
       return binary_tree_;
     }
 
@@ -151,4 +151,4 @@ namespace string_library {
       return frequency_;
     }
   };
-} // namespace string_library
+} // namespace matumoto

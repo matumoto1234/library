@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace math_library {
+namespace matumoto {
   template <typename T>
   vector<vector<T>> PartitionTable(int n, int k) {
     vector<vector<T>> dp(n + 1, vector<T>(k + 1));
@@ -19,4 +19,4 @@ namespace math_library {
     }
     return dp;
   }
-} // namespace math_library
+} // namespace matumoto

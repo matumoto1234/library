@@ -3,7 +3,7 @@
 #include "./base.hpp"
 #include "graph-type.hpp"
 
-namespace graph_library {
+namespace matumoto {
   template <typename Cost>
   WeightedGraph<Cost> to_weighted(const UnWeightedGraph &graph, const Cost &init) {
     WeightedGraph<Cost> res(graph.size());
@@ -16,4 +16,4 @@ namespace graph_library {
 
     return res;
   }
-} // namespace graph_library
+} // namespace matumoto

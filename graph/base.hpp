@@ -1,5 +1,5 @@
 #pragma once
 
-namespace graph_library {
+namespace matumoto {
   using namespace std;
 }

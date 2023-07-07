@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace string_library {
+namespace matumoto {
   vector<string> split(const string &str, const string &sep, const int &max_split = INT32_MAX) {
     vector<string> res;
     string t = "";
@@ -23,4 +23,4 @@ namespace string_library {
       res.emplace_back(t);
     return res;
   }
-} // namespace string_library
+} // namespace matumoto

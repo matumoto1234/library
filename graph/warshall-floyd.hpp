@@ -5,7 +5,7 @@
 
 #include <limits>
 
-namespace graph_library {
+namespace matumoto {
   template <typename Cost>
   class WarshallFloyd {
     WeightedGraph<Cost> graph_;
@@ -82,4 +82,4 @@ namespace graph_library {
       return path;
     }
   };
-} // namespace graph_library
+} // namespace matumoto

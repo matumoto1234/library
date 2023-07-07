@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-namespace tools_library {
+namespace matumoto {
   namespace int128 {
     __int128_t parse(const string &s) {
       __int128_t res = 0;
@@ -108,4 +108,4 @@ namespace tools_library {
   } // namespace int128
   using namespace int128;
   using i128 = __int128_t;
-} // namespace tools_library
+} // namespace matumoto

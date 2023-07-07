@@ -9,7 +9,7 @@
 #include <utility>
 #include <vector>
 
-namespace data_structure_library {
+namespace matumoto {
   // verify:ABC001_D
   // verify:ABC228_D
 
@@ -154,4 +154,4 @@ namespace data_structure_library {
       return p1.second == p2.first;
     }
   };
-} // namespace data_structure_library
+} // namespace matumoto

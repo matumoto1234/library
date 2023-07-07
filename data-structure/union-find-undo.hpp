@@ -7,7 +7,7 @@
 #include <tuple>
 #include <vector>
 
-namespace data_structure_library {
+namespace matumoto {
   // 経路圧縮なし
   class UnionFindUndo {
   private:
@@ -103,4 +103,4 @@ namespace data_structure_library {
       return res;
     }
   };
-} // namespace data_structure_library
+} // namespace matumoto

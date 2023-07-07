@@ -5,8 +5,8 @@
 #include "./point.hpp"
 #include "./product.hpp"
 
-namespace geometry_library {
+namespace matumoto {
   Point projection(const Line &l, const Point &p) {
     // Real
   }
-} // namespace geometry_library
+} // namespace matumoto

@@ -3,7 +3,7 @@
 using namespace std;
 
 #include "graph/minimum-spanning-tree.hpp"
-using namespace graph_library;
+using namespace matumoto;
 
 // {{{ Templates
 

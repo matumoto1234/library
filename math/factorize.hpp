@@ -2,7 +2,7 @@
 
 #include <vector>
 
-namespace math_library {
+namespace matumoto {
   vector<ll> factorize(ll n) {
     vector<ll> res;
     for (ll i = 2; i * i <= n; i++) {
@@ -15,4 +15,4 @@ namespace math_library {
       res.emplace_back(n);
     return res;
   }
-} // namespace math_library
+} // namespace matumoto

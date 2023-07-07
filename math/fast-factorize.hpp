@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <vector>
 
-namespace math_library {
+namespace matumoto {
   namespace inner {
     using u32 = uint32_t;
     using u64 = uint64_t;
@@ -228,4 +228,4 @@ namespace math_library {
     std::sort(res.begin(), res.end());
     return res;
   }
-} // namespace math_library
+} // namespace matumoto

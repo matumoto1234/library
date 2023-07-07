@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace math_library {
+namespace matumoto {
   vector<int> totient_table(int n) {
     vector<int> euler(n + 1);
     for (int i = 0; i <= n; i++) {
@@ -19,4 +19,4 @@ namespace math_library {
     }
     return euler;
   }
-} // namespace math_library
+} // namespace matumoto

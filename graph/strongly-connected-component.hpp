@@ -4,7 +4,7 @@
 #include "./graph-type.hpp"
 #include "./reverse-edges.hpp"
 
-namespace graph_library {
+namespace matumoto {
   template <typename Graph>
   class StronglyConnectedComponent {
     Graph scc_graph_;
@@ -105,4 +105,4 @@ namespace graph_library {
       }
     }
   };
-} // namespace graph_library
+} // namespace matumoto

@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace math_library {
+namespace matumoto {
   struct DivisorTable {
     vector<int> smallest_ps;
     DivisorTable(int N): smallest_ps(N + 1, 1) {}
@@ -54,4 +54,4 @@ namespace math_library {
       return smallest_ps[i];
     }
   };
-} // namespace math_library
+} // namespace matumoto

@@ -6,7 +6,7 @@
 #include <stack>
 #include <tuple>
 
-namespace graph_library {
+namespace matumoto {
   class LowestCommonAncestor {
     UnWeightedGraph graph_;
     int height_, root_;
@@ -74,4 +74,4 @@ namespace graph_library {
       return depths_.at(u) + depths_.at(v) - depths_[query(u, v)] * 2;
     }
   };
-} // namespace graph_library
+} // namespace matumoto

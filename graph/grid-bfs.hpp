@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-namespace graph_library {
+namespace matumoto {
   vector<vector<int>> grid_bfs(vector<string> &s, char start, const string &wall = "#") {
     constexpr int dy[] = { 0, 1, 0, -1 }, dx[] = { 1, 0, -1, 0 };
     int h = s.size(), w = s[0].size();
@@ -37,4 +37,4 @@ namespace graph_library {
     }
     return res;
   }
-} // namespace graph_library
+} // namespace matumoto

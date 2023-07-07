@@ -1,5 +1,5 @@
 #pragma once
 
-namespace dp_library {
+namespace matumoto {
   using namespace std;
 }

@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-namespace geometry_library {
+namespace matumoto {
   using namespace std;
   using Real = double;
 
@@ -20,4 +20,4 @@ namespace geometry_library {
   inline bool equals(Real a, Real b) {
     return sign(a - b) == 0;
   }
-} // namespace geometry_library
+} // namespace matumoto

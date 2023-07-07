@@ -5,7 +5,7 @@
 
 #include <vector>
 
-namespace tools_library {
+namespace matumoto {
   // verify:AOJ_ALDS1_5_D
   template <typename T>
   long long inversion(vector<T> vs) {
@@ -25,4 +25,4 @@ namespace tools_library {
     }
     return res;
   }
-} // namespace tools_library
+} // namespace matumoto

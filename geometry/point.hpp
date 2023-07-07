@@ -4,7 +4,7 @@
 
 #include <complex>
 
-namespace geometry_library {
+namespace matumoto {
   using Point = complex<Real>;
 
   istream &operator>>(istream &is, Point &p) {
@@ -44,4 +44,4 @@ namespace geometry_library {
   bool equals(const Point &a, const Point &b) {
     return equals(a.real(), b.real()) and equals(a.imag(), b.imag());
   }
-} // namespace geometry_library
+} // namespace matumoto

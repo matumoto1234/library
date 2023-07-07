@@ -5,7 +5,7 @@
 
 #include <algorithm>
 
-namespace graph_library {
+namespace matumoto {
   template <typename Cost>
   class BellmanFord {
     WeightedGraph<Cost> graph_;
@@ -88,4 +88,4 @@ namespace graph_library {
       return path;
     }
   };
-} // namespace graph_library
+} // namespace matumoto

@@ -69,14 +69,14 @@ constexpr char newl = '\n';
 // }}} Templates
 
 
-namespace string_library {
+namespace matumoto {
   using namespace std;
 }
 
 #include <string>
 #include <vector>
 
-namespace string_library {
+namespace matumoto {
   vector<string> split(const string &str, const string &sep, const int &max_split = INT32_MAX) {
     vector<string> res;
     string t = "";
@@ -94,7 +94,7 @@ namespace string_library {
       res.emplace_back(t);
     return res;
   }
-} // namespace string_library
+} // namespace matumoto
 
 
 ll time_to_ll(string time) {
@@ -121,13 +121,13 @@ int main() {
   int n;
   cin >> n;
 
-  data_structure_library::IntervalSet<long long> s;
+  matumoto::IntervalSet<long long> s;
 
   rep(i, n) {
     string line;
     cin >> line;
 
-    auto times = string_library::split(line, "-");
+    auto times = matumoto::split(line, "-");
     ll begin = time_to_ll(times[0]);
 
     ll digit = begin % 10;

@@ -590,7 +590,7 @@ namespace atcoder {
 
 
 #include "../../../math/mod-factorial.hpp"
-using namespace math_library;
+using namespace matumoto;
 
 int main() {
   int n, k;

@@ -4,7 +4,7 @@
 
 #include <set>
 
-namespace data_structure_library {
+namespace matumoto {
   // verify:hhkb2020_C
   template <typename T = long long>
   struct MexSet {
@@ -73,4 +73,4 @@ namespace data_structure_library {
       }
     }
   };
-} // namespace data_structure_library
+} // namespace matumoto

@@ -5,7 +5,7 @@
 
 #include <stack>
 
-namespace graph_library {
+namespace matumoto {
   // s,t : 0-indexed.
   // reachable s -> t
   template <class Graph>
@@ -35,4 +35,4 @@ namespace graph_library {
 
     return false;
   }
-} // namespace graph_library
+} // namespace matumoto

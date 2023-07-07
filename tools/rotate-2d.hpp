@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace tools_library {
+namespace matumoto {
   template <typename ArrayType>
   vector<ArrayType> rotate_cw(const vector<ArrayType> &s) {
     int h = s.size(), w = s[0].size();
@@ -28,4 +28,4 @@ namespace tools_library {
     }
     return res;
   }
-} // namespace tools_library
+} // namespace matumoto

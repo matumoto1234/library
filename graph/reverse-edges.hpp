@@ -3,7 +3,7 @@
 #include "./base.hpp"
 #include "./graph-type.hpp"
 
-namespace graph_library {
+namespace matumoto {
   // want to use concept
 
   template <class Graph>
@@ -18,4 +18,4 @@ namespace graph_library {
 
     return rg;
   }
-} // namespace graph_library
+} // namespace matumoto

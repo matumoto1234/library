@@ -1,6 +1,6 @@
 #pragma once
 
-namespace math_library {
+namespace matumoto {
   constexpr bool is_prime(int n) {
     if (n <= 1)
       return false;
@@ -10,4 +10,4 @@ namespace math_library {
     }
     return true;
   }
-} // namespace math_library
+} // namespace matumoto

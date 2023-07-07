@@ -2,7 +2,7 @@
 
 #include "./base.hpp"
 
-namespace math_library {
+namespace matumoto {
   constexpr ll totient(ll n) {
     ll res = n;
     for (ll i = 2; i * i <= n; i++) {
@@ -16,4 +16,4 @@ namespace math_library {
       res -= res / n;
     return res;
   }
-} // namespace math_library
+} // namespace matumoto

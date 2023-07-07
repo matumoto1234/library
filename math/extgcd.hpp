@@ -2,7 +2,7 @@
 
 #include "./base.hpp"
 
-namespace math_library {
+namespace matumoto {
   constexpr ll extgcd(ll a, ll b, ll &x, ll &y) {
     if (b == 0) {
       x = 1;
@@ -13,4 +13,4 @@ namespace math_library {
     y = y - (a / b) * x;
     return d;
   }
-} // namespace math_library
+} // namespace matumoto

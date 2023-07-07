@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace data_structure_library {
+namespace matumoto {
   template <typename T, T (*op)(T, T) = nullptr>
   struct SplayTree {
     struct node {
@@ -197,4 +197,4 @@ namespace data_structure_library {
       return { merge(merge(lroot, croot), rroot), ans };
     }
   };
-} // namespace data_structure_library
+} // namespace matumoto

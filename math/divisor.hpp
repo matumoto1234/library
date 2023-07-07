@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <vector>
 
-namespace math_library {
+namespace matumoto {
   vector<ll> divisor(ll n) {
     vector<ll> res;
     for (ll i = 1; i * i <= n; i++) {
@@ -18,4 +18,4 @@ namespace math_library {
     sort(res.begin(), res.end());
     return res;
   }
-} // namespace math_library
+} // namespace matumoto

@@ -6,7 +6,7 @@
 #include <stack>
 #include <string>
 
-namespace tools_library {
+namespace matumoto {
 #define debug(...) debug_function(#__VA_ARGS__, __VA_ARGS__)
 
   int find_comma_not_bracketed(string_view s) {
@@ -34,4 +34,4 @@ namespace tools_library {
       debug_function(name.substr(name.find_first_not_of(' ', end + 1)), forward<Ts>(rest)...);
     }
   }
-} // namespace tools_library
+} // namespace matumoto

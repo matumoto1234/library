@@ -5,7 +5,7 @@
 #include <cassert>
 #include <vector>
 
-namespace data_structure_library {
+namespace matumoto {
   // 1-indexed
   template <typename T>
   class FenwickTree2D {
@@ -55,4 +55,4 @@ namespace data_structure_library {
       return sum(y, x, y + 1, x + 1);
     }
   };
-} // namespace data_structure_library
+} // namespace matumoto

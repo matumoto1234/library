@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-namespace tools_library {
+namespace matumoto {
   struct Sliced {
     static constexpr int init = INT32_MAX;
     Sliced() {}
@@ -49,4 +49,4 @@ namespace tools_library {
       return res;
     }
   };
-} // namespace tools_library
+} // namespace matumoto

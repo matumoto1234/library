@@ -8,7 +8,7 @@
 #include <ios>
 #include <iostream>
 
-namespace tools_library {
+namespace matumoto {
   struct FunctionMeasure {
     chrono::system_clock::time_point start, end;
 
@@ -31,4 +31,4 @@ namespace tools_library {
       cout << time(bias) << "\n";
     }
   };
-} // namespace tools_library
+} // namespace matumoto

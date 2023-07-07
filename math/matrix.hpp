@@ -5,7 +5,7 @@
 #include <cassert>
 #include <vector>
 
-namespace math_library {
+namespace matumoto {
   template <typename T>
   class Matrix {
     int row_, column_;
@@ -145,4 +145,4 @@ namespace math_library {
       return os;
     }
   };
-} // namespace math_library
+} // namespace matumoto

@@ -4,7 +4,7 @@
 using namespace std;
 
 #include "graph/warshall-floyd.hpp"
-using namespace graph_library;
+using namespace matumoto;
 
 // {{{ Templates
 

@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-namespace data_structure_library {
+namespace matumoto {
   template <typename T, T (*op)(T, T), T (*e)()>
   class DynamicSegmentTree {
   private:
@@ -84,4 +84,4 @@ namespace data_structure_library {
       return prod(l, r, root, 0, n);
     }
   };
-} // namespace data_structure_library
+} // namespace matumoto

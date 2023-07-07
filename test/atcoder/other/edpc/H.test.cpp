@@ -3,7 +3,7 @@
 using namespace std;
 
 #include "tools/mod-int.hpp"
-using namespace tools_library;
+using namespace matumoto;
 
 // {{{ Templates
 

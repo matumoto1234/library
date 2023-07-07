@@ -4,7 +4,7 @@
 using namespace std;
 
 #include "data-structure/union-find.hpp"
-using namespace data_structure_library;
+using namespace matumoto;
 
 
 // {{{ Templates

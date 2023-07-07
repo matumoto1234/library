@@ -4,7 +4,7 @@
 using namespace std;
 
 #include "graph/lowest-common-ancestor.hpp"
-using namespace graph_library;
+using namespace matumoto;
 
 // {{{ Templates
 

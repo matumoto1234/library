@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace math_library {
+namespace matumoto {
   template <typename T>
   struct BinomialTable {
     vector<vector<T>> data;
@@ -23,4 +23,4 @@ namespace math_library {
       return data[n][r];
     }
   };
-} // namespace math_library
+} // namespace matumoto

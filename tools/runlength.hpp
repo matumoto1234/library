@@ -5,7 +5,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace tools_library {
+namespace matumoto {
   template <typename Iterator>
   auto runlength(Iterator first, Iterator last) {
     vector<pair<remove_reference_t<decltype(*first)>, int>> res;
@@ -16,4 +16,4 @@ namespace tools_library {
     }
     return res;
   }
-} // namespace tools_library
+} // namespace matumoto

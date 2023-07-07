@@ -5,7 +5,7 @@
 #include <array>
 #include <vector>
 
-namespace tools_library {
+namespace matumoto {
   template <typename T, size_t length>
   array<T, length> to_array(const vector<T> &vs) {
     array<T, length> res;
@@ -14,4 +14,4 @@ namespace tools_library {
     }
     return res;
   }
-} // namespace tools_library
+} // namespace matumoto

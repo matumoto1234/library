@@ -5,7 +5,7 @@
 
 #include <queue>
 
-namespace graph_library {
+namespace matumoto {
   // if graph is not DAG, return {}
   vector<int> topological_sort(const UnWeightedGraph &graph) {
     int n = graph.size();
@@ -45,4 +45,4 @@ namespace graph_library {
     }
     return sorted_indexes;
   }
-} // namespace graph_library
+} // namespace matumoto

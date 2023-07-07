@@ -1,5 +1,5 @@
 #pragma once
 
-namespace data_structure_library {
+namespace matumoto {
   using namespace std;
 }

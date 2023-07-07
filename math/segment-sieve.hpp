@@ -7,7 +7,7 @@
 #include <numeric>
 #include <vector>
 
-namespace math_library {
+namespace matumoto {
   class SegmentSieve {
     ll l, r, sqrt_r;
     vector<int> small_sieve;
@@ -67,4 +67,4 @@ namespace math_library {
       return res;
     }
   };
-}; // namespace math_library
+}; // namespace matumoto

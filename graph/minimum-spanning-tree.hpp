@@ -6,7 +6,7 @@
 
 #include <queue>
 
-namespace graph_library {
+namespace matumoto {
 
   template <typename Cost>
   struct MinimumSpanningTree {
@@ -23,7 +23,7 @@ namespace graph_library {
       vector<WeightedEdge<Cost>> edges = graph_.edges();
       sort(edges.begin(), edges.end());
 
-      data_structure_library::UnionFind uf(graph_.size());
+      matumoto::UnionFind uf(graph_.size());
 
       Cost sum = 0;
 
@@ -83,4 +83,4 @@ namespace graph_library {
     }
   };
 
-} // namespace graph_library
+} // namespace matumoto

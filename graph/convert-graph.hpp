@@ -5,7 +5,7 @@
 
 #include <string>
 
-namespace graph_library {
+namespace matumoto {
   // grid graph -> UnWeightedGraph
   UnWeightedGraph convert_graph(const vector<string> &s, const string &wall = "#") {
     int h = s.size(), w = s[0].size();
@@ -32,4 +32,4 @@ namespace graph_library {
     }
     return graph;
   }
-} // namespace graph_library
+} // namespace matumoto

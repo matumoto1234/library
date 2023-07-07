@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace math_library {
+namespace matumoto {
   // from-ary n -> to-ary n
   template <typename T>
   vector<T> convert_base(vector<T> n, T from, T to) {
@@ -30,4 +30,4 @@ namespace math_library {
     T temp = to_decimal(n, from);
     return to_base(temp, to);
   }
-} // namespace math_library
+} // namespace matumoto

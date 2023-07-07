@@ -4,7 +4,7 @@
 
 #include <cassert>
 
-namespace math_library {
+namespace matumoto {
   constexpr int logarithm(ll base, ll n) {
     assert(base != 0);
     int cnt = 0;
@@ -14,4 +14,4 @@ namespace math_library {
     }
     return cnt;
   }
-} // namespace math_library
+} // namespace matumoto

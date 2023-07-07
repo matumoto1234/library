@@ -9,7 +9,7 @@
 #include <vector>
 
 
-namespace graph_library {
+namespace matumoto {
   template <typename Cost>
   struct Dijkstra {
     using Edge = WeightedEdge<Cost>;
@@ -65,4 +65,4 @@ namespace graph_library {
       return res;
     }
   };
-} // namespace graph_library
+} // namespace matumoto

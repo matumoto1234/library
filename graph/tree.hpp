@@ -6,7 +6,7 @@
 
 // WIP
 
-namespace graph_library {
+namespace matumoto {
   // path_query    : op,e,inv
   // subtree_query : op,e
   // op   : T, T -> T (operation)
@@ -279,4 +279,4 @@ namespace graph_library {
       return up(v, distance(v, lca(u, v)) - k);
     }
   };
-} // namespace graph_library
+} // namespace matumoto

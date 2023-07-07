@@ -4,7 +4,7 @@
 using namespace std;
 
 #include "string/rolling-hash.hpp"
-using namespace string_library;
+using namespace matumoto;
 
 
 // {{{ Templates

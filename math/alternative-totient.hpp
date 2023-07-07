@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <vector>
 
-namespace math_library {
+namespace matumoto {
   long long alternative_totient(long long x, long long n) {
     if (x == 1)
       return n;
@@ -31,4 +31,4 @@ namespace math_library {
     }
     return res;
   }
-} // namespace math_library
+} // namespace matumoto

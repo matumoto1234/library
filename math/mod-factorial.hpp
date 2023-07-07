@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace math_library {
+namespace matumoto {
   using mint = atcoder::modint1000000007;
   template <typename ModInt = mint>
   class ModFactorial {
@@ -68,4 +68,4 @@ namespace math_library {
       return combination(n + k - 1, k);
     }
   };
-} // namespace math_library
+} // namespace matumoto
